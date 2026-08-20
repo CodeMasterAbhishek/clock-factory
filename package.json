@@ -1,0 +1,61 @@
+{
+  "name": "clock-factory",
+  "version": "1.0.0",
+  "description": "Universal, multi-theme Analog Clock Web Component library for HTML, React, Vue, Svelte, and modern web apps.",
+  "author": "CodeMasterAbhishek",
+  "license": "UNLICENSED",
+  "homepage": "https://codemasterabhishek.github.io/clock-factory/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodeMasterAbhishek/clock-factory.git"
+  },
+  "bugs": {
+    "url": "https://github.com/CodeMasterAbhishek/clock-factory/issues"
+  },
+  "keywords": [
+    "analog-clock",
+    "clock",
+    "web-component",
+    "custom-elements",
+    "clock-component",
+    "world-clock",
+    "timezone-clock",
+    "react-clock",
+    "vue-clock",
+    "cyberpunk",
+    "swiss-railway",
+    "neumorphism",
+    "svg-clock"
+  ],
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./bundle": "./dist/analog-clock.min.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build:lib": "vite build",
+    "build:bundle": "vite build --mode bundle",
+    "build:types": "tsc --emitDeclarationOnly",
+    "build": "npm run build:lib && npm run build:bundle && npm run build:types",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.4",
+    "d3-geo": "^3.1.1",
+    "typescript": "^5.7.3",
+    "vite": "^6.1.1"
+  }
+}

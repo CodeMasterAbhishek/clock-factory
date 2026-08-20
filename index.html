@@ -1,0 +1,1641 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clock-Factory | Universal Analog Clock Web Component Library</title>
+  <meta name="description" content="A modern, zero-dependency, multi-theme Analog Clock Web Component library for HTML, React, Vue, Svelte, and modern web applications.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./src/showcase/showcase.css">
+
+  <script>
+    (function() {
+      var saved = localStorage.getItem('cf_theme') || 'light';
+      document.documentElement.setAttribute('data-theme', saved);
+    })();
+  </script>
+
+</head>
+<body>
+
+  <!-- Floating Sticky Header -->
+  <!-- Floating Sticky Header -->
+  <!-- Floating Sticky Header -->
+  <header class="site-header">
+    <div class="container header-content">
+      
+      <!-- Left: Logo -->
+      <a href="#" class="logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"></path>
+        </svg>
+        CLOCK FACTORY
+      </a>
+
+      <!-- Center: Category Filter Chips -->
+      <!-- Center: Category Filter Chips -->
+      <!-- Center: Category Filter Chips (Clean, No Emoji) -->
+      <section class="filters" aria-label="Category filters">
+        <button class="chip active" data-category="all">All clocks</button>
+        <button class="chip" data-category="places">Places</button>
+        <button class="chip" data-category="planets">Planets</button>
+        <button class="chip" data-category="nature">Nature</button>
+        <button class="chip" data-category="scifi">Sci-fi</button>
+        <button class="chip" data-category="cute">Cute</button>
+        <button class="chip" data-category="games">Gaming</button>
+        <button class="chip" data-category="luxury">Luxury</button>
+        <button class="chip" data-category="sport">Sport & Tool</button>
+        <button class="chip" data-category="countries">Countries</button>
+      </section>
+
+      <!-- Right: Action Buttons -->
+      <nav class="nav-actions">
+        <a href="https://github.com/CodeMasterAbhishek/clock-factory" target="_blank" class="icon-btn" aria-label="GitHub Repository" title="GitHub Repository">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+          </svg>
+        </a>
+        <button id="theme-toggle-btn" class="icon-btn" aria-label="Toggle Dark/Light Mode" title="Toggle Dark/Light Mode">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+      </nav>
+
+    </div>
+  </header>
+
+  <!-- Main Card Grid Container -->
+  <main class="main-content">
+    <div class="container">
+      <div class="clock-grid" id="clock-grid">
+
+        <article class="clock-card" data-category="sport" data-theme="cricket_stadium" data-title="Cricket Ground & Willow">
+          <div class="card-image-container">
+            <analog-clock theme="cricket_stadium" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">sport</div>
+            <h3 class="card-title">Cricket Ground & Willow</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="sport" data-theme="cycling_velodrome" data-title="Velodrome Sprint">
+          <div class="card-image-container">
+            <analog-clock theme="cycling_velodrome" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">sport</div>
+            <h3 class="card-title">Velodrome Sprint</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="sport" data-theme="scuba_diving" data-title="Scuba Depth Gauge">
+          <div class="card-image-container">
+            <analog-clock theme="scuba_diving" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">sport</div>
+            <h3 class="card-title">Scuba Depth Gauge</h3>
+          </div>
+        </article>
+
+
+
+        <article class="clock-card" data-category="sport" data-theme="basketball" data-title="Hoop & Hardwood">
+          <div class="card-image-container">
+            <analog-clock theme="basketball" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">sport</div>
+            <h3 class="card-title">Hoop & Hardwood</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="sport" data-theme="football_soccer" data-title="Champions Pitch">
+          <div class="card-image-container">
+            <analog-clock theme="football_soccer" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">sport</div>
+            <h3 class="card-title">Champions Pitch</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="sport" data-theme="tennis_slam" data-title="Grand Slam Tennis">
+          <div class="card-image-container">
+            <analog-clock theme="tennis_slam" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">sport</div>
+            <h3 class="card-title">Grand Slam Tennis</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="sport" data-theme="formula1_racing" data-title="Formula 1 Cockpit">
+          <div class="card-image-container">
+            <analog-clock theme="formula1_racing" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">sport</div>
+            <h3 class="card-title">Formula 1 Cockpit</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="sport" data-theme="golf_links" data-title="Pebble Beach Links">
+          <div class="card-image-container">
+            <analog-clock theme="golf_links" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">sport</div>
+            <h3 class="card-title">Pebble Beach Links</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="sport" data-theme="boxing_ring" data-title="Championship Ring">
+          <div class="card-image-container">
+            <analog-clock theme="boxing_ring" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">sport</div>
+            <h3 class="card-title">Championship Ring</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="sport" data-theme="snowboarding_winter" data-title="Alpine Powder Peak">
+          <div class="card-image-container">
+            <analog-clock theme="snowboarding_winter" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">sport</div>
+            <h3 class="card-title">Alpine Powder Peak</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="sport" data-theme="skateboarding_street" data-title="Street Skatepark">
+          <div class="card-image-container">
+            <analog-clock theme="skateboarding_street" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">sport</div>
+            <h3 class="card-title">Street Skatepark</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="sport" data-theme="baseball_diamond" data-title="Major League Diamond">
+          <div class="card-image-container">
+            <analog-clock theme="baseball_diamond" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">sport</div>
+            <h3 class="card-title">Major League Diamond</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="sport" data-theme="surfing_pipeline" data-title="Banzai Pipeline">
+          <div class="card-image-container">
+            <analog-clock theme="surfing_pipeline" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">sport</div>
+            <h3 class="card-title">Banzai Pipeline</h3>
+          </div>
+        </article>
+
+
+
+        <article class="clock-card" data-category="nature" data-theme="cherry_blossom" data-title="Sakura Grove">
+          <div class="card-image-container">
+            <analog-clock theme="cherry_blossom" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">nature</div>
+            <h3 class="card-title">Sakura Grove</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="nature" data-theme="firefly_meadow" data-title="Firefly Meadow">
+          <div class="card-image-container">
+            <analog-clock theme="firefly_meadow" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">nature</div>
+            <h3 class="card-title">Firefly Meadow</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="nature" data-theme="glacier_fjord" data-title="Arctic Glacier Fjord">
+          <div class="card-image-container">
+            <analog-clock theme="glacier_fjord" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">nature</div>
+            <h3 class="card-title">Arctic Glacier Fjord</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="nature" data-theme="rainforest_canopy" data-title="Rainforest Canopy">
+          <div class="card-image-container">
+            <analog-clock theme="rainforest_canopy" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">nature</div>
+            <h3 class="card-title">Rainforest Canopy</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="nature" data-theme="desert_dunes" data-title="Desert Oasis">
+          <div class="card-image-container">
+            <analog-clock theme="desert_dunes" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">nature</div>
+            <h3 class="card-title">Desert Oasis</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="nature" data-theme="crystal_cave" data-title="Crystal Grotto">
+          <div class="card-image-container">
+            <analog-clock theme="crystal_cave" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">nature</div>
+            <h3 class="card-title">Crystal Grotto</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="nature" data-theme="monarch_migration" data-title="Monarch Migration">
+          <div class="card-image-container">
+            <analog-clock theme="monarch_migration" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">nature</div>
+            <h3 class="card-title">Monarch Migration</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="nature" data-theme="ocean_bioluminescence" data-title="Bioluminescent Tide">
+          <div class="card-image-container">
+            <analog-clock theme="ocean_bioluminescence" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">nature</div>
+            <h3 class="card-title">Bioluminescent Tide</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="nature" data-theme="autumn_forest" data-title="Golden Aspen Forest">
+          <div class="card-image-container">
+            <analog-clock theme="autumn_forest" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">nature</div>
+            <h3 class="card-title">Golden Aspen Forest</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="nature" data-theme="thunderstorm_cloud" data-title="Tropical Thunderstorm">
+          <div class="card-image-container">
+            <analog-clock theme="thunderstorm_cloud" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">nature</div>
+            <h3 class="card-title">Tropical Thunderstorm</h3>
+          </div>
+        </article>
+
+
+
+        <article class="clock-card" data-category="places" data-theme="fuji" data-title="Mount Fuji">
+          <div class="card-image-container">
+            <analog-clock theme="fuji" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">places</div>
+            <h3 class="card-title">Mount Fuji</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="places" data-theme="santorini" data-title="Santorini Island">
+          <div class="card-image-container">
+            <analog-clock theme="santorini" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">places</div>
+            <h3 class="card-title">Santorini Island</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="places" data-theme="aurora_tromso" data-title="Tromsø Fjord">
+          <div class="card-image-container">
+            <analog-clock theme="aurora_tromso" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">places</div>
+            <h3 class="card-title">Tromsø Fjord</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="places" data-theme="pyramids" data-title="Giza Pyramids">
+          <div class="card-image-container">
+            <analog-clock theme="pyramids" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">places</div>
+            <h3 class="card-title">Giza Pyramids</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="places" data-theme="taj_mahal" data-title="Taj Mahal">
+          <div class="card-image-container">
+            <analog-clock theme="taj_mahal" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">places</div>
+            <h3 class="card-title">Taj Mahal</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="places" data-theme="eiffel_tower" data-title="Eiffel Tower">
+          <div class="card-image-container">
+            <analog-clock theme="eiffel_tower" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">places</div>
+            <h3 class="card-title">Eiffel Tower</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="places" data-theme="machu_picchu" data-title="Machu Picchu">
+          <div class="card-image-container">
+            <analog-clock theme="machu_picchu" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">places</div>
+            <h3 class="card-title">Machu Picchu</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="places" data-theme="grand_canyon" data-title="Grand Canyon">
+          <div class="card-image-container">
+            <analog-clock theme="grand_canyon" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">places</div>
+            <h3 class="card-title">Grand Canyon</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="places" data-theme="venice" data-title="Venice Canal">
+          <div class="card-image-container">
+            <analog-clock theme="venice" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">places</div>
+            <h3 class="card-title">Venice Canal</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="places" data-theme="maldives" data-title="Maldives Overwater Villa">
+          <div class="card-image-container">
+            <analog-clock theme="maldives" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">places</div>
+            <h3 class="card-title">Maldives Overwater Villa</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="planets" data-theme="earth_planet" data-title="Planet Earth">
+          <div class="card-image-container">
+            <analog-clock theme="earth_planet" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">planets</div>
+            <h3 class="card-title">Planet Earth</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="planets" data-theme="mars_planet" data-title="Red Planet Mars">
+          <div class="card-image-container">
+            <analog-clock theme="mars_planet" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">planets</div>
+            <h3 class="card-title">Red Planet Mars</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="planets" data-theme="jupiter_planet" data-title="Great Spot Jupiter">
+          <div class="card-image-container">
+            <analog-clock theme="jupiter_planet" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">planets</div>
+            <h3 class="card-title">Great Spot Jupiter</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="planets" data-theme="saturn_planet" data-title="Ringed Saturn">
+          <div class="card-image-container">
+            <analog-clock theme="saturn_planet" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">planets</div>
+            <h3 class="card-title">Ringed Saturn</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="planets" data-theme="neptune_planet" data-title="Azure Neptune">
+          <div class="card-image-container">
+            <analog-clock theme="neptune_planet" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">planets</div>
+            <h3 class="card-title">Azure Neptune</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="planets" data-theme="moon_lunar" data-title="Lunar Surface">
+          <div class="card-image-container">
+            <analog-clock theme="moon_lunar" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">planets</div>
+            <h3 class="card-title">Lunar Surface</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="planets" data-theme="sun_fusion" data-title="Solar Star">
+          <div class="card-image-container">
+            <analog-clock theme="sun_fusion" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">planets</div>
+            <h3 class="card-title">Solar Star</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="planets" data-theme="venus_planet" data-title="Veiled Venus">
+          <div class="card-image-container">
+            <analog-clock theme="venus_planet" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">planets</div>
+            <h3 class="card-title">Veiled Venus</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="planets" data-theme="uranus_planet" data-title="Aquamarine Uranus">
+          <div class="card-image-container">
+            <analog-clock theme="uranus_planet" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">planets</div>
+            <h3 class="card-title">Aquamarine Uranus</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="planets" data-theme="mercury_planet" data-title="Cratered Mercury">
+          <div class="card-image-container">
+            <analog-clock theme="mercury_planet" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">planets</div>
+            <h3 class="card-title">Cratered Mercury</h3>
+          </div>
+        </article>
+
+
+
+        <article class="clock-card" data-category="nature" data-theme="terrarium" data-title="Geometric Terrarium">
+          <div class="card-image-container">
+            <analog-clock theme="terrarium" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">NATURE</div>
+            <h3 class="card-title">Geometric Terrarium</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="nature" data-theme="coral_reef" data-title="Living Coral Reef">
+          <div class="card-image-container">
+            <analog-clock theme="coral_reef" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">NATURE</div>
+            <h3 class="card-title">Living Coral Reef</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="nature" data-theme="dandelion" data-title="Blowing Dandelion">
+          <div class="card-image-container">
+            <analog-clock theme="dandelion" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">NATURE</div>
+            <h3 class="card-title">Blowing Dandelion</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="nature" data-theme="mountain_sunrise" data-title="Alpine Sunrise">
+          <div class="card-image-container">
+            <analog-clock theme="mountain_sunrise" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">NATURE</div>
+            <h3 class="card-title">Alpine Sunrise</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="nature" data-theme="bamboo_zen" data-title="Bamboo Zen Garden">
+          <div class="card-image-container">
+            <analog-clock theme="bamboo_zen" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">NATURE</div>
+            <h3 class="card-title">Bamboo Zen Garden</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="nature" data-theme="aurora" data-title="Aurora Borealis">
+          <div class="card-image-container">
+            <analog-clock theme="aurora" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">NATURE</div>
+            <h3 class="card-title">Aurora Borealis</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="nature" data-theme="geode" data-title="Amethyst Geode">
+          <div class="card-image-container">
+            <analog-clock theme="geode" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">NATURE</div>
+            <h3 class="card-title">Amethyst Geode</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="nature" data-theme="waterfall" data-title="Jungle Waterfall">
+          <div class="card-image-container">
+            <analog-clock theme="waterfall" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">NATURE</div>
+            <h3 class="card-title">Jungle Waterfall</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="nature" data-theme="bonsai" data-title="Zen Bonsai Tree">
+          <div class="card-image-container">
+            <analog-clock theme="bonsai" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">NATURE</div>
+            <h3 class="card-title">Zen Bonsai Tree</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="nature" data-theme="volcano" data-title="Molten Volcano">
+          <div class="card-image-container">
+            <analog-clock theme="volcano" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">NATURE</div>
+            <h3 class="card-title">Molten Volcano</h3>
+          </div>
+        </article>
+
+
+
+        <article class="clock-card" data-category="nature" data-theme="tree_rings" data-title="Woodland Rings">
+          <div class="card-image-container">
+            <analog-clock theme="tree_rings" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">NATURE</div>
+            <h3 class="card-title">Woodland Rings</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="nature" data-theme="sunflower" data-title="Golden Sunflower">
+          <div class="card-image-container">
+            <analog-clock theme="sunflower" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">NATURE</div>
+            <h3 class="card-title">Golden Sunflower</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="nature" data-theme="lotus" data-title="Water Lily Lotus">
+          <div class="card-image-container">
+            <analog-clock theme="lotus" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">NATURE</div>
+            <h3 class="card-title">Water Lily Lotus</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="nature" data-theme="forest" data-title="Misty Pine Forest">
+          <div class="card-image-container">
+            <analog-clock theme="forest" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">NATURE</div>
+            <h3 class="card-title">Misty Pine Forest</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="nature" data-theme="mushroom" data-title="Forest Amanita">
+          <div class="card-image-container">
+            <analog-clock theme="mushroom" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">NATURE</div>
+            <h3 class="card-title">Forest Amanita</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="nature" data-theme="cactus" data-title="Desert Saguaro">
+          <div class="card-image-container">
+            <analog-clock theme="cactus" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">NATURE</div>
+            <h3 class="card-title">Desert Saguaro</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="nature" data-theme="ocean" data-title="Surging Ocean Wave">
+          <div class="card-image-container">
+            <analog-clock theme="ocean" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">NATURE</div>
+            <h3 class="card-title">Surging Ocean Wave</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="nature" data-theme="monstera" data-title="Tropical Monstera">
+          <div class="card-image-container">
+            <analog-clock theme="monstera" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">NATURE</div>
+            <h3 class="card-title">Tropical Monstera</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="nature" data-theme="hive" data-title="Golden Honeycomb">
+          <div class="card-image-container">
+            <analog-clock theme="hive" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">NATURE</div>
+            <h3 class="card-title">Golden Honeycomb</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="nature" data-theme="autumn" data-title="Autumn Maple Leaf">
+          <div class="card-image-container">
+            <analog-clock theme="autumn" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">NATURE</div>
+            <h3 class="card-title">Autumn Maple Leaf</h3>
+          </div>
+        </article>
+
+
+
+        <article class="clock-card" data-category="scifi" data-theme="radar" data-title="Sonar Radar">
+          <div class="card-image-container">
+            <analog-clock theme="radar" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">scifi</div>
+            <h3 class="card-title">Sonar Radar</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="scifi" data-theme="alien" data-title="Alien Interface">
+          <div class="card-image-container">
+            <analog-clock theme="alien" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">scifi</div>
+            <h3 class="card-title">Alien Interface</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="scifi" data-theme="warp" data-title="Warp Core">
+          <div class="card-image-container">
+            <analog-clock theme="warp" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">scifi</div>
+            <h3 class="card-title">Warp Core</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="scifi" data-theme="holo" data-title="Hologram Grid">
+          <div class="card-image-container">
+            <analog-clock theme="holo" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">scifi</div>
+            <h3 class="card-title">Hologram Grid</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="scifi" data-theme="mecha" data-title="Mecha Eye">
+          <div class="card-image-container">
+            <analog-clock theme="mecha" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">scifi</div>
+            <h3 class="card-title">Mecha Eye</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="scifi" data-theme="timemachine" data-title="Flux Capacitor">
+          <div class="card-image-container">
+            <analog-clock theme="timemachine" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">scifi</div>
+            <h3 class="card-title">Flux Capacitor</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="scifi" data-theme="starship" data-title="Starship Dashboard">
+          <div class="card-image-container">
+            <analog-clock theme="starship" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">scifi</div>
+            <h3 class="card-title">Starship Dashboard</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="scifi" data-theme="cyberdeck" data-title="Cyber Deck">
+          <div class="card-image-container">
+            <analog-clock theme="cyberdeck" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">scifi</div>
+            <h3 class="card-title">Cyber Deck</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="scifi" data-theme="quantum" data-title="Quantum Reactor">
+          <div class="card-image-container">
+            <analog-clock theme="quantum" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">scifi</div>
+            <h3 class="card-title">Quantum Reactor</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="cute" data-theme="owl" data-title="Sleepy Owl">
+          <div class="card-image-container">
+            <analog-clock theme="owl" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">cute</div>
+            <h3 class="card-title">Sleepy Owl</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="cute" data-theme="penguin" data-title="Chilly Penguin">
+          <div class="card-image-container">
+            <analog-clock theme="penguin" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">cute</div>
+            <h3 class="card-title">Chilly Penguin</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="cute" data-theme="sun" data-title="Happy Sun">
+          <div class="card-image-container">
+            <analog-clock theme="sun" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">cute</div>
+            <h3 class="card-title">Happy Sun</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="cute" data-theme="kawaii" data-title="Kawaii Pastel Blushing Alarm Clock with Bells and Smile">
+          <div class="card-image-container">
+            <analog-clock theme="kawaii" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">cute</div>
+            <h3 class="card-title">Kawaii Pastel Blushing Alarm Clock with Bells and Smile</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="cute" data-theme="cottagecore" data-title="Cottagecore Mushroom Forest Daisy Floral Clock">
+          <div class="card-image-container">
+            <analog-clock theme="cottagecore" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">cute</div>
+            <h3 class="card-title">Cottagecore Mushroom Forest Daisy Floral Clock</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="sport" data-theme="diver" data-title="Ocean Diver Pro Submariner Ceramic Bezel Watch">
+          <div class="card-image-container">
+            <analog-clock theme="diver" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">sport</div>
+            <h3 class="card-title">Ocean Diver Pro Submariner Ceramic Bezel Watch</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="scifi" data-theme="cyberpunk" data-title="Cyberpunk Neon Sci-Fi HUD Radar Hologram">
+          <div class="card-image-container">
+            <analog-clock theme="cyberpunk" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">scifi</div>
+            <h3 class="card-title">Cyberpunk Neon Sci-Fi HUD Radar Hologram</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="scifi" data-theme="synthwave" data-title="80s Retro Outrun Synthwave Horizon Sunset">
+          <div class="card-image-container">
+            <analog-clock theme="synthwave" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">scifi</div>
+            <h3 class="card-title">80s Retro Outrun Synthwave Horizon Sunset</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="luxury" data-theme="swiss" data-title="Swiss Railway Station Clock Mondaine Lollipop">
+          <div class="card-image-container">
+            <analog-clock theme="swiss" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">luxury</div>
+            <h3 class="card-title">Swiss Railway Station Clock Mondaine Lollipop</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="sport" data-theme="racing" data-title="Motorsport Racing Tachometer RPM Gauge">
+          <div class="card-image-container">
+            <analog-clock theme="racing" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">sport</div>
+            <h3 class="card-title">Motorsport Racing Tachometer RPM Gauge</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="luxury" data-theme="luxury" data-title="Luxury Chronometer Roman Numerals Gold Bezel">
+          <div class="card-image-container">
+            <analog-clock theme="luxury" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">luxury</div>
+            <h3 class="card-title">Luxury Chronometer Roman Numerals Gold Bezel</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="scifi" data-theme="galaxy" data-title="Cosmic Galaxy Orbit Nebula Planetary Clock">
+          <div class="card-image-container">
+            <analog-clock theme="galaxy" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">scifi</div>
+            <h3 class="card-title">Cosmic Galaxy Orbit Nebula Planetary Clock</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="sport" data-theme="pilot" data-title="Aviator Flieger Pilot Cockpit Instrument">
+          <div class="card-image-container">
+            <analog-clock theme="pilot" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">sport</div>
+            <h3 class="card-title">Aviator Flieger Pilot Cockpit Instrument</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="scifi" data-theme="matrix" data-title="Matrix CRT Terminal Phosphor Green Hacker">
+          <div class="card-image-container">
+            <analog-clock theme="matrix" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">scifi</div>
+            <h3 class="card-title">Matrix CRT Terminal Phosphor Green Hacker</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="luxury" data-theme="vintage" data-title="Victorian Antique Pocket Watch Parchment Breguet">
+          <div class="card-image-container">
+            <analog-clock theme="vintage" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">luxury</div>
+            <h3 class="card-title">Victorian Antique Pocket Watch Parchment Breguet</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="sport" data-theme="gshock" data-title="Tactical Stealth Armored Bezel Military Field Watch">
+          <div class="card-image-container">
+            <analog-clock theme="gshock" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">sport</div>
+            <h3 class="card-title">Tactical Stealth Armored Bezel Military Field Watch</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="sport" data-theme="chronograph" data-title="Pro Chronograph Bi-Compax Sub-Dials Stainless Steel Watch">
+          <div class="card-image-container">
+            <analog-clock theme="chronograph" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">sport</div>
+            <h3 class="card-title">Pro Chronograph Bi-Compax Sub-Dials Stainless Steel Watch</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="sport" data-theme="triathlon" data-title="Triathlon Endurance Sports Pace Zone Electric Lime Watch">
+          <div class="card-image-container">
+            <analog-clock theme="triathlon" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">sport</div>
+            <h3 class="card-title">Triathlon Endurance Sports Pace Zone Electric Lime Watch</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="countries" data-theme="india" data-title="India Tricolor Ashoka Chakra 24 Spoke Watch">
+          <div class="card-image-container">
+            <analog-clock theme="india" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">countries</div>
+            <h3 class="card-title">India Tricolor Ashoka Chakra 24 Spoke Watch</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="countries" data-theme="japan" data-title="Japan Hinomaru Rising Sun Sakura Watch">
+          <div class="card-image-container">
+            <analog-clock theme="japan" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">countries</div>
+            <h3 class="card-title">Japan Hinomaru Rising Sun Sakura Watch</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="countries" data-theme="usa" data-title="USA Freedom Star Spangled Banner Watch">
+          <div class="card-image-container">
+            <analog-clock theme="usa" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">countries</div>
+            <h3 class="card-title">USA Freedom Star Spangled Banner Watch</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="countries" data-theme="uk" data-title="United Kingdom Union Jack Big Ben Roman Watch">
+          <div class="card-image-container">
+            <analog-clock theme="uk" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">countries</div>
+            <h3 class="card-title">United Kingdom Union Jack Big Ben Roman Watch</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="countries" data-theme="brazil" data-title="Brazil Tropical Rhombus Ordem e Progresso Watch">
+          <div class="card-image-container">
+            <analog-clock theme="brazil" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">countries</div>
+            <h3 class="card-title">Brazil Tropical Rhombus Ordem e Progresso Watch</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="countries" data-theme="germany" data-title="Germany Schwarz Rot Gold Precision Watch">
+          <div class="card-image-container">
+            <analog-clock theme="germany" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">countries</div>
+            <h3 class="card-title">Germany Schwarz Rot Gold Precision Watch</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="countries" data-theme="france" data-title="France Haute Horlogerie Tricolore Paris Watch">
+          <div class="card-image-container">
+            <analog-clock theme="france" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">countries</div>
+            <h3 class="card-title">France Haute Horlogerie Tricolore Paris Watch</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="countries" data-theme="italy" data-title="Italy Luxury Milano Gold Roman Watch">
+          <div class="card-image-container">
+            <analog-clock theme="italy" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">countries</div>
+            <h3 class="card-title">Italy Luxury Milano Gold Roman Watch</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="countries" data-theme="australia" data-title="Australia Southern Cross Golden Wattle Watch">
+          <div class="card-image-container">
+            <analog-clock theme="australia" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">countries</div>
+            <h3 class="card-title">Australia Southern Cross Golden Wattle Watch</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="countries" data-theme="canada" data-title="Canada Red Maple Leaf Great White North Watch">
+          <div class="card-image-container">
+            <analog-clock theme="canada" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">countries</div>
+            <h3 class="card-title">Canada Red Maple Leaf Great White North Watch</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="countries" data-theme="spain" data-title="Spain Royal Viva Espana Watch">
+          <div class="card-image-container">
+            <analog-clock theme="spain" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">countries</div>
+            <h3 class="card-title">Spain Royal Viva Espana Watch</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="countries" data-theme="south-korea" data-title="South Korea Taegeuk Yin Yang Trigram Watch">
+          <div class="card-image-container">
+            <analog-clock theme="south-korea" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">countries</div>
+            <h3 class="card-title">South Korea Taegeuk Yin Yang Trigram Watch</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="countries" data-theme="switzerland" data-title="Switzerland Swiss Cross Alpine Watch">
+          <div class="card-image-container">
+            <analog-clock theme="switzerland" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">countries</div>
+            <h3 class="card-title">Switzerland Swiss Cross Alpine Watch</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="countries" data-theme="mexico" data-title="Mexico Aztec Viva Mexico Golden Eagle Watch">
+          <div class="card-image-container">
+            <analog-clock theme="mexico" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">countries</div>
+            <h3 class="card-title">Mexico Aztec Viva Mexico Golden Eagle Watch</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="countries" data-theme="argentina" data-title="Argentina Sol de Mayo Sun of May Watch">
+          <div class="card-image-container">
+            <analog-clock theme="argentina" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">countries</div>
+            <h3 class="card-title">Argentina Sol de Mayo Sun of May Watch</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="countries" data-theme="egypt" data-title="Egypt Pharaoh Eagle of Saladin Onyx Gold Watch">
+          <div class="card-image-container">
+            <analog-clock theme="egypt" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">countries</div>
+            <h3 class="card-title">Egypt Pharaoh Eagle of Saladin Onyx Gold Watch</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="countries" data-theme="sweden" data-title="Sweden Sverige Nordic Cross Watch">
+          <div class="card-image-container">
+            <analog-clock theme="sweden" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">countries</div>
+            <h3 class="card-title">Sweden Sverige Nordic Cross Watch</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="countries" data-theme="south-africa" data-title="South Africa Rainbow Nation Flag Watch">
+          <div class="card-image-container">
+            <analog-clock theme="south-africa" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">countries</div>
+            <h3 class="card-title">South Africa Rainbow Nation Flag Watch</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="countries" data-theme="uae" data-title="UAE Falcon United Arab Emirates Dubai Watch">
+          <div class="card-image-container">
+            <analog-clock theme="uae" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">countries</div>
+            <h3 class="card-title">UAE Falcon United Arab Emirates Dubai Watch</h3>
+          </div>
+        </article>
+
+        
+
+        
+
+        <article class="clock-card" data-category="games" data-theme="pokemon" data-title="Pokemon Pokeball Pikachu Lightning Watch">
+          <div class="card-image-container">
+            <analog-clock theme="pokemon" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">games</div>
+            <h3 class="card-title">Pokemon Pokeball Pikachu Lightning Watch</h3>
+          </div>
+        </article>
+
+        
+
+        <article class="clock-card" data-category="games" data-theme="mario" data-title="Super Mario Bros Mushroom Kingdom Super Star Watch">
+          <div class="card-image-container">
+            <analog-clock theme="mario" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">games</div>
+            <h3 class="card-title">Super Mario Bros Mushroom Kingdom Super Star Watch</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="games" data-theme="cyberpunk2077" data-title="Cyberpunk 2077 Night City Yellow HUD Watch">
+          <div class="card-image-container">
+            <analog-clock theme="cyberpunk2077" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">games</div>
+            <h3 class="card-title">Cyberpunk 2077 Night City Yellow HUD Watch</h3>
+          </div>
+        </article>
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        <article class="clock-card" data-category="countries" data-theme="russia" data-title="Russia Tricolor Double-Headed Eagle Watch">
+          <div class="card-image-container">
+            <analog-clock theme="russia" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">countries</div>
+            <h3 class="card-title">Russia Tricolor Double-Headed Eagle Watch</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="countries" data-theme="israel" data-title="Israel Magen David Star of David Watch">
+          <div class="card-image-container">
+            <analog-clock theme="israel" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">countries</div>
+            <h3 class="card-title">Israel Magen David Star of David Watch</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="countries" data-theme="singapore" data-title="Singapore Lion City Crescent Moon Watch">
+          <div class="card-image-container">
+            <analog-clock theme="singapore" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">countries</div>
+            <h3 class="card-title">Singapore Lion City Crescent Moon Watch</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="countries" data-theme="netherlands" data-title="Netherlands Oranje-Nassau Dutch Crown Watch">
+          <div class="card-image-container">
+            <analog-clock theme="netherlands" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">countries</div>
+            <h3 class="card-title">Netherlands Oranje-Nassau Dutch Crown Watch</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="countries" data-theme="greece" data-title="Greece Ellada Aegean Cross Olive Wreath Watch">
+          <div class="card-image-container">
+            <analog-clock theme="greece" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">countries</div>
+            <h3 class="card-title">Greece Ellada Aegean Cross Olive Wreath Watch</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="countries" data-theme="new-zealand" data-title="New Zealand Aotearoa Southern Cross Fern Watch">
+          <div class="card-image-container">
+            <analog-clock theme="new-zealand" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">countries</div>
+            <h3 class="card-title">New Zealand Aotearoa Southern Cross Fern Watch</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="countries" data-theme="vietnam" data-title="Vietnam Crimson Red Golden Star Watch">
+          <div class="card-image-container">
+            <analog-clock theme="vietnam" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">countries</div>
+            <h3 class="card-title">Vietnam Crimson Red Golden Star Watch</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="countries" data-theme="thailand" data-title="Thailand Trairanga Royal Garuda Watch">
+          <div class="card-image-container">
+            <analog-clock theme="thailand" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">countries</div>
+            <h3 class="card-title">Thailand Trairanga Royal Garuda Watch</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="countries" data-theme="norway" data-title="Norway Norge Nordic Cross Ribbon Watch">
+          <div class="card-image-container">
+            <analog-clock theme="norway" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">countries</div>
+            <h3 class="card-title">Norway Norge Nordic Cross Ribbon Watch</h3>
+          </div>
+        </article>
+
+        <article class="clock-card" data-category="countries" data-theme="indonesia" data-title="Indonesia Sang Saka Merah Putih Garuda Watch">
+          <div class="card-image-container">
+            <analog-clock theme="indonesia" timezone="" size="100%" smooth></analog-clock>
+          </div>
+          <div class="card-content">
+            <div class="card-category">countries</div>
+            <h3 class="card-title">Indonesia Sang Saka Merah Putih Garuda Watch</h3>
+          </div>
+        </article>
+
+</div>
+      </div>
+    </main>
+
+  <div id="studio-modal" class="modal-backdrop">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2 class="modal-title" id="modalTitleText">India</h2>
+        <button id="modal-close-btn" class="modal-close-btn" aria-label="Close Modal">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Live Preview -->
+        <div class="modal-preview-box">
+          <div class="modal-clock-stage">
+            <analog-clock id="modalClock" theme="india" size="320px" smooth></analog-clock>
+          </div>
+          <div class="modal-install-badge">
+            $ npm install clock-factory
+          </div>
+        </div>
+
+        <!-- Controls & Code Generator -->
+        <div class="modal-controls-box">
+          <div class="control-grid-2">
+            <div class="field-group">
+              <label class="field-label" for="modalThemeSelect">Clock Theme</label>
+              <select id="modalThemeSelect" class="form-select">
+
+                <option value="cricket_stadium">Cricket Ground & Willow</option>
+                <option value="american_football">Gridiron Field</option>
+                <option value="badminton_shuttle">Badminton Court</option>
+                <option value="cycling_velodrome">Velodrome Sprint</option>
+                <option value="archery_target">Olympic Archery</option>
+                <option value="scuba_diving">Scuba Depth Gauge</option>
+
+
+                <option value="basketball">Hoop & Hardwood</option>
+                <option value="football_soccer">Champions Pitch</option>
+                <option value="tennis_slam">Grand Slam Tennis</option>
+                <option value="formula1_racing">Formula 1 Cockpit</option>
+                <option value="golf_links">Pebble Beach Links</option>
+                <option value="boxing_ring">Championship Ring</option>
+                <option value="snowboarding_winter">Alpine Powder Peak</option>
+                <option value="skateboarding_street">Street Skatepark</option>
+                <option value="baseball_diamond">Major League Diamond</option>
+                <option value="surfing_pipeline">Banzai Pipeline</option>
+
+
+                <option value="cherry_blossom">Sakura Grove</option>
+                <option value="firefly_meadow">Firefly Meadow</option>
+                <option value="glacier_fjord">Arctic Glacier Fjord</option>
+                <option value="rainforest_canopy">Rainforest Canopy</option>
+                <option value="desert_dunes">Desert Oasis</option>
+                <option value="crystal_cave">Crystal Grotto</option>
+                <option value="monarch_migration">Monarch Migration</option>
+                <option value="ocean_bioluminescence">Bioluminescent Tide</option>
+                <option value="autumn_forest">Golden Aspen Forest</option>
+                <option value="thunderstorm_cloud">Tropical Thunderstorm</option>
+
+
+                <option value="fuji">Mount Fuji</option>
+                <option value="santorini">Santorini Island</option>
+                <option value="aurora_tromso">Tromsø Fjord</option>
+                <option value="pyramids">Giza Pyramids</option>
+                <option value="taj_mahal">Taj Mahal</option>
+                <option value="eiffel_tower">Eiffel Tower</option>
+                <option value="machu_picchu">Machu Picchu</option>
+                <option value="grand_canyon">Grand Canyon</option>
+                <option value="venice">Venice Canal</option>
+                <option value="maldives">Maldives Overwater Villa</option>
+                <option value="earth_planet">Planet Earth</option>
+                <option value="mars_planet">Red Planet Mars</option>
+                <option value="jupiter_planet">Great Spot Jupiter</option>
+                <option value="saturn_planet">Ringed Saturn</option>
+                <option value="neptune_planet">Azure Neptune</option>
+                <option value="moon_lunar">Lunar Surface</option>
+                <option value="sun_fusion">Solar Star</option>
+                <option value="venus_planet">Veiled Venus</option>
+                <option value="uranus_planet">Aquamarine Uranus</option>
+                <option value="mercury_planet">Cratered Mercury</option>
+
+
+                <option value="terrarium">Geometric Terrarium</option>
+                <option value="coral_reef">Living Coral Reef</option>
+                <option value="dandelion">Blowing Dandelion</option>
+                <option value="mountain_sunrise">Alpine Sunrise</option>
+                <option value="bamboo_zen">Bamboo Zen Garden</option>
+                <option value="aurora">Aurora Borealis</option>
+                <option value="geode">Amethyst Geode</option>
+                <option value="waterfall">Jungle Waterfall</option>
+                <option value="bonsai">Zen Bonsai Tree</option>
+                <option value="volcano">Molten Volcano</option>
+
+
+                <option value="tree_rings">Woodland Rings</option>
+                <option value="sunflower">Golden Sunflower</option>
+                <option value="lotus">Water Lily Lotus</option>
+                <option value="forest">Misty Pine Forest</option>
+                <option value="mushroom">Forest Amanita</option>
+                <option value="cactus">Desert Saguaro</option>
+                <option value="ocean">Surging Ocean Wave</option>
+                <option value="monstera">Tropical Monstera</option>
+                <option value="hive">Golden Honeycomb</option>
+                <option value="autumn">Autumn Maple Leaf</option>
+
+
+                <option value="radar">Sonar Radar</option>
+                <option value="alien">Alien Interface</option>
+                <option value="warp">Warp Core</option>
+                <option value="holo">Hologram Grid</option>
+                <option value="mecha">Mecha Eye</option>
+                <option value="timemachine">Flux Capacitor</option>
+                <option value="starship">Starship Dashboard</option>
+                <option value="cyberdeck">Cyber Deck</option>
+                <option value="quantum">Quantum Reactor</option>
+
+                <option value="owl">Sleepy Owl</option>
+                <option value="penguin">Chilly Penguin</option>
+                <option value="sun">Happy Sun</option>
+                <option value="kawaii">Kawaii Pastel Alarm</option>
+                <option value="pixel-farm">Stardew Pixel Farm</option>
+                <option value="cottagecore">Cottagecore Forest</option>
+                <option value="neko">Neko Cat Paw</option>
+                <option value="diver">Ocean Diver</option>
+                <option value="cyberpunk">Cyberpunk Neon</option>
+                <option value="synthwave">Retro Synthwave 80s</option>
+                <option value="swiss">Swiss Railway</option>
+                <option value="racing">Motorsport Racing</option>
+                <option value="luxury">Luxury Chronometer</option>
+                <option value="galaxy">Cosmic Galaxy</option>
+                <option value="pilot">Aviator Flieger</option>
+                <option value="matrix">Matrix CRT Terminal</option>
+                <option value="neumorphic">Neumorphic 3D</option>
+                <option value="hybrid">Hybrid LCD HUD</option>
+                <option value="vintage">Victorian Pocket Watch</option>
+                <option value="glassmorphism">Frosted Glass UI</option>
+                <option value="minimal">Nordic Minimal</option>
+                <option value="classic">Classic Bauhaus</option>
+                <option value="dark">Dark Void</option>
+                <option value="india">India</option>
+                <option value="japan">Japan</option>
+                <option value="usa">USA</option>
+                <option value="uk">United Kingdom</option>
+                <option value="brazil">Brazil</option>
+                <option value="germany">Germany</option>
+                <option value="france">France</option>
+                <option value="italy">Italy</option>
+                <option value="australia">Australia</option>
+                <option value="canada">Canada</option>
+                <option value="spain">Spain</option>
+                <option value="south-korea">South Korea</option>
+                <option value="switzerland">Switzerland</option>
+                <option value="mexico">Mexico</option>
+                <option value="argentina">Argentina</option>
+                <option value="egypt">Egypt</option>
+                <option value="sweden">Sweden</option>
+                <option value="south-africa">South Africa</option>
+                <option value="uae">United Arab Emirates</option>
+                <option value="russia">Russia</option>
+                <option value="israel">Israel</option>
+                <option value="singapore">Singapore</option>
+                <option value="netherlands">Netherlands</option>
+                <option value="greece">Greece</option>
+                <option value="new-zealand">New Zealand</option>
+                <option value="vietnam">Vietnam</option>
+                <option value="thailand">Thailand</option>
+                <option value="norway">Norway</option>
+                <option value="indonesia">Indonesia</option>
+                <option value="minecraft">Minecraft 8-Bit</option>
+                <option value="zelda">Legend of Zelda</option>
+                <option value="pokemon">Pokémon Pokéball</option>
+                <option value="gta">GTA Vice City</option>
+                <option value="mario">Super Mario</option>
+                <option value="cyberpunk2077">Cyberpunk 2077</option>
+                <option value="halo">Halo Spartan-117</option>
+                <option value="god-of-war">God of War</option>
+                <option value="valorant">VALORANT Tactical</option>
+                <option value="elden-ring">Elden Ring</option>
+                <option value="fortnite">Fortnite</option>
+                <option value="pacman">Pac-Man</option>
+                <option value="sonic">Sonic the Hedgehog</option>
+                <option value="tetris">Tetris</option>
+                <option value="assassins-creed">Assassin's Creed</option>
+                <option value="league-of-legends">League of Legends</option>
+                <option value="overwatch">Overwatch</option>
+                <option value="skyrim">Skyrim</option>
+                <option value="roblox">Roblox</option>
+                <option value="hollow-knight">Hollow Knight</option>
+                <option value="fallout">Fallout Pip-Boy</option>
+                <option value="dark-souls">Dark Souls</option>
+                <option value="red-dead">Red Dead Redemption</option>
+                <option value="counter-strike">Counter-Strike 2</option>
+                <option value="world-of-warcraft">World of Warcraft</option>
+              </select>
+            </div>
+
+            <div class="field-group">
+              <label class="field-label" for="modalTimezoneSelect">Timezone</label>
+              <select id="modalTimezoneSelect" class="form-select">
+                <option value="">Local Time</option>
+                <option value="UTC">UTC / GMT</option>
+                <option value="America/New_York">New York (EST)</option>
+                <option value="America/Los_Angeles">Los Angeles (PST)</option>
+                <option value="Europe/London">London (GMT)</option>
+                <option value="Europe/Paris">Paris (CET)</option>
+                <option value="Asia/Tokyo">Tokyo (JST)</option>
+                <option value="Asia/Dubai">Dubai (GST)</option>
+                <option value="Asia/Kolkata">Kolkata (IST)</option>
+                <option value="Australia/Sydney">Sydney (AEST)</option>
+              </select>
+            </div>
+
+            <div class="field-group">
+              <label class="field-label" for="modalSizeSlider">Size (<span id="modalSizeLabel">320px</span>)</label>
+              <input type="range" id="modalSizeSlider" min="140" max="320" value="320" class="form-input" style="padding: 2px;">
+            </div>
+
+            <div class="field-group" style="justify-content: flex-end;">
+              <div style="display: flex; gap: 12px; margin-top: 14px;">
+                <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; cursor: pointer;">
+                  <input type="checkbox" id="modalSmoothToggle" checked> Smooth Sweep
+                </label>
+                <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; cursor: pointer;">
+                  <input type="checkbox" id="modalSecondsToggle" checked> Seconds Hand
+                </label>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- Code Generator -->
+          <div style="margin-top: 10px;">
+            <div style="display: flex; gap: 6px; margin-bottom: 8px;">
+              <button class="chip active modal-code-tab" data-tab="html" style="padding: 4px 12px; font-size: 11px;">HTML / CDN</button>
+              <button class="chip modal-code-tab" data-tab="react" style="padding: 4px 12px; font-size: 11px;">React</button>
+              <button class="chip modal-code-tab" data-tab="vue" style="padding: 4px 12px; font-size: 11px;">Vue</button>
+              <button class="chip modal-code-tab" data-tab="npm" style="padding: 4px 12px; font-size: 11px;">NPM (JS)</button>
+            </div>
+
+                        <div class="code-box">
+              <div class="code-header">
+                <span class="code-lang-label" id="modalCodeLang">HTML / CDN</span>
+                <button id="btnCopyModalCode" class="btn-copy-modal" aria-label="Copy code">
+                  <svg class="copy-icon" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                  <span class="copy-text">Copy</span>
+                </button>
+              </div>
+              <pre><code id="modalGeneratedCode"></code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <div class="footer-brand">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+          <path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"></path>
+        </svg>
+        <span>CLOCK FACTORY</span>
+      </div>
+      <p class="footer-desc">A zero-dependency, customizable analog clock Web Component library with 150+ unique vector themes for HTML, React, Vue & modern web frameworks.</p>
+      <div class="footer-links">
+        <a href="https://github.com/CodeMasterAbhishek/clock-factory" target="_blank" class="footer-link">GitHub</a>
+        <span class="footer-dot">·</span>
+        <a href="https://github.com/CodeMasterAbhishek/clock-factory/blob/main/DOCUMENTATION.md" target="_blank" class="footer-link">Documentation</a>
+        <span class="footer-dot">·</span>
+        <span class="footer-link">Proprietary License</span>
+        <span class="footer-dot">·</span>
+        <span class="footer-link">Pure SVG Vector</span>
+      </div>
+      <p class="footer-copy">© 2026 Clock-Factory. Designed with craft.</p>
+    </div>
+  </footer>
+
+  <script src="./dist/analog-clock.min.js"></script>
+  <script src="./src/showcase/app.js"></script>
+</body>
+</html>
