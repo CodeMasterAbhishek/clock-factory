@@ -160,6 +160,16 @@ Instances of `AnalogClock` expose the following methods when accessed via JavaSc
 | `regatta` | Yacht Regatta | Yachting countdown timer watch with 10-minute sector arc and compass rose bezel. |
 | `alpinist` | Alpinist Expedition | Mountaineering watch with forest green sunburst dial, gold cathedral hands, and azimuth ring. |
 | `triathlon` | Triathlon Endurance | Fitness sports watch with pacing performance zone arcs and electric lime hands. |
+| `rolex-submariner` | Rolex Submariner | Iconic dive watch with a black dial, mercedes hands, and a diver bezel. |
+| `rolex-daytona` | Rolex Daytona | Legendary chronograph with a tachymetric scale bezel and three sub-dials. |
+| `patek-philippe-nautilus` | Patek Philippe Nautilus | Luxury sports watch with an iconic porthole-inspired octagonal bezel. |
+| `audemars-piguet-royal-oak` | Audemars Piguet Royal Oak | Iconic octagonal bezel with hexagonal screws and tapisserie dial. |
+| `omega-speedmaster` | Omega Speedmaster | The Moonwatch, iconic chronograph with a black dial and tachymeter bezel. |
+| `tag-heuer-monaco` | TAG Heuer Monaco | Iconic square-cased chronograph with a blue dial, made famous by Steve McQueen. |
+| `breitling-navitimer` | Breitling Navitimer | Legendary aviation chronograph with a complex slide rule bezel and three sub-dials. |
+| `cartier-santos` | Cartier Santos | Classic square watch with rounded corners, 8 screws, and roman numerals. |
+| `iwc-portugieser` | IWC Portugieser | Elegant chronometer with a clean silver dial, applied Arabic numerals and feuille hands. |
+| `titan-edge` | Titan Edge | Ultra-slim, minimalist quartz watch with a sleek black dial and two hands. |
 | `swiss` | Swiss Railway | High-contrast railway station dial with signature red lollipop second hand. |
 | `classic` | Classic Bauhaus | Modern minimalist typography with clean numeral markers and tapered hands. |
 | `luxury` | Luxury Chronometer | Roman numeral dial with brushed gold bezel and textured guilloché dial. |
