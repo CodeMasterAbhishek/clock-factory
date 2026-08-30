@@ -1,13 +1,13 @@
 var D = Object.defineProperty;
-var B = (t, o, L) => o in t ? D(t, o, { enumerable: !0, configurable: !0, writable: !0, value: L }) : t[o] = L;
-var h = (t, o, L) => B(t, typeof o != "symbol" ? o + "" : o, L);
-function R(t, o = !0) {
+var G = (r, t, L) => t in r ? D(r, t, { enumerable: !0, configurable: !0, writable: !0, value: L }) : r[t] = L;
+var x = (r, t, L) => G(r, typeof t != "symbol" ? t + "" : t, L);
+function R(r, t = !0) {
   const L = /* @__PURE__ */ new Date();
-  let e = L.getHours(), r = L.getMinutes(), i = L.getSeconds(), l = L.getMilliseconds(), f = L.getDate(), c = "", a = "", s = "";
-  if (t && t.trim() !== "")
+  let e = L.getHours(), o = L.getMinutes(), l = L.getSeconds(), i = L.getMilliseconds(), f = L.getDate(), a = "", c = "", s = "";
+  if (r && r.trim() !== "")
     try {
-      const G = new Intl.DateTimeFormat("en-US", {
-        timeZone: t,
+      const B = new Intl.DateTimeFormat("en-US", {
+        timeZone: r,
         hour: "numeric",
         minute: "numeric",
         second: "numeric",
@@ -17,46 +17,46 @@ function R(t, o = !0) {
         month: "short",
         day: "numeric",
         timeZoneName: "short"
-      }).formatToParts(L), d = {};
-      for (const m of G)
-        d[m.type] = m.value;
-      d.hour !== void 0 && (e = parseInt(d.hour, 10), e === 24 && (e = 0)), d.minute !== void 0 && (r = parseInt(d.minute, 10)), d.second !== void 0 && (i = parseInt(d.second, 10)), d.fractionalSecond !== void 0 ? l = parseInt(d.fractionalSecond.padEnd(3, "0").slice(0, 3), 10) : l = L.getMilliseconds(), d.day !== void 0 && (f = parseInt(d.day, 10)), c = d.weekday || "", a = d.month || "", s = d.timeZoneName || t;
+      }).formatToParts(L), p = {};
+      for (const Z of B)
+        p[Z.type] = Z.value;
+      p.hour !== void 0 && (e = parseInt(p.hour, 10), e === 24 && (e = 0)), p.minute !== void 0 && (o = parseInt(p.minute, 10)), p.second !== void 0 && (l = parseInt(p.second, 10)), p.fractionalSecond !== void 0 ? i = parseInt(p.fractionalSecond.padEnd(3, "0").slice(0, 3), 10) : i = L.getMilliseconds(), p.day !== void 0 && (f = parseInt(p.day, 10)), a = p.weekday || "", c = p.month || "", s = p.timeZoneName || r;
     } catch {
-      c = L.toLocaleDateString("en-US", { weekday: "short" }), a = L.toLocaleDateString("en-US", { month: "short" }), s = "Local";
+      a = L.toLocaleDateString("en-US", { weekday: "short" }), c = L.toLocaleDateString("en-US", { month: "short" }), s = "Local";
     }
   else
-    c = L.toLocaleDateString("en-US", { weekday: "short" }), a = L.toLocaleDateString("en-US", { month: "short" }), s = "Local";
-  const n = o ? l / 1e3 : 0, y = i + n, k = r + y / 60, Z = e % 12 + k / 60, C = y * 6, S = k * 6, $ = Z * 30, u = e >= 12, _ = e % 12 || 12, p = (w) => w.toString().padStart(2, "0"), H = `${_}:${p(r)}:${p(i)} ${u ? "PM" : "AM"}`, T = `${p(e)}:${p(r)}:${p(i)}`, A = `${c.toUpperCase()} ${f} ${a.toUpperCase()}`;
+    a = L.toLocaleDateString("en-US", { weekday: "short" }), c = L.toLocaleDateString("en-US", { month: "short" }), s = "Local";
+  const n = t ? i / 1e3 : 0, d = l + n, h = o + d / 60, y = e % 12 + h / 60, g = d * 6, k = h * 6, C = y * 30, M = e >= 12, _ = e % 12 || 12, u = (b) => b.toString().padStart(2, "0"), H = `${_}:${u(o)}:${u(l)} ${M ? "PM" : "AM"}`, T = `${u(e)}:${u(o)}:${u(l)}`, A = `${a.toUpperCase()} ${f} ${c.toUpperCase()}`;
   return {
     hours: e,
-    minutes: r,
-    seconds: i,
+    minutes: o,
+    seconds: l,
     hour: e,
-    minute: r,
-    second: i,
+    minute: o,
+    second: l,
     date: f,
     day: f,
-    milliseconds: l,
-    hourAngle: $,
-    minuteAngle: S,
-    secondAngle: C,
+    milliseconds: i,
+    hourAngle: C,
+    minuteAngle: k,
+    secondAngle: g,
     dateString: A,
-    dayString: c,
-    monthString: a,
+    dayString: a,
+    monthString: c,
     timeString12: H,
     timeString24: T,
     timezoneName: s,
-    isPm: u
+    isPm: M
   };
 }
 const P = {
   name: "cricket_stadium",
   description: "Lush green oval cricket ground with central pitch crease, polished leather red cricket ball, and white seam",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++)
-      e += `<circle cx="150" cy="16" r="3.5" fill="#ffffff" stroke="#15803d" stroke-width="0.8" transform="rotate(${r * 30} 150 150)"/>`;
+    for (let o = 0; o < 12; o++)
+      e += `<circle cx="150" cy="16" r="3.5" fill="#ffffff" stroke="#15803d" stroke-width="0.8" transform="rotate(${o * 30} 150 150)"/>`;
     return `
       
       <defs>
@@ -100,7 +100,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       
       <g filter="url(#hand_shadow)">
@@ -112,7 +112,7 @@ const P = {
           <path d="M 146.5 150 L 150 32 L 153.5 150 Z" fill="#78350f" stroke="#ffffff" stroke-width="1.5"/>
           <line x1="150" y1="140" x2="150" y2="40" stroke="#fed7aa" stroke-width="2" stroke-linecap="round"/>
         </g>
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="165" x2="150" y2="18" stroke="#dc2626" stroke-width="2"/>
           <circle cx="150" cy="18" r="4" fill="#dc2626" stroke="#ffffff" stroke-width="1"/>
@@ -129,10 +129,10 @@ const P = {
   name: "american_football",
   description: "100-yard striped football turf with white yard-line hash marks, endzones, and laced pigskin football",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++)
-      e += `<rect x="148" y="10" width="4" height="10" fill="#ffffff" stroke="#14532d" stroke-width="0.5" transform="rotate(${r * 30} 150 150)"/>`;
+    for (let o = 0; o < 12; o++)
+      e += `<rect x="148" y="10" width="4" height="10" fill="#ffffff" stroke="#14532d" stroke-width="0.5" transform="rotate(${o * 30} 150 150)"/>`;
     return `
       
       <defs>
@@ -179,7 +179,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       
       <g filter="url(#hand_shadow)">
@@ -191,7 +191,7 @@ const P = {
           <path d="M 146.5 150 L 150 32 L 153.5 150 Z" fill="#000000" stroke="#ffffff" stroke-width="1.5"/>
           <line x1="150" y1="140" x2="150" y2="40" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
         </g>
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="165" x2="150" y2="18" stroke="#ef4444" stroke-width="2"/>
           <circle cx="150" cy="18" r="4" fill="#ef4444" stroke="#ffffff" stroke-width="1"/>
@@ -204,14 +204,14 @@ const P = {
     
     `;
   }
-}, F = {
+}, I = {
   name: "badminton_shuttle",
   description: "Emerald green tournament badminton court with net and white feathered goose shuttlecock",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++)
-      e += `<circle cx="150" cy="16" r="3.5" fill="#ffffff" stroke="#047857" stroke-width="0.8" transform="rotate(${r * 30} 150 150)"/>`;
+    for (let o = 0; o < 12; o++)
+      e += `<circle cx="150" cy="16" r="3.5" fill="#ffffff" stroke="#047857" stroke-width="0.8" transform="rotate(${o * 30} 150 150)"/>`;
     return `
       
       <defs>
@@ -247,7 +247,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       
       <g filter="url(#hand_shadow)">
@@ -259,7 +259,7 @@ const P = {
           <path d="M 146.5 150 L 150 32 L 153.5 150 Z" fill="#ffffff" stroke="#064e3b" stroke-width="1.5"/>
           <line x1="150" y1="140" x2="150" y2="40" stroke="#facc15" stroke-width="2" stroke-linecap="round"/>
         </g>
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="165" x2="150" y2="18" stroke="#ef4444" stroke-width="2"/>
           <circle cx="150" cy="18" r="4" fill="#ef4444" stroke="#ffffff" stroke-width="1"/>
@@ -272,14 +272,14 @@ const P = {
     
     `;
   }
-}, I = {
+}, E = {
   name: "cycling_velodrome",
   description: "Banked timber indoor velodrome sprint track with blue stayers line and aero tri-spoke wheel",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++)
-      e += `<rect x="148" y="10" width="4" height="12" fill="#0284c7" stroke="#ffffff" stroke-width="0.6" transform="rotate(${r * 30} 150 150)"/>`;
+    for (let o = 0; o < 12; o++)
+      e += `<rect x="148" y="10" width="4" height="12" fill="#0284c7" stroke="#ffffff" stroke-width="0.6" transform="rotate(${o * 30} 150 150)"/>`;
     return `
       
       <defs>
@@ -313,7 +313,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       
       <g filter="url(#hand_shadow)">
@@ -325,7 +325,7 @@ const P = {
           <path d="M 146.5 150 L 150 32 L 153.5 150 Z" fill="#ffffff" stroke="#0f172a" stroke-width="1.5"/>
           <line x1="150" y1="140" x2="150" y2="40" stroke="#0284c7" stroke-width="2" stroke-linecap="round"/>
         </g>
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="165" x2="150" y2="18" stroke="#facc15" stroke-width="2"/>
           <circle cx="150" cy="18" r="4" fill="#facc15" stroke="#000000" stroke-width="1"/>
@@ -338,14 +338,14 @@ const P = {
     
     `;
   }
-}, E = {
+}, F = {
   name: "archery_target",
   description: "Target bullseye rings (Gold 10/9, Red 8/7, Blue 6/5, Black 4/3, White 2/1) with arrow shaft",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++)
-      e += `<circle cx="150" cy="16" r="3.5" fill="#000000" stroke="#ffffff" stroke-width="0.8" transform="rotate(${r * 30} 150 150)"/>`;
+    for (let o = 0; o < 12; o++)
+      e += `<circle cx="150" cy="16" r="3.5" fill="#000000" stroke="#ffffff" stroke-width="0.8" transform="rotate(${o * 30} 150 150)"/>`;
     return `
       
       <defs>
@@ -373,7 +373,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       
       <g filter="url(#hand_shadow)">
@@ -385,7 +385,7 @@ const P = {
           <path d="M 146.5 150 L 150 32 L 153.5 150 Z" fill="#000000" stroke="#ffffff" stroke-width="1.5"/>
           <line x1="150" y1="140" x2="150" y2="40" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
         </g>
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="165" x2="150" y2="18" stroke="#ef4444" stroke-width="2"/>
           <circle cx="150" cy="18" r="4" fill="#ef4444" stroke="#ffffff" stroke-width="1"/>
@@ -402,16 +402,16 @@ const P = {
   name: "scuba_diving",
   description: "Precision marine brass underwater diver depth gauge with continuous decompression safety zones and luminous tritium needle",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let i = 0; i < 12; i++) {
-      const l = i * 30;
-      i % 3 === 0 ? e += `<rect x="147" y="16" width="6" height="14" rx="2" fill="#38bdf8" stroke="#0f172a" stroke-width="1" transform="rotate(${l} 150 150)"/>` : e += `<circle cx="150" cy="23" r="3" fill="#22c55e" stroke="#0f172a" stroke-width="0.8" transform="rotate(${l} 150 150)"/>`;
+    for (let l = 0; l < 12; l++) {
+      const i = l * 30;
+      l % 3 === 0 ? e += `<rect x="147" y="16" width="6" height="14" rx="2" fill="#38bdf8" stroke="#0f172a" stroke-width="1" transform="rotate(${i} 150 150)"/>` : e += `<circle cx="150" cy="23" r="3" fill="#22c55e" stroke="#0f172a" stroke-width="0.8" transform="rotate(${i} 150 150)"/>`;
     }
-    let r = "";
-    for (let i = 0; i < 6; i++) {
-      const l = i * 60;
-      r += `<polygon points="150,7 153.5,9 153.5,13 150,15 146.5,13 146.5,9" fill="#d97706" stroke="#451a03" stroke-width="0.8" transform="rotate(${l} 150 150)"/>`;
+    let o = "";
+    for (let l = 0; l < 6; l++) {
+      const i = l * 60;
+      o += `<polygon points="150,7 153.5,9 153.5,13 150,15 146.5,13 146.5,9" fill="#d97706" stroke="#451a03" stroke-width="0.8" transform="rotate(${i} 150 150)"/>`;
     }
     return `
       <defs>
@@ -431,7 +431,7 @@ const P = {
       <circle cx="150" cy="150" r="142" fill="url(#scuba_dial_grad)" stroke="#0284c7" stroke-width="1.5"/>
 
       <!-- Bezel Screws -->
-      <g>${r}</g>
+      <g>${o}</g>
 
       <g clip-path="url(#scuba_dial_clip)">
         <!-- Inner Gauge Track Rings -->
@@ -467,7 +467,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       <g filter="url(#hand_shadow)">
         <!-- Hour Hand (High-Visibility Marine Pointer) -->
@@ -482,7 +482,7 @@ const P = {
           <polygon points="148,140 152,140 150,42" fill="#22c55e"/>
           <circle cx="150" cy="34" r="2.5" fill="#ffffff"/>
         </g>
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <!-- Second Hand (Orange Tritium Pip) -->
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="170" x2="150" y2="18" stroke="#38bdf8" stroke-width="1.8"/>
@@ -499,10 +499,10 @@ const P = {
   name: "basketball",
   description: "Gloss parquet hardwood basketball court with realistic 3D textured leather ball and painted key arcs",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++)
-      e += `<circle cx="150" cy="16" r="3.5" fill="#fef08a" stroke="#000000" stroke-width="0.8" transform="rotate(${r * 30} 150 150)"/>`;
+    for (let o = 0; o < 12; o++)
+      e += `<circle cx="150" cy="16" r="3.5" fill="#fef08a" stroke="#000000" stroke-width="0.8" transform="rotate(${o * 30} 150 150)"/>`;
     return `
       
       <defs>
@@ -556,7 +556,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       
       <g filter="url(#hand_shadow)">
@@ -568,7 +568,7 @@ const P = {
           <path d="M 146.5 150 L 150 32 L 153.5 150 Z" fill="#ffffff" stroke="#431407" stroke-width="1.5"/>
           <line x1="150" y1="140" x2="150" y2="40" stroke="#fef08a" stroke-width="2" stroke-linecap="round"/>
         </g>
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="165" x2="150" y2="18" stroke="#ffffff" stroke-width="2"/>
           <circle cx="150" cy="18" r="4" fill="#ea580c" stroke="#ffffff" stroke-width="1.5"/>
@@ -585,10 +585,10 @@ const P = {
   name: "football_soccer",
   description: "Lawn-striped emerald stadium turf with white penalty box markings and central 3D stitched soccer ball",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++)
-      e += `<circle cx="150" cy="16" r="3.5" fill="#ffffff" stroke="#14532d" stroke-width="0.8" transform="rotate(${r * 30} 150 150)"/>`;
+    for (let o = 0; o < 12; o++)
+      e += `<circle cx="150" cy="16" r="3.5" fill="#ffffff" stroke="#14532d" stroke-width="0.8" transform="rotate(${o * 30} 150 150)"/>`;
     return `
       
       <defs>
@@ -640,7 +640,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       
       <g filter="url(#hand_shadow)">
@@ -652,7 +652,7 @@ const P = {
           <path d="M 146.5 150 L 150 32 L 153.5 150 Z" fill="#0f172a" stroke="#ffffff" stroke-width="1.5"/>
           <line x1="150" y1="140" x2="150" y2="40" stroke="#facc15" stroke-width="2" stroke-linecap="round"/>
         </g>
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="165" x2="150" y2="18" stroke="#ef4444" stroke-width="2"/>
           <circle cx="150" cy="18" r="4" fill="#ef4444" stroke="#ffffff" stroke-width="1"/>
@@ -669,10 +669,10 @@ const P = {
   name: "tennis_slam",
   description: "Tournament court green & blue with white baseline lines and optic-yellow tennis ball seams",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++)
-      e += `<circle cx="150" cy="16" r="3.5" fill="#ffffff" stroke="#4d7c0f" stroke-width="1" transform="rotate(${r * 30} 150 150)"/>`;
+    for (let o = 0; o < 12; o++)
+      e += `<circle cx="150" cy="16" r="3.5" fill="#ffffff" stroke="#4d7c0f" stroke-width="1" transform="rotate(${o * 30} 150 150)"/>`;
     return `
       
       <defs>
@@ -705,7 +705,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       
       <g filter="url(#hand_shadow)">
@@ -717,7 +717,7 @@ const P = {
           <path d="M 146.5 150 L 150 32 L 153.5 150 Z" fill="#14532d" stroke="#ffffff" stroke-width="1.5"/>
           <line x1="150" y1="140" x2="150" y2="40" stroke="#fef08a" stroke-width="2" stroke-linecap="round"/>
         </g>
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="165" x2="150" y2="18" stroke="#ea580c" stroke-width="2"/>
           <circle cx="150" cy="18" r="4" fill="#ea580c" stroke="#ffffff" stroke-width="1"/>
@@ -734,10 +734,10 @@ const P = {
   name: "formula1_racing",
   description: "High-rev motorsport carbon fiber tachometer with redline RPM zone and checkered flag motif",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++)
-      e += `<rect x="148" y="10" width="4" height="12" fill="${r >= 8 ? "#ef4444" : "#ffffff"}" transform="rotate(${r * 30} 150 150)"/>`;
+    for (let o = 0; o < 12; o++)
+      e += `<rect x="148" y="10" width="4" height="12" fill="${o >= 8 ? "#ef4444" : "#ffffff"}" transform="rotate(${o * 30} 150 150)"/>`;
     return `
       
       <defs>
@@ -775,7 +775,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       
       <g filter="url(#hand_shadow)">
@@ -787,7 +787,7 @@ const P = {
           <path d="M 146.5 150 L 150 32 L 153.5 150 Z" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
           <line x1="150" y1="140" x2="150" y2="40" stroke="#facc15" stroke-width="2" stroke-linecap="round"/>
         </g>
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="165" x2="150" y2="18" stroke="#ef4444" stroke-width="2"/>
           <circle cx="150" cy="18" r="4" fill="#ef4444" stroke="#ffffff" stroke-width="1"/>
@@ -804,10 +804,10 @@ const P = {
   name: "golf_links",
   description: "Lush green fairway with flagstick cup, sand bunker trap, and dimpled golf ball texture",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++)
-      e += `<circle cx="150" cy="16" r="3.5" fill="#ffffff" stroke="#15803d" stroke-width="0.8" transform="rotate(${r * 30} 150 150)"/>`;
+    for (let o = 0; o < 12; o++)
+      e += `<circle cx="150" cy="16" r="3.5" fill="#ffffff" stroke="#15803d" stroke-width="0.8" transform="rotate(${o * 30} 150 150)"/>`;
     return `
       
       <defs>
@@ -839,7 +839,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       
       <g filter="url(#hand_shadow)">
@@ -851,7 +851,7 @@ const P = {
           <path d="M 146.5 150 L 150 32 L 153.5 150 Z" fill="#052e16" stroke="#ffffff" stroke-width="1.5"/>
           <line x1="150" y1="140" x2="150" y2="40" stroke="#fef08a" stroke-width="2" stroke-linecap="round"/>
         </g>
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="165" x2="150" y2="18" stroke="#ef4444" stroke-width="2"/>
           <circle cx="150" cy="18" r="4" fill="#ef4444" stroke="#ffffff" stroke-width="1"/>
@@ -868,10 +868,10 @@ const P = {
   name: "boxing_ring",
   description: "Dramatic 4-rope square boxing ring canvas under arena lights with leather boxing gloves",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++)
-      e += `<circle cx="150" cy="16" r="3.5" fill="#ef4444" stroke="#ffffff" stroke-width="0.8" transform="rotate(${r * 30} 150 150)"/>`;
+    for (let o = 0; o < 12; o++)
+      e += `<circle cx="150" cy="16" r="3.5" fill="#ef4444" stroke="#ffffff" stroke-width="0.8" transform="rotate(${o * 30} 150 150)"/>`;
     return `
       
       <defs>
@@ -904,7 +904,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       
       <g filter="url(#hand_shadow)">
@@ -916,7 +916,7 @@ const P = {
           <path d="M 146.5 150 L 150 32 L 153.5 150 Z" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
           <line x1="150" y1="140" x2="150" y2="40" stroke="#3b82f6" stroke-width="2" stroke-linecap="round"/>
         </g>
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="165" x2="150" y2="18" stroke="#facc15" stroke-width="2"/>
           <circle cx="150" cy="18" r="4" fill="#facc15" stroke="#000000" stroke-width="1"/>
@@ -933,11 +933,11 @@ const P = {
   name: "snowboarding_winter",
   description: "Dramatic snow-covered Alpine peak with realistic glacial ridges, powder carving tracks, and evergreen pine forests",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++) {
-      const i = r * 30;
-      r % 3 === 0 ? e += `<rect x="148" y="10" width="4" height="12" rx="2" fill="#38bdf8" stroke="#ffffff" stroke-width="0.8" transform="rotate(${i} 150 150)"/>` : e += `<circle cx="150" cy="16" r="3" fill="#ffffff" stroke="#0284c7" stroke-width="0.8" transform="rotate(${i} 150 150)"/>`;
+    for (let o = 0; o < 12; o++) {
+      const l = o * 30;
+      o % 3 === 0 ? e += `<rect x="148" y="10" width="4" height="12" rx="2" fill="#38bdf8" stroke="#ffffff" stroke-width="0.8" transform="rotate(${l} 150 150)"/>` : e += `<circle cx="150" cy="16" r="3" fill="#ffffff" stroke="#0284c7" stroke-width="0.8" transform="rotate(${l} 150 150)"/>`;
     }
     return `
       <defs>
@@ -1034,7 +1034,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       <g filter="url(#hand_shadow)">
         <!-- Luminous Ice Axe Hour Hand -->
@@ -1049,7 +1049,7 @@ const P = {
           <line x1="150" y1="140" x2="150" y2="42" stroke="#0284c7" stroke-width="2" stroke-linecap="round"/>
           <circle cx="150" cy="35" r="2.5" fill="#ffffff"/>
         </g>
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <!-- High-Visibility Flare Red Second Hand -->
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="165" x2="150" y2="18" stroke="#ef4444" stroke-width="1.8"/>
@@ -1062,14 +1062,14 @@ const P = {
       </g>
     `;
   }
-}, j = {
+}, Y = {
   name: "skateboarding_street",
   description: "Concrete bowl skate park texture with skate deck silhouette and urethane wheels",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++)
-      e += `<circle cx="150" cy="16" r="3.5" fill="#f59e0b" stroke="#000000" stroke-width="0.8" transform="rotate(${r * 30} 150 150)"/>`;
+    for (let o = 0; o < 12; o++)
+      e += `<circle cx="150" cy="16" r="3.5" fill="#f59e0b" stroke="#000000" stroke-width="0.8" transform="rotate(${o * 30} 150 150)"/>`;
     return `
       
       <defs>
@@ -1106,7 +1106,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       
       <g filter="url(#hand_shadow)">
@@ -1118,7 +1118,7 @@ const P = {
           <path d="M 146.5 150 L 150 32 L 153.5 150 Z" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
           <line x1="150" y1="140" x2="150" y2="40" stroke="#fde047" stroke-width="2" stroke-linecap="round"/>
         </g>
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="165" x2="150" y2="18" stroke="#ef4444" stroke-width="2"/>
           <circle cx="150" cy="18" r="4" fill="#ef4444" stroke="#ffffff" stroke-width="1"/>
@@ -1131,14 +1131,14 @@ const P = {
     
     `;
   }
-}, Y = {
+}, j = {
   name: "baseball_diamond",
   description: "Red clay infield dirt and outfield lawn grass with double red-stitched baseball dial",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++)
-      e += `<circle cx="150" cy="16" r="3.5" fill="#dc2626" stroke="#000000" stroke-width="0.8" transform="rotate(${r * 30} 150 150)"/>`;
+    for (let o = 0; o < 12; o++)
+      e += `<circle cx="150" cy="16" r="3.5" fill="#dc2626" stroke="#000000" stroke-width="0.8" transform="rotate(${o * 30} 150 150)"/>`;
     return `
       
       <defs>
@@ -1174,7 +1174,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       
       <g filter="url(#hand_shadow)">
@@ -1186,7 +1186,7 @@ const P = {
           <path d="M 146.5 150 L 150 32 L 153.5 150 Z" fill="#0f172a" stroke="#ffffff" stroke-width="1.5"/>
           <line x1="150" y1="140" x2="150" y2="40" stroke="#1d4ed8" stroke-width="2" stroke-linecap="round"/>
         </g>
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="165" x2="150" y2="18" stroke="#dc2626" stroke-width="2"/>
           <circle cx="150" cy="18" r="4" fill="#dc2626" stroke="#ffffff" stroke-width="1"/>
@@ -1203,11 +1203,11 @@ const P = {
   name: "surfing_pipeline",
   description: "Giant ocean barrel wave with translucent turquoise curling lip, foamy white water spray, and surfer carving the pocket",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++) {
-      const i = r * 30;
-      e += `<circle cx="150" cy="16" r="3" fill="#38bdf8" stroke="#ffffff" stroke-width="0.8" transform="rotate(${i} 150 150)"/>`;
+    for (let o = 0; o < 12; o++) {
+      const l = o * 30;
+      e += `<circle cx="150" cy="16" r="3" fill="#38bdf8" stroke="#ffffff" stroke-width="0.8" transform="rotate(${l} 150 150)"/>`;
     }
     return `
       <defs>
@@ -1280,7 +1280,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       <g filter="url(#hand_shadow)">
         <!-- Marine Luminous Hour Hand -->
@@ -1295,7 +1295,7 @@ const P = {
           <line x1="150" y1="140" x2="150" y2="42" stroke="#facc15" stroke-width="2" stroke-linecap="round"/>
           <circle cx="150" cy="35" r="2.5" fill="#ffffff"/>
         </g>
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <!-- High-Visibility Surfboard Red Second Hand -->
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="165" x2="150" y2="18" stroke="#ef4444" stroke-width="1.8"/>
@@ -1312,10 +1312,10 @@ const P = {
   name: "cherry_blossom",
   description: "Lush Japanese cherry blossom canopy with drifting sakura petals and a peaceful koi pond",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++)
-      e += `<circle cx="150" cy="16" r="3.5" fill="#e11d48" stroke="#ffffff" stroke-width="0.8" transform="rotate(${r * 30} 150 150)"/>`;
+    for (let o = 0; o < 12; o++)
+      e += `<circle cx="150" cy="16" r="3.5" fill="#e11d48" stroke="#ffffff" stroke-width="0.8" transform="rotate(${o * 30} 150 150)"/>`;
     return `
       
       <defs>
@@ -1361,7 +1361,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       
       <g filter="url(#hand_shadow)">
@@ -1373,7 +1373,7 @@ const P = {
           <path d="M 146.5 150 L 150 32 L 153.5 150 Z" fill="#be123c" stroke="#ffffff" stroke-width="1.2"/>
           <circle cx="150" cy="32" r="3" fill="#fbcfe8"/>
         </g>
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="165" x2="150" y2="18" stroke="#f43f5e" stroke-width="2"/>
           <circle cx="150" cy="18" r="4" fill="#f43f5e" stroke="#ffffff" stroke-width="1"/>
@@ -1390,10 +1390,10 @@ const P = {
   name: "firefly_meadow",
   description: "Summer twilight grass meadow filled with glowing bioluminescent fireflies and wild reeds",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++)
-      e += `<circle cx="150" cy="16" r="3.5" fill="#4ade80" stroke="#000000" stroke-width="0.8" transform="rotate(${r * 30} 150 150)"/>`;
+    for (let o = 0; o < 12; o++)
+      e += `<circle cx="150" cy="16" r="3.5" fill="#4ade80" stroke="#000000" stroke-width="0.8" transform="rotate(${o * 30} 150 150)"/>`;
     return `
       
       <defs>
@@ -1441,7 +1441,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       
       <g filter="url(#hand_shadow)">
@@ -1453,7 +1453,7 @@ const P = {
           <path d="M 146.5 150 L 150 32 L 153.5 150 Z" fill="#ffffff" stroke="#064e3b" stroke-width="1.5"/>
           <line x1="150" y1="140" x2="150" y2="40" stroke="#fde047" stroke-width="2" stroke-linecap="round"/>
         </g>
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="165" x2="150" y2="18" stroke="#facc15" stroke-width="2"/>
           <circle cx="150" cy="18" r="4" fill="#facc15" stroke="#ffffff" stroke-width="1"/>
@@ -1470,10 +1470,10 @@ const P = {
   name: "glacier_fjord",
   description: "Majestic crystalline blue glacier ice walls calving into an icy turquoise fjord with floating icebergs",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++)
-      e += `<circle cx="150" cy="16" r="3.5" fill="#38bdf8" stroke="#ffffff" stroke-width="0.8" transform="rotate(${r * 30} 150 150)"/>`;
+    for (let o = 0; o < 12; o++)
+      e += `<circle cx="150" cy="16" r="3.5" fill="#38bdf8" stroke="#ffffff" stroke-width="0.8" transform="rotate(${o * 30} 150 150)"/>`;
     return `
       
       <defs>
@@ -1507,7 +1507,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       
       <g filter="url(#hand_shadow)">
@@ -1519,7 +1519,7 @@ const P = {
           <path d="M 146.5 150 L 150 32 L 153.5 150 Z" fill="#0284c7" stroke="#ffffff" stroke-width="1.5"/>
           <line x1="150" y1="140" x2="150" y2="40" stroke="#bae6fd" stroke-width="2" stroke-linecap="round"/>
         </g>
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="165" x2="150" y2="18" stroke="#38bdf8" stroke-width="2"/>
           <circle cx="150" cy="18" r="4" fill="#38bdf8" stroke="#ffffff" stroke-width="1"/>
@@ -1547,17 +1547,17 @@ const P = {
     accent: "#facc15",
     centerCap: "#facc15"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++) {
-      const i = r * 30;
-      r % 3 === 0 ? e += `
-          <g transform="rotate(${i} 150 150) translate(150, 20)">
+    for (let o = 0; o < 12; o++) {
+      const l = o * 30;
+      o % 3 === 0 ? e += `
+          <g transform="rotate(${l} 150 150) translate(150, 20)">
             <circle cx="0" cy="0" r="3.5" fill="#facc15" stroke="#064e3b" stroke-width="0.8"/>
             <circle cx="0" cy="0" r="1.5" fill="#ffffff"/>
           </g>
         ` : e += `
-          <g transform="rotate(${i} 150 150) translate(150, 20)">
+          <g transform="rotate(${l} 150 150) translate(150, 20)">
             <circle cx="0" cy="0" r="2.2" fill="#34d399" stroke="#064e3b" stroke-width="0.6"/>
           </g>
         `;
@@ -1713,7 +1713,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       <defs>
         <filter id="rf_hand_shadow" x="-30%" y="-30%" width="160%" height="160%">
@@ -1737,7 +1737,7 @@ const P = {
         </g>
 
         <!-- Second Hand: Tropical Toucan-Orange Needle -->
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="172" x2="150" y2="16" stroke="#f97316" stroke-width="1.6"/>
           <circle cx="150" cy="16" r="3.5" fill="#f97316" stroke="#ffffff" stroke-width="0.8"/>
@@ -1756,10 +1756,10 @@ const P = {
   name: "desert_dunes",
   description: "Golden undulating sand dunes under a radiant desert sun leading to a palm oasis",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++)
-      e += `<polygon points="150,12 153,18 147,18" fill="#fef08a" stroke="#451a03" stroke-width="0.6" transform="rotate(${r * 30} 150 150)"/>`;
+    for (let o = 0; o < 12; o++)
+      e += `<polygon points="150,12 153,18 147,18" fill="#fef08a" stroke="#451a03" stroke-width="0.6" transform="rotate(${o * 30} 150 150)"/>`;
     return `
       
       <defs>
@@ -1795,7 +1795,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       
       <g filter="url(#hand_shadow)">
@@ -1807,7 +1807,7 @@ const P = {
           <path d="M 146.5 150 L 150 32 L 153.5 150 Z" fill="#78350f" stroke="#ffffff" stroke-width="1.2"/>
           <circle cx="150" cy="32" r="3" fill="#fef08a"/>
         </g>
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="165" x2="150" y2="18" stroke="#ef4444" stroke-width="2"/>
           <circle cx="150" cy="18" r="4" fill="#ef4444" stroke="#ffffff" stroke-width="1"/>
@@ -1824,11 +1824,11 @@ const P = {
   name: "crystal_cave",
   description: "Subterranean Crystal Grotto featuring faceted amethyst quartz stalactites, glowing bioluminescent fluorite crystals, and subterranean reflection pool",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++) {
-      const i = r * 30;
-      r % 3 === 0 ? e += `<polygon points="150,12 153,19 147,19" fill="#c084fc" stroke="#ffffff" stroke-width="0.8" transform="rotate(${i} 150 150)"/>` : e += `<circle cx="150" cy="16" r="2.5" fill="#38bdf8" stroke="#ffffff" stroke-width="0.6" transform="rotate(${i} 150 150)"/>`;
+    for (let o = 0; o < 12; o++) {
+      const l = o * 30;
+      o % 3 === 0 ? e += `<polygon points="150,12 153,19 147,19" fill="#c084fc" stroke="#ffffff" stroke-width="0.8" transform="rotate(${l} 150 150)"/>` : e += `<circle cx="150" cy="16" r="2.5" fill="#38bdf8" stroke="#ffffff" stroke-width="0.6" transform="rotate(${l} 150 150)"/>`;
     }
     return `
       <defs>
@@ -1963,7 +1963,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       <g filter="url(#hand_shadow)">
         <!-- Faceted Amethyst Obelisk Hour Hand -->
@@ -1978,7 +1978,7 @@ const P = {
           <polygon points="148.5,140 151.5,140 150,42" fill="#7dd3fc"/>
           <circle cx="150" cy="35" r="2.5" fill="#f472b6"/>
         </g>
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <!-- Luminescent Rose Needle Second Hand -->
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="165" x2="150" y2="18" stroke="#f472b6" stroke-width="1.8"/>
@@ -1995,11 +1995,11 @@ const P = {
   name: "monarch_migration",
   description: "Spectacular Monarch Butterfly Migration in the sunlit Oyamel fir forest with hyper-detailed stained-glass wings, milkweed blossoms, and golden sunbeams",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++) {
-      const i = r * 30;
-      r % 3 === 0 ? e += `<circle cx="150" cy="16" r="3.5" fill="#f59e0b" stroke="#ffffff" stroke-width="0.8" transform="rotate(${i} 150 150)"/>` : e += `<circle cx="150" cy="16" r="2.2" fill="#fbbf24" stroke="#78350f" stroke-width="0.6" transform="rotate(${i} 150 150)"/>`;
+    for (let o = 0; o < 12; o++) {
+      const l = o * 30;
+      o % 3 === 0 ? e += `<circle cx="150" cy="16" r="3.5" fill="#f59e0b" stroke="#ffffff" stroke-width="0.8" transform="rotate(${l} 150 150)"/>` : e += `<circle cx="150" cy="16" r="2.2" fill="#fbbf24" stroke="#78350f" stroke-width="0.6" transform="rotate(${l} 150 150)"/>`;
     }
     return `
       <defs>
@@ -2197,7 +2197,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       <g filter="url(#hand_shadow)">
         <!-- Obsidian & Amber Grand Dauphine Hour Hand -->
@@ -2212,7 +2212,7 @@ const P = {
           <polygon points="148,140 152,140 150,42" fill="#f59e0b"/>
           <circle cx="150" cy="35" r="2.5" fill="#fef08a"/>
         </g>
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <!-- Slender Golden Needle Second Hand with Butterfly Wing Pip -->
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="165" x2="150" y2="18" stroke="#ffffff" stroke-width="1.8"/>
@@ -2229,10 +2229,10 @@ const P = {
   name: "ocean_bioluminescence",
   description: "Glowing neon-blue bioluminescent waves crashing on midnight ocean sands under a starry sky",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++)
-      e += `<circle cx="150" cy="16" r="3.5" fill="#22d3ee" stroke="#ffffff" stroke-width="0.8" transform="rotate(${r * 30} 150 150)"/>`;
+    for (let o = 0; o < 12; o++)
+      e += `<circle cx="150" cy="16" r="3.5" fill="#22d3ee" stroke="#ffffff" stroke-width="0.8" transform="rotate(${o * 30} 150 150)"/>`;
     return `
       
       <defs>
@@ -2270,7 +2270,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       
       <g filter="url(#hand_shadow)">
@@ -2282,7 +2282,7 @@ const P = {
           <path d="M 146.5 150 L 150 32 L 153.5 150 Z" fill="#ffffff" stroke="#020617" stroke-width="1.5"/>
           <line x1="150" y1="140" x2="150" y2="40" stroke="#a5f3fc" stroke-width="2" stroke-linecap="round"/>
         </g>
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="165" x2="150" y2="18" stroke="#22d3ee" stroke-width="2"/>
           <circle cx="150" cy="18" r="4" fill="#22d3ee" stroke="#ffffff" stroke-width="1"/>
@@ -2310,17 +2310,17 @@ const P = {
     accent: "#f59e0b",
     centerCap: "#f59e0b"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++) {
-      const i = r * 30;
-      r % 3 === 0 ? e += `
-          <g transform="rotate(${i} 150 150) translate(150, 18)">
+    for (let o = 0; o < 12; o++) {
+      const l = o * 30;
+      o % 3 === 0 ? e += `
+          <g transform="rotate(${l} 150 150) translate(150, 18)">
             <circle cx="0" cy="0" r="3.6" fill="#f59e0b" stroke="#7c2d12" stroke-width="0.8"/>
             <circle cx="0" cy="0" r="1.5" fill="#ffffff"/>
           </g>
         ` : e += `
-          <g transform="rotate(${i} 150 150) translate(150, 18)">
+          <g transform="rotate(${l} 150 150) translate(150, 18)">
             <circle cx="0" cy="0" r="2.2" fill="#ea580c" stroke="#fefce8" stroke-width="0.6"/>
           </g>
         `;
@@ -2500,7 +2500,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       <defs>
         <filter id="aspen_hand_shadow" x="-30%" y="-30%" width="160%" height="160%">
@@ -2524,7 +2524,7 @@ const P = {
         </g>
 
         <!-- Second Hand: Fiery Amber / Crimson Needle with Leaf Counterweight -->
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="172" x2="150" y2="16" stroke="#ea580c" stroke-width="1.6"/>
           <circle cx="150" cy="16" r="3.5" fill="#f59e0b" stroke="#ffffff" stroke-width="0.8"/>
@@ -2543,11 +2543,11 @@ const P = {
   name: "thunderstorm_cloud",
   description: "Epic Supercell Cumulonimbus Thunderstorm featuring dramatic illuminated thunderhead clouds, branching forked electric lightning bolts, torrential rain sheets, and ionized neon glow",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++) {
-      const i = r * 30;
-      r % 3 === 0 ? e += `<circle cx="150" cy="16" r="3.5" fill="#38bdf8" stroke="#ffffff" stroke-width="0.8" transform="rotate(${i} 150 150)"/>` : e += `<circle cx="150" cy="16" r="2.2" fill="#a855f7" stroke="#ffffff" stroke-width="0.6" transform="rotate(${i} 150 150)"/>`;
+    for (let o = 0; o < 12; o++) {
+      const l = o * 30;
+      o % 3 === 0 ? e += `<circle cx="150" cy="16" r="3.5" fill="#38bdf8" stroke="#ffffff" stroke-width="0.8" transform="rotate(${l} 150 150)"/>` : e += `<circle cx="150" cy="16" r="2.2" fill="#a855f7" stroke="#ffffff" stroke-width="0.6" transform="rotate(${l} 150 150)"/>`;
     }
     return `
       <defs>
@@ -2654,7 +2654,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       <g filter="url(#hand_shadow)">
         <!-- Electric Plasma Hour Hand -->
@@ -2669,7 +2669,7 @@ const P = {
           <line x1="150" y1="140" x2="150" y2="42" stroke="#38bdf8" stroke-width="2" stroke-linecap="round"/>
           <circle cx="150" cy="35" r="2.5" fill="#facc15"/>
         </g>
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <!-- Blazing Lightning Yellow Second Hand -->
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="165" x2="150" y2="18" stroke="#facc15" stroke-width="1.8"/>
@@ -2682,15 +2682,15 @@ const P = {
       </g>
     `;
   }
-}, c1 = {
+}, a1 = {
   name: "fuji",
   description: "Sacred Mount Fuji snow-capped volcanic cone under the Crimson Rising Sun with Japanese Torii gate, Lake Kawaguchi reflections, and Sakura cherry blossoms",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++) {
-      const i = r * 30;
-      r % 3 === 0 ? e += `<circle cx="150" cy="16" r="3.5" fill="#e11d48" stroke="#ffffff" stroke-width="0.8" transform="rotate(${i} 150 150)"/>` : e += `<circle cx="150" cy="16" r="2.5" fill="#f43f5e" stroke="#ffffff" stroke-width="0.6" transform="rotate(${i} 150 150)"/>`;
+    for (let o = 0; o < 12; o++) {
+      const l = o * 30;
+      o % 3 === 0 ? e += `<circle cx="150" cy="16" r="3.5" fill="#e11d48" stroke="#ffffff" stroke-width="0.8" transform="rotate(${l} 150 150)"/>` : e += `<circle cx="150" cy="16" r="2.5" fill="#f43f5e" stroke="#ffffff" stroke-width="0.6" transform="rotate(${l} 150 150)"/>`;
     }
     return `
       <defs>
@@ -2800,7 +2800,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       <g filter="url(#hand_shadow)">
         <g transform="rotate(${L.hourAngle} 150 150)">
@@ -2813,7 +2813,7 @@ const P = {
           <line x1="150" y1="140" x2="150" y2="42" stroke="#f472b6" stroke-width="2" stroke-linecap="round"/>
           <circle cx="150" cy="35" r="2.5" fill="#ffffff"/>
         </g>
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="165" x2="150" y2="18" stroke="#e11d48" stroke-width="1.8"/>
           <circle cx="150" cy="18" r="3.5" fill="#e11d48" stroke="#ffffff" stroke-width="1"/>
@@ -2825,15 +2825,15 @@ const P = {
       </g>
     `;
   }
-}, a1 = {
+}, c1 = {
   name: "santorini",
   description: "Iconic whitewashed Cycladic cliffside village of Oia overlooking the cobalt Aegean Sea caldera with cobalt blue church domes, bell towers, and blooming bougainvillea",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++) {
-      const i = r * 30;
-      r % 3 === 0 ? e += `<circle cx="150" cy="16" r="3.5" fill="#0284c7" stroke="#ffffff" stroke-width="0.8" transform="rotate(${i} 150 150)"/>` : e += `<circle cx="150" cy="16" r="2.5" fill="#38bdf8" stroke="#ffffff" stroke-width="0.6" transform="rotate(${i} 150 150)"/>`;
+    for (let o = 0; o < 12; o++) {
+      const l = o * 30;
+      o % 3 === 0 ? e += `<circle cx="150" cy="16" r="3.5" fill="#0284c7" stroke="#ffffff" stroke-width="0.8" transform="rotate(${l} 150 150)"/>` : e += `<circle cx="150" cy="16" r="2.5" fill="#38bdf8" stroke="#ffffff" stroke-width="0.6" transform="rotate(${l} 150 150)"/>`;
     }
     return `
       <defs>
@@ -2971,7 +2971,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       <g filter="url(#hand_shadow)">
         <g transform="rotate(${L.hourAngle} 150 150)">
@@ -2984,7 +2984,7 @@ const P = {
           <line x1="150" y1="140" x2="150" y2="42" stroke="#7dd3fc" stroke-width="2" stroke-linecap="round"/>
           <circle cx="150" cy="35" r="2.5" fill="#ffffff"/>
         </g>
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="165" x2="150" y2="18" stroke="#ec4899" stroke-width="1.8"/>
           <circle cx="150" cy="18" r="3.5" fill="#ec4899" stroke="#ffffff" stroke-width="1"/>
@@ -3000,11 +3000,11 @@ const P = {
   name: "aurora_tromso",
   description: "Majestic Arctic Aurora Borealis glowing across snowy Norwegian fjords in Tromsø with cozy illuminated rorbu cabin and starry polar night",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++) {
-      const i = r * 30;
-      r % 3 === 0 ? e += `<circle cx="150" cy="16" r="3.5" fill="#34d399" stroke="#ffffff" stroke-width="0.8" transform="rotate(${i} 150 150)"/>` : e += `<circle cx="150" cy="16" r="2.5" fill="#38bdf8" stroke="#ffffff" stroke-width="0.6" transform="rotate(${i} 150 150)"/>`;
+    for (let o = 0; o < 12; o++) {
+      const l = o * 30;
+      o % 3 === 0 ? e += `<circle cx="150" cy="16" r="3.5" fill="#34d399" stroke="#ffffff" stroke-width="0.8" transform="rotate(${l} 150 150)"/>` : e += `<circle cx="150" cy="16" r="2.5" fill="#38bdf8" stroke="#ffffff" stroke-width="0.6" transform="rotate(${l} 150 150)"/>`;
     }
     return `
       <defs>
@@ -3099,7 +3099,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       <g filter="url(#hand_shadow)">
         <g transform="rotate(${L.hourAngle} 150 150)">
@@ -3112,7 +3112,7 @@ const P = {
           <line x1="150" y1="140" x2="150" y2="42" stroke="#38bdf8" stroke-width="2" stroke-linecap="round"/>
           <circle cx="150" cy="35" r="2.5" fill="#ffffff"/>
         </g>
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="165" x2="150" y2="18" stroke="#f43f5e" stroke-width="1.8"/>
           <circle cx="150" cy="18" r="3.5" fill="#f43f5e" stroke="#ffffff" stroke-width="1"/>
@@ -3128,11 +3128,11 @@ const P = {
   name: "pyramids",
   description: "Ancient Giza Necropolis pyramids under an Egyptian twilight starry sky with glowing crescent moon, desert sand dunes, and camel caravan",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++) {
-      const i = r * 30;
-      r % 3 === 0 ? e += `<circle cx="150" cy="16" r="3.5" fill="#f59e0b" stroke="#ffffff" stroke-width="0.8" transform="rotate(${i} 150 150)"/>` : e += `<circle cx="150" cy="16" r="2.5" fill="#d97706" stroke="#ffffff" stroke-width="0.6" transform="rotate(${i} 150 150)"/>`;
+    for (let o = 0; o < 12; o++) {
+      const l = o * 30;
+      o % 3 === 0 ? e += `<circle cx="150" cy="16" r="3.5" fill="#f59e0b" stroke="#ffffff" stroke-width="0.8" transform="rotate(${l} 150 150)"/>` : e += `<circle cx="150" cy="16" r="2.5" fill="#d97706" stroke="#ffffff" stroke-width="0.6" transform="rotate(${l} 150 150)"/>`;
     }
     return `
       <defs>
@@ -3239,7 +3239,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       <g filter="url(#hand_shadow)">
         <g transform="rotate(${L.hourAngle} 150 150)">
@@ -3250,7 +3250,7 @@ const P = {
           <polygon points="147,150 153,150 150,35" fill="#78350f" stroke="#ffffff" stroke-width="1.2"/>
           <circle cx="150" cy="35" r="3" fill="#fef08a"/>
         </g>
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="165" x2="150" y2="18" stroke="#f59e0b" stroke-width="1.8"/>
           <circle cx="150" cy="18" r="3.5" fill="#f59e0b" stroke="#ffffff" stroke-width="1"/>
@@ -3266,10 +3266,10 @@ const P = {
   name: "taj_mahal",
   description: "Detailed white marble Mughal palace with bulbous dome, 4 minarets, and lotus reflecting pool",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++)
-      e += `<circle cx="150" cy="16" r="3.5" fill="#7e22ce" transform="rotate(${r * 30} 150 150)"/>`;
+    for (let o = 0; o < 12; o++)
+      e += `<circle cx="150" cy="16" r="3.5" fill="#7e22ce" transform="rotate(${o * 30} 150 150)"/>`;
     return `
       
       <defs>
@@ -3412,7 +3412,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       <!-- Ornate Royal Hands -->
       <g transform="rotate(${L.hourAngle} 150 150)">
@@ -3423,7 +3423,7 @@ const P = {
         <path d="M 147.5 150 L 150 35 L 152.5 150 Z" fill="#9333ea"/>
         <circle cx="150" cy="35" r="3" fill="#fdf4ff"/>
       </g>
-      ${t.showSeconds !== !1 ? `
+      ${r.showSeconds !== !1 ? `
       <line x1="150" y1="160" x2="150" y2="20" stroke="#f59e0b" stroke-width="1.5" transform="rotate(${L.secondAngle} 150 150)"/>
       <circle cx="150" cy="20" r="3.5" fill="#f59e0b" transform="rotate(${L.secondAngle} 150 150)"/>
       ` : ""}
@@ -3436,11 +3436,11 @@ const P = {
   name: "eiffel_tower",
   description: "Parisian twilight skyline featuring the glowing golden iron lattice Eiffel Tower, searchlight beacon, and starry Parisian night",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++) {
-      const i = r * 30;
-      r % 3 === 0 ? e += `<circle cx="150" cy="16" r="3.5" fill="#fbbf24" stroke="#ffffff" stroke-width="0.8" transform="rotate(${i} 150 150)"/>` : e += `<circle cx="150" cy="16" r="2.5" fill="#f59e0b" stroke="#ffffff" stroke-width="0.6" transform="rotate(${i} 150 150)"/>`;
+    for (let o = 0; o < 12; o++) {
+      const l = o * 30;
+      o % 3 === 0 ? e += `<circle cx="150" cy="16" r="3.5" fill="#fbbf24" stroke="#ffffff" stroke-width="0.8" transform="rotate(${l} 150 150)"/>` : e += `<circle cx="150" cy="16" r="2.5" fill="#f59e0b" stroke="#ffffff" stroke-width="0.6" transform="rotate(${l} 150 150)"/>`;
     }
     return `
       <defs>
@@ -3531,7 +3531,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       <g filter="url(#hand_shadow)">
         <g transform="rotate(${L.hourAngle} 150 150)">
@@ -3544,7 +3544,7 @@ const P = {
           <line x1="150" y1="140" x2="150" y2="42" stroke="#fbbf24" stroke-width="2" stroke-linecap="round"/>
           <circle cx="150" cy="35" r="2.5" fill="#ffffff"/>
         </g>
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="165" x2="150" y2="18" stroke="#f43f5e" stroke-width="1.8"/>
           <circle cx="150" cy="18" r="3.5" fill="#f43f5e" stroke="#ffffff" stroke-width="1"/>
@@ -3560,11 +3560,11 @@ const P = {
   name: "machu_picchu",
   description: "Ancient Incan citadel of Machu Picchu nestled high in the Andean Cloud Forest with Huayna Picchu granite peaks, curved stone agricultural terraces, and Andean llama",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++) {
-      const i = r * 30;
-      r % 3 === 0 ? e += `<circle cx="150" cy="16" r="3.5" fill="#15803d" stroke="#ffffff" stroke-width="0.8" transform="rotate(${i} 150 150)"/>` : e += `<circle cx="150" cy="16" r="2.5" fill="#22c55e" stroke="#ffffff" stroke-width="0.6" transform="rotate(${i} 150 150)"/>`;
+    for (let o = 0; o < 12; o++) {
+      const l = o * 30;
+      o % 3 === 0 ? e += `<circle cx="150" cy="16" r="3.5" fill="#15803d" stroke="#ffffff" stroke-width="0.8" transform="rotate(${l} 150 150)"/>` : e += `<circle cx="150" cy="16" r="2.5" fill="#22c55e" stroke="#ffffff" stroke-width="0.6" transform="rotate(${l} 150 150)"/>`;
     }
     return `
       <defs>
@@ -3706,7 +3706,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       <g filter="url(#hand_shadow)">
         <g transform="rotate(${L.hourAngle} 150 150)">
@@ -3719,7 +3719,7 @@ const P = {
           <line x1="150" y1="140" x2="150" y2="42" stroke="#4ade80" stroke-width="2" stroke-linecap="round"/>
           <circle cx="150" cy="35" r="2.5" fill="#ffffff"/>
         </g>
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="165" x2="150" y2="18" stroke="#eab308" stroke-width="1.8"/>
           <circle cx="150" cy="18" r="3.5" fill="#eab308" stroke="#ffffff" stroke-width="1"/>
@@ -3735,11 +3735,11 @@ const P = {
   name: "grand_canyon",
   description: "Grand Canyon majestic geological gorge at golden hour with multi-tiered red sandstone strata, carved canyon walls, and winding turquoise Colorado River",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++) {
-      const i = r * 30;
-      r % 3 === 0 ? e += `<circle cx="150" cy="16" r="3.5" fill="#f59e0b" stroke="#ffffff" stroke-width="0.8" transform="rotate(${i} 150 150)"/>` : e += `<circle cx="150" cy="16" r="2.5" fill="#ea580c" stroke="#ffffff" stroke-width="0.6" transform="rotate(${i} 150 150)"/>`;
+    for (let o = 0; o < 12; o++) {
+      const l = o * 30;
+      o % 3 === 0 ? e += `<circle cx="150" cy="16" r="3.5" fill="#f59e0b" stroke="#ffffff" stroke-width="0.8" transform="rotate(${l} 150 150)"/>` : e += `<circle cx="150" cy="16" r="2.5" fill="#ea580c" stroke="#ffffff" stroke-width="0.6" transform="rotate(${l} 150 150)"/>`;
     }
     return `
       <defs>
@@ -3839,7 +3839,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       <g filter="url(#hand_shadow)">
         <g transform="rotate(${L.hourAngle} 150 150)">
@@ -3852,7 +3852,7 @@ const P = {
           <line x1="150" y1="140" x2="150" y2="42" stroke="#06b6d4" stroke-width="2" stroke-linecap="round"/>
           <circle cx="150" cy="35" r="2.5" fill="#ffffff"/>
         </g>
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="165" x2="150" y2="18" stroke="#06b6d4" stroke-width="1.8"/>
           <circle cx="150" cy="18" r="3.5" fill="#06b6d4" stroke="#ffffff" stroke-width="1"/>
@@ -3868,11 +3868,11 @@ const P = {
   name: "venice",
   description: "Romantic Venetian Grand Canal at twilight with Renaissance palazzos, striped wooden mooring poles, sleek black gondola, and rippling turquoise waters",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++) {
-      const i = r * 30;
-      r % 3 === 0 ? e += `<circle cx="150" cy="16" r="3.5" fill="#0284c7" stroke="#ffffff" stroke-width="0.8" transform="rotate(${i} 150 150)"/>` : e += `<circle cx="150" cy="16" r="2.5" fill="#38bdf8" stroke="#ffffff" stroke-width="0.6" transform="rotate(${i} 150 150)"/>`;
+    for (let o = 0; o < 12; o++) {
+      const l = o * 30;
+      o % 3 === 0 ? e += `<circle cx="150" cy="16" r="3.5" fill="#0284c7" stroke="#ffffff" stroke-width="0.8" transform="rotate(${l} 150 150)"/>` : e += `<circle cx="150" cy="16" r="2.5" fill="#38bdf8" stroke="#ffffff" stroke-width="0.6" transform="rotate(${l} 150 150)"/>`;
     }
     return `
       <defs>
@@ -3996,7 +3996,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       <g filter="url(#hand_shadow)">
         <g transform="rotate(${L.hourAngle} 150 150)">
@@ -4009,7 +4009,7 @@ const P = {
           <line x1="150" y1="140" x2="150" y2="42" stroke="#7dd3fc" stroke-width="2" stroke-linecap="round"/>
           <circle cx="150" cy="35" r="2.5" fill="#ffffff"/>
         </g>
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="165" x2="150" y2="18" stroke="#f43f5e" stroke-width="1.8"/>
           <circle cx="150" cy="18" r="3.5" fill="#f43f5e" stroke="#ffffff" stroke-width="1"/>
@@ -4025,11 +4025,11 @@ const P = {
   name: "maldives",
   description: "Luxury tropical Maldives overwater thatch villa perched over crystalline turquoise coral lagoon with private sun deck, coconut palms, and marine rays",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++) {
-      const i = r * 30;
-      r % 3 === 0 ? e += `<circle cx="150" cy="16" r="3.5" fill="#0284c7" stroke="#ffffff" stroke-width="0.8" transform="rotate(${i} 150 150)"/>` : e += `<circle cx="150" cy="16" r="2.5" fill="#38bdf8" stroke="#ffffff" stroke-width="0.6" transform="rotate(${i} 150 150)"/>`;
+    for (let o = 0; o < 12; o++) {
+      const l = o * 30;
+      o % 3 === 0 ? e += `<circle cx="150" cy="16" r="3.5" fill="#0284c7" stroke="#ffffff" stroke-width="0.8" transform="rotate(${l} 150 150)"/>` : e += `<circle cx="150" cy="16" r="2.5" fill="#38bdf8" stroke="#ffffff" stroke-width="0.6" transform="rotate(${l} 150 150)"/>`;
     }
     return `
       <defs>
@@ -4149,7 +4149,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       <g filter="url(#hand_shadow)">
         <g transform="rotate(${L.hourAngle} 150 150)">
@@ -4162,7 +4162,7 @@ const P = {
           <line x1="150" y1="140" x2="150" y2="42" stroke="#bae6fd" stroke-width="2" stroke-linecap="round"/>
           <circle cx="150" cy="35" r="2.5" fill="#ffffff"/>
         </g>
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="165" x2="150" y2="18" stroke="#f59e0b" stroke-width="1.8"/>
           <circle cx="150" cy="18" r="3.5" fill="#f59e0b" stroke="#ffffff" stroke-width="1"/>
@@ -4178,11 +4178,11 @@ const P = {
   name: "earth_planet",
   description: "Authentic NASA Blue Marble Earth centered on India with official Survey of India national boundary (including complete Jammu & Kashmir, Ladakh, and Aksai Chin), natural biomes, Himalayan snow ridges, and realistic monsoon storm spirals",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++) {
-      const i = r * 30;
-      r % 3 === 0 ? e += `<circle cx="150" cy="16" r="3.5" fill="#38bdf8" stroke="#ffffff" stroke-width="0.8" transform="rotate(${i} 150 150)"/>` : e += `<circle cx="150" cy="16" r="2.5" fill="#0284c7" stroke="#ffffff" stroke-width="0.6" transform="rotate(${i} 150 150)"/>`;
+    for (let o = 0; o < 12; o++) {
+      const l = o * 30;
+      o % 3 === 0 ? e += `<circle cx="150" cy="16" r="3.5" fill="#38bdf8" stroke="#ffffff" stroke-width="0.8" transform="rotate(${l} 150 150)"/>` : e += `<circle cx="150" cy="16" r="2.5" fill="#0284c7" stroke="#ffffff" stroke-width="0.6" transform="rotate(${l} 150 150)"/>`;
     }
     return `
       <defs>
@@ -4298,7 +4298,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       <g filter="url(#hand_shadow)">
         <!-- Aerospace Mission Control Hour Hand -->
@@ -4313,7 +4313,7 @@ const P = {
           <line x1="150" y1="140" x2="150" y2="42" stroke="#38bdf8" stroke-width="2" stroke-linecap="round"/>
           <circle cx="150" cy="35" r="2.5" fill="#ffffff"/>
         </g>
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <!-- High-Visibility Flare Red Second Hand -->
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="165" x2="150" y2="18" stroke="#ef4444" stroke-width="1.8"/>
@@ -4330,11 +4330,11 @@ const P = {
   name: "mars_planet",
   description: "Red Planet Mars showing rust-red iron oxide regolith, massive Olympus Mons volcano caldera, Valles Marineris canyon rift, and white polar ice cap",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++) {
-      const i = r * 30;
-      r % 3 === 0 ? e += `<circle cx="150" cy="16" r="3.5" fill="#ea580c" stroke="#ffffff" stroke-width="0.8" transform="rotate(${i} 150 150)"/>` : e += `<circle cx="150" cy="16" r="2.5" fill="#c2410c" stroke="#ffffff" stroke-width="0.6" transform="rotate(${i} 150 150)"/>`;
+    for (let o = 0; o < 12; o++) {
+      const l = o * 30;
+      o % 3 === 0 ? e += `<circle cx="150" cy="16" r="3.5" fill="#ea580c" stroke="#ffffff" stroke-width="0.8" transform="rotate(${l} 150 150)"/>` : e += `<circle cx="150" cy="16" r="2.5" fill="#c2410c" stroke="#ffffff" stroke-width="0.6" transform="rotate(${l} 150 150)"/>`;
     }
     return `
       <defs>
@@ -4445,7 +4445,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       <g filter="url(#hand_shadow)">
         <g transform="rotate(${L.hourAngle} 150 150)">
@@ -4458,7 +4458,7 @@ const P = {
           <line x1="150" y1="140" x2="150" y2="42" stroke="#fdba74" stroke-width="2" stroke-linecap="round"/>
           <circle cx="150" cy="35" r="2.5" fill="#ffffff"/>
         </g>
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="165" x2="150" y2="18" stroke="#fbbf24" stroke-width="1.8"/>
           <circle cx="150" cy="18" r="3.5" fill="#fbbf24" stroke="#ffffff" stroke-width="1"/>
@@ -4474,11 +4474,11 @@ const P = {
   name: "jupiter_planet",
   description: "Great Gas Giant Jupiter showing Juno-quality turbulent atmospheric cloud belts, cyclonic storms, and the iconic swirling Great Red Spot anticyclone",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++) {
-      const i = r * 30;
-      r % 3 === 0 ? e += `<circle cx="150" cy="16" r="3.5" fill="#f59e0b" stroke="#ffffff" stroke-width="0.8" transform="rotate(${i} 150 150)"/>` : e += `<circle cx="150" cy="16" r="2.5" fill="#d97706" stroke="#ffffff" stroke-width="0.6" transform="rotate(${i} 150 150)"/>`;
+    for (let o = 0; o < 12; o++) {
+      const l = o * 30;
+      o % 3 === 0 ? e += `<circle cx="150" cy="16" r="3.5" fill="#f59e0b" stroke="#ffffff" stroke-width="0.8" transform="rotate(${l} 150 150)"/>` : e += `<circle cx="150" cy="16" r="2.5" fill="#d97706" stroke="#ffffff" stroke-width="0.6" transform="rotate(${l} 150 150)"/>`;
     }
     return `
       <defs>
@@ -4590,7 +4590,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       <g filter="url(#hand_shadow)">
         <g transform="rotate(${L.hourAngle} 150 150)">
@@ -4603,7 +4603,7 @@ const P = {
           <line x1="150" y1="140" x2="150" y2="42" stroke="#fde68a" stroke-width="2" stroke-linecap="round"/>
           <circle cx="150" cy="35" r="2.5" fill="#ffffff"/>
         </g>
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="165" x2="150" y2="18" stroke="#ef4444" stroke-width="1.8"/>
           <circle cx="150" cy="18" r="3.5" fill="#ef4444" stroke="#ffffff" stroke-width="1"/>
@@ -4619,11 +4619,11 @@ const P = {
   name: "saturn_planet",
   description: "Majestic Ringed Saturn gas giant showing Cassini-quality ring divisions (A, B, C rings, Cassini Division), ring shadow on globe, and giant moon Titan",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++) {
-      const i = r * 30;
-      r % 3 === 0 ? e += `<circle cx="150" cy="16" r="3.5" fill="#facc15" stroke="#ffffff" stroke-width="0.8" transform="rotate(${i} 150 150)"/>` : e += `<circle cx="150" cy="16" r="2.5" fill="#eab308" stroke="#ffffff" stroke-width="0.6" transform="rotate(${i} 150 150)"/>`;
+    for (let o = 0; o < 12; o++) {
+      const l = o * 30;
+      o % 3 === 0 ? e += `<circle cx="150" cy="16" r="3.5" fill="#facc15" stroke="#ffffff" stroke-width="0.8" transform="rotate(${l} 150 150)"/>` : e += `<circle cx="150" cy="16" r="2.5" fill="#eab308" stroke="#ffffff" stroke-width="0.6" transform="rotate(${l} 150 150)"/>`;
     }
     return `
       <defs>
@@ -4727,7 +4727,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       <g filter="url(#hand_shadow)">
         <g transform="rotate(${L.hourAngle} 150 150)">
@@ -4740,7 +4740,7 @@ const P = {
           <line x1="150" y1="140" x2="150" y2="42" stroke="#fef08a" stroke-width="2" stroke-linecap="round"/>
           <circle cx="150" cy="35" r="2.5" fill="#ffffff"/>
         </g>
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="165" x2="150" y2="18" stroke="#f97316" stroke-width="1.8"/>
           <circle cx="150" cy="18" r="3.5" fill="#f97316" stroke="#ffffff" stroke-width="1"/>
@@ -4756,11 +4756,11 @@ const P = {
   name: "neptune_planet",
   description: "Deep Cobalt Azure Neptune ice giant showing supersonic methane wind streaks, the Great Dark Spot vortex, bright white cirrus clouds, and icy moon Triton",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++) {
-      const i = r * 30;
-      r % 3 === 0 ? e += `<circle cx="150" cy="16" r="3.5" fill="#38bdf8" stroke="#ffffff" stroke-width="0.8" transform="rotate(${i} 150 150)"/>` : e += `<circle cx="150" cy="16" r="2.5" fill="#0284c7" stroke="#ffffff" stroke-width="0.6" transform="rotate(${i} 150 150)"/>`;
+    for (let o = 0; o < 12; o++) {
+      const l = o * 30;
+      o % 3 === 0 ? e += `<circle cx="150" cy="16" r="3.5" fill="#38bdf8" stroke="#ffffff" stroke-width="0.8" transform="rotate(${l} 150 150)"/>` : e += `<circle cx="150" cy="16" r="2.5" fill="#0284c7" stroke="#ffffff" stroke-width="0.6" transform="rotate(${l} 150 150)"/>`;
     }
     return `
       <defs>
@@ -4856,7 +4856,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       <g filter="url(#hand_shadow)">
         <g transform="rotate(${L.hourAngle} 150 150)">
@@ -4869,7 +4869,7 @@ const P = {
           <line x1="150" y1="140" x2="150" y2="42" stroke="#bae6fd" stroke-width="2" stroke-linecap="round"/>
           <circle cx="150" cy="35" r="2.5" fill="#ffffff"/>
         </g>
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="165" x2="150" y2="18" stroke="#38bdf8" stroke-width="1.8"/>
           <circle cx="150" cy="18" r="3.5" fill="#38bdf8" stroke="#ffffff" stroke-width="1"/>
@@ -4885,11 +4885,11 @@ const P = {
   name: "moon_lunar",
   description: "Detailed Lunar Surface showing ancient basaltic Maria seas (Tranquillitatis, Serenitatis), Tycho impact crater with luminous ray ejecta filaments, and central peaks",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++) {
-      const i = r * 30;
-      r % 3 === 0 ? e += `<circle cx="150" cy="16" r="3.5" fill="#e2e8f0" stroke="#ffffff" stroke-width="0.8" transform="rotate(${i} 150 150)"/>` : e += `<circle cx="150" cy="16" r="2.5" fill="#94a3b8" stroke="#ffffff" stroke-width="0.6" transform="rotate(${i} 150 150)"/>`;
+    for (let o = 0; o < 12; o++) {
+      const l = o * 30;
+      o % 3 === 0 ? e += `<circle cx="150" cy="16" r="3.5" fill="#e2e8f0" stroke="#ffffff" stroke-width="0.8" transform="rotate(${l} 150 150)"/>` : e += `<circle cx="150" cy="16" r="2.5" fill="#94a3b8" stroke="#ffffff" stroke-width="0.6" transform="rotate(${l} 150 150)"/>`;
     }
     return `
       <defs>
@@ -5024,7 +5024,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       <g filter="url(#hand_shadow)">
         <!-- Apollo Mission Chronometer Hour Hand -->
@@ -5039,7 +5039,7 @@ const P = {
           <line x1="150" y1="140" x2="150" y2="42" stroke="#64748b" stroke-width="2" stroke-linecap="round"/>
           <circle cx="150" cy="35" r="2.5" fill="#ffffff"/>
         </g>
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <!-- Apollo Saffron / Gold Second Hand -->
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="165" x2="150" y2="18" stroke="#38bdf8" stroke-width="1.8"/>
@@ -5056,11 +5056,11 @@ const P = {
   name: "sun_fusion",
   description: "Dynamic nuclear fusion Solar Star showing convection cell granulation, magnetic coronal mass ejections, looping plasma prominences, and sunspot active regions",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++) {
-      const i = r * 30;
-      r % 3 === 0 ? e += `<circle cx="150" cy="16" r="3.5" fill="#ffffff" stroke="#ea580c" stroke-width="1" transform="rotate(${i} 150 150)"/>` : e += `<circle cx="150" cy="16" r="2.5" fill="#facc15" stroke="#ea580c" stroke-width="0.8" transform="rotate(${i} 150 150)"/>`;
+    for (let o = 0; o < 12; o++) {
+      const l = o * 30;
+      o % 3 === 0 ? e += `<circle cx="150" cy="16" r="3.5" fill="#ffffff" stroke="#ea580c" stroke-width="1" transform="rotate(${l} 150 150)"/>` : e += `<circle cx="150" cy="16" r="2.5" fill="#facc15" stroke="#ea580c" stroke-width="0.8" transform="rotate(${l} 150 150)"/>`;
     }
     return `
       <defs>
@@ -5160,7 +5160,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       <g filter="url(#hand_shadow)">
         <g transform="rotate(${L.hourAngle} 150 150)">
@@ -5173,7 +5173,7 @@ const P = {
           <line x1="150" y1="140" x2="150" y2="42" stroke="#fef08a" stroke-width="2" stroke-linecap="round"/>
           <circle cx="150" cy="35" r="2.5" fill="#ffffff"/>
         </g>
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="165" x2="150" y2="18" stroke="#ffffff" stroke-width="1.8"/>
           <circle cx="150" cy="18" r="3.5" fill="#ffffff" stroke="#ea580c" stroke-width="1"/>
@@ -5185,15 +5185,15 @@ const P = {
       </g>
     `;
   }
-}, C1 = {
+}, $1 = {
   name: "venus_planet",
   description: "Veiled Venus showing ultraviolet atmospheric spectroscopy cloud swirls, golden-sulfuric acid wind belts, planetary Y-wave patterns, and dual polar vortices",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++) {
-      const i = r * 30;
-      r % 3 === 0 ? e += `<circle cx="150" cy="16" r="3.5" fill="#facc15" stroke="#ffffff" stroke-width="0.8" transform="rotate(${i} 150 150)"/>` : e += `<circle cx="150" cy="16" r="2.5" fill="#d97706" stroke="#ffffff" stroke-width="0.6" transform="rotate(${i} 150 150)"/>`;
+    for (let o = 0; o < 12; o++) {
+      const l = o * 30;
+      o % 3 === 0 ? e += `<circle cx="150" cy="16" r="3.5" fill="#facc15" stroke="#ffffff" stroke-width="0.8" transform="rotate(${l} 150 150)"/>` : e += `<circle cx="150" cy="16" r="2.5" fill="#d97706" stroke="#ffffff" stroke-width="0.6" transform="rotate(${l} 150 150)"/>`;
     }
     return `
       <defs>
@@ -5283,7 +5283,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       <g filter="url(#hand_shadow)">
         <g transform="rotate(${L.hourAngle} 150 150)">
@@ -5296,7 +5296,7 @@ const P = {
           <line x1="150" y1="140" x2="150" y2="42" stroke="#fef08a" stroke-width="2" stroke-linecap="round"/>
           <circle cx="150" cy="35" r="2.5" fill="#ffffff"/>
         </g>
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="165" x2="150" y2="18" stroke="#f59e0b" stroke-width="1.8"/>
           <circle cx="150" cy="18" r="3.5" fill="#f59e0b" stroke="#ffffff" stroke-width="1"/>
@@ -5312,11 +5312,11 @@ const P = {
   name: "uranus_planet",
   description: "Tilted Ice Giant Uranus showing serene pastel cyan-aquamarine methane atmosphere, luminous polar hood, thin vertical glowing ring system, and icy moon Miranda",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++) {
-      const i = r * 30;
-      r % 3 === 0 ? e += `<circle cx="150" cy="16" r="3.5" fill="#22d3ee" stroke="#ffffff" stroke-width="0.8" transform="rotate(${i} 150 150)"/>` : e += `<circle cx="150" cy="16" r="2.5" fill="#06b6d4" stroke="#ffffff" stroke-width="0.6" transform="rotate(${i} 150 150)"/>`;
+    for (let o = 0; o < 12; o++) {
+      const l = o * 30;
+      o % 3 === 0 ? e += `<circle cx="150" cy="16" r="3.5" fill="#22d3ee" stroke="#ffffff" stroke-width="0.8" transform="rotate(${l} 150 150)"/>` : e += `<circle cx="150" cy="16" r="2.5" fill="#06b6d4" stroke="#ffffff" stroke-width="0.6" transform="rotate(${l} 150 150)"/>`;
     }
     return `
       <defs>
@@ -5398,7 +5398,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       <g filter="url(#hand_shadow)">
         <g transform="rotate(${L.hourAngle} 150 150)">
@@ -5411,7 +5411,7 @@ const P = {
           <line x1="150" y1="140" x2="150" y2="42" stroke="#a5f3fc" stroke-width="2" stroke-linecap="round"/>
           <circle cx="150" cy="35" r="2.5" fill="#ffffff"/>
         </g>
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="165" x2="150" y2="18" stroke="#22d3ee" stroke-width="1.8"/>
           <circle cx="150" cy="18" r="3.5" fill="#22d3ee" stroke="#ffffff" stroke-width="1"/>
@@ -5423,15 +5423,15 @@ const P = {
       </g>
     `;
   }
-}, $1 = {
+}, C1 = {
   name: "mercury_planet",
   description: "Cratered Mercury showing MESSENGER-quality heavily bombarded metallic silicate crust, Caloris Basin multiring impact structure, and lobate thrust fault scarps",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++) {
-      const i = r * 30;
-      r % 3 === 0 ? e += `<circle cx="150" cy="16" r="3.5" fill="#e2e8f0" stroke="#ffffff" stroke-width="0.8" transform="rotate(${i} 150 150)"/>` : e += `<circle cx="150" cy="16" r="2.5" fill="#94a3b8" stroke="#ffffff" stroke-width="0.6" transform="rotate(${i} 150 150)"/>`;
+    for (let o = 0; o < 12; o++) {
+      const l = o * 30;
+      o % 3 === 0 ? e += `<circle cx="150" cy="16" r="3.5" fill="#e2e8f0" stroke="#ffffff" stroke-width="0.8" transform="rotate(${l} 150 150)"/>` : e += `<circle cx="150" cy="16" r="2.5" fill="#94a3b8" stroke="#ffffff" stroke-width="0.6" transform="rotate(${l} 150 150)"/>`;
     }
     return `
       <defs>
@@ -5540,7 +5540,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       <g filter="url(#hand_shadow)">
         <g transform="rotate(${L.hourAngle} 150 150)">
@@ -5553,7 +5553,7 @@ const P = {
           <line x1="150" y1="140" x2="150" y2="42" stroke="#cbd5e1" stroke-width="2" stroke-linecap="round"/>
           <circle cx="150" cy="35" r="2.5" fill="#ffffff"/>
         </g>
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="165" x2="150" y2="18" stroke="#f59e0b" stroke-width="1.8"/>
           <circle cx="150" cy="18" r="3.5" fill="#f59e0b" stroke="#ffffff" stroke-width="1"/>
@@ -5580,17 +5580,17 @@ const P = {
     accent: "#10b981",
     centerCap: "#d97706"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++) {
-      const i = r * 30;
-      r % 3 === 0 ? e += `
-          <g transform="rotate(${i} 150 150) translate(150, 18)">
+    for (let o = 0; o < 12; o++) {
+      const l = o * 30;
+      o % 3 === 0 ? e += `
+          <g transform="rotate(${l} 150 150) translate(150, 18)">
             <polygon points="0,-4 3.5,0 0,4 -3.5,0" fill="#d97706" stroke="#064e3b" stroke-width="0.8"/>
             <circle cx="0" cy="0" r="1.2" fill="#fde047"/>
           </g>
         ` : e += `
-          <g transform="rotate(${i} 150 150) translate(150, 18)">
+          <g transform="rotate(${l} 150 150) translate(150, 18)">
             <circle cx="0" cy="0" r="2" fill="#15803d" stroke="#ffffff" stroke-width="0.6"/>
           </g>
         `;
@@ -5775,7 +5775,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       <defs>
         <filter id="terra_hand_shadow" x="-30%" y="-30%" width="160%" height="160%">
@@ -5799,7 +5799,7 @@ const P = {
         </g>
 
         <!-- Second Hand: Polished Amber / Copper Second Pointer with Rosette Bead -->
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="172" x2="150" y2="16" stroke="#d97706" stroke-width="1.6"/>
           <circle cx="150" cy="16" r="3.5" fill="#f59e0b" stroke="#ffffff" stroke-width="0.8"/>
@@ -5818,10 +5818,10 @@ const P = {
   name: "coral_reef",
   description: "Vibrant living marine coral reef with sunlit ocean caustics, sea turtle, and clownfish",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++)
-      e += `<circle cx="150" cy="16" r="3.5" fill="#7dd3fc" stroke="#0369a1" stroke-width="0.8" transform="rotate(${r * 30} 150 150)"/>`;
+    for (let o = 0; o < 12; o++)
+      e += `<circle cx="150" cy="16" r="3.5" fill="#7dd3fc" stroke="#0369a1" stroke-width="0.8" transform="rotate(${o * 30} 150 150)"/>`;
     return `
       <defs>
         <clipPath id="coral_reef_dial_clip">
@@ -5954,7 +5954,7 @@ const P = {
       <g class="ticks">${e}
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       <!-- High-Contrast Nautical Dive Hands -->
       <g filter="url(#hand_shadow)">
@@ -5966,7 +5966,7 @@ const P = {
           <path d="M 146.5 150 L 150 32 L 153.5 150 Z" fill="#ffffff" stroke="#082f49" stroke-width="1.5"/>
           <line x1="150" y1="140" x2="150" y2="40" stroke="#38bdf8" stroke-width="2" stroke-linecap="round"/>
         </g>
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="165" x2="150" y2="18" stroke="#f43f5e" stroke-width="2"/>
           <circle cx="150" cy="18" r="4" fill="#f43f5e" stroke="#ffffff" stroke-width="1"/>
@@ -5982,11 +5982,11 @@ const P = {
   name: "dandelion",
   description: "Ethereal glowing dandelion seedhead in a summer twilight breeze with floating airborne parachute seeds",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++) {
-      const i = r * 30;
-      e += `<circle cx="150" cy="16" r="3" fill="#38bdf8" stroke="#ffffff" stroke-width="0.8" transform="rotate(${i} 150 150)"/>`;
+    for (let o = 0; o < 12; o++) {
+      const l = o * 30;
+      e += `<circle cx="150" cy="16" r="3" fill="#38bdf8" stroke="#ffffff" stroke-width="0.8" transform="rotate(${l} 150 150)"/>`;
     }
     return `
       <defs>
@@ -6023,15 +6023,15 @@ const P = {
 
         <!-- Intricate Radiating Seed Parachute Filaments (Clockwise Rays) -->
         <g stroke="#e0f2fe" stroke-width="0.9" opacity="0.85">
-          ${Array.from({ length: 28 }).map((r, i) => {
-      const l = i * 360 / 28, f = 12, c = 68;
+          ${Array.from({ length: 28 }).map((o, l) => {
+      const i = l * 360 / 28, f = 12, a = 68;
       return `
-              <g transform="rotate(${l} 150 150)">
-                <line x1="150" y1="${150 - f}" x2="150" y2="${150 - c}"/>
+              <g transform="rotate(${i} 150 150)">
+                <line x1="150" y1="${150 - f}" x2="150" y2="${150 - a}"/>
                 <!-- Parachute Tuft (Feathery White Filaments) -->
-                <circle cx="150" cy="${150 - c}" r="3" fill="#ffffff"/>
-                <line x1="145" y1="${150 - c - 3}" x2="155" y2="${150 - c - 3}" stroke="#ffffff" stroke-width="0.8"/>
-                <line x1="147" y1="${150 - c - 5}" x2="153" y2="${150 - c - 5}" stroke="#ffffff" stroke-width="0.8"/>
+                <circle cx="150" cy="${150 - a}" r="3" fill="#ffffff"/>
+                <line x1="145" y1="${150 - a - 3}" x2="155" y2="${150 - a - 3}" stroke="#ffffff" stroke-width="0.8"/>
+                <line x1="147" y1="${150 - a - 5}" x2="153" y2="${150 - a - 5}" stroke="#ffffff" stroke-width="0.8"/>
               </g>
             `;
     }).join("")}
@@ -6068,7 +6068,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       <g filter="url(#hand_shadow)">
         <g transform="rotate(${L.hourAngle} 150 150)">
@@ -6079,7 +6079,7 @@ const P = {
           <polygon points="147,150 153,150 150,35" fill="#38bdf8" stroke="#ffffff" stroke-width="1.2"/>
           <circle cx="150" cy="35" r="3" fill="#ffffff"/>
         </g>
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="165" x2="150" y2="18" stroke="#facc15" stroke-width="1.8"/>
           <circle cx="150" cy="18" r="3.5" fill="#facc15" stroke="#ffffff" stroke-width="1"/>
@@ -6095,11 +6095,11 @@ const P = {
   name: "mountain_sunrise",
   description: "Breathtaking Alpine Alpenglow sunrise over multi-tier jagged mountain ranges, glowing sunbeams, and evergreen valley pines",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++) {
-      const i = r * 30;
-      e += `<circle cx="150" cy="16" r="3" fill="#e11d48" stroke="#ffffff" stroke-width="0.8" transform="rotate(${i} 150 150)"/>`;
+    for (let o = 0; o < 12; o++) {
+      const l = o * 30;
+      e += `<circle cx="150" cy="16" r="3" fill="#e11d48" stroke="#ffffff" stroke-width="0.8" transform="rotate(${l} 150 150)"/>`;
     }
     return `
       <defs>
@@ -6168,7 +6168,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       <g filter="url(#hand_shadow)">
         <g transform="rotate(${L.hourAngle} 150 150)">
@@ -6181,7 +6181,7 @@ const P = {
           <line x1="150" y1="140" x2="150" y2="42" stroke="#ea580c" stroke-width="2" stroke-linecap="round"/>
           <circle cx="150" cy="35" r="2.5" fill="#ffffff"/>
         </g>
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="165" x2="150" y2="18" stroke="#e11d48" stroke-width="1.8"/>
           <circle cx="150" cy="18" r="3.5" fill="#e11d48" stroke="#ffffff" stroke-width="1"/>
@@ -6193,15 +6193,15 @@ const P = {
       </g>
     `;
   }
-}, G1 = {
+}, B1 = {
   name: "bamboo_zen",
   description: "Japanese Zen rock garden (Karesansui) with concentric raked gravel ripples, smooth river stones, and emerald bamboo stalks",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++) {
-      const i = r * 30;
-      e += `<circle cx="150" cy="16" r="3" fill="#047857" stroke="#ffffff" stroke-width="0.8" transform="rotate(${i} 150 150)"/>`;
+    for (let o = 0; o < 12; o++) {
+      const l = o * 30;
+      e += `<circle cx="150" cy="16" r="3" fill="#047857" stroke="#ffffff" stroke-width="0.8" transform="rotate(${l} 150 150)"/>`;
     }
     return `
       <defs>
@@ -6287,7 +6287,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       <g filter="url(#hand_shadow)">
         <g transform="rotate(${L.hourAngle} 150 150)">
@@ -6298,7 +6298,7 @@ const P = {
           <polygon points="147,150 153,150 150,35" fill="#10b981" stroke="#ffffff" stroke-width="1.2"/>
           <circle cx="150" cy="35" r="3" fill="#a7f3d0"/>
         </g>
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="165" x2="150" y2="18" stroke="#f59e0b" stroke-width="1.8"/>
           <circle cx="150" cy="18" r="3.5" fill="#f59e0b" stroke="#ffffff" stroke-width="1"/>
@@ -6325,11 +6325,11 @@ const P = {
     accent: "#10b981",
     centerCap: "#34d399"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++) {
-      const i = r * 30;
-      r % 3 === 0 ? e += `<circle cx="150" cy="18" r="3.5" fill="#34d399" stroke="#ffffff" stroke-width="0.8" transform="rotate(${i} 150 150)"/>` : e += `<circle cx="150" cy="18" r="2.2" fill="#22d3ee" stroke="#ffffff" stroke-width="0.5" transform="rotate(${i} 150 150)"/>`;
+    for (let o = 0; o < 12; o++) {
+      const l = o * 30;
+      o % 3 === 0 ? e += `<circle cx="150" cy="18" r="3.5" fill="#34d399" stroke="#ffffff" stroke-width="0.8" transform="rotate(${l} 150 150)"/>` : e += `<circle cx="150" cy="18" r="2.2" fill="#22d3ee" stroke="#ffffff" stroke-width="0.5" transform="rotate(${l} 150 150)"/>`;
     }
     return `
       <defs>
@@ -6397,7 +6397,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       <g filter="url(#hand_shadow)">
         <!-- Hour Hand: Luminous Emerald Blade -->
@@ -6410,7 +6410,7 @@ const P = {
           <line x1="150" y1="150" x2="150" y2="40" stroke="#22d3ee" stroke-width="2.5" stroke-linecap="round"/>
           <circle cx="150" cy="40" r="2.5" fill="#ffffff"/>
         </g>
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <!-- Second Hand: Crimson Flare Needle -->
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="165" x2="150" y2="22" stroke="#f43f5e" stroke-width="1.6"/>
@@ -6423,14 +6423,14 @@ const P = {
       </g>
     `;
   }
-}, B1 = {
+}, G1 = {
   name: "geode",
   description: "Raw stone geode rim with glittering purple crystalline quartz interior",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++)
-      e += `<polygon points="150,16 153,22 147,22" fill="#f3e8ff" transform="rotate(${r * 30} 150 150)"/>`;
+    for (let o = 0; o < 12; o++)
+      e += `<polygon points="150,16 153,22 147,22" fill="#f3e8ff" transform="rotate(${o * 30} 150 150)"/>`;
     return `
       
       
@@ -6459,8 +6459,8 @@ const P = {
       <circle cx="150" cy="150" r="128" fill="url(#geode_core)"/>
       <!-- Faceted Crystal Teeth -->
       <g fill="#c084fc" stroke="#581c87" stroke-width="1">
-        ${Array.from({ length: 12 }).map((r, i) => `
-          <polygon points="146,28 154,28 150,42" transform="rotate(${i * 30} 150 150)"/>
+        ${Array.from({ length: 12 }).map((o, l) => `
+          <polygon points="146,28 154,28 150,42" transform="rotate(${l * 30} 150 150)"/>
         `).join("")}
       </g>
     
@@ -6471,12 +6471,12 @@ const P = {
       <g class="ticks">${e}
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       
       <polygon points="146,150 154,150 150,75" fill="#e9d5ff" transform="rotate(${L.hourAngle} 150 150)"/>
       <polygon points="147,150 153,150 150,35" fill="#ffffff" transform="rotate(${L.minuteAngle} 150 150)"/>
-      ${t.showSeconds !== !1 ? `<line x1="150" y1="160" x2="150" y2="20" stroke="#f472b6" stroke-width="1.5" transform="rotate(${L.secondAngle} 150 150)"/>` : ""}
+      ${r.showSeconds !== !1 ? `<line x1="150" y1="160" x2="150" y2="20" stroke="#f472b6" stroke-width="1.5" transform="rotate(${L.secondAngle} 150 150)"/>` : ""}
       <circle cx="150" cy="150" r="5" fill="#ffffff"/>
     
     
@@ -6486,10 +6486,10 @@ const P = {
   name: "waterfall",
   description: "Lush tropical jungle canyon with cascading turquoise multi-tier waterfall and monstera leaves",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++)
-      e += `<circle cx="150" cy="16" r="3.5" fill="#67e8f9" stroke="#047857" stroke-width="0.8" transform="rotate(${r * 30} 150 150)"/>`;
+    for (let o = 0; o < 12; o++)
+      e += `<circle cx="150" cy="16" r="3.5" fill="#67e8f9" stroke="#047857" stroke-width="0.8" transform="rotate(${o * 30} 150 150)"/>`;
     return `
       <defs>
         <filter id="blur_filter" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="3"/></filter>
@@ -6566,7 +6566,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       <g filter="url(#hand_shadow)">
         <g transform="rotate(${L.hourAngle} 150 150)">
@@ -6577,7 +6577,7 @@ const P = {
           <path d="M 146.5 150 L 150 32 L 153.5 150 Z" fill="#ffffff" stroke="#064e3b" stroke-width="1.5"/>
           <line x1="150" y1="140" x2="150" y2="40" stroke="#67e8f9" stroke-width="2" stroke-linecap="round"/>
         </g>
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="165" x2="150" y2="18" stroke="#facc15" stroke-width="2"/>
           <circle cx="150" cy="18" r="4" fill="#facc15" stroke="#ffffff" stroke-width="1"/>
@@ -6593,11 +6593,11 @@ const P = {
   name: "bonsai",
   description: "Exquisite Japanese ancient Juniper Bonsai with gnarled twisted trunk, tiered cloud-like foliage pads, and glazed ceramic tray",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++) {
-      const i = r * 30;
-      e += `<rect x="148.5" y="12" width="3" height="10" rx="1.5" fill="#78716c" stroke="#ffffff" stroke-width="0.5" transform="rotate(${i} 150 150)"/>`;
+    for (let o = 0; o < 12; o++) {
+      const l = o * 30;
+      e += `<rect x="148.5" y="12" width="3" height="10" rx="1.5" fill="#78716c" stroke="#ffffff" stroke-width="0.5" transform="rotate(${l} 150 150)"/>`;
     }
     return `
       <defs>
@@ -6694,7 +6694,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       <g filter="url(#hand_shadow)">
         <g transform="rotate(${L.hourAngle} 150 150)">
@@ -6705,7 +6705,7 @@ const P = {
           <polygon points="147,150 153,150 150,35" fill="#14532d" stroke="#ffffff" stroke-width="1.2"/>
           <circle cx="150" cy="35" r="3" fill="#86efac"/>
         </g>
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="165" x2="150" y2="18" stroke="#dc2626" stroke-width="1.8"/>
           <circle cx="150" cy="18" r="3.5" fill="#dc2626" stroke="#ffffff" stroke-width="1"/>
@@ -6721,11 +6721,11 @@ const P = {
   name: "volcano",
   description: "Dramatic Molten Volcano Eruption featuring basaltic caldera, glowing magma rivers cascading down rocky slopes, volcanic ash plumes, and fiery incandescent embers",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++) {
-      const i = r * 30;
-      r % 3 === 0 ? e += `<circle cx="150" cy="16" r="3.5" fill="#facc15" stroke="#ffffff" stroke-width="0.8" transform="rotate(${i} 150 150)"/>` : e += `<circle cx="150" cy="16" r="2.2" fill="#ea580c" stroke="#ffffff" stroke-width="0.6" transform="rotate(${i} 150 150)"/>`;
+    for (let o = 0; o < 12; o++) {
+      const l = o * 30;
+      o % 3 === 0 ? e += `<circle cx="150" cy="16" r="3.5" fill="#facc15" stroke="#ffffff" stroke-width="0.8" transform="rotate(${l} 150 150)"/>` : e += `<circle cx="150" cy="16" r="2.2" fill="#ea580c" stroke="#ffffff" stroke-width="0.6" transform="rotate(${l} 150 150)"/>`;
     }
     return `
       <defs>
@@ -6850,7 +6850,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       <g filter="url(#hand_shadow)">
         <!-- Obsidian & Fire Grand Dauphine Hour Hand -->
@@ -6865,7 +6865,7 @@ const P = {
           <polygon points="148,140 152,140 150,42" fill="#f97316"/>
           <circle cx="150" cy="35" r="2.5" fill="#fef08a"/>
         </g>
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <!-- Blazing Magma Needle Second Hand with Flame Pip -->
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="165" x2="150" y2="18" stroke="#facc15" stroke-width="1.8"/>
@@ -6878,14 +6878,14 @@ const P = {
       </g>
     `;
   }
-}, F1 = {
+}, I1 = {
   name: "tree_rings",
   description: "Organic tree cross-section with annual growth rings and leaf hands",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++)
-      e += `<rect x="148" y="14" width="4" height="12" rx="2" fill="#4e342e" transform="rotate(${r * 30} 150 150)"/>`;
+    for (let o = 0; o < 12; o++)
+      e += `<rect x="148" y="14" width="4" height="12" rx="2" fill="#4e342e" transform="rotate(${o * 30} 150 150)"/>`;
     return `
       
       <defs>
@@ -6919,7 +6919,7 @@ const P = {
       <g class="ticks">${e}
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       
       <!-- Leaf Shaped Hands -->
@@ -6931,7 +6931,7 @@ const P = {
         <path d="M 150 150 Q 144 95 150 40 Q 156 95 150 150 Z" fill="#43a047"/>
         <line x1="150" y1="145" x2="150" y2="45" stroke="#c8e6c9" stroke-width="1"/>
       </g>
-      ${t.showSeconds !== !1 ? `
+      ${r.showSeconds !== !1 ? `
       <g transform="rotate(${L.secondAngle} 150 150)">
         <line x1="150" y1="160" x2="150" y2="30" stroke="#e65100" stroke-width="1.5"/>
         <circle cx="150" cy="30" r="3" fill="#e65100"/>
@@ -6942,7 +6942,7 @@ const P = {
     
     `;
   }
-}, I1 = {
+}, E1 = {
   name: "sunflower",
   description: "Radiant blooming golden sunflower with layered sunlit petals and organic spiral seed disc",
   defaultColors: {
@@ -6957,11 +6957,11 @@ const P = {
     accent: "#f59e0b",
     centerCap: "#78350f"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++) {
-      const i = r * 30;
-      e += `<circle cx="150" cy="16" r="3" fill="#ca8a04" stroke="#ffffff" stroke-width="0.8" transform="rotate(${i} 150 150)"/>`;
+    for (let o = 0; o < 12; o++) {
+      const l = o * 30;
+      e += `<circle cx="150" cy="16" r="3" fill="#ca8a04" stroke="#ffffff" stroke-width="0.8" transform="rotate(${l} 150 150)"/>`;
     }
     return `
       <defs>
@@ -6995,17 +6995,17 @@ const P = {
         <!-- Blooming Radiant Golden Sunflower (Full Center Burst - No Leaves) -->
         <!-- Layer 1: Backing Petal Ring (Darker Amber, 24 Petals) -->
         <g fill="#d97706" stroke="#b45309" stroke-width="0.8">
-          ${Array.from({ length: 24 }).map((r, i) => `<path d="M 150 24 C 141 60 143 95 150 115 C 157 95 159 60 150 24 Z" transform="rotate(${i * 360 / 24 + 7.5} 150 150)"/>`).join("")}
+          ${Array.from({ length: 24 }).map((o, l) => `<path d="M 150 24 C 141 60 143 95 150 115 C 157 95 159 60 150 24 Z" transform="rotate(${l * 360 / 24 + 7.5} 150 150)"/>`).join("")}
         </g>
 
         <!-- Layer 2: Middle Golden Amber Petal Ring (24 Petals) -->
         <g fill="#f59e0b" stroke="#ca8a04" stroke-width="0.8">
-          ${Array.from({ length: 24 }).map((r, i) => `<path d="M 150 28 C 141 64 143 95 150 115 C 157 95 159 64 150 28 Z" transform="rotate(${i * 360 / 24 + 3.75} 150 150)"/>`).join("")}
+          ${Array.from({ length: 24 }).map((o, l) => `<path d="M 150 28 C 141 64 143 95 150 115 C 157 95 159 64 150 28 Z" transform="rotate(${l * 360 / 24 + 3.75} 150 150)"/>`).join("")}
         </g>
 
         <!-- Layer 3: Foreground Radiant Golden Petal Ring (24 Petals) -->
         <g fill="url(#petal_gold)" stroke="#ca8a04" stroke-width="0.8">
-          ${Array.from({ length: 24 }).map((r, i) => `<path d="M 150 32 C 142 66 144 95 150 115 C 156 95 158 66 150 32 Z" transform="rotate(${i * 360 / 24} 150 150)"/>`).join("")}
+          ${Array.from({ length: 24 }).map((o, l) => `<path d="M 150 32 C 142 66 144 95 150 115 C 156 95 158 66 150 32 Z" transform="rotate(${l * 360 / 24} 150 150)"/>`).join("")}
         </g>
 
         <!-- Central Seed Disc (Fibonacci Texture Core) -->
@@ -7013,9 +7013,9 @@ const P = {
         
         <!-- Spiral Floret Seed Pattern Texture -->
         <g fill="#f59e0b" opacity="0.65">
-          ${Array.from({ length: 42 }).map((r, i) => {
-      const l = i * 137.5 * (Math.PI / 180), f = 5 + Math.sqrt(i) * 6.5, c = 150 + f * Math.cos(l), a = 150 + f * Math.sin(l);
-      return `<circle cx="${c.toFixed(1)}" cy="${a.toFixed(1)}" r="1.6"/>`;
+          ${Array.from({ length: 42 }).map((o, l) => {
+      const i = l * 137.5 * (Math.PI / 180), f = 5 + Math.sqrt(l) * 6.5, a = 150 + f * Math.cos(i), c = 150 + f * Math.sin(i);
+      return `<circle cx="${a.toFixed(1)}" cy="${c.toFixed(1)}" r="1.6"/>`;
     }).join("")}
         </g>
         <!-- Golden Outer Floret Ring -->
@@ -7025,7 +7025,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       <g filter="url(#hand_shadow)">
         <!-- Hour Hand: Dark Amber Timber Blade -->
@@ -7038,7 +7038,7 @@ const P = {
           <polygon points="147,150 153,150 150,35" fill="#b45309" stroke="#ffffff" stroke-width="1.2"/>
           <circle cx="150" cy="35" r="3" fill="#fef08a"/>
         </g>
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <!-- Second Hand: Radiant Gold Seed Needle -->
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="165" x2="150" y2="18" stroke="#eab308" stroke-width="1.8"/>
@@ -7051,14 +7051,14 @@ const P = {
       </g>
     `;
   }
-}, E1 = {
+}, F1 = {
   name: "lotus",
   description: "Delicate pink lotus blossoms resting upon calm pond ripples",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++)
-      e += `<circle cx="150" cy="20" r="3.5" fill="#a5f3fc" transform="rotate(${r * 30} 150 150)"/>`;
+    for (let o = 0; o < 12; o++)
+      e += `<circle cx="150" cy="20" r="3.5" fill="#a5f3fc" transform="rotate(${o * 30} 150 150)"/>`;
     return `
       
       
@@ -7085,13 +7085,13 @@ const P = {
       <circle cx="150" cy="150" r="85" fill="none" stroke="#22d3ee" stroke-width="1" opacity="0.4"/>
       <!-- Lotus Flower Petals -->
       <g fill="#f472b6" opacity="0.85" stroke="#ec4899" stroke-width="1.5">
-        ${Array.from({ length: 8 }).map((r, i) => `
-          <path d="M 150 80 Q 130 120 150 150 Q 170 120 150 80 Z" transform="rotate(${i * 45} 150 150)"/>
+        ${Array.from({ length: 8 }).map((o, l) => `
+          <path d="M 150 80 Q 130 120 150 150 Q 170 120 150 80 Z" transform="rotate(${l * 45} 150 150)"/>
         `).join("")}
       </g>
       <g fill="#fbcfe8" opacity="0.95">
-        ${Array.from({ length: 8 }).map((r, i) => `
-          <path d="M 150 100 Q 138 130 150 150 Q 162 130 150 100 Z" transform="rotate(${i * 45 + 22.5} 150 150)"/>
+        ${Array.from({ length: 8 }).map((o, l) => `
+          <path d="M 150 100 Q 138 130 150 150 Q 162 130 150 100 Z" transform="rotate(${l * 45 + 22.5} 150 150)"/>
         `).join("")}
       </g>
     
@@ -7102,12 +7102,12 @@ const P = {
       <g class="ticks">${e}
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       
       <polygon points="146,150 154,150 150,75" fill="#f43f5e" transform="rotate(${L.hourAngle} 150 150)"/>
       <polygon points="147,150 153,150 150,40" fill="#fb7185" transform="rotate(${L.minuteAngle} 150 150)"/>
-      ${t.showSeconds !== !1 ? `
+      ${r.showSeconds !== !1 ? `
       <line x1="150" y1="160" x2="150" y2="25" stroke="#ffffff" stroke-width="1.5" transform="rotate(${L.secondAngle} 150 150)"/>
       <circle cx="150" cy="25" r="3" fill="#ffffff" transform="rotate(${L.secondAngle} 150 150)"/>
       ` : ""}
@@ -7120,10 +7120,10 @@ const P = {
   name: "forest",
   description: "Layered evergreen tree silhouettes beneath a soft mountain mist",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++)
-      e += `<circle cx="150" cy="18" r="3" fill="#a7f3d0" transform="rotate(${r * 30} 150 150)"/>`;
+    for (let o = 0; o < 12; o++)
+      e += `<circle cx="150" cy="18" r="3" fill="#a7f3d0" transform="rotate(${o * 30} 150 150)"/>`;
     return `
       
       
@@ -7168,12 +7168,12 @@ const P = {
       <g class="ticks">${e}
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       
       <line x1="150" y1="150" x2="150" y2="80" stroke="#fef08a" stroke-width="4" stroke-linecap="round" transform="rotate(${L.hourAngle} 150 150)"/>
       <line x1="150" y1="150" x2="150" y2="40" stroke="#fef08a" stroke-width="2.5" stroke-linecap="round" transform="rotate(${L.minuteAngle} 150 150)"/>
-      ${t.showSeconds !== !1 ? `
+      ${r.showSeconds !== !1 ? `
       <line x1="150" y1="160" x2="150" y2="25" stroke="#34d399" stroke-width="1.5" transform="rotate(${L.secondAngle} 150 150)"/>
       ` : ""}
       <circle cx="150" cy="150" r="5" fill="#fef08a"/>
@@ -7196,17 +7196,17 @@ const P = {
     accent: "#f59e0b",
     centerCap: "#f59e0b"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++) {
-      const i = r * 30;
-      r % 3 === 0 ? e += `
-          <g transform="rotate(${i} 150 150) translate(150, 20)">
+    for (let o = 0; o < 12; o++) {
+      const l = o * 30;
+      o % 3 === 0 ? e += `
+          <g transform="rotate(${l} 150 150) translate(150, 20)">
             <circle cx="0" cy="0" r="3.6" fill="#b45309" stroke="#fef08a" stroke-width="0.8"/>
             <circle cx="0" cy="0" r="1.5" fill="#fde047"/>
           </g>
         ` : e += `
-          <g transform="rotate(${i} 150 150) translate(150, 20)">
+          <g transform="rotate(${l} 150 150) translate(150, 20)">
             <circle cx="0" cy="0" r="2.2" fill="#d97706" stroke="#fefce8" stroke-width="0.6"/>
           </g>
         `;
@@ -7366,7 +7366,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       <defs>
         <filter id="mush_hand_shadow" x="-30%" y="-30%" width="160%" height="160%">
@@ -7390,7 +7390,7 @@ const P = {
         </g>
 
         <!-- Second Hand: Scarlet Amanita Needle with Mushroom Hub -->
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="172" x2="150" y2="16" stroke="#dc2626" stroke-width="1.6"/>
           <circle cx="150" cy="16" r="3.5" fill="#dc2626" stroke="#ffffff" stroke-width="0.8"/>
@@ -7409,11 +7409,11 @@ const P = {
   name: "cactus",
   description: "Majestic Sonoran desert sunset with towering Saguaro cactus, blooming magenta flowers, and terracotta canyon dunes",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++) {
-      const i = r * 30;
-      e += `<polygon points="150,12 153,18 147,18" fill="#15803d" stroke="#ffffff" stroke-width="0.6" transform="rotate(${i} 150 150)"/>`;
+    for (let o = 0; o < 12; o++) {
+      const l = o * 30;
+      e += `<polygon points="150,12 153,18 147,18" fill="#15803d" stroke="#ffffff" stroke-width="0.6" transform="rotate(${l} 150 150)"/>`;
     }
     return `
       <defs>
@@ -7495,7 +7495,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       <g filter="url(#hand_shadow)">
         <g transform="rotate(${L.hourAngle} 150 150)">
@@ -7506,7 +7506,7 @@ const P = {
           <polygon points="147,150 153,150 150,35" fill="#15803d" stroke="#ffffff" stroke-width="1.2"/>
           <circle cx="150" cy="35" r="3" fill="#86efac"/>
         </g>
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="165" x2="150" y2="18" stroke="#f43f5e" stroke-width="1.8"/>
           <circle cx="150" cy="18" r="3.5" fill="#f43f5e" stroke="#ffffff" stroke-width="1"/>
@@ -7522,10 +7522,10 @@ const P = {
   name: "ocean",
   description: "Majestic cresting deep-blue tidal wave with seafoam spray droplets",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++)
-      e += `<circle cx="150" cy="18" r="3.5" fill="#e0f2fe" transform="rotate(${r * 30} 150 150)"/>`;
+    for (let o = 0; o < 12; o++)
+      e += `<circle cx="150" cy="18" r="3.5" fill="#e0f2fe" transform="rotate(${o * 30} 150 150)"/>`;
     return `
       
       
@@ -7563,12 +7563,12 @@ const P = {
       <g class="ticks">${e}
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       
       <polygon points="146,150 154,150 150,75" fill="#f8fafc" transform="rotate(${L.hourAngle} 150 150)"/>
       <polygon points="147,150 153,150 150,35" fill="#bae6fd" transform="rotate(${L.minuteAngle} 150 150)"/>
-      ${t.showSeconds !== !1 ? `
+      ${r.showSeconds !== !1 ? `
       <line x1="150" y1="160" x2="150" y2="20" stroke="#38bdf8" stroke-width="1.5" transform="rotate(${L.secondAngle} 150 150)"/>
       <circle cx="150" cy="20" r="3" fill="#38bdf8" transform="rotate(${L.secondAngle} 150 150)"/>
       ` : ""}
@@ -7581,11 +7581,11 @@ const P = {
   name: "monstera",
   description: "Lush tropical Monstera Deliciosa rainforest foliage with realistic split-leaf fenestrations, delicate veins, and morning dewdrops",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++) {
-      const i = r * 30;
-      r % 3 === 0 ? e += `<rect x="148" y="10" width="4" height="12" rx="2" fill="#047857" stroke="#ffffff" stroke-width="0.8" transform="rotate(${i} 150 150)"/>` : e += `<circle cx="150" cy="16" r="3" fill="#10b981" stroke="#ffffff" stroke-width="0.8" transform="rotate(${i} 150 150)"/>`;
+    for (let o = 0; o < 12; o++) {
+      const l = o * 30;
+      o % 3 === 0 ? e += `<rect x="148" y="10" width="4" height="12" rx="2" fill="#047857" stroke="#ffffff" stroke-width="0.8" transform="rotate(${l} 150 150)"/>` : e += `<circle cx="150" cy="16" r="3" fill="#10b981" stroke="#ffffff" stroke-width="0.8" transform="rotate(${l} 150 150)"/>`;
     }
     return `
       <defs>
@@ -7669,7 +7669,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       <g filter="url(#hand_shadow)">
         <g transform="rotate(${L.hourAngle} 150 150)">
@@ -7682,7 +7682,7 @@ const P = {
           <line x1="150" y1="140" x2="150" y2="42" stroke="#6ee7b7" stroke-width="2" stroke-linecap="round"/>
           <circle cx="150" cy="35" r="2.5" fill="#ffffff"/>
         </g>
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="165" x2="150" y2="18" stroke="#f59e0b" stroke-width="1.8"/>
           <circle cx="150" cy="18" r="3.5" fill="#f59e0b" stroke="#ffffff" stroke-width="1"/>
@@ -7698,11 +7698,11 @@ const P = {
   name: "hive",
   description: "Luxury Golden Honeycomb Horology featuring engine-turned hexagonal honey cells, dripping translucent liquid amber honey, and hyper-detailed worker honeybee with gossamer wings",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++) {
-      const i = r * 30;
-      r % 3 === 0 ? e += `<polygon points="150,11 154,16 154,23 150,28 146,23 146,16" fill="#ca8a04" stroke="#ffffff" stroke-width="0.8" transform="rotate(${i} 150 150)"/>` : e += `<circle cx="150" cy="18" r="2.5" fill="#f59e0b" stroke="#78350f" stroke-width="0.6" transform="rotate(${i} 150 150)"/>`;
+    for (let o = 0; o < 12; o++) {
+      const l = o * 30;
+      o % 3 === 0 ? e += `<polygon points="150,11 154,16 154,23 150,28 146,23 146,16" fill="#ca8a04" stroke="#ffffff" stroke-width="0.8" transform="rotate(${l} 150 150)"/>` : e += `<circle cx="150" cy="18" r="2.5" fill="#f59e0b" stroke="#78350f" stroke-width="0.6" transform="rotate(${l} 150 150)"/>`;
     }
     return `
       <defs>
@@ -7843,7 +7843,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       <g filter="url(#hand_shadow)">
         <!-- Carved Oak & Honey Dipper Dauphine Hour Hand -->
@@ -7858,7 +7858,7 @@ const P = {
           <polygon points="148,140 152,140 150,42" fill="#facc15"/>
           <circle cx="150" cy="35" r="2.5" fill="#fef08a"/>
         </g>
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <!-- Honey Amber Needle Second Hand with Honeycomb Pip -->
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="165" x2="150" y2="18" stroke="#ea580c" stroke-width="1.8"/>
@@ -7875,10 +7875,10 @@ const P = {
   name: "autumn",
   description: "Rich amber maple leaf with delicate veins and sunset forest colors",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++)
-      e += `<circle cx="150" cy="18" r="3.5" fill="#9a3412" transform="rotate(${r * 30} 150 150)"/>`;
+    for (let o = 0; o < 12; o++)
+      e += `<circle cx="150" cy="18" r="3.5" fill="#9a3412" transform="rotate(${o * 30} 150 150)"/>`;
     return `
       
       
@@ -7916,12 +7916,12 @@ const P = {
       <g class="ticks">${e}
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       
       <polygon points="146,150 154,150 150,75" fill="#7c2d12" transform="rotate(${L.hourAngle} 150 150)"/>
       <polygon points="147,150 153,150 150,35" fill="#9a3412" transform="rotate(${L.minuteAngle} 150 150)"/>
-      ${t.showSeconds !== !1 ? `
+      ${r.showSeconds !== !1 ? `
       <line x1="150" y1="160" x2="150" y2="20" stroke="#f97316" stroke-width="1.5" transform="rotate(${L.secondAngle} 150 150)"/>
       <circle cx="150" cy="20" r="3" fill="#f97316"/>
       ` : ""}
@@ -7934,11 +7934,11 @@ const P = {
   name: "radar",
   description: "Sweeping green radar HUD with crosshairs",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 360; r += 15) {
-      const i = r % 90 === 0 ? 15 : 8;
-      e += `<line x1="150" y1="5" x2="150" y2="${5 + i}" stroke="#10b981" stroke-width="2" transform="rotate(${r} 150 150)"/>`;
+    for (let o = 0; o < 360; o += 15) {
+      const l = o % 90 === 0 ? 15 : 8;
+      e += `<line x1="150" y1="5" x2="150" y2="${5 + l}" stroke="#10b981" stroke-width="2" transform="rotate(${o} 150 150)"/>`;
     }
     return `
       
@@ -7959,11 +7959,11 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       
       <!-- Sweeping Wedge (Second Hand) -->
-      ${t.showSeconds !== !1 ? `
+      ${r.showSeconds !== !1 ? `
       <g transform="rotate(${L.secondAngle} 150 150)">
         <path d="M 150 150 L 150 5 A 145 145 0 0 1 250 45 Z" fill="#10b981" opacity="0.3"/>
         <line x1="150" y1="150" x2="150" y2="5" stroke="#34d399" stroke-width="2"/>
@@ -7976,16 +7976,16 @@ const P = {
     
     `;
   }
-}, j1 = {
+}, Y1 = {
   name: "alien",
   description: "Extraterrestrial glyphs with glowing cyan polygon dial",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++) {
-      const i = r % 3;
-      let l = "";
-      i === 0 ? l = '<circle cx="150" cy="40" r="4" fill="none" stroke="#22d3ee" stroke-width="2"/><line x1="150" y1="36" x2="150" y2="44" stroke="#22d3ee" stroke-width="2"/>' : i === 1 ? l = '<polygon points="146,38 154,38 150,44" fill="#22d3ee"/>' : l = '<path d="M 145 42 L 150 38 L 155 42 L 155 46 L 145 46 Z" fill="none" stroke="#22d3ee" stroke-width="2"/>', e += `<g transform="rotate(${r * 30} 150 150)">${l}</g>`;
+    for (let o = 0; o < 12; o++) {
+      const l = o % 3;
+      let i = "";
+      l === 0 ? i = '<circle cx="150" cy="40" r="4" fill="none" stroke="#22d3ee" stroke-width="2"/><line x1="150" y1="36" x2="150" y2="44" stroke="#22d3ee" stroke-width="2"/>' : l === 1 ? i = '<polygon points="146,38 154,38 150,44" fill="#22d3ee"/>' : i = '<path d="M 145 42 L 150 38 L 155 42 L 155 46 L 145 46 Z" fill="none" stroke="#22d3ee" stroke-width="2"/>', e += `<g transform="rotate(${o * 30} 150 150)">${i}</g>`;
     }
     return `
       
@@ -8006,26 +8006,26 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       
       <!-- Segmented Hands -->
       <path d="M 147 160 L 153 160 L 151 90 L 155 85 L 145 70 L 149 90 Z" fill="#3b82f6" filter="url(#glow_alien)" transform="rotate(${L.hourAngle} 150 150)"/>
       <path d="M 148 160 L 152 160 L 151 60 L 156 50 L 144 35 L 149 60 Z" fill="#22d3ee" filter="url(#glow_alien)" transform="rotate(${L.minuteAngle} 150 150)"/>
-      ${t.showSeconds !== !1 ? `<circle cx="150" cy="25" r="5" fill="#a5f3fc" filter="url(#glow_alien)" transform="rotate(${L.secondAngle} 150 150)"/><line x1="150" y1="150" x2="150" y2="30" stroke="#a5f3fc" stroke-width="1" transform="rotate(${L.secondAngle} 150 150)"/>` : ""}
+      ${r.showSeconds !== !1 ? `<circle cx="150" cy="25" r="5" fill="#a5f3fc" filter="url(#glow_alien)" transform="rotate(${L.secondAngle} 150 150)"/><line x1="150" y1="150" x2="150" y2="30" stroke="#a5f3fc" stroke-width="1" transform="rotate(${L.secondAngle} 150 150)"/>` : ""}
       <polygon points="140,150 150,140 160,150 150,160" fill="#a5f3fc" filter="url(#glow_alien)"/>
     
     
     `;
   }
-}, Y1 = {
+}, j1 = {
   name: "warp",
   description: "Pulsing energy reactor with metallic struts",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++)
-      e += `<rect x="146" y="10" width="8" height="15" fill="#94a3b8" transform="rotate(${r * 30} 150 150)"/>`;
+    for (let o = 0; o < 12; o++)
+      e += `<rect x="146" y="10" width="8" height="15" fill="#94a3b8" transform="rotate(${o * 30} 150 150)"/>`;
     return `
       
       
@@ -8052,12 +8052,12 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       
       <line x1="150" y1="150" x2="150" y2="70" stroke="#ffffff" stroke-width="8" stroke-linecap="round" filter="drop-shadow(0 0 4px #3b82f6)" transform="rotate(${L.hourAngle} 150 150)"/>
       <line x1="150" y1="150" x2="150" y2="35" stroke="#bfdbfe" stroke-width="4" stroke-linecap="round" filter="drop-shadow(0 0 6px #60a5fa)" transform="rotate(${L.minuteAngle} 150 150)"/>
-      ${t.showSeconds !== !1 ? `<line x1="150" y1="160" x2="150" y2="15" stroke="#93c5fd" stroke-width="2" transform="rotate(${L.secondAngle} 150 150)"/>` : ""}
+      ${r.showSeconds !== !1 ? `<line x1="150" y1="160" x2="150" y2="15" stroke="#93c5fd" stroke-width="2" transform="rotate(${L.secondAngle} 150 150)"/>` : ""}
       <circle cx="150" cy="150" r="15" fill="#1d4ed8" stroke="#60a5fa" stroke-width="2"/>
     
     
@@ -8078,11 +8078,11 @@ const P = {
     accent: "#06b6d4",
     centerCap: "#22d3ee"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 60; r++) {
-      const i = r * 6;
-      r % 5 === 0 ? e += `<line x1="150" y1="12" x2="150" y2="22" stroke="#22d3ee" stroke-width="2.5" transform="rotate(${i} 150 150)"/>` : e += `<line x1="150" y1="14" x2="150" y2="19" stroke="#0d9488" stroke-width="1.2" transform="rotate(${i} 150 150)"/>`;
+    for (let o = 0; o < 60; o++) {
+      const l = o * 6;
+      o % 5 === 0 ? e += `<line x1="150" y1="12" x2="150" y2="22" stroke="#22d3ee" stroke-width="2.5" transform="rotate(${l} 150 150)"/>` : e += `<line x1="150" y1="14" x2="150" y2="19" stroke="#0d9488" stroke-width="1.2" transform="rotate(${l} 150 150)"/>`;
     }
     return `
       <defs>
@@ -8163,7 +8163,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       <g filter="url(#hand_shadow)">
         <!-- Hour Hand: Neon Magenta Holo Needle -->
@@ -8176,7 +8176,7 @@ const P = {
           <polygon points="147,150 153,150 150,30" fill="#22d3ee" stroke="#ffffff" stroke-width="1.2"/>
           <circle cx="150" cy="30" r="3" fill="#67e8f9"/>
         </g>
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <!-- Second Hand: High-Tech Dotted Pulse Beam -->
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="165" x2="150" y2="18" stroke="#38bdf8" stroke-width="1.8" stroke-dasharray="5 3"/>
@@ -8193,10 +8193,10 @@ const P = {
   name: "mecha",
   description: "Robotic terminator aperture with glowing red optical sensor",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++)
-      e += `<polygon points="146,15 154,15 150,25" fill="#ef4444" transform="rotate(${r * 30} 150 150)"/>`;
+    for (let o = 0; o < 12; o++)
+      e += `<polygon points="146,15 154,15 150,25" fill="#ef4444" transform="rotate(${o * 30} 150 150)"/>`;
     return `
       
       
@@ -8216,13 +8216,13 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       
       <!-- Laser Beams -->
       <line x1="150" y1="105" x2="150" y2="40" stroke="#ef4444" stroke-width="6" stroke-linecap="square" filter="drop-shadow(0 0 5px #ef4444)" transform="rotate(${L.hourAngle} 150 150)"/>
       <line x1="150" y1="105" x2="150" y2="20" stroke="#fca5a5" stroke-width="3" stroke-linecap="square" filter="drop-shadow(0 0 5px #fca5a5)" transform="rotate(${L.minuteAngle} 150 150)"/>
-      ${t.showSeconds !== !1 ? `<line x1="150" y1="150" x2="150" y2="10" stroke="#ffffff" stroke-width="1" filter="drop-shadow(0 0 3px #ffffff)" transform="rotate(${L.secondAngle} 150 150)"/>` : ""}
+      ${r.showSeconds !== !1 ? `<line x1="150" y1="150" x2="150" y2="10" stroke="#ffffff" stroke-width="1" filter="drop-shadow(0 0 3px #ffffff)" transform="rotate(${L.secondAngle} 150 150)"/>` : ""}
     
     
     `;
@@ -8231,10 +8231,10 @@ const P = {
   name: "timemachine",
   description: "Y-shaped energy tubes and exposed tech components",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++)
-      e += `<circle cx="150" cy="15" r="4" fill="#cbd5e1" transform="rotate(${r * 30} 150 150)"/>`;
+    for (let o = 0; o < 12; o++)
+      e += `<circle cx="150" cy="15" r="4" fill="#cbd5e1" transform="rotate(${o * 30} 150 150)"/>`;
     return `
       
       
@@ -8257,12 +8257,12 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       
       <rect x="145" y="80" width="10" height="70" fill="#e2e8f0" stroke="#0f172a" stroke-width="2" transform="rotate(${L.hourAngle} 150 150)"/>
       <rect x="147" y="30" width="6" height="120" fill="#94a3b8" stroke="#0f172a" stroke-width="1" transform="rotate(${L.minuteAngle} 150 150)"/>
-      ${t.showSeconds !== !1 ? `<line x1="150" y1="160" x2="150" y2="20" stroke="#fcd34d" stroke-width="2" transform="rotate(${L.secondAngle} 150 150)"/>` : ""}
+      ${r.showSeconds !== !1 ? `<line x1="150" y1="160" x2="150" y2="20" stroke="#fcd34d" stroke-width="2" transform="rotate(${L.secondAngle} 150 150)"/>` : ""}
       <circle cx="150" cy="150" r="12" fill="#0f172a" stroke="#e2e8f0" stroke-width="3"/>
     
     
@@ -8272,12 +8272,12 @@ const P = {
   name: "starship",
   description: "Sleek white and cyan curved progress bars",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    const r = ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11"];
-    for (let i = 0; i < 12; i++) {
-      const l = (i * 30 - 90) * (Math.PI / 180), f = 130, c = 150 + f * Math.cos(l), a = 150 + f * Math.sin(l) + 4;
-      e += `<text x="${c}" y="${a}" text-anchor="middle" font-family="monospace" font-size="12" font-weight="bold" fill="#64748b">${r[i]}</text>`;
+    const o = ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11"];
+    for (let l = 0; l < 12; l++) {
+      const i = (l * 30 - 90) * (Math.PI / 180), f = 130, a = 150 + f * Math.cos(i), c = 150 + f * Math.sin(i) + 4;
+      e += `<text x="${a}" y="${c}" text-anchor="middle" font-family="monospace" font-size="12" font-weight="bold" fill="#64748b">${o[l]}</text>`;
     }
     return `
       
@@ -8292,13 +8292,13 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       
       <!-- Sleek Needles -->
       <path d="M 148 150 L 148 70 L 150 60 L 152 70 L 152 150 Z" fill="#0f172a" transform="rotate(${L.hourAngle} 150 150)"/>
       <path d="M 149 150 L 149 40 L 150 30 L 151 40 L 151 150 Z" fill="#0ea5e9" transform="rotate(${L.minuteAngle} 150 150)"/>
-      ${t.showSeconds !== !1 ? `<line x1="150" y1="160" x2="150" y2="25" stroke="#f43f5e" stroke-width="1" transform="rotate(${L.secondAngle} 150 150)"/>` : ""}
+      ${r.showSeconds !== !1 ? `<line x1="150" y1="160" x2="150" y2="25" stroke="#f43f5e" stroke-width="1" transform="rotate(${L.secondAngle} 150 150)"/>` : ""}
       <circle cx="150" cy="150" r="4" fill="#f43f5e"/>
     
     
@@ -8308,10 +8308,10 @@ const P = {
   name: "cyberdeck",
   description: "Neon yellow circuit board traces and microchip hub",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++)
-      e += `<rect x="147" y="10" width="6" height="10" fill="#eab308" transform="rotate(${r * 30} 150 150)"/>`, e += `<line x1="150" y1="20" x2="150" y2="25" stroke="#ca8a04" stroke-width="2" transform="rotate(${r * 30} 150 150)"/>`;
+    for (let o = 0; o < 12; o++)
+      e += `<rect x="147" y="10" width="6" height="10" fill="#eab308" transform="rotate(${o * 30} 150 150)"/>`, e += `<line x1="150" y1="20" x2="150" y2="25" stroke="#ca8a04" stroke-width="2" transform="rotate(${o * 30} 150 150)"/>`;
     return `
       
       
@@ -8331,13 +8331,13 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       
       <!-- Traces as hands -->
       <path d="M 148 150 L 148 80 L 152 80 L 152 150 Z" fill="#facc15" transform="rotate(${L.hourAngle} 150 150)"/>
       <path d="M 149 150 L 149 40 L 151 40 L 151 150 Z" fill="#fde047" transform="rotate(${L.minuteAngle} 150 150)"/>
-      ${t.showSeconds !== !1 ? `
+      ${r.showSeconds !== !1 ? `
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="160" x2="150" y2="25" stroke="#ef4444" stroke-width="1.5"/>
           <rect x="148" y="25" width="4" height="4" fill="#ef4444"/>
@@ -8353,10 +8353,10 @@ const P = {
   name: "quantum",
   description: "Orbiting electron rings with a glowing atomic core",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++)
-      e += `<circle cx="150" cy="20" r="3" fill="#a78bfa" transform="rotate(${r * 30} 150 150)"/>`, r % 3 === 0 && (e += `<circle cx="150" cy="20" r="6" fill="none" stroke="#c4b5fd" stroke-width="1" transform="rotate(${r * 30} 150 150)"/>`);
+    for (let o = 0; o < 12; o++)
+      e += `<circle cx="150" cy="20" r="3" fill="#a78bfa" transform="rotate(${o * 30} 150 150)"/>`, o % 3 === 0 && (e += `<circle cx="150" cy="20" r="6" fill="none" stroke="#c4b5fd" stroke-width="1" transform="rotate(${o * 30} 150 150)"/>`);
     return `
       
       
@@ -8384,7 +8384,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       
       <!-- Orbiting Particle Hands -->
@@ -8396,7 +8396,7 @@ const P = {
         <line x1="150" y1="150" x2="150" y2="40" stroke="#d8b4fe" stroke-width="2" stroke-dasharray="2 4"/>
         <circle cx="150" cy="40" r="5" fill="#d8b4fe"/>
       </g>
-      ${t.showSeconds !== !1 ? `
+      ${r.showSeconds !== !1 ? `
       <g transform="rotate(${L.secondAngle} 150 150)">
         <line x1="150" y1="150" x2="150" y2="25" stroke="#fbcfe8" stroke-width="1"/>
         <circle cx="150" cy="25" r="3" fill="#fbcfe8"/>
@@ -8411,10 +8411,10 @@ const P = {
   name: "owl",
   description: "Mystical barn owl perched on a mossy oak branch beneath a luminous golden full moon",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++)
-      e += `<circle cx="150" cy="18" r="3.5" fill="#fde047" stroke="#000000" stroke-width="0.8" transform="rotate(${r * 30} 150 150)"/>`;
+    for (let o = 0; o < 12; o++)
+      e += `<circle cx="150" cy="18" r="3.5" fill="#fde047" stroke="#000000" stroke-width="0.8" transform="rotate(${o * 30} 150 150)"/>`;
     return `
       <defs>
         <clipPath id="owl_dial_clip"><circle cx="150" cy="150" r="145"/></clipPath>
@@ -8486,7 +8486,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       <g filter="url(#hand_shadow)">
         <!-- Golden Amber Feather Hour Hand -->
@@ -8499,7 +8499,7 @@ const P = {
           <polygon points="147,150 153,150 150,38" fill="#a16207"/>
           <circle cx="150" cy="38" r="3" fill="#fef08a"/>
         </g>
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="165" x2="150" y2="20" stroke="#facc15" stroke-width="1.8"/>
           <circle cx="150" cy="20" r="3.5" fill="#facc15" stroke="#ffffff" stroke-width="1"/>
@@ -8515,10 +8515,10 @@ const P = {
   name: "penguin",
   description: "Adorable Arctic penguin standing on an icy glacier beneath starry polar skies",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++)
-      e += `<circle cx="150" cy="18" r="3.5" fill="#38bdf8" stroke="#ffffff" stroke-width="0.8" transform="rotate(${r * 30} 150 150)"/>`;
+    for (let o = 0; o < 12; o++)
+      e += `<circle cx="150" cy="18" r="3.5" fill="#38bdf8" stroke="#ffffff" stroke-width="0.8" transform="rotate(${o * 30} 150 150)"/>`;
     return `
       <defs>
         <clipPath id="penguin_dial_clip"><circle cx="150" cy="150" r="145"/></clipPath>
@@ -8583,7 +8583,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       <g filter="url(#hand_shadow)">
         <g transform="rotate(${L.hourAngle} 150 150)">
@@ -8594,7 +8594,7 @@ const P = {
           <polygon points="147,150 153,150 150,38" fill="#0284c7"/>
           <circle cx="150" cy="38" r="3" fill="#bae6fd"/>
         </g>
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="165" x2="150" y2="20" stroke="#f97316" stroke-width="1.8"/>
           <circle cx="150" cy="20" r="3.5" fill="#f97316" stroke="#ffffff" stroke-width="1"/>
@@ -8610,11 +8610,11 @@ const P = {
   name: "sun",
   description: "Radiant smiling golden sun in an azure sky with fluffy white cloud companions and golden sunbeam rays",
   defaultColors: {},
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++) {
-      const i = r * 30;
-      r % 3 === 0 ? e += `<circle cx="150" cy="16" r="3.5" fill="#f59e0b" stroke="#ffffff" stroke-width="0.8" transform="rotate(${i} 150 150)"/>` : e += `<circle cx="150" cy="16" r="2.5" fill="#ca8a04" stroke="#ffffff" stroke-width="0.6" transform="rotate(${i} 150 150)"/>`;
+    for (let o = 0; o < 12; o++) {
+      const l = o * 30;
+      o % 3 === 0 ? e += `<circle cx="150" cy="16" r="3.5" fill="#f59e0b" stroke="#ffffff" stroke-width="0.8" transform="rotate(${l} 150 150)"/>` : e += `<circle cx="150" cy="16" r="2.5" fill="#ca8a04" stroke="#ffffff" stroke-width="0.6" transform="rotate(${l} 150 150)"/>`;
     }
     return `
       <defs>
@@ -8641,9 +8641,9 @@ const P = {
       <g clip-path="url(#sun_dial_clip)">
         <!-- 16 Alternating Curved Golden Sun Rays radiating around dial -->
         <g fill="#f59e0b" opacity="0.85">
-          ${Array.from({ length: 16 }).map((r, i) => {
-      const l = i * 360 / 16;
-      return i % 2 === 0 ? `<polygon points="150,30 158,80 142,80" transform="rotate(${l} 150 150)"/>` : `<path d="M 150 35 Q 162 58 150 82 Q 138 58 150 35 Z" transform="rotate(${l} 150 150)"/>`;
+          ${Array.from({ length: 16 }).map((o, l) => {
+      const i = l * 360 / 16;
+      return l % 2 === 0 ? `<polygon points="150,30 158,80 142,80" transform="rotate(${i} 150 150)"/>` : `<path d="M 150 35 Q 162 58 150 82 Q 138 58 150 35 Z" transform="rotate(${i} 150 150)"/>`;
     }).join("")}
         </g>
 
@@ -8687,7 +8687,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       <g filter="url(#hand_shadow)">
         <g transform="rotate(${L.hourAngle} 150 150)">
@@ -8698,7 +8698,7 @@ const P = {
           <polygon points="147,150 153,150 150,35" fill="#d97706" stroke="#ffffff" stroke-width="1.2"/>
           <circle cx="150" cy="35" r="3" fill="#ffffff"/>
         </g>
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="165" x2="150" y2="18" stroke="#ef4444" stroke-width="1.8"/>
           <circle cx="150" cy="18" r="3.5" fill="#ef4444" stroke="#ffffff" stroke-width="1"/>
@@ -8726,28 +8726,28 @@ const P = {
     centerCap: "#f0883e",
     subdialBg: "#161b22"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    [22.5, 67.5, 112.5, 157.5, 202.5, 247.5, 292.5, 337.5].forEach((c) => {
-      const a = (c - 90) * (Math.PI / 180), s = 150 + 138 * Math.cos(a), n = 150 + 138 * Math.sin(a);
+    [22.5, 67.5, 112.5, 157.5, 202.5, 247.5, 292.5, 337.5].forEach((a) => {
+      const c = (a - 90) * (Math.PI / 180), s = 150 + 138 * Math.cos(c), n = 150 + 138 * Math.sin(c);
       e += `
         <circle cx="${s.toFixed(1)}" cy="${n.toFixed(1)}" r="3" fill="#30363d" stroke="#8b949e" stroke-width="0.8"/>
         <line x1="${(s - 1.8).toFixed(1)}" y1="${n.toFixed(1)}" x2="${(s + 1.8).toFixed(1)}" y2="${n.toFixed(1)}" stroke="#161b22" stroke-width="0.8"/>
       `;
     });
-    let i = "";
-    for (let c = 0; c < 60; c++) {
-      const a = c * 6;
-      c % 5 === 0 ? i += `<line x1="150" y1="26" x2="150" y2="38" stroke="${o.hourTicks}" stroke-width="2.5" transform="rotate(${a} 150 150)"/>` : t.showTicks !== !1 && (i += `<line x1="150" y1="28" x2="150" y2="34" stroke="${o.minuteTicks}" stroke-width="1.2" transform="rotate(${a} 150 150)"/>`);
-    }
     let l = "";
-    t.showNumbers !== !1 && (l = `
+    for (let a = 0; a < 60; a++) {
+      const c = a * 6;
+      a % 5 === 0 ? l += `<line x1="150" y1="26" x2="150" y2="38" stroke="${t.hourTicks}" stroke-width="2.5" transform="rotate(${c} 150 150)"/>` : r.showTicks !== !1 && (l += `<line x1="150" y1="28" x2="150" y2="34" stroke="${t.minuteTicks}" stroke-width="1.2" transform="rotate(${c} 150 150)"/>`);
+    }
+    let i = "";
+    r.showNumbers !== !1 && (i = `
         <text x="150" y="62" text-anchor="middle" font-family="'Impact', 'Arial Black', sans-serif" font-size="20" font-weight="900" fill="#ffffff" letter-spacing="1">12</text>
         <text x="242" y="157" text-anchor="middle" font-family="'Impact', 'Arial Black', sans-serif" font-size="20" font-weight="900" fill="#ffffff">3</text>
         <text x="150" y="250" text-anchor="middle" font-family="'Impact', 'Arial Black', sans-serif" font-size="20" font-weight="900" fill="#ffffff">6</text>
         <text x="58" y="157" text-anchor="middle" font-family="'Impact', 'Arial Black', sans-serif" font-size="20" font-weight="900" fill="#ffffff">9</text>
       `);
-    const f = t.label || "WR 20BAR · SHOCK RESIST";
+    const f = r.label || "WR 20BAR · SHOCK RESIST";
     return `
       
       <!-- Outer Tactical Octagonal Bezel -->
@@ -8769,16 +8769,16 @@ const P = {
       <circle cx="150" cy="150" r="72" fill="none" stroke="#f0883e" stroke-width="0.8" stroke-dasharray="2 6"/>
 
       <!-- Ticks & Numerals -->
-      <g class="ticks">${i}</g>
-      <g class="numerals">${l}</g>
+      <g class="ticks">${l}</g>
+      <g class="numerals">${i}</g>
 
       <!-- Dial Inscriptions -->
       <text x="150" y="105" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="7" font-weight="800" fill="#f0883e" letter-spacing="2">TACTICAL SPECS</text>
       <text x="150" y="195" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="6.5" font-weight="700" fill="#8b949e" letter-spacing="1.5">${f}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Tactical Skeleton Sword) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
@@ -8795,9 +8795,9 @@ const P = {
       ${e ? `
       <!-- Tactical Orange Second Needle with Counter-Balance Arrow -->
       <g class="hand second-hand" transform="rotate(${L.secondAngle} 150 150)">
-        <line x1="150" y1="24" x2="150" y2="182" stroke="${o.secondHand}" stroke-width="1.8"/>
-        <polygon points="150,20 146,30 154,30" fill="${o.secondHand}"/>
-        <rect x="147.5" y="165" width="5" height="12" fill="${o.secondHand}"/>
+        <line x1="150" y1="24" x2="150" y2="182" stroke="${t.secondHand}" stroke-width="1.8"/>
+        <polygon points="150,20 146,30 154,30" fill="${t.secondHand}"/>
+        <rect x="147.5" y="165" width="5" height="12" fill="${t.secondHand}"/>
       </g>
       ` : ""}
       
@@ -8823,7 +8823,7 @@ const P = {
     centerCap: "#ffffff",
     subdialBg: "#0b0e14"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
     [
       { text: "60", angle: 0 },
@@ -8836,21 +8836,21 @@ const P = {
       { text: "200", angle: 220 },
       { text: "300", angle: 270 },
       { text: "400", angle: 315 }
-    ].forEach((a) => {
-      const s = (a.angle - 90) * (Math.PI / 180), n = 150 + 138 * Math.cos(s), y = 150 + 138 * Math.sin(s) + 3;
-      e += `<text x="${n.toFixed(1)}" y="${y.toFixed(1)}" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="6" font-weight="700" fill="#94a3b8">${a.text}</text>`;
+    ].forEach((c) => {
+      const s = (c.angle - 90) * (Math.PI / 180), n = 150 + 138 * Math.cos(s), d = 150 + 138 * Math.sin(s) + 3;
+      e += `<text x="${n.toFixed(1)}" y="${d.toFixed(1)}" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="6" font-weight="700" fill="#94a3b8">${c.text}</text>`;
     });
-    let i = "";
-    for (let a = 0; a < 60; a++) {
-      const s = a * 6;
-      a % 5 === 0 ? i += `<rect x="148" y="24" width="4" height="12" rx="1" fill="#ffffff" stroke="#1e293b" stroke-width="0.8" transform="rotate(${s} 150 150)"/>` : t.showTicks !== !1 && (i += `<line x1="150" y1="24" x2="150" y2="30" stroke="${o.minuteTicks}" stroke-width="1.2" transform="rotate(${s} 150 150)"/>`);
+    let l = "";
+    for (let c = 0; c < 60; c++) {
+      const s = c * 6;
+      c % 5 === 0 ? l += `<rect x="148" y="24" width="4" height="12" rx="1" fill="#ffffff" stroke="#1e293b" stroke-width="0.8" transform="rotate(${s} 150 150)"/>` : r.showTicks !== !1 && (l += `<line x1="150" y1="24" x2="150" y2="30" stroke="${t.minuteTicks}" stroke-width="1.2" transform="rotate(${s} 150 150)"/>`);
     }
-    const l = L.seconds / 60 * 360, f = L.minutes / 60 * 360, c = t.label || "CHRONOGRAPH 100M";
+    const i = L.seconds / 60 * 360, f = L.minutes / 60 * 360, a = r.label || "CHRONOGRAPH 100M";
     return `
       
       <!-- Stainless Steel Tachymeter Outer Bezel -->
       <circle cx="150" cy="150" r="147" fill="#1e293b" stroke="#475569" stroke-width="2"/>
-      <circle cx="150" cy="150" r="131" fill="${o.face}" stroke="#3b82f6" stroke-width="1.5"/>
+      <circle cx="150" cy="150" r="131" fill="${t.face}" stroke="#3b82f6" stroke-width="1.5"/>
 
       <!-- Tachymeter Scale Text -->
       <g class="tachymeter-labels">${e}</g>
@@ -8860,16 +8860,16 @@ const P = {
       <circle cx="150" cy="150" r="124" fill="none" stroke="#334155" stroke-width="1"/>
 
       <!-- Main Dial Ticks -->
-      <g class="ticks">${i}</g>
+      <g class="ticks">${l}</g>
 
       <!-- Left Sub-Dial (Running Seconds at 9 o'clock) -->
       <g class="subdial-left">
-        <circle cx="95" cy="150" r="28" fill="${o.subdialBg}" stroke="#3b82f6" stroke-width="1"/>
+        <circle cx="95" cy="150" r="28" fill="${t.subdialBg}" stroke="#3b82f6" stroke-width="1"/>
         <circle cx="95" cy="150" r="27" fill="none" stroke="#334155" stroke-width="0.5" stroke-dasharray="2 2"/>
         <text x="95" y="132" text-anchor="middle" font-family="sans-serif" font-size="5" font-weight="700" fill="#94a3b8">60</text>
         <text x="95" y="173" text-anchor="middle" font-family="sans-serif" font-size="5" font-weight="700" fill="#94a3b8">30</text>
         <!-- Sub-dial hand -->
-        <g transform="rotate(${l} 95 150)">
+        <g transform="rotate(${i} 95 150)">
           <line x1="95" y1="150" x2="95" y2="126" stroke="#ef4444" stroke-width="1.5"/>
           <circle cx="95" cy="150" r="2" fill="#ffffff"/>
         </g>
@@ -8877,7 +8877,7 @@ const P = {
 
       <!-- Right Sub-Dial (30-Min Counter at 3 o'clock) -->
       <g class="subdial-right">
-        <circle cx="205" cy="150" r="28" fill="${o.subdialBg}" stroke="#3b82f6" stroke-width="1"/>
+        <circle cx="205" cy="150" r="28" fill="${t.subdialBg}" stroke="#3b82f6" stroke-width="1"/>
         <circle cx="205" cy="150" r="27" fill="none" stroke="#334155" stroke-width="0.5" stroke-dasharray="2 2"/>
         <text x="205" y="132" text-anchor="middle" font-family="sans-serif" font-size="5" font-weight="700" fill="#94a3b8">30</text>
         <text x="205" y="173" text-anchor="middle" font-family="sans-serif" font-size="5" font-weight="700" fill="#94a3b8">15</text>
@@ -8894,11 +8894,11 @@ const P = {
 
       <!-- Brand Inscription -->
       <text x="150" y="90" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="8" font-weight="800" fill="#ffffff" letter-spacing="1.5">CHRONOGRAPH</text>
-      <text x="150" y="101" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="6" font-weight="700" fill="#3b82f6" letter-spacing="1">${c}</text>
+      <text x="150" y="101" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="6" font-weight="700" fill="#3b82f6" letter-spacing="1">${a}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Syringe Style) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
@@ -8917,8 +8917,8 @@ const P = {
       ${e ? `
       <!-- Red Chronograph Sweep Second Hand with Oval Counterweight -->
       <g class="hand second-hand" transform="rotate(${L.secondAngle} 150 150)">
-        <line x1="150" y1="20" x2="150" y2="180" stroke="${o.secondHand}" stroke-width="1.8"/>
-        <circle cx="150" cy="170" r="4.5" fill="none" stroke="${o.secondHand}" stroke-width="1.5"/>
+        <line x1="150" y1="20" x2="150" y2="180" stroke="${t.secondHand}" stroke-width="1.8"/>
+        <circle cx="150" cy="170" r="4.5" fill="none" stroke="${t.secondHand}" stroke-width="1.5"/>
       </g>
       ` : ""}
       
@@ -8928,7 +8928,7 @@ const P = {
     
     `;
   }
-}, c0 = {
+}, a0 = {
   name: "regatta",
   description: "Yachting regatta timer watch with 10-minute countdown arc, compass rose bezel, and nautical navy styling",
   defaultColors: {
@@ -8944,32 +8944,32 @@ const P = {
     centerCap: "#38bdf8",
     subdialBg: "#0f172a"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     const e = [
       { text: "N", angle: 0, color: "#e11d48" },
       { text: "E", angle: 90, color: "#ffffff" },
       { text: "S", angle: 180, color: "#ffffff" },
       { text: "W", angle: 270, color: "#ffffff" }
     ];
-    let r = "";
+    let o = "";
     e.forEach((f) => {
-      const c = (f.angle - 90) * (Math.PI / 180), a = 150 + 138 * Math.cos(c), s = 150 + 138 * Math.sin(c) + 4;
-      r += `<text x="${a.toFixed(1)}" y="${s.toFixed(1)}" text-anchor="middle" font-family="'Arial Black', sans-serif" font-size="10" font-weight="900" fill="${f.color}">${f.text}</text>`;
+      const a = (f.angle - 90) * (Math.PI / 180), c = 150 + 138 * Math.cos(a), s = 150 + 138 * Math.sin(a) + 4;
+      o += `<text x="${c.toFixed(1)}" y="${s.toFixed(1)}" text-anchor="middle" font-family="'Arial Black', sans-serif" font-size="10" font-weight="900" fill="${f.color}">${f.text}</text>`;
     });
-    let i = "";
+    let l = "";
     for (let f = 0; f < 60; f++) {
-      const c = f * 6;
-      f % 5 === 0 ? i += `<line x1="150" y1="26" x2="150" y2="38" stroke="#ffffff" stroke-width="2.5" transform="rotate(${c} 150 150)"/>` : t.showTicks !== !1 && (i += `<line x1="150" y1="26" x2="150" y2="32" stroke="#38bdf8" stroke-width="1.2" opacity="0.7" transform="rotate(${c} 150 150)"/>`);
+      const a = f * 6;
+      f % 5 === 0 ? l += `<line x1="150" y1="26" x2="150" y2="38" stroke="#ffffff" stroke-width="2.5" transform="rotate(${a} 150 150)"/>` : r.showTicks !== !1 && (l += `<line x1="150" y1="26" x2="150" y2="32" stroke="#38bdf8" stroke-width="1.2" opacity="0.7" transform="rotate(${a} 150 150)"/>`);
     }
-    const l = t.label || "REGATTA TIMER 10 MIN";
+    const i = r.label || "REGATTA TIMER 10 MIN";
     return `
       
       <!-- Nautical Bezel with Compass Ring -->
       <circle cx="150" cy="150" r="147" fill="#030712" stroke="#1e293b" stroke-width="3"/>
-      <circle cx="150" cy="150" r="128" fill="${o.face}" stroke="#38bdf8" stroke-width="2"/>
+      <circle cx="150" cy="150" r="128" fill="${t.face}" stroke="#38bdf8" stroke-width="2"/>
 
       <!-- Compass Cardinal Letters -->
-      <g class="compass-points">${r}</g>
+      <g class="compass-points">${o}</g>
 
       <!-- 10-Minute Regatta Countdown Sector Arcs (10 to 12 o'clock) -->
       <!-- First 5 Mins (Yellow Arc from 300° to 330°) -->
@@ -8984,15 +8984,15 @@ const P = {
       <polygon points="150,110 146,146 150,150 154,146" fill="#ffffff" opacity="0.6"/>
 
       <!-- Main Dial Ticks -->
-      <g class="ticks">${i}</g>
+      <g class="ticks">${l}</g>
 
       <!-- Label Inscription -->
       <text x="150" y="98" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="8" font-weight="800" fill="#ffffff" letter-spacing="1.5">YACHT-MASTER</text>
-      <text x="150" y="200" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="7" font-weight="700" fill="#f59e0b" letter-spacing="1">${l}</text>
+      <text x="150" y="200" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="7" font-weight="700" fill="#f59e0b" letter-spacing="1">${i}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Nautical Arrow) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
@@ -9009,7 +9009,7 @@ const P = {
       ${e ? `
       <!-- Red Regatta Countdown Needle with Luminous Disc -->
       <g class="hand second-hand" transform="rotate(${L.secondAngle} 150 150)">
-        <line x1="150" y1="20" x2="150" y2="180" stroke="${o.secondHand}" stroke-width="2"/>
+        <line x1="150" y1="20" x2="150" y2="180" stroke="${t.secondHand}" stroke-width="2"/>
         <circle cx="150" cy="55" r="5" fill="#f59e0b" stroke="#ffffff" stroke-width="1"/>
       </g>
       ` : ""}
@@ -9020,7 +9020,7 @@ const P = {
     
     `;
   }
-}, a0 = {
+}, c0 = {
   name: "alpinist",
   description: "Mountaineering expedition watch with forest green dial, gold cathedral hands, and rotating compass ring",
   defaultColors: {
@@ -9036,7 +9036,7 @@ const P = {
     centerCap: "#fbbf24",
     subdialBg: "#022013"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
     [
       { text: "N", angle: 0 },
@@ -9052,20 +9052,20 @@ const P = {
       { text: "300", angle: 300 },
       { text: "330", angle: 330 }
     ].forEach((f) => {
-      const c = (f.angle - 90) * (Math.PI / 180), a = 150 + 137 * Math.cos(c), s = 150 + 137 * Math.sin(c) + 3, n = f.text === "N";
-      e += `<text x="${a.toFixed(1)}" y="${s.toFixed(1)}" text-anchor="middle" font-family="'Georgia', serif" font-size="6.5" font-weight="700" fill="${n ? "#ef4444" : "#d97706"}">${f.text}</text>`;
+      const a = (f.angle - 90) * (Math.PI / 180), c = 150 + 137 * Math.cos(a), s = 150 + 137 * Math.sin(a) + 3, n = f.text === "N";
+      e += `<text x="${c.toFixed(1)}" y="${s.toFixed(1)}" text-anchor="middle" font-family="'Georgia', serif" font-size="6.5" font-weight="700" fill="${n ? "#ef4444" : "#d97706"}">${f.text}</text>`;
     });
-    let i = "";
+    let l = "";
     for (let f = 0; f < 12; f++) {
-      const c = f * 30;
-      f % 2 === 0 ? i += `<polygon points="146,26 154,26 150,42" fill="#fbbf24" stroke="#78350f" stroke-width="0.8" transform="rotate(${c} 150 150)"/>` : i += `<rect x="148" y="26" width="4" height="14" fill="#fbbf24" stroke="#78350f" stroke-width="0.8" transform="rotate(${c} 150 150)"/>`;
+      const a = f * 30;
+      f % 2 === 0 ? l += `<polygon points="146,26 154,26 150,42" fill="#fbbf24" stroke="#78350f" stroke-width="0.8" transform="rotate(${a} 150 150)"/>` : l += `<rect x="148" y="26" width="4" height="14" fill="#fbbf24" stroke="#78350f" stroke-width="0.8" transform="rotate(${a} 150 150)"/>`;
     }
-    const l = t.label || "ALPINIST 200M";
+    const i = r.label || "ALPINIST 200M";
     return `
       
       <!-- Polished Gold / Bronze Bezel -->
       <circle cx="150" cy="150" r="147" fill="#1c1917" stroke="#d97706" stroke-width="3"/>
-      <circle cx="150" cy="150" r="128" fill="${o.face}" stroke="#fbbf24" stroke-width="1.5"/>
+      <circle cx="150" cy="150" r="128" fill="${t.face}" stroke="#fbbf24" stroke-width="1.5"/>
 
       <!-- Compass Ring Markings -->
       <g class="azimuth-ring">${e}</g>
@@ -9075,16 +9075,16 @@ const P = {
       <circle cx="150" cy="150" r="114" fill="none" stroke="#065f46" stroke-width="0.8"/>
 
       <!-- Applied Gold Markers -->
-      <g class="hour-markers">${i}</g>
+      <g class="hour-markers">${l}</g>
 
       <!-- Dial Inscriptions -->
       <text x="150" y="98" text-anchor="middle" font-family="'Georgia', serif" font-size="8" font-weight="700" fill="#fbbf24" letter-spacing="1.5">EXPEDITION</text>
-      <text x="150" y="200" text-anchor="middle" font-family="'Georgia', serif" font-size="6.5" font-weight="600" fill="#fef3c7" letter-spacing="1">${l}</text>
+      <text x="150" y="200" text-anchor="middle" font-family="'Georgia', serif" font-size="6.5" font-weight="600" fill="#fef3c7" letter-spacing="1">${i}</text>
       <text x="150" y="210" text-anchor="middle" font-family="sans-serif" font-size="5.5" fill="#d97706" letter-spacing="1">AUTOMATIC 23 JEWELS</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Classic Cathedral Snake-Head) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
@@ -9102,7 +9102,7 @@ const P = {
       ${e ? `
       <!-- Red Needle Second Hand with Gold Moon Counterweight -->
       <g class="hand second-hand" transform="rotate(${L.secondAngle} 150 150)">
-        <line x1="150" y1="22" x2="150" y2="180" stroke="${o.secondHand}" stroke-width="1.6"/>
+        <line x1="150" y1="22" x2="150" y2="180" stroke="${t.secondHand}" stroke-width="1.6"/>
         <circle cx="150" cy="168" r="4" fill="#fbbf24"/>
       </g>
       ` : ""}
@@ -9129,25 +9129,25 @@ const P = {
     centerCap: "#84cc16",
     subdialBg: "#111827"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let l = 0; l < 60; l++) {
-      const f = l * 6;
-      l % 5 === 0 ? e += `<rect x="148.5" y="24" width="3" height="12" rx="1" fill="#84cc16" transform="rotate(${f} 150 150)"/>` : t.showTicks !== !1 && (e += `<line x1="150" y1="24" x2="150" y2="30" stroke="#334155" stroke-width="1.2" transform="rotate(${f} 150 150)"/>`);
+    for (let i = 0; i < 60; i++) {
+      const f = i * 6;
+      i % 5 === 0 ? e += `<rect x="148.5" y="24" width="3" height="12" rx="1" fill="#84cc16" transform="rotate(${f} 150 150)"/>` : r.showTicks !== !1 && (e += `<line x1="150" y1="24" x2="150" y2="30" stroke="#334155" stroke-width="1.2" transform="rotate(${f} 150 150)"/>`);
     }
-    let r = "";
-    t.showNumbers !== !1 && (r = `
+    let o = "";
+    r.showNumbers !== !1 && (o = `
         <text x="150" y="60" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="18" font-weight="900" fill="#ffffff">12</text>
         <text x="242" y="156" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="18" font-weight="900" fill="#ffffff">3</text>
         <text x="150" y="250" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="18" font-weight="900" fill="#ffffff">6</text>
         <text x="58" y="156" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="18" font-weight="900" fill="#ffffff">9</text>
       `);
-    const i = t.label || "PACE 4:15/KM · HR 164";
+    const l = r.label || "PACE 4:15/KM · HR 164";
     return `
       
       <!-- Bezel & Matte Dark Polymer Case -->
       <circle cx="150" cy="150" r="147" fill="#0f172a" stroke="#1e293b" stroke-width="3"/>
-      <circle cx="150" cy="150" r="138" fill="${o.face}" stroke="#84cc16" stroke-width="1.5"/>
+      <circle cx="150" cy="150" r="138" fill="${t.face}" stroke="#84cc16" stroke-width="1.5"/>
 
       <!-- Heart Rate / Pace Performance Zone Arcs -->
       <!-- Zone 1 (Blue) -->
@@ -9164,7 +9164,7 @@ const P = {
 
       <!-- Ticks & Numerals -->
       <g class="ticks">${e}</g>
-      <g class="numerals">${r}</g>
+      <g class="numerals">${o}</g>
 
       <!-- Center Performance Sub-Display Ring -->
       <circle cx="150" cy="150" r="70" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
@@ -9172,11 +9172,11 @@ const P = {
 
       <!-- Inscriptions -->
       <text x="150" y="105" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="7.5" font-weight="800" fill="#84cc16" letter-spacing="1.5">TRIATHLON PRO</text>
-      <text x="150" y="195" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="6.5" font-weight="700" fill="#94a3b8" letter-spacing="1">${i}</text>
+      <text x="150" y="195" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="6.5" font-weight="700" fill="#94a3b8" letter-spacing="1">${l}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Neon Tapered Pointer) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
@@ -9193,8 +9193,8 @@ const P = {
       ${e ? `
       <!-- Electric Lime Seconds Sweep with Arrowhead -->
       <g class="hand second-hand" transform="rotate(${L.secondAngle} 150 150)">
-        <line x1="150" y1="22" x2="150" y2="182" stroke="${o.secondHand}" stroke-width="2"/>
-        <polygon points="150,18 146,28 154,28" fill="${o.secondHand}"/>
+        <line x1="150" y1="22" x2="150" y2="182" stroke="${t.secondHand}" stroke-width="2"/>
+        <polygon points="150,18 146,28 154,28" fill="${t.secondHand}"/>
       </g>
       ` : ""}
       
@@ -9220,12 +9220,12 @@ const P = {
     centerCap: "#000080",
     subdialBg: "#f8fafc"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
     for (let f = 0; f < 24; f++) {
-      const c = f * 15;
+      const a = f * 15;
       e += `
-        <g transform="rotate(${c} 150 150)">
+        <g transform="rotate(${a} 150 150)">
           <!-- Tapered Chakra Spoke -->
           <polygon points="149.2,150 150.8,150 150,116" fill="#000080"/>
           <!-- Outer Spoke Beaded Tip -->
@@ -9233,41 +9233,41 @@ const P = {
         </g>
       `;
     }
-    let r = "";
+    let o = "";
     for (let f = 0; f < 60; f++) {
-      const c = f * 6;
-      f % 5 !== 0 && (r += `<line x1="150" y1="18" x2="150" y2="23" stroke="#64748b" stroke-width="0.9" transform="rotate(${c} 150 150)"/>`);
+      const a = f * 6;
+      f % 5 !== 0 && (o += `<line x1="150" y1="18" x2="150" y2="23" stroke="#64748b" stroke-width="0.9" transform="rotate(${a} 150 150)"/>`);
     }
-    let i = "";
+    let l = "";
     for (let f = 0; f < 12; f++) {
-      const c = f * 30;
-      f === 0 ? i += `
+      const a = f * 30;
+      f === 0 ? l += `
           <g transform="rotate(0 150 150)">
             <rect x="144" y="16" width="4.5" height="16" rx="1" fill="#000080" stroke="#d97706" stroke-width="0.8"/>
             <rect x="151.5" y="16" width="4.5" height="16" rx="1" fill="#000080" stroke="#d97706" stroke-width="0.8"/>
             <circle cx="150" cy="38" r="2.5" fill="#ff9933" stroke="#000080" stroke-width="0.8"/>
           </g>
-        ` : f === 3 || f === 9 ? i += `
-          <g transform="rotate(${c} 150 150)">
+        ` : f === 3 || f === 9 ? l += `
+          <g transform="rotate(${a} 150 150)">
             <rect x="147.5" y="16" width="5" height="15" rx="1" fill="#000080" stroke="#d97706" stroke-width="0.8"/>
             <polygon points="148,16 150,30 152,16" fill="#1e40af"/>
           </g>
-        ` : f === 6 ? i += `
+        ` : f === 6 ? l += `
           <g transform="rotate(180 150 150)">
             <rect x="147.5" y="16" width="5" height="15" rx="1" fill="#000080" stroke="#d97706" stroke-width="0.8"/>
             <circle cx="150" cy="38" r="2.5" fill="#138808" stroke="#000080" stroke-width="0.8"/>
           </g>
-        ` : i += `
-          <g transform="rotate(${c} 150 150)">
+        ` : l += `
+          <g transform="rotate(${a} 150 150)">
             <rect x="148" y="16" width="4" height="14" rx="1" fill="#000080" stroke="#cbd5e1" stroke-width="0.6"/>
             <polygon points="148.5,16 150,29 151.5,16" fill="#3b82f6"/>
           </g>
         `;
     }
-    let l = "";
+    let i = "";
     for (let f = 0; f < 48; f++) {
-      const c = f * 360 / 48;
-      l += `<line x1="150" y1="150" x2="150" y2="24" stroke="#e2e8f0" stroke-width="0.5" transform="rotate(${c} 150 150)"/>`;
+      const a = f * 360 / 48;
+      i += `<line x1="150" y1="150" x2="150" y2="24" stroke="#e2e8f0" stroke-width="0.5" transform="rotate(${a} 150 150)"/>`;
     }
     return `
       <defs>
@@ -9315,7 +9315,7 @@ const P = {
         <circle cx="150" cy="150" r="60" fill="none" stroke="#e2e8f0" stroke-width="0.8"/>
 
         <!-- Sunburst Guilloché Texture Rays -->
-        <g opacity="0.6">${l}</g>
+        <g opacity="0.6">${i}</g>
 
         <!-- Ashoka Dharma Chakra Medallion in Center (Fine 24-Spoke Masterpiece) -->
         <!-- Chakra Outer Gold & Navy Track -->
@@ -9337,15 +9337,15 @@ const P = {
         <text x="150" y="220" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="6" font-weight="700" fill="#64748b" letter-spacing="1.5">INDIA • 1947</text>
 
         <!-- 60-Minute Railway Markers -->
-        <g>${r}</g>
+        <g>${o}</g>
 
         <!-- 12 Applied Royal Navy & Gold Indices -->
-        <g class="indices">${i}</g>
+        <g class="indices">${l}</g>
       </g>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <g filter="url(#hand_shadow)">
         <!-- Royal Navy Dauphine Hour Hand (Dual-Faceted Bevel) -->
@@ -9403,10 +9403,10 @@ const P = {
     centerCap: "#bc002d",
     subdialBg: "#ffffff"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let l = 0; l < 12; l++) {
-      const f = l * 30;
+    for (let i = 0; i < 12; i++) {
+      const f = i * 30;
       e += `
         <g transform="rotate(${f} 150 150)">
           <path d="M 150,22 C 145,28 143,38 150,44 C 157,38 155,28 150,22 Z" fill="#ffb7c5" stroke="#bc002d" stroke-width="1"/>
@@ -9414,32 +9414,32 @@ const P = {
         </g>
       `;
     }
-    let r = "";
-    for (let l = 0; l < 60; l++) {
-      const f = l * 6;
-      l % 5 !== 0 && t.showTicks !== !1 && (r += `<line x1="150" y1="22" x2="150" y2="27" stroke="#6b7280" stroke-width="1.2" transform="rotate(${f} 150 150)"/>`);
+    let o = "";
+    for (let i = 0; i < 60; i++) {
+      const f = i * 6;
+      i % 5 !== 0 && r.showTicks !== !1 && (o += `<line x1="150" y1="22" x2="150" y2="27" stroke="#6b7280" stroke-width="1.2" transform="rotate(${f} 150 150)"/>`);
     }
-    const i = t.label || "JAPAN · ASIA/TOKYO";
+    const l = r.label || "JAPAN · ASIA/TOKYO";
     return `
       
       <!-- Pure Red Outer Ring & White Dial Face -->
       <circle cx="150" cy="150" r="147" fill="#ffffff" stroke="#bc002d" stroke-width="4.5"/>
-      <circle cx="150" cy="150" r="140" fill="${o.face}"/>
+      <circle cx="150" cy="150" r="140" fill="${t.face}"/>
 
       <!-- Central Crimson Rising Sun (Hinomaru) -->
       <circle cx="150" cy="150" r="56" fill="#bc002d"/>
 
       <!-- Sakura Petals & Ticks -->
       <g class="sakura-markers">${e}</g>
-      <g class="ticks">${r}</g>
+      <g class="ticks">${o}</g>
 
       <!-- High-Visibility Minimalist Inscriptions -->
       <text x="150" y="78" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="11.5" font-weight="900" fill="#bc002d" letter-spacing="3">日本 · NIPPON</text>
-      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#111827" letter-spacing="1.5">${i}</text>
+      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#111827" letter-spacing="1.5">${l}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Sleek Matte Black Needle with White Lume Segment) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
@@ -9456,7 +9456,7 @@ const P = {
       ${e ? `
       <!-- Crimson Red Second Needle with Sun Disc -->
       <g class="hand second-hand" transform="rotate(${L.secondAngle} 150 150)">
-        <line x1="150" y1="18" x2="150" y2="182" stroke="${o.secondHand}" stroke-width="2"/>
+        <line x1="150" y1="18" x2="150" y2="182" stroke="${t.secondHand}" stroke-width="2"/>
         <circle cx="150" cy="55" r="5" fill="#bc002d" stroke="#ffffff" stroke-width="1.2"/>
       </g>
       ` : ""}
@@ -9483,27 +9483,27 @@ const P = {
     centerCap: "#f59e0b",
     subdialBg: "#1e293b"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let l = 0; l < 12; l++) {
-      const c = (l * 30 - 90) * (Math.PI / 180), a = 150 + 106 * Math.cos(c), s = 150 + 106 * Math.sin(c);
+    for (let i = 0; i < 12; i++) {
+      const a = (i * 30 - 90) * (Math.PI / 180), c = 150 + 106 * Math.cos(a), s = 150 + 106 * Math.sin(a);
       e += `
-        <g transform="translate(${a.toFixed(1)}, ${s.toFixed(1)}) scale(0.85)">
+        <g transform="translate(${c.toFixed(1)}, ${s.toFixed(1)}) scale(0.85)">
           <polygon points="0,-10 3,-3 10,-3 4,1 7,8 0,4 -7,8 -4,1 -10,-3 -3,-3" fill="#ffffff" stroke="#f59e0b" stroke-width="1.2" filter="url(#drop-shadow)"/>
         </g>
       `;
     }
-    let r = "";
-    for (let l = 0; l < 60; l++) {
-      const f = l * 6;
-      l % 5 !== 0 && t.showTicks !== !1 && (r += `<line x1="150" y1="20" x2="150" y2="25" stroke="#f59e0b" stroke-width="1.4" opacity="0.9" transform="rotate(${f} 150 150)"/>`);
+    let o = "";
+    for (let i = 0; i < 60; i++) {
+      const f = i * 6;
+      i % 5 !== 0 && r.showTicks !== !1 && (o += `<line x1="150" y1="20" x2="150" y2="25" stroke="#f59e0b" stroke-width="1.4" opacity="0.9" transform="rotate(${f} 150 150)"/>`);
     }
-    const i = t.label || "USA · AMERICA/NEW_YORK";
+    const l = r.label || "USA · AMERICA/NEW_YORK";
     return `
       
       <!-- Old Glory Red Bezel & White Ring -->
       <circle cx="150" cy="150" r="147" fill="#b22234" stroke="#ffffff" stroke-width="2"/>
-      <circle cx="150" cy="150" r="140" fill="${o.face}" stroke="#f59e0b" stroke-width="2"/>
+      <circle cx="150" cy="150" r="140" fill="${t.face}" stroke="#f59e0b" stroke-width="2"/>
 
       <!-- Outer Star-Spangled White Ring -->
       <circle cx="150" cy="150" r="124" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-dasharray="2 6"/>
@@ -9527,16 +9527,16 @@ const P = {
 
       <!-- Star Markers & Ticks -->
       <g class="star-markers">${e}</g>
-      <g class="ticks">${r}</g>
+      <g class="ticks">${o}</g>
 
       <!-- High-Legibility Slogan & Label Inscriptions -->
       <text x="150" y="74" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="900" fill="#ffffff" stroke="#0a1931" stroke-width="0.5" letter-spacing="2.5">IN GOD WE TRUST</text>
       <text x="150" y="90" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="8.5" font-weight="800" fill="#f59e0b" letter-spacing="2">EST. 1776 · FREEDOM</text>
-      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#ffffff" letter-spacing="1.5">${i}</text>
+      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#ffffff" letter-spacing="1.5">${l}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Polished White Sword with Gold Border) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
@@ -9553,7 +9553,7 @@ const P = {
       ${e ? `
       <!-- Old Glory Red Second Hand with Gold Star Counterweight -->
       <g class="hand second-hand" transform="rotate(${L.secondAngle} 150 150)">
-        <line x1="150" y1="18" x2="150" y2="182" stroke="${o.secondHand}" stroke-width="2"/>
+        <line x1="150" y1="18" x2="150" y2="182" stroke="${t.secondHand}" stroke-width="2"/>
         <g transform="translate(150, 168) scale(0.6)">
           <polygon points="0,-10 3,-3 10,-3 4,1 7,8 0,4 -7,8 -4,1 -10,-3 -3,-3" fill="#f59e0b" stroke="#ffffff" stroke-width="1"/>
         </g>
@@ -9582,7 +9582,7 @@ const P = {
     centerCap: "#ffffff",
     subdialBg: "#001440"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     const e = `
       <g stroke="#ffffff" stroke-width="12" opacity="0.85">
         <line x1="30" y1="30" x2="270" y2="270"/>
@@ -9601,20 +9601,20 @@ const P = {
         <line x1="10" y1="150" x2="290" y2="150"/>
       </g>
     `;
-    let r = "";
-    if (t.showNumbers !== !1) {
-      const l = ["XII", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI"];
+    let o = "";
+    if (r.showNumbers !== !1) {
+      const i = ["XII", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI"];
       for (let f = 0; f < 12; f++) {
-        const c = (f * 30 - 90) * (Math.PI / 180), a = 150 + 98 * Math.cos(c), s = 150 + 98 * Math.sin(c) + 5;
-        r += `<text x="${a.toFixed(1)}" y="${s.toFixed(1)}" text-anchor="middle" font-family="'Times New Roman', serif" font-size="14" font-weight="bold" fill="#ffffff" stroke="#001440" stroke-width="1">${l[f]}</text>`;
+        const a = (f * 30 - 90) * (Math.PI / 180), c = 150 + 98 * Math.cos(a), s = 150 + 98 * Math.sin(a) + 5;
+        o += `<text x="${c.toFixed(1)}" y="${s.toFixed(1)}" text-anchor="middle" font-family="'Times New Roman', serif" font-size="14" font-weight="bold" fill="#ffffff" stroke="#001440" stroke-width="1">${i[f]}</text>`;
       }
     }
-    const i = t.label || "UK · EUROPE/LONDON";
+    const l = r.label || "UK · EUROPE/LONDON";
     return `
       
       <!-- Royal Bezel & Union Jack Dial -->
       <circle cx="150" cy="150" r="147" fill="#001440" stroke="#c8102e" stroke-width="4"/>
-      <circle cx="150" cy="150" r="139" fill="${o.face}" stroke="#ffffff" stroke-width="1.5"/>
+      <circle cx="150" cy="150" r="139" fill="${t.face}" stroke="#ffffff" stroke-width="1.5"/>
 
       <!-- Union Jack Graphic Base -->
       <g class="union-jack-bg">${e}</g>
@@ -9625,15 +9625,15 @@ const P = {
       <circle cx="150" cy="150" r="82" fill="#001440" stroke="#ffffff" stroke-width="2" opacity="0.95"/>
 
       <!-- Roman Numerals -->
-      <g class="romans">${r}</g>
+      <g class="romans">${o}</g>
 
       <!-- High-Visibility Label Inscriptions -->
       <text x="150" y="106" text-anchor="middle" font-family="'Times New Roman', serif" font-size="11" font-weight="bold" fill="#ffffff" stroke="#001440" stroke-width="0.8" letter-spacing="2">ROYAL OBSERVATORY</text>
-      <text x="150" y="200" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#ffffff" stroke="#001440" stroke-width="0.5" letter-spacing="1.5">${i}</text>
+      <text x="150" y="200" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#ffffff" stroke="#001440" stroke-width="0.5" letter-spacing="1.5">${l}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Breguet Moon Hand) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
@@ -9650,7 +9650,7 @@ const P = {
       ${e ? `
       <!-- St George Red Second Hand -->
       <g class="hand second-hand" transform="rotate(${L.secondAngle} 150 150)">
-        <line x1="150" y1="18" x2="150" y2="182" stroke="${o.secondHand}" stroke-width="2"/>
+        <line x1="150" y1="18" x2="150" y2="182" stroke="${t.secondHand}" stroke-width="2"/>
         <circle cx="150" cy="168" r="4.5" fill="#c8102e" stroke="#ffffff" stroke-width="1"/>
       </g>
       ` : ""}
@@ -9677,23 +9677,23 @@ const P = {
     centerCap: "#012169",
     subdialBg: "#012169"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
     [0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330].forEach((f) => {
-      const c = (f - 90) * (Math.PI / 180), a = 150 + 44 * Math.cos(c), s = 150 + 44 * Math.sin(c);
-      e += `<circle cx="${a.toFixed(1)}" cy="${s.toFixed(1)}" r="2.2" fill="#ffffff"/>`;
+      const a = (f - 90) * (Math.PI / 180), c = 150 + 44 * Math.cos(a), s = 150 + 44 * Math.sin(a);
+      e += `<circle cx="${c.toFixed(1)}" cy="${s.toFixed(1)}" r="2.2" fill="#ffffff"/>`;
     });
-    let i = "";
+    let l = "";
     for (let f = 0; f < 60; f++) {
-      const c = f * 6;
-      f % 5 === 0 ? i += `<rect x="147.5" y="20" width="5" height="14" rx="1.5" fill="#fedd00" stroke="#009739" stroke-width="0.8" transform="rotate(${c} 150 150)"/>` : t.showTicks !== !1 && (i += `<line x1="150" y1="20" x2="150" y2="26" stroke="#ffffff" stroke-width="1.5" transform="rotate(${c} 150 150)"/>`);
+      const a = f * 6;
+      f % 5 === 0 ? l += `<rect x="147.5" y="20" width="5" height="14" rx="1.5" fill="#fedd00" stroke="#009739" stroke-width="0.8" transform="rotate(${a} 150 150)"/>` : r.showTicks !== !1 && (l += `<line x1="150" y1="20" x2="150" y2="26" stroke="#ffffff" stroke-width="1.5" transform="rotate(${a} 150 150)"/>`);
     }
-    const l = t.label || "BRASIL · SAO_PAULO";
+    const i = r.label || "BRASIL · SAO_PAULO";
     return `
       
       <!-- Tropical Green Outer Ring & Bezel -->
       <circle cx="150" cy="150" r="147" fill="#007a2e" stroke="#fedd00" stroke-width="4.5"/>
-      <circle cx="150" cy="150" r="139" fill="${o.face}"/>
+      <circle cx="150" cy="150" r="139" fill="${t.face}"/>
 
       <!-- Canary Yellow Rhombus Diamond -->
       <polygon points="150,20 278,150 150,280 22,150" fill="#fedd00"/>
@@ -9708,15 +9708,15 @@ const P = {
       <g class="globe-stars">${e}</g>
 
       <!-- Main Dial Ticks -->
-      <g class="ticks">${i}</g>
+      <g class="ticks">${l}</g>
 
       <!-- High-Visibility Inscriptions -->
       <text x="150" y="82" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="11.5" font-weight="900" fill="#012169" letter-spacing="2">ORDEM E PROGRESSO</text>
-      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#012169" letter-spacing="1.5">${l}</text>
+      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#012169" letter-spacing="1.5">${i}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Canary Yellow Sword with Blue Trim) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
@@ -9731,7 +9731,7 @@ const P = {
       ${e ? `
       <!-- Globe Blue Second Hand -->
       <g class="hand second-hand" transform="rotate(${L.secondAngle} 150 150)">
-        <line x1="150" y1="18" x2="150" y2="182" stroke="${o.secondHand}" stroke-width="2.2"/>
+        <line x1="150" y1="18" x2="150" y2="182" stroke="${t.secondHand}" stroke-width="2.2"/>
         <circle cx="150" cy="55" r="5" fill="#012169" stroke="#fedd00" stroke-width="1.2"/>
       </g>
       ` : ""}
@@ -9758,13 +9758,13 @@ const P = {
     centerCap: "#ffce00",
     subdialBg: "#181b20"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let i = 0; i < 60; i++) {
-      const l = i * 6;
-      i % 5 === 0 ? e += `<rect x="147.5" y="20" width="5" height="14" rx="1.5" fill="#ffce00" transform="rotate(${l} 150 150)"/>` : t.showTicks !== !1 && (e += `<line x1="150" y1="20" x2="150" y2="26" stroke="#94a3b8" stroke-width="1.5" transform="rotate(${l} 150 150)"/>`);
+    for (let l = 0; l < 60; l++) {
+      const i = l * 6;
+      l % 5 === 0 ? e += `<rect x="147.5" y="20" width="5" height="14" rx="1.5" fill="#ffce00" transform="rotate(${i} 150 150)"/>` : r.showTicks !== !1 && (e += `<line x1="150" y1="20" x2="150" y2="26" stroke="#94a3b8" stroke-width="1.5" transform="rotate(${i} 150 150)"/>`);
     }
-    const r = t.label || "GERMANY · EUROPE/BERLIN";
+    const o = r.label || "GERMANY · EUROPE/BERLIN";
     return `
       
       <!-- Tricolor Outer Ring: Schwarz (Black), Rot (Red), Gold -->
@@ -9772,7 +9772,7 @@ const P = {
       <path d="M 3,150 A 147,147 0 0,1 150,3 L 150,150 Z" fill="#000000"/>
       <path d="M 150,3 A 147,147 0 0,1 297,150 L 150,150 Z" fill="#dd0000"/>
       
-      <circle cx="150" cy="150" r="136" fill="${o.face}" stroke="#ffce00" stroke-width="2.5"/>
+      <circle cx="150" cy="150" r="136" fill="${t.face}" stroke="#ffce00" stroke-width="2.5"/>
 
       <!-- Inner Subdial Ring -->
       <circle cx="150" cy="150" r="75" fill="#181b20" stroke="#475569" stroke-width="1.5"/>
@@ -9787,11 +9787,11 @@ const P = {
 
       <!-- High-Visibility Precision Inscriptions -->
       <text x="150" y="118" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="900" fill="#ffce00" stroke="#000000" stroke-width="0.5" letter-spacing="2.5">DEUTSCHLAND</text>
-      <text x="150" y="198" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#ffffff" letter-spacing="1.5">${r}</text>
+      <text x="150" y="198" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#ffffff" letter-spacing="1.5">${o}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Precision White Tapered Pointer) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
@@ -9808,7 +9808,7 @@ const P = {
       ${e ? `
       <!-- Flag Red Second Hand -->
       <g class="hand second-hand" transform="rotate(${L.secondAngle} 150 150)">
-        <line x1="150" y1="18" x2="150" y2="182" stroke="${o.secondHand}" stroke-width="2"/>
+        <line x1="150" y1="18" x2="150" y2="182" stroke="${t.secondHand}" stroke-width="2"/>
         <circle cx="150" cy="55" r="5" fill="#dd0000" stroke="#ffce00" stroke-width="1.2"/>
       </g>
       ` : ""}
@@ -9835,7 +9835,7 @@ const P = {
     centerCap: "#ed2939",
     subdialBg: "#002654"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     const e = `
       <g opacity="0.9">
         <rect x="110" y="30" width="26" height="240" fill="#002654" rx="2"/>
@@ -9843,17 +9843,17 @@ const P = {
         <rect x="164" y="30" width="26" height="240" fill="#ed2939" rx="2"/>
       </g>
     `;
-    let r = "";
-    for (let l = 0; l < 60; l++) {
-      const f = l * 6;
-      l % 5 === 0 ? r += `<rect x="147.5" y="20" width="5" height="14" rx="1.5" fill="#ffffff" stroke="#001a3d" stroke-width="0.8" transform="rotate(${f} 150 150)"/>` : t.showTicks !== !1 && (r += `<line x1="150" y1="20" x2="150" y2="26" stroke="#ed2939" stroke-width="1.6" transform="rotate(${f} 150 150)"/>`);
+    let o = "";
+    for (let i = 0; i < 60; i++) {
+      const f = i * 6;
+      i % 5 === 0 ? o += `<rect x="147.5" y="20" width="5" height="14" rx="1.5" fill="#ffffff" stroke="#001a3d" stroke-width="0.8" transform="rotate(${f} 150 150)"/>` : r.showTicks !== !1 && (o += `<line x1="150" y1="20" x2="150" y2="26" stroke="#ed2939" stroke-width="1.6" transform="rotate(${f} 150 150)"/>`);
     }
-    const i = t.label || "FRANCE · EUROPE/PARIS";
+    const l = r.label || "FRANCE · EUROPE/PARIS";
     return `
       
       <!-- Bleu de France Outer Bezel & Silver Ring -->
       <circle cx="150" cy="150" r="147" fill="#002654" stroke="#ed2939" stroke-width="3.5"/>
-      <circle cx="150" cy="150" r="140" fill="${o.face}" stroke="#ffffff" stroke-width="2"/>
+      <circle cx="150" cy="150" r="140" fill="${t.face}" stroke="#ffffff" stroke-width="2"/>
 
       <!-- Tricolore Center Ribbon -->
       <g class="tricolore-ribbon">${e}</g>
@@ -9871,15 +9871,15 @@ const P = {
       </g>
 
       <!-- Main Dial Ticks -->
-      <g class="ticks">${r}</g>
+      <g class="ticks">${o}</g>
 
       <!-- High-Visibility Motto & Label Inscriptions -->
       <text x="150" y="108" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="10.5" font-weight="900" fill="#ffffff" stroke="#001a3d" stroke-width="0.8" letter-spacing="2">LIBERTÉ · ÉGALITÉ · FRATERNITÉ</text>
-      <text x="150" y="196" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#ed2939" letter-spacing="1.5">${i}</text>
+      <text x="150" y="196" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#ed2939" letter-spacing="1.5">${l}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Crisp White Breguet Moon Hand) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
@@ -9896,7 +9896,7 @@ const P = {
       ${e ? `
       <!-- French Red Second Needle with White Lume Ring -->
       <g class="hand second-hand" transform="rotate(${L.secondAngle} 150 150)">
-        <line x1="150" y1="18" x2="150" y2="182" stroke="${o.secondHand}" stroke-width="2"/>
+        <line x1="150" y1="18" x2="150" y2="182" stroke="${t.secondHand}" stroke-width="2"/>
         <circle cx="150" cy="55" r="4.5" fill="#ed2939" stroke="#ffffff" stroke-width="1.2"/>
       </g>
       ` : ""}
@@ -9923,16 +9923,16 @@ const P = {
     centerCap: "#d4af37",
     subdialBg: "#112217"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    if (t.showNumbers !== !1) {
-      const i = ["XII", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI"];
-      for (let l = 0; l < 12; l++) {
-        const f = (l * 30 - 90) * (Math.PI / 180), c = 150 + 98 * Math.cos(f), a = 150 + 98 * Math.sin(f) + 5;
-        e += `<text x="${c.toFixed(1)}" y="${a.toFixed(1)}" text-anchor="middle" font-family="'Times New Roman', serif" font-size="14" font-weight="bold" fill="#d4af37" stroke="#0a120d" stroke-width="0.6">${i[l]}</text>`;
+    if (r.showNumbers !== !1) {
+      const l = ["XII", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI"];
+      for (let i = 0; i < 12; i++) {
+        const f = (i * 30 - 90) * (Math.PI / 180), a = 150 + 98 * Math.cos(f), c = 150 + 98 * Math.sin(f) + 5;
+        e += `<text x="${a.toFixed(1)}" y="${c.toFixed(1)}" text-anchor="middle" font-family="'Times New Roman', serif" font-size="14" font-weight="bold" fill="#d4af37" stroke="#0a120d" stroke-width="0.6">${l[i]}</text>`;
       }
     }
-    const r = t.label || "ITALIA · EUROPE/ROME";
+    const o = r.label || "ITALIA · EUROPE/ROME";
     return `
       
       <!-- Tricolore Bezel: Green, White, Red Outer Rim -->
@@ -9940,7 +9940,7 @@ const P = {
       <path d="M 150,3 A 147,147 0 0,1 277,224 L 150,150 Z" fill="#ffffff"/>
       <path d="M 277,224 A 147,147 0 0,1 23,224 L 150,150 Z" fill="#ce2b37"/>
 
-      <circle cx="150" cy="150" r="136" fill="${o.face}" stroke="#d4af37" stroke-width="2.5"/>
+      <circle cx="150" cy="150" r="136" fill="${t.face}" stroke="#d4af37" stroke-width="2.5"/>
 
       <!-- Inner Sunburst / Guilloché Subdial Ring -->
       <circle cx="150" cy="150" r="122" fill="none" stroke="#009246" stroke-width="1.5"/>
@@ -9951,11 +9951,11 @@ const P = {
 
       <!-- High-Visibility Label Inscription -->
       <text x="150" y="106" text-anchor="middle" font-family="'Times New Roman', serif" font-size="11" font-weight="bold" fill="#d4af37" letter-spacing="2.5">DESIGN MILANO</text>
-      <text x="150" y="198" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#ffffff" letter-spacing="1.5">${r}</text>
+      <text x="150" y="198" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#ffffff" letter-spacing="1.5">${o}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Brushed Gold Syringe) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
@@ -9972,7 +9972,7 @@ const P = {
       ${e ? `
       <!-- Rosso Red Second Hand -->
       <g class="hand second-hand" transform="rotate(${L.secondAngle} 150 150)">
-        <line x1="150" y1="18" x2="150" y2="182" stroke="${o.secondHand}" stroke-width="2"/>
+        <line x1="150" y1="18" x2="150" y2="182" stroke="${t.secondHand}" stroke-width="2"/>
         <circle cx="150" cy="55" r="4.5" fill="#ce2b37" stroke="#d4af37" stroke-width="1.2"/>
       </g>
       ` : ""}
@@ -9999,46 +9999,46 @@ const P = {
     centerCap: "#ffd700",
     subdialBg: "#000033"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     const e = `
       <polygon points="150,180 152,185 158,185 153,189 155,195 150,191 145,195 147,189 142,185 148,185" fill="#ffffff" filter="url(#lume-glow)"/>
       <polygon points="150,105 152,110 158,110 153,114 155,120 150,116 145,120 147,114 142,110 148,110" fill="#ffffff" filter="url(#lume-glow)"/>
       <polygon points="190,140 192,145 198,145 193,149 195,155 190,151 185,155 187,149 182,145 188,145" fill="#ffffff" filter="url(#lume-glow)"/>
       <polygon points="110,135 112,140 118,140 113,144 115,150 110,146 105,150 107,144 102,140 108,140" fill="#ffffff" filter="url(#lume-glow)"/>
       <polygon points="168,160 169.5,163.5 174,163.5 170.5,166.5 172,171 168,168 164,171 165.5,166.5 162,163.5 166.5,163.5" fill="#ffffff" filter="url(#lume-glow)"/>
-    `, r = `
+    `, o = `
       <g transform="translate(150, 48) scale(0.95)">
         <polygon points="0,-14 3,-5 11,-9 6,-1 13,4 4,5 6,14 0,8 -6,14 -4,5 -13,4 -6,-1 -11,-9 -3,-5" fill="#ffd700" stroke="#ffffff" stroke-width="1"/>
       </g>
     `;
-    let i = "";
+    let l = "";
     for (let f = 0; f < 60; f++) {
-      const c = f * 6;
-      f % 5 === 0 ? i += `<rect x="147.5" y="20" width="5" height="14" rx="1.5" fill="#ffd700" transform="rotate(${c} 150 150)"/>` : t.showTicks !== !1 && (i += `<line x1="150" y1="20" x2="150" y2="26" stroke="#38bdf8" stroke-width="1.5" opacity="0.9" transform="rotate(${c} 150 150)"/>`);
+      const a = f * 6;
+      f % 5 === 0 ? l += `<rect x="147.5" y="20" width="5" height="14" rx="1.5" fill="#ffd700" transform="rotate(${a} 150 150)"/>` : r.showTicks !== !1 && (l += `<line x1="150" y1="20" x2="150" y2="26" stroke="#38bdf8" stroke-width="1.5" opacity="0.9" transform="rotate(${a} 150 150)"/>`);
     }
-    const l = t.label || "AUSTRALIA · SYDNEY";
+    const i = r.label || "AUSTRALIA · SYDNEY";
     return `
       
       <!-- Deep Southern Ocean Blue Dial & Gold Bezel -->
       <circle cx="150" cy="150" r="147" fill="#000033" stroke="#ffd700" stroke-width="4"/>
-      <circle cx="150" cy="150" r="139" fill="${o.face}" stroke="#00843d" stroke-width="1.8"/>
+      <circle cx="150" cy="150" r="139" fill="${t.face}" stroke="#00843d" stroke-width="1.8"/>
 
       <!-- Commonwealth Star at 12 o'clock -->
-      ${r}
+      ${o}
 
       <!-- Southern Cross Constellation -->
       <g class="southern-cross">${e}</g>
 
       <!-- Main Dial Ticks -->
-      <g class="ticks">${i}</g>
+      <g class="ticks">${l}</g>
 
       <!-- High-Visibility Inscriptions -->
       <text x="150" y="80" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="900" fill="#ffd700" stroke="#000033" stroke-width="0.5" letter-spacing="2.5">SOUTHERN CROSS</text>
-      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#ffffff" letter-spacing="1.5">${l}</text>
+      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#ffffff" letter-spacing="1.5">${i}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Golden Wattle Sword) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
@@ -10055,7 +10055,7 @@ const P = {
       ${e ? `
       <!-- Crimson Red Second Hand with Star Counterweight -->
       <g class="hand second-hand" transform="rotate(${L.secondAngle} 150 150)">
-        <line x1="150" y1="18" x2="150" y2="182" stroke="${o.secondHand}" stroke-width="2"/>
+        <line x1="150" y1="18" x2="150" y2="182" stroke="${t.secondHand}" stroke-width="2"/>
         <circle cx="150" cy="55" r="4.5" fill="#ffd700"/>
       </g>
       ` : ""}
@@ -10082,43 +10082,43 @@ const P = {
     centerCap: "#ff0000",
     subdialBg: "#fef2f2"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     const e = `
       <g transform="translate(150, 150) scale(1.15)">
         <path d="M 0,-45 L 6,-25 L 14,-28 L 10,-18 L 22,-18 L 16,-10 L 26,-2 L 20,4 L 32,8 L 22,14 L 26,24 L 14,20 L 16,30 L 4,26 L 3,42 L -3,42 L -4,26 L -16,30 L -14,20 L -26,24 L -22,14 L -32,8 L -20,4 L -26,-2 L -16,-10 L -22,-18 L -10,-18 L -14,-28 L -6,-25 Z" fill="#ff0000" opacity="0.9"/>
       </g>
-    `, r = `
+    `, o = `
       <path d="M 12,150 A 138,138 0 0,1 70,30 L 70,270 A 138,138 0 0,1 12,150 Z" fill="#ff0000" opacity="0.18"/>
       <path d="M 288,150 A 138,138 0 0,1 230,270 L 230,30 A 138,138 0 0,1 288,150 Z" fill="#ff0000" opacity="0.18"/>
     `;
-    let i = "";
+    let l = "";
     for (let f = 0; f < 60; f++) {
-      const c = f * 6;
-      f % 5 === 0 ? i += `<rect x="147.5" y="20" width="5" height="14" rx="1.5" fill="#ff0000" stroke="#ffffff" stroke-width="0.8" transform="rotate(${c} 150 150)"/>` : t.showTicks !== !1 && (i += `<line x1="150" y1="20" x2="150" y2="26" stroke="#64748b" stroke-width="1.5" transform="rotate(${c} 150 150)"/>`);
+      const a = f * 6;
+      f % 5 === 0 ? l += `<rect x="147.5" y="20" width="5" height="14" rx="1.5" fill="#ff0000" stroke="#ffffff" stroke-width="0.8" transform="rotate(${a} 150 150)"/>` : r.showTicks !== !1 && (l += `<line x1="150" y1="20" x2="150" y2="26" stroke="#64748b" stroke-width="1.5" transform="rotate(${a} 150 150)"/>`);
     }
-    const l = t.label || "CANADA · AMERICA/TORONTO";
+    const i = r.label || "CANADA · AMERICA/TORONTO";
     return `
       
       <!-- Crimson Bezel & Snow White Dial -->
       <circle cx="150" cy="150" r="147" fill="#ffffff" stroke="#ff0000" stroke-width="4.5"/>
-      <circle cx="150" cy="150" r="140" fill="${o.face}"/>
+      <circle cx="150" cy="150" r="140" fill="${t.face}"/>
 
       <!-- Side Red Bars -->
-      <g class="side-stripes">${r}</g>
+      <g class="side-stripes">${o}</g>
 
       <!-- Central Red Maple Leaf Emblem -->
       <g class="maple-leaf">${e}</g>
 
       <!-- Dial Ticks -->
-      <g class="ticks">${i}</g>
+      <g class="ticks">${l}</g>
 
       <!-- High-Visibility Inscriptions -->
       <text x="150" y="80" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="11.5" font-weight="900" fill="#ff0000" stroke="#ffffff" stroke-width="0.5" letter-spacing="2.5">GREAT WHITE NORTH</text>
-      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#111827" letter-spacing="1.5">${l}</text>
+      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#111827" letter-spacing="1.5">${i}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Black Tapered Sword with White Center) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
@@ -10135,7 +10135,7 @@ const P = {
       ${e ? `
       <!-- Maple Red Second Hand -->
       <g class="hand second-hand" transform="rotate(${L.secondAngle} 150 150)">
-        <line x1="150" y1="18" x2="150" y2="182" stroke="${o.secondHand}" stroke-width="2.2"/>
+        <line x1="150" y1="18" x2="150" y2="182" stroke="${t.secondHand}" stroke-width="2.2"/>
         <circle cx="150" cy="55" r="5" fill="#ff0000" stroke="#ffffff" stroke-width="1.2"/>
       </g>
       ` : ""}
@@ -10162,18 +10162,18 @@ const P = {
     centerCap: "#aa1529",
     subdialBg: "#ffffff"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let i = 0; i < 60; i++) {
-      const l = i * 6;
-      i % 5 === 0 ? e += `<rect x="147.5" y="20" width="5" height="14" rx="1.5" fill="#aa1529" stroke="#ffffff" stroke-width="0.8" transform="rotate(${l} 150 150)"/>` : t.showTicks !== !1 && (e += `<line x1="150" y1="20" x2="150" y2="26" stroke="#aa1529" stroke-width="1.5" transform="rotate(${l} 150 150)"/>`);
+    for (let l = 0; l < 60; l++) {
+      const i = l * 6;
+      l % 5 === 0 ? e += `<rect x="147.5" y="20" width="5" height="14" rx="1.5" fill="#aa1529" stroke="#ffffff" stroke-width="0.8" transform="rotate(${i} 150 150)"/>` : r.showTicks !== !1 && (e += `<line x1="150" y1="20" x2="150" y2="26" stroke="#aa1529" stroke-width="1.5" transform="rotate(${i} 150 150)"/>`);
     }
-    const r = t.label || "ESPAÑA · EUROPE/MADRID";
+    const o = r.label || "ESPAÑA · EUROPE/MADRID";
     return `
       
       <!-- Spanish Crimson Bezel & Royal Gold Dial Face -->
       <circle cx="150" cy="150" r="147" fill="#aa1529" stroke="#f1bf00" stroke-width="4.5"/>
-      <circle cx="150" cy="150" r="140" fill="${o.face}"/>
+      <circle cx="150" cy="150" r="140" fill="${t.face}"/>
 
       <!-- Horizontal Crimson Red Bands (Top & Bottom Flag Stripes) -->
       <path d="M 12,150 A 138,138 0 0,1 60,40 L 240,40 A 138,138 0 0,1 288,150 Z" fill="#aa1529" opacity="0.18"/>
@@ -10193,11 +10193,11 @@ const P = {
 
       <!-- High-Visibility Motto & Label Inscriptions -->
       <text x="150" y="108" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="11.5" font-weight="900" fill="#aa1529" stroke="#ffffff" stroke-width="0.5" letter-spacing="2.5">VIVA ESPAÑA</text>
-      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#aa1529" letter-spacing="1.5">${r}</text>
+      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#aa1529" letter-spacing="1.5">${o}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Crimson Sword with Gold Center) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
@@ -10241,13 +10241,13 @@ const P = {
     centerCap: "#0047a0",
     subdialBg: "#f8fafc"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     const e = `
       <g transform="translate(150, 150) rotate(-35) scale(1.15)" filter="url(#drop-shadow)">
         <circle cx="0" cy="0" r="42" fill="#0047a0"/>
         <path d="M 0,-42 A 42,42 0 0,1 0,42 A 21,21 0 0,1 0,0 A 21,21 0 0,0 0,-42 Z" fill="#cd2e3a"/>
       </g>
-    `, r = `
+    `, o = `
       <!-- Geon (Heaven) at 12 / Top Left -->
       <g transform="translate(100, 70) rotate(-45)">
         <rect x="-12" y="-6" width="24" height="3" fill="#111827"/>
@@ -10279,34 +10279,34 @@ const P = {
         <rect x="2" y="4" width="10" height="3" fill="#111827"/>
       </g>
     `;
-    let i = "";
+    let l = "";
     for (let f = 0; f < 60; f++) {
-      const c = f * 6;
-      f % 5 === 0 ? i += `<rect x="147.5" y="20" width="5" height="14" rx="1.5" fill="#111827" transform="rotate(${c} 150 150)"/>` : t.showTicks !== !1 && (i += `<line x1="150" y1="20" x2="150" y2="26" stroke="#9ca3af" stroke-width="1.4" transform="rotate(${c} 150 150)"/>`);
+      const a = f * 6;
+      f % 5 === 0 ? l += `<rect x="147.5" y="20" width="5" height="14" rx="1.5" fill="#111827" transform="rotate(${a} 150 150)"/>` : r.showTicks !== !1 && (l += `<line x1="150" y1="20" x2="150" y2="26" stroke="#9ca3af" stroke-width="1.4" transform="rotate(${a} 150 150)"/>`);
     }
-    const l = t.label || "KOREA · ASIA/SEOUL";
+    const i = r.label || "KOREA · ASIA/SEOUL";
     return `
       
       <!-- Pure White Dial & Blue/Red Rim -->
       <circle cx="150" cy="150" r="147" fill="#ffffff" stroke="#0047a0" stroke-width="4.5"/>
-      <circle cx="150" cy="150" r="140" fill="${o.face}" stroke="#cd2e3a" stroke-width="1.5"/>
+      <circle cx="150" cy="150" r="140" fill="${t.face}" stroke="#cd2e3a" stroke-width="1.5"/>
 
       <!-- Taegeuk Center Emblem -->
       <g class="taegeuk">${e}</g>
 
       <!-- I Ching Trigrams -->
-      <g class="trigrams">${r}</g>
+      <g class="trigrams">${o}</g>
 
       <!-- Main Dial Ticks -->
-      <g class="ticks">${i}</g>
+      <g class="ticks">${l}</g>
 
       <!-- High-Visibility Hangul & Label Inscriptions -->
       <text x="150" y="80" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="900" fill="#cd2e3a" stroke="#ffffff" stroke-width="0.5" letter-spacing="3">대한민국 · KOREA</text>
-      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#0047a0" letter-spacing="1.5">${l}</text>
+      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#0047a0" letter-spacing="1.5">${i}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Matte Black Tapered Pointer) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
@@ -10323,7 +10323,7 @@ const P = {
       ${e ? `
       <!-- Taegeuk Red Second Needle -->
       <g class="hand second-hand" transform="rotate(${L.secondAngle} 150 150)">
-        <line x1="150" y1="18" x2="150" y2="182" stroke="${o.secondHand}" stroke-width="2.2"/>
+        <line x1="150" y1="18" x2="150" y2="182" stroke="${t.secondHand}" stroke-width="2.2"/>
         <circle cx="150" cy="55" r="5" fill="#cd2e3a" stroke="#0047a0" stroke-width="1.2"/>
       </g>
       ` : ""}
@@ -10350,38 +10350,38 @@ const P = {
     centerCap: "#ffffff",
     subdialBg: "#b91c1c"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     const e = `
       <g transform="translate(150, 150) scale(1.4)" filter="url(#drop-shadow)">
         <rect x="-10" y="-30" width="20" height="60" fill="#ffffff" rx="3"/>
         <rect x="-30" y="-10" width="60" height="20" fill="#ffffff" rx="3"/>
       </g>
     `;
-    let r = "";
-    for (let l = 0; l < 60; l++) {
-      const f = l * 6;
-      l % 5 === 0 ? r += `<rect x="147.5" y="20" width="5" height="14" rx="1.5" fill="#ffffff" transform="rotate(${f} 150 150)"/>` : t.showTicks !== !1 && (r += `<line x1="150" y1="20" x2="150" y2="26" stroke="#ffffff" stroke-width="1.5" opacity="0.8" transform="rotate(${f} 150 150)"/>`);
+    let o = "";
+    for (let i = 0; i < 60; i++) {
+      const f = i * 6;
+      i % 5 === 0 ? o += `<rect x="147.5" y="20" width="5" height="14" rx="1.5" fill="#ffffff" transform="rotate(${f} 150 150)"/>` : r.showTicks !== !1 && (o += `<line x1="150" y1="20" x2="150" y2="26" stroke="#ffffff" stroke-width="1.5" opacity="0.8" transform="rotate(${f} 150 150)"/>`);
     }
-    const i = t.label || "SWITZERLAND · EUROPE/ZURICH";
+    const l = r.label || "SWITZERLAND · EUROPE/ZURICH";
     return `
       
       <!-- Swiss Red Bezel & White Ring -->
       <circle cx="150" cy="150" r="147" fill="#da291c" stroke="#ffffff" stroke-width="4.5"/>
-      <circle cx="150" cy="150" r="140" fill="${o.face}"/>
+      <circle cx="150" cy="150" r="140" fill="${t.face}"/>
 
       <!-- Swiss Cross Central Emblem -->
       <g class="swiss-cross">${e}</g>
 
       <!-- Main Dial Ticks -->
-      <g class="ticks">${r}</g>
+      <g class="ticks">${o}</g>
 
       <!-- High-Visibility Motto & Label Inscriptions -->
       <text x="150" y="80" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="11.5" font-weight="900" fill="#ffffff" stroke="#da291c" stroke-width="0.5" letter-spacing="2.5">SWISS MADE</text>
-      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#ffffff" letter-spacing="1.5">${i}</text>
+      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#ffffff" letter-spacing="1.5">${l}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Crisp White Pointer with Red Center) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
@@ -10425,7 +10425,7 @@ const P = {
     centerCap: "#d4af37",
     subdialBg: "#f8fafc"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     const e = `
       <g clip-path="url(#mexico-clip)">
         <!-- Green Left Strip -->
@@ -10443,12 +10443,12 @@ const P = {
         </g>
       </g>
     `;
-    let r = "";
-    for (let l = 0; l < 60; l++) {
-      const f = l * 6;
-      l % 5 === 0 ? r += `<rect x="146.5" y="18" width="7" height="16" rx="2" fill="#006847" stroke="#d4af37" stroke-width="1.2" transform="rotate(${f} 150 150)"/>` : t.showTicks !== !1 && (r += `<line x1="150" y1="20" x2="150" y2="26" stroke="#d4af37" stroke-width="2" transform="rotate(${f} 150 150)"/>`);
+    let o = "";
+    for (let i = 0; i < 60; i++) {
+      const f = i * 6;
+      i % 5 === 0 ? o += `<rect x="146.5" y="18" width="7" height="16" rx="2" fill="#006847" stroke="#d4af37" stroke-width="1.2" transform="rotate(${f} 150 150)"/>` : r.showTicks !== !1 && (o += `<line x1="150" y1="20" x2="150" y2="26" stroke="#d4af37" stroke-width="2" transform="rotate(${f} 150 150)"/>`);
     }
-    const i = t.label || "MÉXICO · MEXICO CITY";
+    const l = r.label || "MÉXICO · MEXICO CITY";
     return `
       
       <defs>
@@ -10465,21 +10465,21 @@ const P = {
 
       <!-- Green Outer Bezel & Snow White Dial -->
       <circle cx="150" cy="150" r="147" fill="#006847" stroke="#ce1126" stroke-width="4.5"/>
-      <circle cx="150" cy="150" r="139" fill="${o.face}"/>
+      <circle cx="150" cy="150" r="139" fill="${t.face}"/>
 
       <!-- Clipped Mexican Tricolor Flag Graphic -->
       ${e}
 
       <!-- Main Dial Ticks -->
-      <g class="ticks">${r}</g>
+      <g class="ticks">${o}</g>
 
       <!-- High-Visibility Inscriptions -->
       <text x="150" y="80" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="900" fill="#006847" stroke="#ffffff" stroke-width="0.8" letter-spacing="2.5">VIVA MÉXICO</text>
-      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#ce1126" stroke="#ffffff" stroke-width="0.5" letter-spacing="1.5">${i}</text>
+      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#ce1126" stroke="#ffffff" stroke-width="0.5" letter-spacing="1.5">${l}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Mexican Green Sword with Gold Edge) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
@@ -10507,7 +10507,7 @@ const P = {
     
     `;
   }
-}, C0 = {
+}, $0 = {
   name: "argentina",
   description: "Argentina Sun of May watch with sky blue & white horizontal stripes, 32-ray golden Sol de Mayo, and gold accents",
   defaultColors: {
@@ -10523,13 +10523,13 @@ const P = {
     centerCap: "#f6b40e",
     subdialBg: "#f8fafc"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let c = 0; c < 32; c++) {
-      const a = c * 11.25, n = c % 2 === 0 ? 36 : 30;
-      e += `<line x1="150" y1="150" x2="${(150 + n * Math.cos((a - 90) * Math.PI / 180)).toFixed(1)}" y2="${(150 + n * Math.sin((a - 90) * Math.PI / 180)).toFixed(1)}" stroke="#f6b40e" stroke-width="1.8"/>`;
+    for (let a = 0; a < 32; a++) {
+      const c = a * 11.25, n = a % 2 === 0 ? 36 : 30;
+      e += `<line x1="150" y1="150" x2="${(150 + n * Math.cos((c - 90) * Math.PI / 180)).toFixed(1)}" y2="${(150 + n * Math.sin((c - 90) * Math.PI / 180)).toFixed(1)}" stroke="#f6b40e" stroke-width="1.8"/>`;
     }
-    const r = `
+    const o = `
       <g class="sol-de-mayo" filter="url(#drop-shadow)">
         ${e}
         <circle cx="150" cy="150" r="16" fill="#f6b40e" stroke="#ffffff" stroke-width="1.5"/>
@@ -10538,38 +10538,38 @@ const P = {
         <circle cx="155" cy="147" r="1.5" fill="#74acdf"/>
         <path d="M 145,154 Q 150,158 155,154" fill="none" stroke="#74acdf" stroke-width="1.2"/>
       </g>
-    `, i = `
+    `, l = `
       <path d="M 12,150 A 138,138 0 0,1 288,150 L 288,100 A 138,138 0 0,0 12,100 Z" fill="#74acdf" opacity="0.25"/>
       <path d="M 12,150 A 138,138 0 0,0 288,150 L 288,200 A 138,138 0 0,1 12,200 Z" fill="#74acdf" opacity="0.25"/>
     `;
-    let l = "";
-    for (let c = 0; c < 60; c++) {
-      const a = c * 6;
-      c % 5 === 0 ? l += `<rect x="147.5" y="20" width="5" height="14" rx="1.5" fill="#74acdf" stroke="#f6b40e" stroke-width="0.8" transform="rotate(${a} 150 150)"/>` : t.showTicks !== !1 && (l += `<line x1="150" y1="20" x2="150" y2="26" stroke="#f6b40e" stroke-width="1.5" transform="rotate(${a} 150 150)"/>`);
+    let i = "";
+    for (let a = 0; a < 60; a++) {
+      const c = a * 6;
+      a % 5 === 0 ? i += `<rect x="147.5" y="20" width="5" height="14" rx="1.5" fill="#74acdf" stroke="#f6b40e" stroke-width="0.8" transform="rotate(${c} 150 150)"/>` : r.showTicks !== !1 && (i += `<line x1="150" y1="20" x2="150" y2="26" stroke="#f6b40e" stroke-width="1.5" transform="rotate(${c} 150 150)"/>`);
     }
-    const f = t.label || "ARGENTINA · BUENOS_AIRES";
+    const f = r.label || "ARGENTINA · BUENOS_AIRES";
     return `
       
       <!-- Sky Blue Outer Bezel & Snow White Dial -->
       <circle cx="150" cy="150" r="147" fill="#74acdf" stroke="#f6b40e" stroke-width="4.5"/>
-      <circle cx="150" cy="150" r="140" fill="${o.face}"/>
+      <circle cx="150" cy="150" r="140" fill="${t.face}"/>
 
       <!-- Horizontal Flag Bands -->
-      <g class="flag-bands">${i}</g>
+      <g class="flag-bands">${l}</g>
 
       <!-- Sol de Mayo Emblem -->
-      ${r}
+      ${o}
 
       <!-- Main Dial Ticks -->
-      <g class="ticks">${l}</g>
+      <g class="ticks">${i}</g>
 
       <!-- High-Visibility Motto & Label Inscriptions -->
       <text x="150" y="78" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="11.5" font-weight="900" fill="#74acdf" stroke="#ffffff" stroke-width="0.5" letter-spacing="2.5">SOL DE MAYO</text>
       <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#74acdf" letter-spacing="1.5">${f}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Sky Blue Sword with Gold Center) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
@@ -10584,7 +10584,7 @@ const P = {
       ${e ? `
       <!-- Sun Gold Second Hand -->
       <g class="hand second-hand" transform="rotate(${L.secondAngle} 150 150)">
-        <line x1="150" y1="18" x2="150" y2="182" stroke="${o.secondHand}" stroke-width="2.2"/>
+        <line x1="150" y1="18" x2="150" y2="182" stroke="${t.secondHand}" stroke-width="2.2"/>
         <circle cx="150" cy="55" r="5" fill="#f6b40e" stroke="#ffffff" stroke-width="1.2"/>
       </g>
       ` : ""}
@@ -10611,7 +10611,7 @@ const P = {
     centerCap: "#d4af37",
     subdialBg: "#1e293b"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     const e = `
       <g transform="translate(150, 150) scale(0.95)" filter="url(#drop-shadow)">
         <polygon points="0,-22 8,-12 18,-16 12,-2 22,4 10,8 14,24 0,16 -14,24 -10,8 -22,4 -12,-2 -18,-16 -8,-12" fill="#d4af37" stroke="#ffffff" stroke-width="0.8"/>
@@ -10619,17 +10619,17 @@ const P = {
         <rect x="-6" y="-6" width="12" height="14" fill="#c8102e" stroke="#d4af37" stroke-width="1"/>
       </g>
     `;
-    let r = "";
-    for (let l = 0; l < 60; l++) {
-      const f = l * 6;
-      l % 5 === 0 ? r += `<rect x="147.5" y="20" width="5" height="14" rx="1.5" fill="#d4af37" stroke="#0f172a" stroke-width="0.8" transform="rotate(${f} 150 150)"/>` : t.showTicks !== !1 && (r += `<line x1="150" y1="20" x2="150" y2="26" stroke="#c8102e" stroke-width="1.5" transform="rotate(${f} 150 150)"/>`);
+    let o = "";
+    for (let i = 0; i < 60; i++) {
+      const f = i * 6;
+      i % 5 === 0 ? o += `<rect x="147.5" y="20" width="5" height="14" rx="1.5" fill="#d4af37" stroke="#0f172a" stroke-width="0.8" transform="rotate(${f} 150 150)"/>` : r.showTicks !== !1 && (o += `<line x1="150" y1="20" x2="150" y2="26" stroke="#c8102e" stroke-width="1.5" transform="rotate(${f} 150 150)"/>`);
     }
-    const i = t.label || "EGYPT · AFRICA/CAIRO";
+    const l = r.label || "EGYPT · AFRICA/CAIRO";
     return `
       
       <!-- Onyx Black Bezel & Gold Rim -->
       <circle cx="150" cy="150" r="147" fill="#0f172a" stroke="#d4af37" stroke-width="4.5"/>
-      <circle cx="150" cy="150" r="140" fill="${o.face}" stroke="#c8102e" stroke-width="1.5"/>
+      <circle cx="150" cy="150" r="140" fill="${t.face}" stroke="#c8102e" stroke-width="1.5"/>
 
       <!-- Inner Gold Subdial Ring -->
       <circle cx="150" cy="150" r="70" fill="#1e293b" stroke="#d4af37" stroke-width="1.8"/>
@@ -10638,15 +10638,15 @@ const P = {
       ${e}
 
       <!-- Main Dial Ticks -->
-      <g class="ticks">${r}</g>
+      <g class="ticks">${o}</g>
 
       <!-- High-Visibility Motto & Label Inscriptions -->
       <text x="150" y="106" text-anchor="middle" font-family="'Times New Roman', serif" font-size="11.5" font-weight="bold" fill="#d4af37" letter-spacing="2.5">EGYPT · PHARAOH</text>
-      <text x="150" y="198" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#ffffff" letter-spacing="1.5">${i}</text>
+      <text x="150" y="198" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#ffffff" letter-spacing="1.5">${l}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Brushed Gold Syringe) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
@@ -10663,7 +10663,7 @@ const P = {
       ${e ? `
       <!-- Flag Red Second Hand -->
       <g class="hand second-hand" transform="rotate(${L.secondAngle} 150 150)">
-        <line x1="150" y1="18" x2="150" y2="182" stroke="${o.secondHand}" stroke-width="2.2"/>
+        <line x1="150" y1="18" x2="150" y2="182" stroke="${t.secondHand}" stroke-width="2.2"/>
         <circle cx="150" cy="55" r="4.5" fill="#c8102e" stroke="#d4af37" stroke-width="1.2"/>
       </g>
       ` : ""}
@@ -10674,7 +10674,7 @@ const P = {
     
     `;
   }
-}, $0 = {
+}, C0 = {
   name: "sweden",
   description: "Sweden Scandinavian watch with vibrant blue dial, Nordic yellow cross band, and clean Swedish minimalist styling",
   defaultColors: {
@@ -10690,38 +10690,38 @@ const P = {
     centerCap: "#fecc00",
     subdialBg: "#004f7c"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     const e = `
       <g opacity="0.3">
         <rect x="100" y="20" width="30" height="260" fill="#fecc00"/>
         <rect x="20" y="135" width="260" height="30" fill="#fecc00"/>
       </g>
     `;
-    let r = "";
-    for (let l = 0; l < 60; l++) {
-      const f = l * 6;
-      l % 5 === 0 ? r += `<rect x="147.5" y="20" width="5" height="14" rx="1.5" fill="#fecc00" stroke="#006aa7" stroke-width="0.8" transform="rotate(${f} 150 150)"/>` : t.showTicks !== !1 && (r += `<line x1="150" y1="20" x2="150" y2="26" stroke="#ffffff" stroke-width="1.5" transform="rotate(${f} 150 150)"/>`);
+    let o = "";
+    for (let i = 0; i < 60; i++) {
+      const f = i * 6;
+      i % 5 === 0 ? o += `<rect x="147.5" y="20" width="5" height="14" rx="1.5" fill="#fecc00" stroke="#006aa7" stroke-width="0.8" transform="rotate(${f} 150 150)"/>` : r.showTicks !== !1 && (o += `<line x1="150" y1="20" x2="150" y2="26" stroke="#ffffff" stroke-width="1.5" transform="rotate(${f} 150 150)"/>`);
     }
-    const i = t.label || "SWEDEN · EUROPE/STOCKHOLM";
+    const l = r.label || "SWEDEN · EUROPE/STOCKHOLM";
     return `
       
       <!-- Swedish Blue Bezel & Yellow Outer Rim -->
       <circle cx="150" cy="150" r="147" fill="#006aa7" stroke="#fecc00" stroke-width="4.5"/>
-      <circle cx="150" cy="150" r="140" fill="${o.face}"/>
+      <circle cx="150" cy="150" r="140" fill="${t.face}"/>
 
       <!-- Nordic Cross Graphic -->
       <g class="nordic-cross">${e}</g>
 
       <!-- Main Dial Ticks -->
-      <g class="ticks">${r}</g>
+      <g class="ticks">${o}</g>
 
       <!-- High-Visibility Inscriptions -->
       <text x="150" y="80" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="11.5" font-weight="900" fill="#fecc00" stroke="#006aa7" stroke-width="0.5" letter-spacing="2.5">SVERIGE · SCANDINAVIA</text>
-      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#ffffff" letter-spacing="1.5">${i}</text>
+      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#ffffff" letter-spacing="1.5">${l}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Swedish Yellow Pointer) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
@@ -10765,7 +10765,7 @@ const P = {
     centerCap: "#007749",
     subdialBg: "#f8fafc"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     const e = `
       <g clip-path="url(#sa-clip)">
         <!-- Top Chili Red Half -->
@@ -10786,12 +10786,12 @@ const P = {
         <circle cx="150" cy="150" r="139" fill="#ffffff" opacity="0.25"/>
       </g>
     `;
-    let r = "";
-    for (let l = 0; l < 60; l++) {
-      const f = l * 6;
-      l % 5 === 0 ? r += `<rect x="146.5" y="18" width="7" height="16" rx="2" fill="#007749" stroke="#ffffff" stroke-width="1.2" transform="rotate(${f} 150 150)"/>` : t.showTicks !== !1 && (r += `<line x1="150" y1="20" x2="150" y2="26" stroke="#ffffff" stroke-width="2" transform="rotate(${f} 150 150)"/>`);
+    let o = "";
+    for (let i = 0; i < 60; i++) {
+      const f = i * 6;
+      i % 5 === 0 ? o += `<rect x="146.5" y="18" width="7" height="16" rx="2" fill="#007749" stroke="#ffffff" stroke-width="1.2" transform="rotate(${f} 150 150)"/>` : r.showTicks !== !1 && (o += `<line x1="150" y1="20" x2="150" y2="26" stroke="#ffffff" stroke-width="2" transform="rotate(${f} 150 150)"/>`);
     }
-    const i = t.label || "SOUTH AFRICA · JOHANNESBURG";
+    const l = r.label || "SOUTH AFRICA · JOHANNESBURG";
     return `
       
       <defs>
@@ -10808,21 +10808,21 @@ const P = {
 
       <!-- Green Outer Bezel & Snow White Dial -->
       <circle cx="150" cy="150" r="147" fill="#007749" stroke="#ffb81c" stroke-width="4.5"/>
-      <circle cx="150" cy="150" r="139" fill="${o.face}"/>
+      <circle cx="150" cy="150" r="139" fill="${t.face}"/>
 
       <!-- Clipped Y-Ribbon Flag Graphic -->
       ${e}
 
       <!-- Main Dial Ticks -->
-      <g class="ticks">${r}</g>
+      <g class="ticks">${o}</g>
 
       <!-- High-Visibility Inscriptions -->
       <text x="150" y="80" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="900" fill="#ffffff" stroke="#007749" stroke-width="0.8" letter-spacing="2.5">RAINBOW NATION</text>
-      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#ffffff" stroke="#001489" stroke-width="0.5" letter-spacing="1.5">${i}</text>
+      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#ffffff" stroke="#001489" stroke-width="0.5" letter-spacing="1.5">${l}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Green Sword with Gold Outline) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
@@ -10866,29 +10866,29 @@ const P = {
     centerCap: "#d4af37",
     subdialBg: "#1e293b"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     const e = `
       <circle cx="150" cy="150" r="139" fill="none" stroke="#00732f" stroke-width="4"/>
       <path d="M 150,11 A 139,139 0 0,1 289,150 L 150,150 Z" fill="none" stroke="#ffffff" stroke-width="4"/>
       <path d="M 289,150 A 139,139 0 0,1 150,289 L 150,150 Z" fill="none" stroke="#000000" stroke-width="4"/>
       <path d="M 11,150 A 139,139 0 0,1 150,11 L 150,150 Z" fill="none" stroke="#ff0000" stroke-width="4"/>
-    `, r = `
+    `, o = `
       <g transform="translate(150, 150) scale(0.95)" filter="url(#drop-shadow)">
         <polygon points="0,-20 6,-8 16,-12 10,2 18,8 6,12 8,22 0,14 -8,22 -6,12 -18,8 -10,2 -16,-12 -6,-8" fill="#d4af37" stroke="#ffffff" stroke-width="0.8"/>
         <circle cx="0" cy="0" r="8" fill="#00732f"/>
       </g>
     `;
-    let i = "";
+    let l = "";
     for (let f = 0; f < 60; f++) {
-      const c = f * 6;
-      f % 5 === 0 ? i += `<rect x="147.5" y="20" width="5" height="14" rx="1.5" fill="#d4af37" stroke="#0f172a" stroke-width="0.8" transform="rotate(${c} 150 150)"/>` : t.showTicks !== !1 && (i += `<line x1="150" y1="20" x2="150" y2="26" stroke="#00732f" stroke-width="1.5" transform="rotate(${c} 150 150)"/>`);
+      const a = f * 6;
+      f % 5 === 0 ? l += `<rect x="147.5" y="20" width="5" height="14" rx="1.5" fill="#d4af37" stroke="#0f172a" stroke-width="0.8" transform="rotate(${a} 150 150)"/>` : r.showTicks !== !1 && (l += `<line x1="150" y1="20" x2="150" y2="26" stroke="#00732f" stroke-width="1.5" transform="rotate(${a} 150 150)"/>`);
     }
-    const l = t.label || "UAE · ASIA/DUBAI";
+    const i = r.label || "UAE · ASIA/DUBAI";
     return `
       
       <!-- Deep Slate Face & Luxury Gold Bezel -->
       <circle cx="150" cy="150" r="147" fill="#0f172a" stroke="#d4af37" stroke-width="4.5"/>
-      <circle cx="150" cy="150" r="140" fill="${o.face}"/>
+      <circle cx="150" cy="150" r="140" fill="${t.face}"/>
 
       <!-- Pan-Arab Quad Color Ring -->
       <g class="quad-ring">${e}</g>
@@ -10897,18 +10897,18 @@ const P = {
       <circle cx="150" cy="150" r="68" fill="#1e293b" stroke="#d4af37" stroke-width="1.8"/>
 
       <!-- Golden Falcon Emblem -->
-      ${r}
+      ${o}
 
       <!-- Main Dial Ticks -->
-      <g class="ticks">${i}</g>
+      <g class="ticks">${l}</g>
 
       <!-- High-Visibility Motto & Label Inscriptions -->
       <text x="150" y="106" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="11.5" font-weight="900" fill="#d4af37" stroke="#0f172a" stroke-width="0.5" letter-spacing="2.5">UNITED ARAB EMIRATES</text>
-      <text x="150" y="198" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#ffffff" letter-spacing="1.5">${l}</text>
+      <text x="150" y="198" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#ffffff" letter-spacing="1.5">${i}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Brushed Gold Syringe) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
@@ -10952,7 +10952,7 @@ const P = {
     centerCap: "#d4af37",
     subdialBg: "#f8fafc"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     const e = `
       <g clip-path="url(#russia-clip)">
         <rect x="0" y="0" width="300" height="100" fill="#ffffff"/>
@@ -10966,12 +10966,12 @@ const P = {
         </g>
       </g>
     `;
-    let r = "";
-    for (let l = 0; l < 60; l++) {
-      const f = l * 6;
-      l % 5 === 0 ? r += `<rect x="146.5" y="18" width="7" height="16" rx="2" fill="#d4af37" stroke="#0039a6" stroke-width="1" transform="rotate(${f} 150 150)"/>` : t.showTicks !== !1 && (r += `<line x1="150" y1="20" x2="150" y2="26" stroke="#0039a6" stroke-width="1.8" transform="rotate(${f} 150 150)"/>`);
+    let o = "";
+    for (let i = 0; i < 60; i++) {
+      const f = i * 6;
+      i % 5 === 0 ? o += `<rect x="146.5" y="18" width="7" height="16" rx="2" fill="#d4af37" stroke="#0039a6" stroke-width="1" transform="rotate(${f} 150 150)"/>` : r.showTicks !== !1 && (o += `<line x1="150" y1="20" x2="150" y2="26" stroke="#0039a6" stroke-width="1.8" transform="rotate(${f} 150 150)"/>`);
     }
-    const i = t.label || "RUSSIA · MOSCOW";
+    const l = r.label || "RUSSIA · MOSCOW";
     return `
       
       <defs>
@@ -10987,18 +10987,18 @@ const P = {
       </defs>
 
       <circle cx="150" cy="150" r="147" fill="#d52b1e" stroke="#d4af37" stroke-width="4.5"/>
-      <circle cx="150" cy="150" r="139" fill="${o.face}"/>
+      <circle cx="150" cy="150" r="139" fill="${t.face}"/>
 
       ${e}
 
-      <g class="ticks">${r}</g>
+      <g class="ticks">${o}</g>
 
       <text x="150" y="80" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="900" fill="#0039a6" stroke="#ffffff" stroke-width="0.6" letter-spacing="2.5">РОССИЯ</text>
-      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#d52b1e" stroke="#ffffff" stroke-width="0.5" letter-spacing="1.5">${i}</text>
+      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#d52b1e" stroke="#ffffff" stroke-width="0.5" letter-spacing="1.5">${l}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
         <polygon points="144,70 156,70 152,154 148,154" fill="#d4af37" filter="url(#drop-shadow)"/>
@@ -11038,7 +11038,7 @@ const P = {
     centerCap: "#0038b8",
     subdialBg: "#f8fafc"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     const e = `
       <g clip-path="url(#israel-clip)">
         <rect x="0" y="0" width="300" height="300" fill="#ffffff"/>
@@ -11052,12 +11052,12 @@ const P = {
         </g>
       </g>
     `;
-    let r = "";
-    for (let l = 0; l < 60; l++) {
-      const f = l * 6;
-      l % 5 === 0 ? r += `<rect x="146.5" y="18" width="7" height="16" rx="2" fill="#0038b8" stroke="#ffffff" stroke-width="1" transform="rotate(${f} 150 150)"/>` : t.showTicks !== !1 && (r += `<line x1="150" y1="20" x2="150" y2="26" stroke="#0038b8" stroke-width="1.8" transform="rotate(${f} 150 150)"/>`);
+    let o = "";
+    for (let i = 0; i < 60; i++) {
+      const f = i * 6;
+      i % 5 === 0 ? o += `<rect x="146.5" y="18" width="7" height="16" rx="2" fill="#0038b8" stroke="#ffffff" stroke-width="1" transform="rotate(${f} 150 150)"/>` : r.showTicks !== !1 && (o += `<line x1="150" y1="20" x2="150" y2="26" stroke="#0038b8" stroke-width="1.8" transform="rotate(${f} 150 150)"/>`);
     }
-    const i = t.label || "ISRAEL · JERUSALEM";
+    const l = r.label || "ISRAEL · JERUSALEM";
     return `
       
       <defs>
@@ -11073,18 +11073,18 @@ const P = {
       </defs>
 
       <circle cx="150" cy="150" r="147" fill="#0038b8" stroke="#ffffff" stroke-width="4.5"/>
-      <circle cx="150" cy="150" r="139" fill="${o.face}"/>
+      <circle cx="150" cy="150" r="139" fill="${t.face}"/>
 
       ${e}
 
-      <g class="ticks">${r}</g>
+      <g class="ticks">${o}</g>
 
       <text x="150" y="80" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="900" fill="#0038b8" letter-spacing="2.5">ISRAEL</text>
-      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#0038b8" letter-spacing="1.5">${i}</text>
+      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#0038b8" letter-spacing="1.5">${l}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
         <polygon points="144,70 156,70 152,154 148,154" fill="#0038b8" filter="url(#drop-shadow)"/>
@@ -11108,7 +11108,7 @@ const P = {
     
     `;
   }
-}, G0 = {
+}, B0 = {
   name: "singapore",
   description: "Singapore watch with crimson red & white split dial, crescent moon & 5 five-pointed stars emblem",
   defaultColors: {
@@ -11124,7 +11124,7 @@ const P = {
     centerCap: "#ed2939",
     subdialBg: "#f8fafc"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     const e = `
       <g clip-path="url(#singapore-clip)">
         <rect x="0" y="0" width="300" height="150" fill="#ed2939"/>
@@ -11141,12 +11141,12 @@ const P = {
         </g>
       </g>
     `;
-    let r = "";
-    for (let l = 0; l < 60; l++) {
-      const f = l * 6;
-      l % 5 === 0 ? r += `<rect x="146.5" y="18" width="7" height="16" rx="2" fill="#ed2939" stroke="#ffffff" stroke-width="1" transform="rotate(${f} 150 150)"/>` : t.showTicks !== !1 && (r += `<line x1="150" y1="20" x2="150" y2="26" stroke="#d4af37" stroke-width="1.8" transform="rotate(${f} 150 150)"/>`);
+    let o = "";
+    for (let i = 0; i < 60; i++) {
+      const f = i * 6;
+      i % 5 === 0 ? o += `<rect x="146.5" y="18" width="7" height="16" rx="2" fill="#ed2939" stroke="#ffffff" stroke-width="1" transform="rotate(${f} 150 150)"/>` : r.showTicks !== !1 && (o += `<line x1="150" y1="20" x2="150" y2="26" stroke="#d4af37" stroke-width="1.8" transform="rotate(${f} 150 150)"/>`);
     }
-    const i = t.label || "SINGAPORE · LION CITY";
+    const l = r.label || "SINGAPORE · LION CITY";
     return `
       
       <defs>
@@ -11162,18 +11162,18 @@ const P = {
       </defs>
 
       <circle cx="150" cy="150" r="147" fill="#ed2939" stroke="#d4af37" stroke-width="4.5"/>
-      <circle cx="150" cy="150" r="139" fill="${o.face}"/>
+      <circle cx="150" cy="150" r="139" fill="${t.face}"/>
 
       ${e}
 
-      <g class="ticks">${r}</g>
+      <g class="ticks">${o}</g>
 
       <text x="150" y="78" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="900" fill="#ffffff" letter-spacing="2.5">SINGAPORE</text>
-      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#ed2939" letter-spacing="1.5">${i}</text>
+      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#ed2939" letter-spacing="1.5">${l}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
         <polygon points="144,70 156,70 152,154 148,154" fill="#ed2939" stroke="#d4af37" stroke-width="1" filter="url(#drop-shadow)"/>
@@ -11211,7 +11211,7 @@ const P = {
     centerCap: "#ffffff",
     subdialBg: "#e64600"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     const e = `
       <g clip-path="url(#netherlands-clip)">
         <rect x="0" y="0" width="300" height="300" fill="#ff4f00"/>
@@ -11228,12 +11228,12 @@ const P = {
         </g>
       </g>
     `;
-    let r = "";
-    for (let l = 0; l < 60; l++) {
-      const f = l * 6;
-      l % 5 === 0 ? r += `<rect x="146.5" y="18" width="7" height="16" rx="2" fill="#ffffff" stroke="#21468b" stroke-width="1" transform="rotate(${f} 150 150)"/>` : t.showTicks !== !1 && (r += `<line x1="150" y1="20" x2="150" y2="26" stroke="#21468b" stroke-width="1.8" transform="rotate(${f} 150 150)"/>`);
+    let o = "";
+    for (let i = 0; i < 60; i++) {
+      const f = i * 6;
+      i % 5 === 0 ? o += `<rect x="146.5" y="18" width="7" height="16" rx="2" fill="#ffffff" stroke="#21468b" stroke-width="1" transform="rotate(${f} 150 150)"/>` : r.showTicks !== !1 && (o += `<line x1="150" y1="20" x2="150" y2="26" stroke="#21468b" stroke-width="1.8" transform="rotate(${f} 150 150)"/>`);
     }
-    const i = t.label || "NEDERLAND · AMSTERDAM";
+    const l = r.label || "NEDERLAND · AMSTERDAM";
     return `
       
       <defs>
@@ -11249,18 +11249,18 @@ const P = {
       </defs>
 
       <circle cx="150" cy="150" r="147" fill="#ff4f00" stroke="#21468b" stroke-width="4.5"/>
-      <circle cx="150" cy="150" r="139" fill="${o.face}"/>
+      <circle cx="150" cy="150" r="139" fill="${t.face}"/>
 
       ${e}
 
-      <g class="ticks">${r}</g>
+      <g class="ticks">${o}</g>
 
       <text x="150" y="80" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="900" fill="#ffffff" stroke="#21468b" stroke-width="0.5" letter-spacing="2.5">KONINKRIJK</text>
-      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#ffffff" stroke="#21468b" stroke-width="0.5" letter-spacing="1.5">${i}</text>
+      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#ffffff" stroke="#21468b" stroke-width="0.5" letter-spacing="1.5">${l}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
         <polygon points="144,70 156,70 152,154 148,154" fill="#ffffff" stroke="#21468b" stroke-width="1" filter="url(#drop-shadow)"/>
@@ -11282,7 +11282,7 @@ const P = {
     
     `;
   }
-}, B0 = {
+}, G0 = {
   name: "greece",
   description: "Greece watch with Aegean sea blue & white 9-stripe pattern, white Greek cross canton, and golden olive branch wreath",
   defaultColors: {
@@ -11298,7 +11298,7 @@ const P = {
     centerCap: "#ffffff",
     subdialBg: "#0a4b8c"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     const e = `
       <g clip-path="url(#greece-clip)">
         <!-- 9 Horizontal Blue and White Stripes -->
@@ -11321,12 +11321,12 @@ const P = {
         <circle cx="150" cy="150" r="48" fill="none" stroke="#d4af37" stroke-width="2" stroke-dasharray="6 4"/>
       </g>
     `;
-    let r = "";
-    for (let l = 0; l < 60; l++) {
-      const f = l * 6;
-      l % 5 === 0 ? r += `<rect x="146.5" y="18" width="7" height="16" rx="2" fill="#ffffff" stroke="#0d5eaf" stroke-width="1" transform="rotate(${f} 150 150)"/>` : t.showTicks !== !1 && (r += `<line x1="150" y1="20" x2="150" y2="26" stroke="#d4af37" stroke-width="1.8" transform="rotate(${f} 150 150)"/>`);
+    let o = "";
+    for (let i = 0; i < 60; i++) {
+      const f = i * 6;
+      i % 5 === 0 ? o += `<rect x="146.5" y="18" width="7" height="16" rx="2" fill="#ffffff" stroke="#0d5eaf" stroke-width="1" transform="rotate(${f} 150 150)"/>` : r.showTicks !== !1 && (o += `<line x1="150" y1="20" x2="150" y2="26" stroke="#d4af37" stroke-width="1.8" transform="rotate(${f} 150 150)"/>`);
     }
-    const i = t.label || "ELLADA · ATHENS";
+    const l = r.label || "ELLADA · ATHENS";
     return `
       
       <defs>
@@ -11342,18 +11342,18 @@ const P = {
       </defs>
 
       <circle cx="150" cy="150" r="147" fill="#0d5eaf" stroke="#ffffff" stroke-width="4.5"/>
-      <circle cx="150" cy="150" r="139" fill="${o.face}"/>
+      <circle cx="150" cy="150" r="139" fill="${t.face}"/>
 
       ${e}
 
-      <g class="ticks">${r}</g>
+      <g class="ticks">${o}</g>
 
       <text x="150" y="80" text-anchor="middle" font-family="'Times New Roman', serif" font-size="12" font-weight="bold" fill="#ffffff" stroke="#0d5eaf" stroke-width="0.5" letter-spacing="2.5">ΕΛΛΑΔΑ</text>
-      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#ffffff" stroke="#0d5eaf" stroke-width="0.5" letter-spacing="1.5">${i}</text>
+      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#ffffff" stroke="#0d5eaf" stroke-width="0.5" letter-spacing="1.5">${l}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
         <polygon points="144,70 156,70 152,154 148,154" fill="#ffffff" stroke="#0d5eaf" stroke-width="1" filter="url(#drop-shadow)"/>
@@ -11391,7 +11391,7 @@ const P = {
     centerCap: "#ffffff",
     subdialBg: "#001a5c"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     const e = `
       <g clip-path="url(#nz-clip)">
         <rect x="0" y="0" width="300" height="300" fill="#00247d"/>
@@ -11424,12 +11424,12 @@ const P = {
         </g>
       </g>
     `;
-    let r = "";
-    for (let l = 0; l < 60; l++) {
-      const f = l * 6;
-      l % 5 === 0 ? r += `<rect x="146.5" y="18" width="7" height="16" rx="2" fill="#ffffff" stroke="#00247d" stroke-width="1" transform="rotate(${f} 150 150)"/>` : t.showTicks !== !1 && (r += `<line x1="150" y1="20" x2="150" y2="26" stroke="#cc142b" stroke-width="1.8" transform="rotate(${f} 150 150)"/>`);
+    let o = "";
+    for (let i = 0; i < 60; i++) {
+      const f = i * 6;
+      i % 5 === 0 ? o += `<rect x="146.5" y="18" width="7" height="16" rx="2" fill="#ffffff" stroke="#00247d" stroke-width="1" transform="rotate(${f} 150 150)"/>` : r.showTicks !== !1 && (o += `<line x1="150" y1="20" x2="150" y2="26" stroke="#cc142b" stroke-width="1.8" transform="rotate(${f} 150 150)"/>`);
     }
-    const i = t.label || "AOTEAROA · WELLINGTON";
+    const l = r.label || "AOTEAROA · WELLINGTON";
     return `
       
       <defs>
@@ -11445,18 +11445,18 @@ const P = {
       </defs>
 
       <circle cx="150" cy="150" r="147" fill="#00247d" stroke="#cc142b" stroke-width="4.5"/>
-      <circle cx="150" cy="150" r="139" fill="${o.face}"/>
+      <circle cx="150" cy="150" r="139" fill="${t.face}"/>
 
       ${e}
 
-      <g class="ticks">${r}</g>
+      <g class="ticks">${o}</g>
 
       <text x="150" y="80" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="11.5" font-weight="900" fill="#ffffff" stroke="#00247d" stroke-width="0.5" letter-spacing="2.5">NEW ZEALAND</text>
-      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#ffffff" stroke="#00247d" stroke-width="0.5" letter-spacing="1.5">${i}</text>
+      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#ffffff" stroke="#00247d" stroke-width="0.5" letter-spacing="1.5">${l}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
         <polygon points="144,70 156,70 152,154 148,154" fill="#ffffff" stroke="#00247d" stroke-width="1" filter="url(#drop-shadow)"/>
@@ -11494,7 +11494,7 @@ const P = {
     centerCap: "#ffde00",
     subdialBg: "#b81d16"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     const e = `
       <g clip-path="url(#vietnam-clip)">
         <rect x="0" y="0" width="300" height="300" fill="#da251d"/>
@@ -11504,12 +11504,12 @@ const P = {
         </g>
       </g>
     `;
-    let r = "";
-    for (let l = 0; l < 60; l++) {
-      const f = l * 6;
-      l % 5 === 0 ? r += `<rect x="146.5" y="18" width="7" height="16" rx="2" fill="#ffde00" stroke="#da251d" stroke-width="1" transform="rotate(${f} 150 150)"/>` : t.showTicks !== !1 && (r += `<line x1="150" y1="20" x2="150" y2="26" stroke="#ffffff" stroke-width="1.8" transform="rotate(${f} 150 150)"/>`);
+    let o = "";
+    for (let i = 0; i < 60; i++) {
+      const f = i * 6;
+      i % 5 === 0 ? o += `<rect x="146.5" y="18" width="7" height="16" rx="2" fill="#ffde00" stroke="#da251d" stroke-width="1" transform="rotate(${f} 150 150)"/>` : r.showTicks !== !1 && (o += `<line x1="150" y1="20" x2="150" y2="26" stroke="#ffffff" stroke-width="1.8" transform="rotate(${f} 150 150)"/>`);
     }
-    const i = t.label || "VIỆT NAM · HANOI";
+    const l = r.label || "VIỆT NAM · HANOI";
     return `
       
       <defs>
@@ -11525,18 +11525,18 @@ const P = {
       </defs>
 
       <circle cx="150" cy="150" r="147" fill="#da251d" stroke="#ffde00" stroke-width="4.5"/>
-      <circle cx="150" cy="150" r="139" fill="${o.face}"/>
+      <circle cx="150" cy="150" r="139" fill="${t.face}"/>
 
       ${e}
 
-      <g class="ticks">${r}</g>
+      <g class="ticks">${o}</g>
 
       <text x="150" y="78" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="900" fill="#ffde00" letter-spacing="2.5">VIỆT NAM</text>
-      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#ffffff" letter-spacing="1.5">${i}</text>
+      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#ffffff" letter-spacing="1.5">${l}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
         <polygon points="144,70 156,70 152,154 148,154" fill="#ffde00" filter="url(#drop-shadow)"/>
@@ -11576,7 +11576,7 @@ const P = {
     centerCap: "#d4af37",
     subdialBg: "#f8fafc"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     const e = `
       <g clip-path="url(#thailand-clip)">
         <!-- 5 Trairanga Stripes -->
@@ -11593,12 +11593,12 @@ const P = {
         </g>
       </g>
     `;
-    let r = "";
-    for (let l = 0; l < 60; l++) {
-      const f = l * 6;
-      l % 5 === 0 ? r += `<rect x="146.5" y="18" width="7" height="16" rx="2" fill="#d4af37" stroke="#2d2a4a" stroke-width="1" transform="rotate(${f} 150 150)"/>` : t.showTicks !== !1 && (r += `<line x1="150" y1="20" x2="150" y2="26" stroke="#2d2a4a" stroke-width="1.8" transform="rotate(${f} 150 150)"/>`);
+    let o = "";
+    for (let i = 0; i < 60; i++) {
+      const f = i * 6;
+      i % 5 === 0 ? o += `<rect x="146.5" y="18" width="7" height="16" rx="2" fill="#d4af37" stroke="#2d2a4a" stroke-width="1" transform="rotate(${f} 150 150)"/>` : r.showTicks !== !1 && (o += `<line x1="150" y1="20" x2="150" y2="26" stroke="#2d2a4a" stroke-width="1.8" transform="rotate(${f} 150 150)"/>`);
     }
-    const i = t.label || "THAILAND · BANGKOK";
+    const l = r.label || "THAILAND · BANGKOK";
     return `
       
       <defs>
@@ -11614,18 +11614,18 @@ const P = {
       </defs>
 
       <circle cx="150" cy="150" r="147" fill="#a51931" stroke="#d4af37" stroke-width="4.5"/>
-      <circle cx="150" cy="150" r="139" fill="${o.face}"/>
+      <circle cx="150" cy="150" r="139" fill="${t.face}"/>
 
       ${e}
 
-      <g class="ticks">${r}</g>
+      <g class="ticks">${o}</g>
 
       <text x="150" y="80" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="900" fill="#ffffff" stroke="#a51931" stroke-width="0.5" letter-spacing="2.5">대한민국 / SIAM</text>
-      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#ffffff" stroke="#2d2a4a" stroke-width="0.5" letter-spacing="1.5">${i}</text>
+      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#ffffff" stroke="#2d2a4a" stroke-width="0.5" letter-spacing="1.5">${l}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
         <polygon points="144,70 156,70 152,154 148,154" fill="#d4af37" stroke="#2d2a4a" stroke-width="1" filter="url(#drop-shadow)"/>
@@ -11647,7 +11647,7 @@ const P = {
     
     `;
   }
-}, F0 = {
+}, I0 = {
   name: "norway",
   description: "Norway watch with crimson red dial, white and indigo blue Nordic cross ribbon, and Viking rune indices",
   defaultColors: {
@@ -11663,7 +11663,7 @@ const P = {
     centerCap: "#ffffff",
     subdialBg: "#960925"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     const e = `
       <g clip-path="url(#norway-clip)">
         <rect x="0" y="0" width="300" height="300" fill="#ba0c2f"/>
@@ -11675,12 +11675,12 @@ const P = {
         <rect x="0" y="140" width="300" height="20" fill="#00205b"/>
       </g>
     `;
-    let r = "";
-    for (let l = 0; l < 60; l++) {
-      const f = l * 6;
-      l % 5 === 0 ? r += `<rect x="146.5" y="18" width="7" height="16" rx="2" fill="#ffffff" stroke="#00205b" stroke-width="1" transform="rotate(${f} 150 150)"/>` : t.showTicks !== !1 && (r += `<line x1="150" y1="20" x2="150" y2="26" stroke="#00205b" stroke-width="1.8" transform="rotate(${f} 150 150)"/>`);
+    let o = "";
+    for (let i = 0; i < 60; i++) {
+      const f = i * 6;
+      i % 5 === 0 ? o += `<rect x="146.5" y="18" width="7" height="16" rx="2" fill="#ffffff" stroke="#00205b" stroke-width="1" transform="rotate(${f} 150 150)"/>` : r.showTicks !== !1 && (o += `<line x1="150" y1="20" x2="150" y2="26" stroke="#00205b" stroke-width="1.8" transform="rotate(${f} 150 150)"/>`);
     }
-    const i = t.label || "NORGE · OSLO";
+    const l = r.label || "NORGE · OSLO";
     return `
       
       <defs>
@@ -11696,18 +11696,18 @@ const P = {
       </defs>
 
       <circle cx="150" cy="150" r="147" fill="#ba0c2f" stroke="#ffffff" stroke-width="4.5"/>
-      <circle cx="150" cy="150" r="139" fill="${o.face}"/>
+      <circle cx="150" cy="150" r="139" fill="${t.face}"/>
 
       ${e}
 
-      <g class="ticks">${r}</g>
+      <g class="ticks">${o}</g>
 
       <text x="150" y="80" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="900" fill="#ffffff" stroke="#ba0c2f" stroke-width="0.5" letter-spacing="2.5">NORGE</text>
-      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#ffffff" stroke="#00205b" stroke-width="0.5" letter-spacing="1.5">${i}</text>
+      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#ffffff" stroke="#00205b" stroke-width="0.5" letter-spacing="1.5">${l}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
         <polygon points="144,70 156,70 152,154 148,154" fill="#ffffff" stroke="#00205b" stroke-width="1" filter="url(#drop-shadow)"/>
@@ -11729,7 +11729,7 @@ const P = {
     
     `;
   }
-}, I0 = {
+}, E0 = {
   name: "indonesia",
   description: "Indonesia watch with Sang Saka Merah-Putih red and white split dial, clipped strictly inside dial bounds, and Golden Garuda Pancasila emblem",
   defaultColors: {
@@ -11745,7 +11745,7 @@ const P = {
     centerCap: "#d4af37",
     subdialBg: "#f8fafc"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     const e = `
       <g clip-path="url(#indonesia-clip)">
         <rect x="0" y="0" width="300" height="150" fill="#ff0000"/>
@@ -11757,12 +11757,12 @@ const P = {
         </g>
       </g>
     `;
-    let r = "";
-    for (let l = 0; l < 60; l++) {
-      const f = l * 6;
-      l % 5 === 0 ? r += `<rect x="146.5" y="18" width="7" height="16" rx="2" fill="#d4af37" stroke="#ff0000" stroke-width="1" transform="rotate(${f} 150 150)"/>` : t.showTicks !== !1 && (r += `<line x1="150" y1="20" x2="150" y2="26" stroke="#ff0000" stroke-width="1.8" transform="rotate(${f} 150 150)"/>`);
+    let o = "";
+    for (let i = 0; i < 60; i++) {
+      const f = i * 6;
+      i % 5 === 0 ? o += `<rect x="146.5" y="18" width="7" height="16" rx="2" fill="#d4af37" stroke="#ff0000" stroke-width="1" transform="rotate(${f} 150 150)"/>` : r.showTicks !== !1 && (o += `<line x1="150" y1="20" x2="150" y2="26" stroke="#ff0000" stroke-width="1.8" transform="rotate(${f} 150 150)"/>`);
     }
-    const i = t.label || "INDONESIA · JAKARTA";
+    const l = r.label || "INDONESIA · JAKARTA";
     return `
       
       <defs>
@@ -11778,18 +11778,18 @@ const P = {
       </defs>
 
       <circle cx="150" cy="150" r="147" fill="#ff0000" stroke="#d4af37" stroke-width="4.5"/>
-      <circle cx="150" cy="150" r="139" fill="${o.face}"/>
+      <circle cx="150" cy="150" r="139" fill="${t.face}"/>
 
       ${e}
 
-      <g class="ticks">${r}</g>
+      <g class="ticks">${o}</g>
 
       <text x="150" y="78" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="900" fill="#ffffff" letter-spacing="2.5">INDONESIA</text>
-      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#ff0000" letter-spacing="1.5">${i}</text>
+      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#ff0000" letter-spacing="1.5">${l}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
         <polygon points="144,70 156,70 152,154 148,154" fill="#d4af37" stroke="#ff0000" stroke-width="1" filter="url(#drop-shadow)"/>
@@ -11811,7 +11811,7 @@ const P = {
     
     `;
   }
-}, E0 = {
+}, F0 = {
   name: "minecraft",
   description: "Minecraft authentic 8-bit block watch with Grass & Dirt block bezel, Diamond Ore specks, Creeper face hub, and pixelated Diamond Sword & Pickaxe hands",
   defaultColors: {
@@ -11827,13 +11827,13 @@ const P = {
     centerCap: "#55ffff",
     subdialBg: "#21150e"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let a = 0; a < 24; a++) {
-      const s = a * 15;
+    for (let c = 0; c < 24; c++) {
+      const s = c * 15;
       e += `<rect x="146" y="10" width="8" height="12" fill="#5b8731" stroke="#3b581f" stroke-width="0.8" transform="rotate(${s} 150 150)"/>`;
     }
-    const r = `
+    const o = `
       <g opacity="0.95">
         <rect x="90" y="70" width="6" height="6" fill="#55ffff" filter="url(#drop-shadow)"/>
         <rect x="96" y="76" width="6" height="6" fill="#55ffff"/>
@@ -11844,12 +11844,12 @@ const P = {
         <rect x="216" y="216" width="6" height="6" fill="#55ffff"/>
       </g>
     `;
-    let i = "";
-    for (let a = 0; a < 12; a++) {
-      const s = a * 30 + 15;
-      i += `<circle cx="150" cy="45" r="2.5" fill="#ef4444" filter="url(#lume-glow)" transform="rotate(${s} 150 150)"/>`;
+    let l = "";
+    for (let c = 0; c < 12; c++) {
+      const s = c * 30 + 15;
+      l += `<circle cx="150" cy="45" r="2.5" fill="#ef4444" filter="url(#lume-glow)" transform="rotate(${s} 150 150)"/>`;
     }
-    const l = `
+    const i = `
       <g transform="translate(150, 150)" filter="url(#drop-shadow)">
         <!-- Green Subdial Base -->
         <rect x="-32" y="-32" width="64" height="64" fill="#5b8731" stroke="#2c4217" stroke-width="3" rx="4"/>
@@ -11866,39 +11866,39 @@ const P = {
       </g>
     `;
     let f = "";
-    for (let a = 0; a < 60; a++) {
-      const s = a * 6;
-      a % 5 === 0 ? f += `<rect x="145" y="20" width="10" height="14" fill="#55ffff" stroke="#121820" stroke-width="1.5" rx="1" transform="rotate(${s} 150 150)"/>` : t.showTicks !== !1 && (f += `<rect x="148" y="20" width="4" height="8" fill="#84cc16" stroke="#121820" stroke-width="0.8" transform="rotate(${s} 150 150)"/>`);
+    for (let c = 0; c < 60; c++) {
+      const s = c * 6;
+      c % 5 === 0 ? f += `<rect x="145" y="20" width="10" height="14" fill="#55ffff" stroke="#121820" stroke-width="1.5" rx="1" transform="rotate(${s} 150 150)"/>` : r.showTicks !== !1 && (f += `<rect x="148" y="20" width="4" height="8" fill="#84cc16" stroke="#121820" stroke-width="0.8" transform="rotate(${s} 150 150)"/>`);
     }
-    const c = t.label || "MINECRAFT · 8-BIT WORLD";
+    const a = r.label || "MINECRAFT · 8-BIT WORLD";
     return `
       
       <!-- Grass Block Bezel (Green Top + Dark Brown Dirt Body) -->
       <circle cx="150" cy="150" r="147" fill="#5b8731" stroke="#2c4217" stroke-width="5"/>
-      <circle cx="150" cy="150" r="139" fill="${o.face}" stroke="#5b8731" stroke-width="3"/>
+      <circle cx="150" cy="150" r="139" fill="${t.face}" stroke="#5b8731" stroke-width="3"/>
 
       <!-- Grass Fringe Pixel Layer -->
       <g class="grass-fringe">${e}</g>
 
       <!-- Diamond Ore Specks -->
-      ${r}
+      ${o}
 
       <!-- Redstone Circuit Trace -->
-      <g class="redstone-trace">${i}</g>
+      <g class="redstone-trace">${l}</g>
 
       <!-- Creeper Face Center -->
-      ${l}
+      ${i}
 
       <!-- Main Dial Ticks -->
       <g class="ticks">${f}</g>
 
       <!-- High-Visibility Minecraft Logo & Subtext -->
       <text x="150" y="78" text-anchor="middle" font-family="'Courier New', monospace" font-size="13" font-weight="900" fill="#55ffff" stroke="#121820" stroke-width="1" letter-spacing="3">MINECRAFT</text>
-      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#84cc16" stroke="#121820" stroke-width="0.5" letter-spacing="1.5">${c}</text>
+      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#84cc16" stroke="#121820" stroke-width="0.5" letter-spacing="1.5">${a}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Pixelated Diamond Sword) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
@@ -11946,7 +11946,7 @@ const P = {
     centerCap: "#ffd700",
     subdialBg: "#001a40"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     const e = `
       <g transform="translate(150, 150) scale(1.15)" filter="url(#drop-shadow)">
         <!-- 3 Golden Triangles -->
@@ -11957,17 +11957,17 @@ const P = {
         <path d="M -45,15 Q 0,35 45,15 Q 0,55 -45,15 Z" fill="#ffd700" stroke="#001a40" stroke-width="1"/>
       </g>
     `;
-    let r = "";
-    for (let l = 0; l < 60; l++) {
-      const f = l * 6;
-      l % 5 === 0 ? r += `<polygon points="150,18 153.5,28 146.5,28" fill="#ffd700" stroke="#002b66" stroke-width="0.8" transform="rotate(${f} 150 150)"/>` : t.showTicks !== !1 && (r += `<line x1="150" y1="20" x2="150" y2="25" stroke="#00ffff" stroke-width="1.5" transform="rotate(${f} 150 150)"/>`);
+    let o = "";
+    for (let i = 0; i < 60; i++) {
+      const f = i * 6;
+      i % 5 === 0 ? o += `<polygon points="150,18 153.5,28 146.5,28" fill="#ffd700" stroke="#002b66" stroke-width="0.8" transform="rotate(${f} 150 150)"/>` : r.showTicks !== !1 && (o += `<line x1="150" y1="20" x2="150" y2="25" stroke="#00ffff" stroke-width="1.5" transform="rotate(${f} 150 150)"/>`);
     }
-    const i = t.label || "HYRULE · TEARS OF THE KINGDOM";
+    const l = r.label || "HYRULE · TEARS OF THE KINGDOM";
     return `
       
       <!-- Royal Hylian Blue Face & Gold Rim -->
       <circle cx="150" cy="150" r="147" fill="#002b66" stroke="#ffd700" stroke-width="4.5"/>
-      <circle cx="150" cy="150" r="140" fill="${o.face}" stroke="#00ffff" stroke-width="1.2"/>
+      <circle cx="150" cy="150" r="140" fill="${t.face}" stroke="#00ffff" stroke-width="1.2"/>
 
       <!-- Glowing Zonai Outer Rune Ring -->
       <circle cx="150" cy="150" r="130" fill="none" stroke="#00ffff" stroke-width="1.2" stroke-dasharray="3 6" opacity="0.8"/>
@@ -11976,15 +11976,15 @@ const P = {
       ${e}
 
       <!-- Main Dial Ticks -->
-      <g class="ticks">${r}</g>
+      <g class="ticks">${o}</g>
 
       <!-- High-Visibility Inscriptions -->
       <text x="150" y="80" text-anchor="middle" font-family="'Times New Roman', serif" font-size="12" font-weight="bold" fill="#ffd700" letter-spacing="3">THE LEGEND OF ZELDA</text>
-      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#00ffff" letter-spacing="1.5">${i}</text>
+      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#00ffff" letter-spacing="1.5">${l}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Master Sword Blade with Gold Hilt) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
@@ -12028,7 +12028,7 @@ const P = {
     centerCap: "#ffffff",
     subdialBg: "#222222"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     const e = `
       <path d="M 10,150 A 140,140 0 0,1 290,150 Z" fill="#ee1515"/>
       <path d="M 290,150 A 140,140 0 0,1 10,150 Z" fill="#ffffff"/>
@@ -12038,12 +12038,12 @@ const P = {
       <circle cx="150" cy="150" r="32" fill="#222222"/>
       <circle cx="150" cy="150" r="22" fill="#ffffff" stroke="#222222" stroke-width="3"/>
     `;
-    let r = "";
-    for (let l = 0; l < 60; l++) {
-      const f = l * 6, c = l % 5 === 0, a = f < 90 || f > 270 ? "#ffffff" : "#222222";
-      c ? r += `<circle cx="150" cy="24" r="3" fill="#ffde00" stroke="#222222" stroke-width="1" transform="rotate(${f} 150 150)"/>` : t.showTicks !== !1 && (r += `<line x1="150" y1="20" x2="150" y2="25" stroke="${a}" stroke-width="1.5" transform="rotate(${f} 150 150)"/>`);
+    let o = "";
+    for (let i = 0; i < 60; i++) {
+      const f = i * 6, a = i % 5 === 0, c = f < 90 || f > 270 ? "#ffffff" : "#222222";
+      a ? o += `<circle cx="150" cy="24" r="3" fill="#ffde00" stroke="#222222" stroke-width="1" transform="rotate(${f} 150 150)"/>` : r.showTicks !== !1 && (o += `<line x1="150" y1="20" x2="150" y2="25" stroke="${c}" stroke-width="1.5" transform="rotate(${f} 150 150)"/>`);
     }
-    const i = t.label || "POKÉMON · GOTTA CATCH 'EM ALL!";
+    const l = r.label || "POKÉMON · GOTTA CATCH 'EM ALL!";
     return `
       
       <!-- Pokéball Split Dial Face -->
@@ -12053,15 +12053,15 @@ const P = {
       ${e}
 
       <!-- Main Dial Ticks -->
-      <g class="ticks">${r}</g>
+      <g class="ticks">${o}</g>
 
       <!-- High-Visibility Inscriptions -->
       <text x="150" y="80" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="900" fill="#ffffff" stroke="#222222" stroke-width="0.8" letter-spacing="3">POKÉMON</text>
-      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#222222" letter-spacing="1.5">${i}</text>
+      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#222222" letter-spacing="1.5">${l}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Charcoal Black Pointer) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
@@ -12102,7 +12102,7 @@ const P = {
     centerCap: "#ff007f",
     subdialBg: "#2b0938"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     const e = `
       <g opacity="0.85">
         <!-- Sun Gradient -->
@@ -12116,31 +12116,31 @@ const P = {
         <path d="M 220,180 Q 210,130 190,100 M 190,100 Q 220,90 240,110 M 190,100 Q 185,80 165,90 M 190,100 Q 170,110 160,130" stroke="#ff007f" stroke-width="2.5" fill="none"/>
       </g>
     `;
-    let r = "";
-    for (let l = 0; l < 60; l++) {
-      const f = l * 6;
-      l % 5 === 0 ? r += `<rect x="147.5" y="20" width="5" height="14" rx="1.5" fill="#ff007f" stroke="#00f0ff" stroke-width="0.8" transform="rotate(${f} 150 150)"/>` : t.showTicks !== !1 && (r += `<line x1="150" y1="20" x2="150" y2="25" stroke="#00f0ff" stroke-width="1.5" transform="rotate(${f} 150 150)"/>`);
+    let o = "";
+    for (let i = 0; i < 60; i++) {
+      const f = i * 6;
+      i % 5 === 0 ? o += `<rect x="147.5" y="20" width="5" height="14" rx="1.5" fill="#ff007f" stroke="#00f0ff" stroke-width="0.8" transform="rotate(${f} 150 150)"/>` : r.showTicks !== !1 && (o += `<line x1="150" y1="20" x2="150" y2="25" stroke="#00f0ff" stroke-width="1.5" transform="rotate(${f} 150 150)"/>`);
     }
-    const i = t.label || "VICE CITY · VI";
+    const l = r.label || "VICE CITY · VI";
     return `
       
       <!-- Deep Purple Sunset Face & Vice Pink Bezel -->
       <circle cx="150" cy="150" r="147" fill="#16002c" stroke="#ff007f" stroke-width="4.5"/>
-      <circle cx="150" cy="150" r="140" fill="${o.face}" stroke="#00f0ff" stroke-width="1.2"/>
+      <circle cx="150" cy="150" r="140" fill="${t.face}" stroke="#00f0ff" stroke-width="1.2"/>
 
       <!-- Vice Sunset & Palm Trees Artwork -->
       ${e}
 
       <!-- Main Dial Ticks -->
-      <g class="ticks">${r}</g>
+      <g class="ticks">${o}</g>
 
       <!-- High-Visibility Inscriptions -->
       <text x="150" y="78" text-anchor="middle" font-family="'Brush Script MT', cursive, sans-serif" font-size="20" font-weight="bold" fill="#ff007f" stroke="#00f0ff" stroke-width="0.5">Vice City</text>
-      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#00f0ff" letter-spacing="1.5">${i}</text>
+      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#00f0ff" letter-spacing="1.5">${l}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Vice Pink Sword) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
@@ -12184,7 +12184,7 @@ const P = {
     centerCap: "#e60012",
     subdialBg: "#00a2e8"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     const e = `
       <g transform="translate(150, 150) scale(1.1)" filter="url(#drop-shadow)">
         <polygon points="0,-32 9,-9 32,-9 14,5 21,28 0,14 -21,28 -14,5 -32,-9 -9,-9" fill="#f8d800" stroke="#000000" stroke-width="1.8"/>
@@ -12193,31 +12193,31 @@ const P = {
         <ellipse cx="5" cy="-2" rx="2" ry="5" fill="#000000"/>
       </g>
     `;
-    let r = "";
-    for (let l = 0; l < 60; l++) {
-      const f = l * 6;
-      l % 5 === 0 ? r += `<rect x="146" y="20" width="8" height="14" rx="2" fill="#f8d800" stroke="#000000" stroke-width="1" transform="rotate(${f} 150 150)"/>` : t.showTicks !== !1 && (r += `<circle cx="150" cy="24" r="2" fill="#ffffff" transform="rotate(${f} 150 150)"/>`);
+    let o = "";
+    for (let i = 0; i < 60; i++) {
+      const f = i * 6;
+      i % 5 === 0 ? o += `<rect x="146" y="20" width="8" height="14" rx="2" fill="#f8d800" stroke="#000000" stroke-width="1" transform="rotate(${f} 150 150)"/>` : r.showTicks !== !1 && (o += `<circle cx="150" cy="24" r="2" fill="#ffffff" transform="rotate(${f} 150 150)"/>`);
     }
-    const i = t.label || "SUPER MARIO · MUSHROOM KINGDOM";
+    const l = r.label || "SUPER MARIO · MUSHROOM KINGDOM";
     return `
       
       <!-- Mushroom Kingdom Blue Face & Mario Red Bezel -->
       <circle cx="150" cy="150" r="147" fill="#5c94fc" stroke="#e60012" stroke-width="4.5"/>
-      <circle cx="150" cy="150" r="140" fill="${o.face}" stroke="#000000" stroke-width="1.5"/>
+      <circle cx="150" cy="150" r="140" fill="${t.face}" stroke="#000000" stroke-width="1.5"/>
 
       <!-- Super Star Emblem -->
       ${e}
 
       <!-- Main Dial Ticks -->
-      <g class="ticks">${r}</g>
+      <g class="ticks">${o}</g>
 
       <!-- High-Visibility Inscriptions -->
       <text x="150" y="80" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="900" fill="#f8d800" stroke="#000000" stroke-width="0.8" letter-spacing="2.5">SUPER MARIO</text>
-      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#ffffff" letter-spacing="1.5">${i}</text>
+      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#ffffff" letter-spacing="1.5">${l}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Mario Red Pointer with Yellow Accent) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
@@ -12261,7 +12261,7 @@ const P = {
     centerCap: "#0d0e12",
     subdialBg: "#181a20"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     const e = `
       <g filter="url(#drop-shadow)">
         <circle cx="150" cy="150" r="65" fill="#0d0e12" stroke="#00f0ff" stroke-width="1.8"/>
@@ -12274,31 +12274,31 @@ const P = {
         </g>
       </g>
     `;
-    let r = "";
-    for (let l = 0; l < 60; l++) {
-      const f = l * 6;
-      l % 5 === 0 ? r += `<rect x="146.5" y="20" width="7" height="14" rx="1" fill="#0d0e12" stroke="#00f0ff" stroke-width="0.8" transform="rotate(${f} 150 150)"/>` : t.showTicks !== !1 && (r += `<line x1="150" y1="20" x2="150" y2="25" stroke="#ff0055" stroke-width="1.5" transform="rotate(${f} 150 150)"/>`);
+    let o = "";
+    for (let i = 0; i < 60; i++) {
+      const f = i * 6;
+      i % 5 === 0 ? o += `<rect x="146.5" y="20" width="7" height="14" rx="1" fill="#0d0e12" stroke="#00f0ff" stroke-width="0.8" transform="rotate(${f} 150 150)"/>` : r.showTicks !== !1 && (o += `<line x1="150" y1="20" x2="150" y2="25" stroke="#ff0055" stroke-width="1.5" transform="rotate(${f} 150 150)"/>`);
     }
-    const i = t.label || "CYBERPUNK · NIGHT CITY 2077";
+    const l = r.label || "CYBERPUNK · NIGHT CITY 2077";
     return `
       
       <!-- Electric Yellow Face & Charcoal Bezel -->
       <circle cx="150" cy="150" r="147" fill="#fcee09" stroke="#0d0e12" stroke-width="5"/>
-      <circle cx="150" cy="150" r="140" fill="${o.face}" stroke="#00f0ff" stroke-width="1.2"/>
+      <circle cx="150" cy="150" r="140" fill="${t.face}" stroke="#00f0ff" stroke-width="1.2"/>
 
       <!-- Inner Cyber HUD & Samurai Skull -->
       ${e}
 
       <!-- Main Dial Ticks -->
-      <g class="ticks">${r}</g>
+      <g class="ticks">${o}</g>
 
       <!-- High-Visibility Inscriptions -->
       <text x="150" y="80" text-anchor="middle" font-family="'Courier New', monospace" font-size="12" font-weight="900" fill="#0d0e12" stroke="#fcee09" stroke-width="0.5" letter-spacing="2.5">CYBERPUNK 2077</text>
-      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#0d0e12" letter-spacing="1.5">${i}</text>
+      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#0d0e12" letter-spacing="1.5">${l}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Angular Charcoal Pointer) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
@@ -12342,7 +12342,7 @@ const P = {
     centerCap: "#d4af37",
     subdialBg: "#27321c"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     const e = `
       <g transform="translate(150, 150) scale(1.1)" filter="url(#drop-shadow)">
         <circle cx="0" cy="0" r="45" fill="#27321c" stroke="#d4af37" stroke-width="1.8"/>
@@ -12353,31 +12353,31 @@ const P = {
         <text x="0" y="16" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="14" font-weight="900" fill="#84cc16" letter-spacing="3">117</text>
       </g>
     `;
-    let r = "";
-    for (let l = 0; l < 60; l++) {
-      const f = l * 6;
-      l % 5 === 0 ? r += `<rect x="147.5" y="20" width="5" height="14" rx="1.5" fill="#d4af37" stroke="#3a482b" stroke-width="0.8" transform="rotate(${f} 150 150)"/>` : t.showTicks !== !1 && (r += `<line x1="150" y1="20" x2="150" y2="25" stroke="#84cc16" stroke-width="1.5" transform="rotate(${f} 150 150)"/>`);
+    let o = "";
+    for (let i = 0; i < 60; i++) {
+      const f = i * 6;
+      i % 5 === 0 ? o += `<rect x="147.5" y="20" width="5" height="14" rx="1.5" fill="#d4af37" stroke="#3a482b" stroke-width="0.8" transform="rotate(${f} 150 150)"/>` : r.showTicks !== !1 && (o += `<line x1="150" y1="20" x2="150" y2="25" stroke="#84cc16" stroke-width="1.5" transform="rotate(${f} 150 150)"/>`);
     }
-    const i = t.label || "HALO · SPARTAN-117";
+    const l = r.label || "HALO · SPARTAN-117";
     return `
       
       <!-- Military Olive Drab Face & Gold Visor Rim -->
       <circle cx="150" cy="150" r="147" fill="#3a482b" stroke="#d4af37" stroke-width="4.5"/>
-      <circle cx="150" cy="150" r="140" fill="${o.face}" stroke="#84cc16" stroke-width="1.2"/>
+      <circle cx="150" cy="150" r="140" fill="${t.face}" stroke="#84cc16" stroke-width="1.2"/>
 
       <!-- UNSC 117 Central Emblem -->
       ${e}
 
       <!-- Main Dial Ticks -->
-      <g class="ticks">${r}</g>
+      <g class="ticks">${o}</g>
 
       <!-- High-Visibility Inscriptions -->
       <text x="150" y="80" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="900" fill="#d4af37" letter-spacing="3">HALO</text>
-      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#84cc16" letter-spacing="1.5">${i}</text>
+      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#84cc16" letter-spacing="1.5">${l}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Visor Gold Sword) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
@@ -12421,24 +12421,24 @@ const P = {
     centerCap: "#00e5ff",
     subdialBg: "#1e293b"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     const e = `
       <g transform="translate(150, 150) scale(1.15)" filter="url(#drop-shadow)">
         <!-- Greek Omega Logo -->
         <path d="M -25,20 L -12,20 C -12,20 -20,-15 0,-22 C 20,-15 12,20 12,20 L 25,20 L 25,26 L 10,26 C 2,26 2,12 0,12 C -2,12 -2,26 -10,26 L -25,26 Z" fill="#00e5ff" stroke="#121820" stroke-width="1"/>
       </g>
     `;
-    let r = "";
-    for (let l = 0; l < 60; l++) {
-      const f = l * 6;
-      l % 5 === 0 ? r += `<rect x="147.5" y="20" width="5" height="14" rx="1.5" fill="#00e5ff" stroke="#121820" stroke-width="0.8" transform="rotate(${f} 150 150)"/>` : t.showTicks !== !1 && (r += `<line x1="150" y1="20" x2="150" y2="25" stroke="#94a3b8" stroke-width="1.5" transform="rotate(${f} 150 150)"/>`);
+    let o = "";
+    for (let i = 0; i < 60; i++) {
+      const f = i * 6;
+      i % 5 === 0 ? o += `<rect x="147.5" y="20" width="5" height="14" rx="1.5" fill="#00e5ff" stroke="#121820" stroke-width="0.8" transform="rotate(${f} 150 150)"/>` : r.showTicks !== !1 && (o += `<line x1="150" y1="20" x2="150" y2="25" stroke="#94a3b8" stroke-width="1.5" transform="rotate(${f} 150 150)"/>`);
     }
-    const i = t.label || "GOD OF WAR · RAGNARÖK";
+    const l = r.label || "GOD OF WAR · RAGNARÖK";
     return `
       
       <!-- Dark Nordic Slate Face & Frost Cyan Rim -->
       <circle cx="150" cy="150" r="147" fill="#121820" stroke="#00e5ff" stroke-width="4.5"/>
-      <circle cx="150" cy="150" r="140" fill="${o.face}" stroke="#ef4444" stroke-width="1.2"/>
+      <circle cx="150" cy="150" r="140" fill="${t.face}" stroke="#ef4444" stroke-width="1.2"/>
 
       <!-- Glowing Elder Futhark Rune Circle -->
       <circle cx="150" cy="150" r="130" fill="none" stroke="#00e5ff" stroke-width="1.2" stroke-dasharray="4 8" opacity="0.8"/>
@@ -12447,15 +12447,15 @@ const P = {
       ${e}
 
       <!-- Main Dial Ticks -->
-      <g class="ticks">${r}</g>
+      <g class="ticks">${o}</g>
 
       <!-- High-Visibility Inscriptions -->
       <text x="150" y="80" text-anchor="middle" font-family="'Times New Roman', serif" font-size="12" font-weight="bold" fill="#00e5ff" letter-spacing="3">GOD OF WAR</text>
-      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#ef4444" letter-spacing="1.5">${i}</text>
+      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#ef4444" letter-spacing="1.5">${l}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Frost Cyan Sword) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
@@ -12499,7 +12499,7 @@ const P = {
     centerCap: "#ff4655",
     subdialBg: "#1b2733"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     const e = `
       <g transform="translate(150, 150) scale(1.15)" filter="url(#drop-shadow)">
         <polygon points="-22,-20 -8,-20 12,22 -2,22" fill="#ff4655"/>
@@ -12508,31 +12508,31 @@ const P = {
         <circle cx="0" cy="0" r="42" fill="none" stroke="#ff4655" stroke-width="1.2" stroke-dasharray="8 6" opacity="0.6"/>
       </g>
     `;
-    let r = "";
-    for (let l = 0; l < 60; l++) {
-      const f = l * 6;
-      l % 5 === 0 ? r += `<rect x="147.5" y="20" width="5" height="14" rx="1.5" fill="#ff4655" stroke="#0f1923" stroke-width="0.8" transform="rotate(${f} 150 150)"/>` : t.showTicks !== !1 && (r += `<line x1="150" y1="20" x2="150" y2="25" stroke="#ece8e1" stroke-width="1.5" transform="rotate(${f} 150 150)"/>`);
+    let o = "";
+    for (let i = 0; i < 60; i++) {
+      const f = i * 6;
+      i % 5 === 0 ? o += `<rect x="147.5" y="20" width="5" height="14" rx="1.5" fill="#ff4655" stroke="#0f1923" stroke-width="0.8" transform="rotate(${f} 150 150)"/>` : r.showTicks !== !1 && (o += `<line x1="150" y1="20" x2="150" y2="25" stroke="#ece8e1" stroke-width="1.5" transform="rotate(${f} 150 150)"/>`);
     }
-    const i = t.label || "VALORANT · RIOT GAMES";
+    const l = r.label || "VALORANT · RIOT GAMES";
     return `
       
       <!-- Dark Charcoal Face & Radianite Red Rim -->
       <circle cx="150" cy="150" r="147" fill="#0f1923" stroke="#ff4655" stroke-width="4.5"/>
-      <circle cx="150" cy="150" r="140" fill="${o.face}" stroke="#ece8e1" stroke-width="1.2"/>
+      <circle cx="150" cy="150" r="140" fill="${t.face}" stroke="#ece8e1" stroke-width="1.2"/>
 
       <!-- VALORANT V Emblem & Crosshairs -->
       ${e}
 
       <!-- Main Dial Ticks -->
-      <g class="ticks">${r}</g>
+      <g class="ticks">${o}</g>
 
       <!-- High-Visibility Inscriptions -->
       <text x="150" y="78" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="900" fill="#ff4655" letter-spacing="3">VALORANT</text>
-      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#ece8e1" letter-spacing="1.5">${i}</text>
+      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#ece8e1" letter-spacing="1.5">${l}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Radianite Red Tapered Sword) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
@@ -12560,7 +12560,7 @@ const P = {
     
     `;
   }
-}, j0 = {
+}, Y0 = {
   name: "elden-ring",
   description: "Elden Ring watch with dark Erdtree bark dial, intersecting golden Elden runes, and Site of Grace golden hands",
   defaultColors: {
@@ -12576,7 +12576,7 @@ const P = {
     centerCap: "#f5d061",
     subdialBg: "#2a2018"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     const e = `
       <g transform="translate(150, 150) scale(1.1)" filter="url(#drop-shadow)">
         <!-- Overlapping Rings -->
@@ -12588,31 +12588,31 @@ const P = {
         <line x1="0" y1="-50" x2="0" y2="50" stroke="#f5d061" stroke-width="2"/>
       </g>
     `;
-    let r = "";
-    for (let l = 0; l < 60; l++) {
-      const f = l * 6;
-      l % 5 === 0 ? r += `<rect x="147.5" y="20" width="5" height="14" rx="1.5" fill="#f5d061" stroke="#1a1410" stroke-width="0.8" transform="rotate(${f} 150 150)"/>` : t.showTicks !== !1 && (r += `<line x1="150" y1="20" x2="150" y2="25" stroke="#d4af37" stroke-width="1.5" transform="rotate(${f} 150 150)"/>`);
+    let o = "";
+    for (let i = 0; i < 60; i++) {
+      const f = i * 6;
+      i % 5 === 0 ? o += `<rect x="147.5" y="20" width="5" height="14" rx="1.5" fill="#f5d061" stroke="#1a1410" stroke-width="0.8" transform="rotate(${f} 150 150)"/>` : r.showTicks !== !1 && (o += `<line x1="150" y1="20" x2="150" y2="25" stroke="#d4af37" stroke-width="1.5" transform="rotate(${f} 150 150)"/>`);
     }
-    const i = t.label || "ELDEN RING · TARNISHED";
+    const l = r.label || "ELDEN RING · TARNISHED";
     return `
       
       <!-- Dark Erdtree Bark Face & Elden Gold Rim -->
       <circle cx="150" cy="150" r="147" fill="#1a1410" stroke="#f5d061" stroke-width="4.5"/>
-      <circle cx="150" cy="150" r="140" fill="${o.face}" stroke="#d4af37" stroke-width="1.2"/>
+      <circle cx="150" cy="150" r="140" fill="${t.face}" stroke="#d4af37" stroke-width="1.2"/>
 
       <!-- Intersecting Elden Runes Emblem -->
       ${e}
 
       <!-- Main Dial Ticks -->
-      <g class="ticks">${r}</g>
+      <g class="ticks">${o}</g>
 
       <!-- High-Visibility Inscriptions -->
       <text x="150" y="78" text-anchor="middle" font-family="'Times New Roman', serif" font-size="12" font-weight="bold" fill="#f5d061" letter-spacing="3">ELDEN RING</text>
-      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#ffffff" letter-spacing="1.5">${i}</text>
+      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#ffffff" letter-spacing="1.5">${l}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Elden Gold Greatsword) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
@@ -12640,7 +12640,7 @@ const P = {
     
     `;
   }
-}, Y0 = {
+}, j0 = {
   name: "fortnite",
   description: "Fortnite Victory Royale watch with royal purple & cyan storm dial, Victory Crown at 12 o'clock, and V-Bucks diamond hub",
   defaultColors: {
@@ -12656,7 +12656,7 @@ const P = {
     centerCap: "#00f0ff",
     subdialBg: "#1a0933"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     const e = `
       <g transform="translate(150, 150) scale(1.15)" filter="url(#drop-shadow)">
         <polygon points="-20,10 -25,-12 -10,-2 0,-18 10,-2 25,-12 20,10" fill="#ffd700" stroke="#2b1055" stroke-width="1.2"/>
@@ -12667,31 +12667,31 @@ const P = {
         <circle cx="0" cy="0" r="42" fill="none" stroke="#00f0ff" stroke-width="1.2" stroke-dasharray="6 4"/>
       </g>
     `;
-    let r = "";
-    for (let l = 0; l < 60; l++) {
-      const f = l * 6;
-      l % 5 === 0 ? r += `<polygon points="150,18 154,28 146,28" fill="#ffd700" stroke="#2b1055" stroke-width="0.8" transform="rotate(${f} 150 150)"/>` : t.showTicks !== !1 && (r += `<line x1="150" y1="20" x2="150" y2="25" stroke="#00f0ff" stroke-width="1.5" transform="rotate(${f} 150 150)"/>`);
+    let o = "";
+    for (let i = 0; i < 60; i++) {
+      const f = i * 6;
+      i % 5 === 0 ? o += `<polygon points="150,18 154,28 146,28" fill="#ffd700" stroke="#2b1055" stroke-width="0.8" transform="rotate(${f} 150 150)"/>` : r.showTicks !== !1 && (o += `<line x1="150" y1="20" x2="150" y2="25" stroke="#00f0ff" stroke-width="1.5" transform="rotate(${f} 150 150)"/>`);
     }
-    const i = t.label || "FORTNITE · VICTORY ROYALE";
+    const l = r.label || "FORTNITE · VICTORY ROYALE";
     return `
       
       <!-- Royal Purple Face & Cyan Storm Bezel -->
       <circle cx="150" cy="150" r="147" fill="#2b1055" stroke="#00f0ff" stroke-width="4.5"/>
-      <circle cx="150" cy="150" r="140" fill="${o.face}" stroke="#ffd700" stroke-width="1.2"/>
+      <circle cx="150" cy="150" r="140" fill="${t.face}" stroke="#ffd700" stroke-width="1.2"/>
 
       <!-- Victory Crown Emblem -->
       ${e}
 
       <!-- Main Dial Ticks -->
-      <g class="ticks">${r}</g>
+      <g class="ticks">${o}</g>
 
       <!-- High-Visibility Inscriptions -->
       <text x="150" y="78" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="900" fill="#ffd700" stroke="#2b1055" stroke-width="0.5" letter-spacing="3">FORTNITE</text>
-      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#00f0ff" letter-spacing="1.5">${i}</text>
+      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#00f0ff" letter-spacing="1.5">${l}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Cyan Tapered Sword) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
@@ -12735,7 +12735,7 @@ const P = {
     centerCap: "#ffff00",
     subdialBg: "#151522"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     const e = `
       <g filter="url(#drop-shadow)">
         <!-- Pac-Man at 9 o'clock -->
@@ -12763,31 +12763,31 @@ const P = {
         </g>
       </g>
     `;
-    let r = "";
-    for (let l = 0; l < 60; l++) {
-      const f = l * 6;
-      l % 5 === 0 ? r += `<circle cx="150" cy="20" r="3.5" fill="#ffff00" transform="rotate(${f} 150 150)"/>` : t.showTicks !== !1 && (r += `<circle cx="150" cy="20" r="1.5" fill="#ffffff" transform="rotate(${f} 150 150)"/>`);
+    let o = "";
+    for (let i = 0; i < 60; i++) {
+      const f = i * 6;
+      i % 5 === 0 ? o += `<circle cx="150" cy="20" r="3.5" fill="#ffff00" transform="rotate(${f} 150 150)"/>` : r.showTicks !== !1 && (o += `<circle cx="150" cy="20" r="1.5" fill="#ffffff" transform="rotate(${f} 150 150)"/>`);
     }
-    const i = t.label || "PAC-MAN · 1980 NAMCO";
+    const l = r.label || "PAC-MAN · 1980 NAMCO";
     return `
       
       <!-- Arcade Black Face & Blue Maze Rim -->
       <circle cx="150" cy="150" r="147" fill="#0b0b12" stroke="#0022ff" stroke-width="5"/>
-      <circle cx="150" cy="150" r="140" fill="${o.face}" stroke="#0022ff" stroke-width="1.8" stroke-dasharray="8 6"/>
+      <circle cx="150" cy="150" r="140" fill="${t.face}" stroke="#0022ff" stroke-width="1.8" stroke-dasharray="8 6"/>
 
       <!-- Pac-Man & Ghosts Artwork -->
       ${e}
 
       <!-- Main Dial Ticks -->
-      <g class="ticks">${r}</g>
+      <g class="ticks">${o}</g>
 
       <!-- High-Visibility Inscriptions -->
       <text x="150" y="98" text-anchor="middle" font-family="'Courier New', monospace" font-size="13" font-weight="900" fill="#ffff00" letter-spacing="3">PAC-MAN</text>
-      <text x="150" y="202" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#0022ff" letter-spacing="1.5">${i}</text>
+      <text x="150" y="202" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#0022ff" letter-spacing="1.5">${l}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Pac Yellow Pointer) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
@@ -12829,7 +12829,7 @@ const P = {
     centerCap: "#ffd700",
     subdialBg: "#002bb8"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     const e = `
       <g opacity="0.85">
         <path d="M 12,150 A 138,138 0 0,0 288,150 Z" fill="#00b000"/>
@@ -12837,31 +12837,31 @@ const P = {
         <circle cx="150" cy="150" r="55" fill="#0044ff" stroke="#ffd700" stroke-width="2"/>
       </g>
     `;
-    let r = "";
-    for (let l = 0; l < 60; l++) {
-      const f = l * 6;
-      l % 5 === 0 ? r += `<circle cx="150" cy="22" r="4.5" fill="none" stroke="#ffd700" stroke-width="2" transform="rotate(${f} 150 150)"/>` : t.showTicks !== !1 && (r += `<line x1="150" y1="20" x2="150" y2="25" stroke="#ffffff" stroke-width="1.5" transform="rotate(${f} 150 150)"/>`);
+    let o = "";
+    for (let i = 0; i < 60; i++) {
+      const f = i * 6;
+      i % 5 === 0 ? o += `<circle cx="150" cy="22" r="4.5" fill="none" stroke="#ffd700" stroke-width="2" transform="rotate(${f} 150 150)"/>` : r.showTicks !== !1 && (o += `<line x1="150" y1="20" x2="150" y2="25" stroke="#ffffff" stroke-width="1.5" transform="rotate(${f} 150 150)"/>`);
     }
-    const i = t.label || "SONIC · GREEN HILL ZONE";
+    const l = r.label || "SONIC · GREEN HILL ZONE";
     return `
       
       <!-- Sonic Cobalt Blue Face & Gold Ring Bezel -->
       <circle cx="150" cy="150" r="147" fill="#0044ff" stroke="#ffd700" stroke-width="4.5"/>
-      <circle cx="150" cy="150" r="140" fill="${o.face}"/>
+      <circle cx="150" cy="150" r="140" fill="${t.face}"/>
 
       <!-- Green Hill Zone Artwork -->
       ${e}
 
       <!-- Main Dial Ticks -->
-      <g class="ticks">${r}</g>
+      <g class="ticks">${o}</g>
 
       <!-- High-Visibility Inscriptions -->
       <text x="150" y="78" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" font-weight="900" fill="#ffd700" stroke="#0044ff" stroke-width="0.5" letter-spacing="3">SONIC THE HEDGEHOG</text>
-      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#ffffff" letter-spacing="1.5">${i}</text>
+      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#ffffff" letter-spacing="1.5">${l}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Red Sneaker Pointer) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
@@ -12905,7 +12905,7 @@ const P = {
     centerCap: "#00f0ff",
     subdialBg: "#181926"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     const e = `
       <g filter="url(#drop-shadow)" opacity="0.9">
         <!-- Center Subdial Matrix Frame -->
@@ -12917,35 +12917,35 @@ const P = {
         <line x1="150" y1="110" x2="150" y2="190" stroke="#2a2c3f" stroke-width="1"/>
         <line x1="170" y1="110" x2="170" y2="190" stroke="#2a2c3f" stroke-width="1"/>
       </g>
-    `, r = ["#00f0ff", "#3b82f6", "#f97316", "#eab308", "#22c55e", "#a855f7", "#ef4444"];
-    let i = "";
+    `, o = ["#00f0ff", "#3b82f6", "#f97316", "#eab308", "#22c55e", "#a855f7", "#ef4444"];
+    let l = "";
     for (let f = 0; f < 60; f++) {
-      const c = f * 6;
+      const a = f * 6;
       if (f % 5 === 0) {
-        const s = r[f / 5 % r.length];
-        i += `<rect x="145" y="20" width="10" height="10" rx="1" fill="${s}" stroke="#0d0e15" stroke-width="1" transform="rotate(${c} 150 150)"/>`;
-      } else t.showTicks !== !1 && (i += `<rect x="148.5" y="20" width="3" height="5" fill="#a855f7" transform="rotate(${c} 150 150)"/>`);
+        const s = o[f / 5 % o.length];
+        l += `<rect x="145" y="20" width="10" height="10" rx="1" fill="${s}" stroke="#0d0e15" stroke-width="1" transform="rotate(${a} 150 150)"/>`;
+      } else r.showTicks !== !1 && (l += `<rect x="148.5" y="20" width="3" height="5" fill="#a855f7" transform="rotate(${a} 150 150)"/>`);
     }
-    const l = t.label || "TETRIS · 1984 ALEXEY PAJITNOV";
+    const i = r.label || "TETRIS · 1984 ALEXEY PAJITNOV";
     return `
       
       <!-- Tetris Matrix Black Face & Cyan Border -->
       <circle cx="150" cy="150" r="147" fill="#0d0e15" stroke="#00f0ff" stroke-width="4.5"/>
-      <circle cx="150" cy="150" r="140" fill="${o.face}" stroke="#a855f7" stroke-width="1.2"/>
+      <circle cx="150" cy="150" r="140" fill="${t.face}" stroke="#a855f7" stroke-width="1.2"/>
 
       <!-- Matrix Grid & Blocks Artwork -->
       ${e}
 
       <!-- Main Dial Ticks -->
-      <g class="ticks">${i}</g>
+      <g class="ticks">${l}</g>
 
       <!-- High-Visibility Inscriptions -->
       <text x="150" y="78" text-anchor="middle" font-family="'Courier New', monospace" font-size="13" font-weight="900" fill="#00f0ff" letter-spacing="3">TETRIS</text>
-      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#a855f7" letter-spacing="1.5">${l}</text>
+      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#a855f7" letter-spacing="1.5">${i}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Cyan I-Block Sword) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
@@ -12989,24 +12989,24 @@ const P = {
     centerCap: "#d4af37",
     subdialBg: "#252830"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     const e = `
       <g transform="translate(150, 150) scale(1.15)" filter="url(#drop-shadow)">
         <path d="M 0,-32 L 20,10 L 12,12 L 0,-10 L -12,12 L -20,10 Z" fill="#d4af37" stroke="#181a1f" stroke-width="1"/>
         <path d="M -24,14 Q 0,36 24,14 Q 0,26 -24,14 Z" fill="#d4af37" stroke="#181a1f" stroke-width="1"/>
       </g>
     `;
-    let r = "";
-    for (let l = 0; l < 60; l++) {
-      const f = l * 6;
-      l % 5 === 0 ? r += `<rect x="147.5" y="20" width="5" height="14" rx="1.5" fill="#d4af37" stroke="#181a1f" stroke-width="0.8" transform="rotate(${f} 150 150)"/>` : t.showTicks !== !1 && (r += `<line x1="150" y1="20" x2="150" y2="25" stroke="#ef4444" stroke-width="1.5" transform="rotate(${f} 150 150)"/>`);
+    let o = "";
+    for (let i = 0; i < 60; i++) {
+      const f = i * 6;
+      i % 5 === 0 ? o += `<rect x="147.5" y="20" width="5" height="14" rx="1.5" fill="#d4af37" stroke="#181a1f" stroke-width="0.8" transform="rotate(${f} 150 150)"/>` : r.showTicks !== !1 && (o += `<line x1="150" y1="20" x2="150" y2="25" stroke="#ef4444" stroke-width="1.5" transform="rotate(${f} 150 150)"/>`);
     }
-    const i = t.label || "ASSASSIN'S CREED · ANIMUS";
+    const l = r.label || "ASSASSIN'S CREED · ANIMUS";
     return `
       
       <!-- Dark Animus Face & Bronze Gold Rim -->
       <circle cx="150" cy="150" r="147" fill="#181a1f" stroke="#d4af37" stroke-width="4.5"/>
-      <circle cx="150" cy="150" r="140" fill="${o.face}" stroke="#ef4444" stroke-width="1.2"/>
+      <circle cx="150" cy="150" r="140" fill="${t.face}" stroke="#ef4444" stroke-width="1.2"/>
 
       <!-- Animus Memory Sync Ring -->
       <circle cx="150" cy="150" r="130" fill="none" stroke="#d4af37" stroke-width="1.2" stroke-dasharray="4 6" opacity="0.7"/>
@@ -13015,15 +13015,15 @@ const P = {
       ${e}
 
       <!-- Main Dial Ticks -->
-      <g class="ticks">${r}</g>
+      <g class="ticks">${o}</g>
 
       <!-- High-Visibility Inscriptions -->
       <text x="150" y="80" text-anchor="middle" font-family="'Times New Roman', serif" font-size="12" font-weight="bold" fill="#d4af37" letter-spacing="3">ASSASSIN'S CREED</text>
-      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#ef4444" letter-spacing="1.5">${i}</text>
+      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#ef4444" letter-spacing="1.5">${l}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Hidden Blade Gold Pointer) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
@@ -13067,7 +13067,7 @@ const P = {
     centerCap: "#c8aa6e",
     subdialBg: "#0a192f"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     const e = `
       <g transform="translate(150, 150) scale(1.15)" filter="url(#drop-shadow)">
         <polygon points="0,-28 16,-10 16,10 0,28 -16,10 -16,-10" fill="#0bc6e3" stroke="#c8aa6e" stroke-width="1.5"/>
@@ -13076,31 +13076,31 @@ const P = {
         <circle cx="0" cy="0" r="42" fill="none" stroke="#c8aa6e" stroke-width="1.2" stroke-dasharray="6 6"/>
       </g>
     `;
-    let r = "";
-    for (let l = 0; l < 60; l++) {
-      const f = l * 6;
-      l % 5 === 0 ? r += `<polygon points="150,18 154,28 146,28" fill="#c8aa6e" stroke="#091428" stroke-width="0.8" transform="rotate(${f} 150 150)"/>` : t.showTicks !== !1 && (r += `<line x1="150" y1="20" x2="150" y2="25" stroke="#0bc6e3" stroke-width="1.5" transform="rotate(${f} 150 150)"/>`);
+    let o = "";
+    for (let i = 0; i < 60; i++) {
+      const f = i * 6;
+      i % 5 === 0 ? o += `<polygon points="150,18 154,28 146,28" fill="#c8aa6e" stroke="#091428" stroke-width="0.8" transform="rotate(${f} 150 150)"/>` : r.showTicks !== !1 && (o += `<line x1="150" y1="20" x2="150" y2="25" stroke="#0bc6e3" stroke-width="1.5" transform="rotate(${f} 150 150)"/>`);
     }
-    const i = t.label || "LEAGUE OF LEGENDS · HEXTECH";
+    const l = r.label || "LEAGUE OF LEGENDS · HEXTECH";
     return `
       
       <!-- Deep Summoner Navy Face & Hextech Gold Rim -->
       <circle cx="150" cy="150" r="147" fill="#091428" stroke="#c8aa6e" stroke-width="4.5"/>
-      <circle cx="150" cy="150" r="140" fill="${o.face}" stroke="#0bc6e3" stroke-width="1.2"/>
+      <circle cx="150" cy="150" r="140" fill="${t.face}" stroke="#0bc6e3" stroke-width="1.2"/>
 
       <!-- Nexus Crystal Emblem -->
       ${e}
 
       <!-- Main Dial Ticks -->
-      <g class="ticks">${r}</g>
+      <g class="ticks">${o}</g>
 
       <!-- High-Visibility Inscriptions -->
       <text x="150" y="78" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="900" fill="#c8aa6e" letter-spacing="3">LEAGUE OF LEGENDS</text>
-      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#0bc6e3" letter-spacing="1.5">${i}</text>
+      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#0bc6e3" letter-spacing="1.5">${l}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Hextech Gold Sword) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
@@ -13144,7 +13144,7 @@ const P = {
     centerCap: "#f99e1a",
     subdialBg: "#0f172a"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     const e = `
       <g transform="translate(150, 150) scale(1.2)" filter="url(#drop-shadow)">
         <circle cx="0" cy="0" r="32" fill="none" stroke="#f99e1a" stroke-width="6"/>
@@ -13154,31 +13154,31 @@ const P = {
         <line x1="-12" y1="-8" x2="12" y2="-8" stroke="#1e293b" stroke-width="4"/>
       </g>
     `;
-    let r = "";
-    for (let l = 0; l < 60; l++) {
-      const f = l * 6;
-      l % 5 === 0 ? r += `<rect x="147.5" y="20" width="5" height="14" rx="1.5" fill="#f99e1a" stroke="#1e293b" stroke-width="0.8" transform="rotate(${f} 150 150)"/>` : t.showTicks !== !1 && (r += `<line x1="150" y1="20" x2="150" y2="25" stroke="#ffffff" stroke-width="1.5" transform="rotate(${f} 150 150)"/>`);
+    let o = "";
+    for (let i = 0; i < 60; i++) {
+      const f = i * 6;
+      i % 5 === 0 ? o += `<rect x="147.5" y="20" width="5" height="14" rx="1.5" fill="#f99e1a" stroke="#1e293b" stroke-width="0.8" transform="rotate(${f} 150 150)"/>` : r.showTicks !== !1 && (o += `<line x1="150" y1="20" x2="150" y2="25" stroke="#ffffff" stroke-width="1.5" transform="rotate(${f} 150 150)"/>`);
     }
-    const i = t.label || "OVERWATCH · HEROES NEVER DIE";
+    const l = r.label || "OVERWATCH · HEROES NEVER DIE";
     return `
       
       <!-- Metallic Slate Face & Orange Rim -->
       <circle cx="150" cy="150" r="147" fill="#1e293b" stroke="#f99e1a" stroke-width="4.5"/>
-      <circle cx="150" cy="150" r="140" fill="${o.face}" stroke="#ffffff" stroke-width="1.2"/>
+      <circle cx="150" cy="150" r="140" fill="${t.face}" stroke="#ffffff" stroke-width="1.2"/>
 
       <!-- Overwatch Logo Emblem -->
       ${e}
 
       <!-- Main Dial Ticks -->
-      <g class="ticks">${r}</g>
+      <g class="ticks">${o}</g>
 
       <!-- High-Visibility Inscriptions -->
       <text x="150" y="78" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="900" fill="#f99e1a" letter-spacing="3">OVERWATCH</text>
-      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#ffffff" letter-spacing="1.5">${i}</text>
+      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#ffffff" letter-spacing="1.5">${l}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Metallic Orange Sword) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
@@ -13222,38 +13222,38 @@ const P = {
     centerCap: "#d1d5db",
     subdialBg: "#1e293b"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     const e = `
       <g transform="translate(150, 150) scale(1.15)" filter="url(#drop-shadow)">
         <path d="M 0,-34 L 14,-10 L 22,12 L 8,24 L 0,34 L -8,24 L -22,12 L -14,-10 Z" fill="#d1d5db" stroke="#0f172a" stroke-width="1.2"/>
         <polygon points="0,-24 8,-4 0,16 -8,-4" fill="#0f172a"/>
       </g>
     `;
-    let r = "";
-    for (let l = 0; l < 60; l++) {
-      const f = l * 6;
-      l % 5 === 0 ? r += `<rect x="147.5" y="20" width="5" height="14" rx="1.5" fill="#d1d5db" stroke="#0f172a" stroke-width="0.8" transform="rotate(${f} 150 150)"/>` : t.showTicks !== !1 && (r += `<line x1="150" y1="20" x2="150" y2="25" stroke="#38bdf8" stroke-width="1.5" transform="rotate(${f} 150 150)"/>`);
+    let o = "";
+    for (let i = 0; i < 60; i++) {
+      const f = i * 6;
+      i % 5 === 0 ? o += `<rect x="147.5" y="20" width="5" height="14" rx="1.5" fill="#d1d5db" stroke="#0f172a" stroke-width="0.8" transform="rotate(${f} 150 150)"/>` : r.showTicks !== !1 && (o += `<line x1="150" y1="20" x2="150" y2="25" stroke="#38bdf8" stroke-width="1.5" transform="rotate(${f} 150 150)"/>`);
     }
-    const i = t.label || "SKYRIM · DRAGONBORN FUS RO DAH";
+    const l = r.label || "SKYRIM · DRAGONBORN FUS RO DAH";
     return `
       
       <!-- Icy Slate Face & Steel Bezel -->
       <circle cx="150" cy="150" r="147" fill="#0f172a" stroke="#d1d5db" stroke-width="4.5"/>
-      <circle cx="150" cy="150" r="140" fill="${o.face}" stroke="#38bdf8" stroke-width="1.2"/>
+      <circle cx="150" cy="150" r="140" fill="${t.face}" stroke="#38bdf8" stroke-width="1.2"/>
 
       <!-- Dragonborn Akatosh Emblem -->
       ${e}
 
       <!-- Main Dial Ticks -->
-      <g class="ticks">${r}</g>
+      <g class="ticks">${o}</g>
 
       <!-- High-Visibility Inscriptions -->
       <text x="150" y="78" text-anchor="middle" font-family="'Times New Roman', serif" font-size="12" font-weight="bold" fill="#d1d5db" letter-spacing="3">SKYRIM</text>
-      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#38bdf8" letter-spacing="1.5">${i}</text>
+      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#38bdf8" letter-spacing="1.5">${l}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Nord Steel Sword) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
@@ -13297,38 +13297,38 @@ const P = {
     centerCap: "#e2231a",
     subdialBg: "#f8fafc"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     const e = `
       <g transform="translate(150, 150) rotate(-15) scale(1.15)" filter="url(#drop-shadow)">
         <rect x="-26" y="-26" width="52" height="52" fill="#e2231a" rx="4"/>
         <rect x="-10" y="-10" width="20" height="20" fill="#ffffff" rx="2"/>
       </g>
     `;
-    let r = "";
-    for (let l = 0; l < 60; l++) {
-      const f = l * 6;
-      l % 5 === 0 ? r += `<rect x="146" y="20" width="8" height="14" rx="2" fill="#e2231a" stroke="#ffffff" stroke-width="0.8" transform="rotate(${f} 150 150)"/>` : t.showTicks !== !1 && (r += `<line x1="150" y1="20" x2="150" y2="25" stroke="#64748b" stroke-width="1.5" transform="rotate(${f} 150 150)"/>`);
+    let o = "";
+    for (let i = 0; i < 60; i++) {
+      const f = i * 6;
+      i % 5 === 0 ? o += `<rect x="146" y="20" width="8" height="14" rx="2" fill="#e2231a" stroke="#ffffff" stroke-width="0.8" transform="rotate(${f} 150 150)"/>` : r.showTicks !== !1 && (o += `<line x1="150" y1="20" x2="150" y2="25" stroke="#64748b" stroke-width="1.5" transform="rotate(${f} 150 150)"/>`);
     }
-    const i = t.label || "ROBLOX · POWERING IMAGINATION";
+    const l = r.label || "ROBLOX · POWERING IMAGINATION";
     return `
       
       <!-- Pure White Face & Roblox Red Bezel -->
       <circle cx="150" cy="150" r="147" fill="#ffffff" stroke="#e2231a" stroke-width="5"/>
-      <circle cx="150" cy="150" r="140" fill="${o.face}" stroke="#64748b" stroke-width="1.2"/>
+      <circle cx="150" cy="150" r="140" fill="${t.face}" stroke="#64748b" stroke-width="1.2"/>
 
       <!-- Roblox Emblem -->
       ${e}
 
       <!-- Main Dial Ticks -->
-      <g class="ticks">${r}</g>
+      <g class="ticks">${o}</g>
 
       <!-- High-Visibility Inscriptions -->
       <text x="150" y="80" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" font-weight="900" fill="#e2231a" letter-spacing="3">ROBLOX</text>
-      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#64748b" letter-spacing="1.5">${i}</text>
+      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#64748b" letter-spacing="1.5">${l}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Roblox Red Pointer) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
@@ -13370,7 +13370,7 @@ const P = {
     centerCap: "#e2e8f0",
     subdialBg: "#141722"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     const e = `
       <g transform="translate(150, 150) scale(1.15)" filter="url(#drop-shadow)">
         <!-- Horns -->
@@ -13383,31 +13383,31 @@ const P = {
         <ellipse cx="7" cy="0" rx="5" ry="9" fill="#0a0b10" transform="rotate(10 7 0)"/>
       </g>
     `;
-    let r = "";
-    for (let l = 0; l < 60; l++) {
-      const f = l * 6;
-      l % 5 === 0 ? r += `<polygon points="150,18 153.5,28 146.5,28" fill="#e2e8f0" stroke="#0a0b10" stroke-width="0.8" transform="rotate(${f} 150 150)"/>` : t.showTicks !== !1 && (r += `<line x1="150" y1="20" x2="150" y2="25" stroke="#38bdf8" stroke-width="1.5" transform="rotate(${f} 150 150)"/>`);
+    let o = "";
+    for (let i = 0; i < 60; i++) {
+      const f = i * 6;
+      i % 5 === 0 ? o += `<polygon points="150,18 153.5,28 146.5,28" fill="#e2e8f0" stroke="#0a0b10" stroke-width="0.8" transform="rotate(${f} 150 150)"/>` : r.showTicks !== !1 && (o += `<line x1="150" y1="20" x2="150" y2="25" stroke="#38bdf8" stroke-width="1.5" transform="rotate(${f} 150 150)"/>`);
     }
-    const i = t.label || "HALLOWNEST · VOID & SOUL";
+    const l = r.label || "HALLOWNEST · VOID & SOUL";
     return `
       
       <!-- Void Indigo Face & Silver Mask Rim -->
       <circle cx="150" cy="150" r="147" fill="#0a0b10" stroke="#e2e8f0" stroke-width="4.5"/>
-      <circle cx="150" cy="150" r="140" fill="${o.face}" stroke="#38bdf8" stroke-width="1.2"/>
+      <circle cx="150" cy="150" r="140" fill="${t.face}" stroke="#38bdf8" stroke-width="1.2"/>
 
       <!-- Knight Mask Emblem -->
       ${e}
 
       <!-- Main Dial Ticks -->
-      <g class="ticks">${r}</g>
+      <g class="ticks">${o}</g>
 
       <!-- High-Visibility Inscriptions -->
       <text x="150" y="78" text-anchor="middle" font-family="'Times New Roman', serif" font-size="12" font-weight="bold" fill="#e2e8f0" letter-spacing="3">HOLLOW KNIGHT</text>
-      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#38bdf8" letter-spacing="1.5">${i}</text>
+      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#38bdf8" letter-spacing="1.5">${l}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Nail Sword) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
@@ -13451,7 +13451,7 @@ const P = {
     centerCap: "#ffc700",
     subdialBg: "#003366"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     const e = `
       <g transform="translate(150, 150) scale(1.15)" filter="url(#drop-shadow)">
         <circle cx="0" cy="0" r="30" fill="#003366" stroke="#ffc700" stroke-width="2"/>
@@ -13463,31 +13463,31 @@ const P = {
         <circle cx="0" cy="0" r="3" fill="#ffc700"/>
       </g>
     `;
-    let r = "";
-    for (let l = 0; l < 60; l++) {
-      const f = l * 6;
-      l % 5 === 0 ? r += `<rect x="147.5" y="20" width="5" height="14" rx="1.5" fill="#ffc700" stroke="#004b87" stroke-width="0.8" transform="rotate(${f} 150 150)"/>` : t.showTicks !== !1 && (r += `<line x1="150" y1="20" x2="150" y2="25" stroke="#a3e635" stroke-width="1.5" transform="rotate(${f} 150 150)"/>`);
+    let o = "";
+    for (let i = 0; i < 60; i++) {
+      const f = i * 6;
+      i % 5 === 0 ? o += `<rect x="147.5" y="20" width="5" height="14" rx="1.5" fill="#ffc700" stroke="#004b87" stroke-width="0.8" transform="rotate(${f} 150 150)"/>` : r.showTicks !== !1 && (o += `<line x1="150" y1="20" x2="150" y2="25" stroke="#a3e635" stroke-width="1.5" transform="rotate(${f} 150 150)"/>`);
     }
-    const i = t.label || "FALLOUT · VAULT-TEC PIP-BOY";
+    const l = r.label || "FALLOUT · VAULT-TEC PIP-BOY";
     return `
       
       <!-- Vault Blue Face & Vault Yellow Rim -->
       <circle cx="150" cy="150" r="147" fill="#004b87" stroke="#ffc700" stroke-width="4.5"/>
-      <circle cx="150" cy="150" r="140" fill="${o.face}" stroke="#a3e635" stroke-width="1.2"/>
+      <circle cx="150" cy="150" r="140" fill="${t.face}" stroke="#a3e635" stroke-width="1.2"/>
 
       <!-- Radiation Symbol -->
       ${e}
 
       <!-- Main Dial Ticks -->
-      <g class="ticks">${r}</g>
+      <g class="ticks">${o}</g>
 
       <!-- High-Visibility Inscriptions -->
       <text x="150" y="78" text-anchor="middle" font-family="'Courier New', monospace" font-size="13" font-weight="900" fill="#ffc700" letter-spacing="3">VAULT-TEC</text>
-      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#a3e635" letter-spacing="1.5">${i}</text>
+      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#a3e635" letter-spacing="1.5">${l}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Vault Yellow Sword) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
@@ -13531,7 +13531,7 @@ const P = {
     centerCap: "#ffbb00",
     subdialBg: "#211d1a"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     const e = `
       <g transform="translate(150, 150) scale(1.15)" filter="url(#drop-shadow)">
         <!-- Coiled Sword Blade -->
@@ -13541,31 +13541,31 @@ const P = {
         <path d="M 0,8 Q -10,-8 -3,-20 Q 0,-10 4,-16 Q 10,-3 0,8 Z" fill="#ffbb00"/>
       </g>
     `;
-    let r = "";
-    for (let l = 0; l < 60; l++) {
-      const f = l * 6;
-      l % 5 === 0 ? r += `<rect x="147.5" y="20" width="5" height="14" rx="1.5" fill="#ffbb00" stroke="#141210" stroke-width="0.8" transform="rotate(${f} 150 150)"/>` : t.showTicks !== !1 && (r += `<line x1="150" y1="20" x2="150" y2="25" stroke="#ff5500" stroke-width="1.5" transform="rotate(${f} 150 150)"/>`);
+    let o = "";
+    for (let i = 0; i < 60; i++) {
+      const f = i * 6;
+      i % 5 === 0 ? o += `<rect x="147.5" y="20" width="5" height="14" rx="1.5" fill="#ffbb00" stroke="#141210" stroke-width="0.8" transform="rotate(${f} 150 150)"/>` : r.showTicks !== !1 && (o += `<line x1="150" y1="20" x2="150" y2="25" stroke="#ff5500" stroke-width="1.5" transform="rotate(${f} 150 150)"/>`);
     }
-    const i = t.label || "DARK SOULS · PRAISE THE SUN!";
+    const l = r.label || "DARK SOULS · PRAISE THE SUN!";
     return `
       
       <!-- Ash Slate Face & Sun Gold Rim -->
       <circle cx="150" cy="150" r="147" fill="#141210" stroke="#ffbb00" stroke-width="4.5"/>
-      <circle cx="150" cy="150" r="140" fill="${o.face}" stroke="#ff5500" stroke-width="1.2"/>
+      <circle cx="150" cy="150" r="140" fill="${t.face}" stroke="#ff5500" stroke-width="1.2"/>
 
       <!-- Bonfire Flame Emblem -->
       ${e}
 
       <!-- Main Dial Ticks -->
-      <g class="ticks">${r}</g>
+      <g class="ticks">${o}</g>
 
       <!-- High-Visibility Inscriptions -->
       <text x="150" y="78" text-anchor="middle" font-family="'Times New Roman', serif" font-size="12" font-weight="bold" fill="#ffbb00" letter-spacing="3">DARK SOULS</text>
-      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#ff5500" letter-spacing="1.5">${i}</text>
+      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#ff5500" letter-spacing="1.5">${l}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Coiled Sword Pointer) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
@@ -13593,7 +13593,7 @@ const P = {
     
     `;
   }
-}, c2 = {
+}, a2 = {
   name: "red-dead",
   description: "Red Dead Redemption watch with outlaw crimson red face, revolver cylinder subdial, and sunset gold accents",
   defaultColors: {
@@ -13609,7 +13609,7 @@ const P = {
     centerCap: "#d4af37",
     subdialBg: "#5c0000"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     const e = `
       <g transform="translate(150, 150) scale(1.15)" filter="url(#drop-shadow)">
         <circle cx="0" cy="0" r="32" fill="#5c0000" stroke="#d4af37" stroke-width="2"/>
@@ -13622,31 +13622,31 @@ const P = {
         <circle cx="-16" cy="-9" r="6" fill="#141210" stroke="#d4af37" stroke-width="1"/>
       </g>
     `;
-    let r = "";
-    for (let l = 0; l < 60; l++) {
-      const f = l * 6;
-      l % 5 === 0 ? r += `<rect x="147.5" y="20" width="5" height="14" rx="1.5" fill="#d4af37" stroke="#8b0000" stroke-width="0.8" transform="rotate(${f} 150 150)"/>` : t.showTicks !== !1 && (r += `<line x1="150" y1="20" x2="150" y2="25" stroke="#ffffff" stroke-width="1.5" transform="rotate(${f} 150 150)"/>`);
+    let o = "";
+    for (let i = 0; i < 60; i++) {
+      const f = i * 6;
+      i % 5 === 0 ? o += `<rect x="147.5" y="20" width="5" height="14" rx="1.5" fill="#d4af37" stroke="#8b0000" stroke-width="0.8" transform="rotate(${f} 150 150)"/>` : r.showTicks !== !1 && (o += `<line x1="150" y1="20" x2="150" y2="25" stroke="#ffffff" stroke-width="1.5" transform="rotate(${f} 150 150)"/>`);
     }
-    const i = t.label || "RED DEAD REDEMPTION · OUTLAWS";
+    const l = r.label || "RED DEAD REDEMPTION · OUTLAWS";
     return `
       
       <!-- Outlaw Crimson Face & Sunset Gold Rim -->
       <circle cx="150" cy="150" r="147" fill="#8b0000" stroke="#d4af37" stroke-width="4.5"/>
-      <circle cx="150" cy="150" r="140" fill="${o.face}" stroke="#ffffff" stroke-width="1.2"/>
+      <circle cx="150" cy="150" r="140" fill="${t.face}" stroke="#ffffff" stroke-width="1.2"/>
 
       <!-- Revolver Cylinder Emblem -->
       ${e}
 
       <!-- Main Dial Ticks -->
-      <g class="ticks">${r}</g>
+      <g class="ticks">${o}</g>
 
       <!-- High-Visibility Inscriptions -->
       <text x="150" y="78" text-anchor="middle" font-family="'Times New Roman', serif" font-size="12" font-weight="bold" fill="#d4af37" letter-spacing="3">RED DEAD REDEMPTION</text>
-      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#ffffff" letter-spacing="1.5">${i}</text>
+      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#ffffff" letter-spacing="1.5">${l}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Brass Bullet Pointer) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
@@ -13674,7 +13674,7 @@ const P = {
     
     `;
   }
-}, a2 = {
+}, c2 = {
   name: "counter-strike",
   description: "Counter-Strike 2 tactical watch with hazard orange & dark slate dial, bomb defusal C4 timer subdial, and target reticle hands",
   defaultColors: {
@@ -13690,7 +13690,7 @@ const P = {
     centerCap: "#ff6600",
     subdialBg: "#1b222a"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     const e = `
       <g transform="translate(150, 150) scale(1.15)" filter="url(#drop-shadow)">
         <circle cx="0" cy="0" r="32" fill="#1b222a" stroke="#ff6600" stroke-width="2"/>
@@ -13702,31 +13702,31 @@ const P = {
         <text x="0" y="4" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" font-weight="900" fill="#ff6600">CS2</text>
       </g>
     `;
-    let r = "";
-    for (let l = 0; l < 60; l++) {
-      const f = l * 6;
-      l % 5 === 0 ? r += `<rect x="147.5" y="20" width="5" height="14" rx="1.5" fill="#ff6600" stroke="#11161b" stroke-width="0.8" transform="rotate(${f} 150 150)"/>` : t.showTicks !== !1 && (r += `<line x1="150" y1="20" x2="150" y2="25" stroke="#e2e8f0" stroke-width="1.5" transform="rotate(${f} 150 150)"/>`);
+    let o = "";
+    for (let i = 0; i < 60; i++) {
+      const f = i * 6;
+      i % 5 === 0 ? o += `<rect x="147.5" y="20" width="5" height="14" rx="1.5" fill="#ff6600" stroke="#11161b" stroke-width="0.8" transform="rotate(${f} 150 150)"/>` : r.showTicks !== !1 && (o += `<line x1="150" y1="20" x2="150" y2="25" stroke="#e2e8f0" stroke-width="1.5" transform="rotate(${f} 150 150)"/>`);
     }
-    const i = t.label || "COUNTER-STRIKE 2 · BOMB HAS BEEN PLANTED";
+    const l = r.label || "COUNTER-STRIKE 2 · BOMB HAS BEEN PLANTED";
     return `
       
       <!-- Tactical Black Face & Hazard Orange Rim -->
       <circle cx="150" cy="150" r="147" fill="#11161b" stroke="#ff6600" stroke-width="4.5"/>
-      <circle cx="150" cy="150" r="140" fill="${o.face}" stroke="#e2e8f0" stroke-width="1.2"/>
+      <circle cx="150" cy="150" r="140" fill="${t.face}" stroke="#e2e8f0" stroke-width="1.2"/>
 
       <!-- CS2 Reticle Emblem -->
       ${e}
 
       <!-- Main Dial Ticks -->
-      <g class="ticks">${r}</g>
+      <g class="ticks">${o}</g>
 
       <!-- High-Visibility Inscriptions -->
       <text x="150" y="78" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="900" fill="#ff6600" letter-spacing="3">COUNTER-STRIKE 2</text>
-      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#e2e8f0" letter-spacing="1.5">${i}</text>
+      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#e2e8f0" letter-spacing="1.5">${l}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Hazard Orange Tapered Sword) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
@@ -13770,7 +13770,7 @@ const P = {
     centerCap: "#d4af37",
     subdialBg: "#1a2030"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     const e = `
       <g opacity="0.85">
         <path d="M 150,10 A 140,140 0 0,1 150,290 Z" fill="#0047a0" opacity="0.3"/>
@@ -13780,31 +13780,31 @@ const P = {
         <circle cx="150" cy="150" r="22" fill="#00f0ff" opacity="0.6" filter="url(#lume-glow)"/>
       </g>
     `;
-    let r = "";
-    for (let l = 0; l < 60; l++) {
-      const f = l * 6;
-      l % 5 === 0 ? r += `<rect x="147.5" y="20" width="5" height="14" rx="1.5" fill="#d4af37" stroke="#121622" stroke-width="0.8" transform="rotate(${f} 150 150)"/>` : t.showTicks !== !1 && (r += `<line x1="150" y1="20" x2="150" y2="25" stroke="#c8102e" stroke-width="1.5" transform="rotate(${f} 150 150)"/>`);
+    let o = "";
+    for (let i = 0; i < 60; i++) {
+      const f = i * 6;
+      i % 5 === 0 ? o += `<rect x="147.5" y="20" width="5" height="14" rx="1.5" fill="#d4af37" stroke="#121622" stroke-width="0.8" transform="rotate(${f} 150 150)"/>` : r.showTicks !== !1 && (o += `<line x1="150" y1="20" x2="150" y2="25" stroke="#c8102e" stroke-width="1.5" transform="rotate(${f} 150 150)"/>`);
     }
-    const i = t.label || "WORLD OF WARCRAFT · FOR AZEROTH!";
+    const l = r.label || "WORLD OF WARCRAFT · FOR AZEROTH!";
     return `
       
       <!-- Dark Slate Face & Alliance Gold Bezel -->
       <circle cx="150" cy="150" r="147" fill="#121622" stroke="#d4af37" stroke-width="4.5"/>
-      <circle cx="150" cy="150" r="140" fill="${o.face}" stroke="#00f0ff" stroke-width="1.2"/>
+      <circle cx="150" cy="150" r="140" fill="${t.face}" stroke="#00f0ff" stroke-width="1.2"/>
 
       <!-- Faction Split & Azerite Core -->
       ${e}
 
       <!-- Main Dial Ticks -->
-      <g class="ticks">${r}</g>
+      <g class="ticks">${o}</g>
 
       <!-- High-Visibility Inscriptions -->
       <text x="150" y="78" text-anchor="middle" font-family="'Times New Roman', serif" font-size="12" font-weight="bold" fill="#d4af37" letter-spacing="3">WORLD OF WARCRAFT</text>
-      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#00f0ff" letter-spacing="1.5">${i}</text>
+      <text x="150" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="800" fill="#00f0ff" letter-spacing="1.5">${l}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Alliance Gold Sword) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
@@ -13832,7 +13832,7 @@ const P = {
     
     `;
   }
-}, b = {
+}, S = {
   name: "swiss",
   description: "Iconic Swiss Railway station clock with high-contrast dial and signature lollipop second hand",
   defaultColors: {
@@ -13848,51 +13848,51 @@ const P = {
     centerCap: "#dc2626",
     shadow: "rgba(0, 0, 0, 0.15)"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let i = 0; i < 60; i++) {
-      const l = i * 6;
-      i % 5 === 0 ? e += `<line x1="150" y1="20" x2="150" y2="44" stroke="${o.hourTicks}" stroke-width="7" stroke-linecap="square" transform="rotate(${l} 150 150)"/>` : t.showTicks !== !1 && (e += `<line x1="150" y1="20" x2="150" y2="28" stroke="${o.minuteTicks}" stroke-width="2.5" stroke-linecap="square" transform="rotate(${l} 150 150)"/>`);
+    for (let l = 0; l < 60; l++) {
+      const i = l * 6;
+      l % 5 === 0 ? e += `<line x1="150" y1="20" x2="150" y2="44" stroke="${t.hourTicks}" stroke-width="7" stroke-linecap="square" transform="rotate(${i} 150 150)"/>` : r.showTicks !== !1 && (e += `<line x1="150" y1="20" x2="150" y2="28" stroke="${t.minuteTicks}" stroke-width="2.5" stroke-linecap="square" transform="rotate(${i} 150 150)"/>`);
     }
-    const r = t.label || "SWISS MADE";
+    const o = r.label || "SWISS MADE";
     return `
       
       <!-- Bezel & Face -->
       <circle cx="150" cy="150" r="146" fill="#0d0d0d" stroke="#e5e5e5" stroke-width="2"/>
-      <circle cx="150" cy="150" r="138" fill="${o.face}"/>
+      <circle cx="150" cy="150" r="138" fill="${t.face}"/>
       
       <!-- Ticks -->
       <g class="ticks">${e}</g>
       
       <!-- Subtle Brand Text -->
-      <text x="150" y="210" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="8" font-weight="700" fill="#777777" letter-spacing="1.5">${r}</text>
+      <text x="150" y="210" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="8" font-weight="700" fill="#777777" letter-spacing="1.5">${o}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
-        <rect x="144" y="65" width="12" height="100" rx="3" fill="${o.hourHand}" filter="url(#drop-shadow)"/>
+        <rect x="144" y="65" width="12" height="100" rx="3" fill="${t.hourHand}" filter="url(#drop-shadow)"/>
       </g>
       
       <!-- Minute Hand -->
       <g class="hand minute-hand" transform="rotate(${L.minuteAngle} 150 150)">
-        <rect x="145" y="32" width="10" height="135" rx="3" fill="${o.minuteHand}" filter="url(#drop-shadow)"/>
+        <rect x="145" y="32" width="10" height="135" rx="3" fill="${t.minuteHand}" filter="url(#drop-shadow)"/>
       </g>
       
       ${e ? `
       <!-- Swiss Signature Second Hand with Lollipop Disk -->
       <g class="hand second-hand" transform="rotate(${L.secondAngle} 150 150)">
         <!-- Main red shaft extending back for counter-balance -->
-        <rect x="148.5" y="46" width="3" height="130" fill="${o.secondHand}"/>
+        <rect x="148.5" y="46" width="3" height="130" fill="${t.secondHand}"/>
         <!-- Lollipop Red Circle -->
-        <circle cx="150" cy="46" r="11" fill="${o.secondHand}"/>
+        <circle cx="150" cy="46" r="11" fill="${t.secondHand}"/>
       </g>
       ` : ""}
       
       <!-- Center Hub -->
-      <circle cx="150" cy="150" r="7" fill="${o.centerCap}" filter="url(#drop-shadow)"/>
+      <circle cx="150" cy="150" r="7" fill="${t.centerCap}" filter="url(#drop-shadow)"/>
       <circle cx="150" cy="150" r="2.5" fill="#111111"/>
     
     `;
@@ -13914,20 +13914,20 @@ const P = {
     glow: "rgba(0, 240, 255, 0.45)",
     subdialBg: "#0f1422"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let i = 0; i < 60; i++) {
-      const l = i * 6;
-      i % 5 === 0 ? (e += `<line x1="150" y1="20" x2="150" y2="34" stroke="${o.hourTicks}" stroke-width="3" filter="url(#neon-glow)" transform="rotate(${l} 150 150)"/>`, e += `<circle cx="150" cy="40" r="2" fill="${o.hourTicks}" filter="url(#neon-glow)" transform="rotate(${l} 150 150)"/>`) : t.showTicks !== !1 && (e += `<line x1="150" y1="22" x2="150" y2="28" stroke="${o.minuteTicks}" stroke-width="1.2" opacity="0.75" transform="rotate(${l} 150 150)"/>`);
+    for (let l = 0; l < 60; l++) {
+      const i = l * 6;
+      l % 5 === 0 ? (e += `<line x1="150" y1="20" x2="150" y2="34" stroke="${t.hourTicks}" stroke-width="3" filter="url(#neon-glow)" transform="rotate(${i} 150 150)"/>`, e += `<circle cx="150" cy="40" r="2" fill="${t.hourTicks}" filter="url(#neon-glow)" transform="rotate(${i} 150 150)"/>`) : r.showTicks !== !1 && (e += `<line x1="150" y1="22" x2="150" y2="28" stroke="${t.minuteTicks}" stroke-width="1.2" opacity="0.75" transform="rotate(${i} 150 150)"/>`);
     }
-    const r = t.label || "CYBER//SYS.2088";
+    const o = r.label || "CYBER//SYS.2088";
     return `
       
       <!-- Glowing Outer Hexagon / Tech Rings -->
-      <circle cx="150" cy="150" r="145" fill="${o.face}" stroke="${o.dialBorder}" stroke-width="2.5" filter="url(#neon-glow)"/>
+      <circle cx="150" cy="150" r="145" fill="${t.face}" stroke="${t.dialBorder}" stroke-width="2.5" filter="url(#neon-glow)"/>
       <circle cx="150" cy="150" r="141" fill="none" stroke="#1f293d" stroke-width="1" stroke-dasharray="4 8"/>
       <circle cx="150" cy="150" r="115" fill="none" stroke="#162035" stroke-width="1"/>
-      <circle cx="150" cy="150" r="75" fill="${o.subdialBg || "#0f1422"}" stroke="#00f0ff" stroke-width="1" opacity="0.4" stroke-dasharray="6 3"/>
+      <circle cx="150" cy="150" r="75" fill="${t.subdialBg || "#0f1422"}" stroke="#00f0ff" stroke-width="1" opacity="0.4" stroke-dasharray="6 3"/>
 
       <!-- Tech Crosshairs & Concentric Grid -->
       <line x1="150" y1="30" x2="150" y2="70" stroke="#00f0ff" stroke-width="0.8" opacity="0.3"/>
@@ -13939,44 +13939,44 @@ const P = {
       <g class="ticks">${e}</g>
       
       <!-- HUD Telemetry Labels -->
-      <text x="150" y="105" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" font-weight="700" fill="${o.hourTicks}" letter-spacing="2" filter="url(#neon-glow)">${r}</text>
-      <text x="150" y="200" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="${o.secondHand}" letter-spacing="1.5">[ ${L.timeString24} ]</text>
+      <text x="150" y="105" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" font-weight="700" fill="${t.hourTicks}" letter-spacing="2" filter="url(#neon-glow)">${o}</text>
+      <text x="150" y="200" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="${t.secondHand}" letter-spacing="1.5">[ ${L.timeString24} ]</text>
       <text x="150" y="215" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#5eead4" opacity="0.8" letter-spacing="1">ZONE: ${L.timezoneName}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
-        <polygon points="146,75 154,75 152,160 148,160" fill="${o.hourHand}" filter="url(#neon-glow)"/>
+        <polygon points="146,75 154,75 152,160 148,160" fill="${t.hourHand}" filter="url(#neon-glow)"/>
         <line x1="150" y1="80" x2="150" y2="140" stroke="#ffffff" stroke-width="1.5"/>
       </g>
       
       <!-- Minute Hand -->
       <g class="hand minute-hand" transform="rotate(${L.minuteAngle} 150 150)">
-        <polygon points="147,40 153,40 152,160 148,160" fill="${o.minuteHand}" filter="url(#neon-glow)"/>
-        <polygon points="149,42 151,42 150.5,145 149.5,145" fill="${o.accent}"/>
+        <polygon points="147,40 153,40 152,160 148,160" fill="${t.minuteHand}" filter="url(#neon-glow)"/>
+        <polygon points="149,42 151,42 150.5,145 149.5,145" fill="${t.accent}"/>
       </g>
       
       ${e ? `
       <!-- Cyber Laser Second Hand -->
       <g class="hand second-hand" transform="rotate(${L.secondAngle} 150 150)">
-        <line x1="150" y1="20" x2="150" y2="180" stroke="${o.secondHand}" stroke-width="1.8" filter="url(#neon-glow-pink)"/>
-        <polygon points="150,20 147,32 153,32" fill="${o.secondHand}"/>
-        <circle cx="150" cy="180" r="3" fill="${o.secondHand}"/>
+        <line x1="150" y1="20" x2="150" y2="180" stroke="${t.secondHand}" stroke-width="1.8" filter="url(#neon-glow-pink)"/>
+        <polygon points="150,20 147,32 153,32" fill="${t.secondHand}"/>
+        <circle cx="150" cy="180" r="3" fill="${t.secondHand}"/>
       </g>
       ` : ""}
       
       <!-- Center Neon Core -->
-      <circle cx="150" cy="150" r="9" fill="${o.face}" stroke="${o.hourHand}" stroke-width="2" filter="url(#neon-glow)"/>
-      <circle cx="150" cy="150" r="4" fill="${o.secondHand}" filter="url(#neon-glow-pink)"/>
+      <circle cx="150" cy="150" r="9" fill="${t.face}" stroke="${t.hourHand}" stroke-width="2" filter="url(#neon-glow)"/>
+      <circle cx="150" cy="150" r="4" fill="${t.secondHand}" filter="url(#neon-glow-pink)"/>
     `;
   },
-  getStyles(t) {
+  getStyles(r) {
     return `
       .clock-svg {
-        filter: drop-shadow(0 0 20px ${t.glow || "rgba(0,240,255,0.3)"});
+        filter: drop-shadow(0 0 20px ${r.glow || "rgba(0,240,255,0.3)"});
       }
     
     `;
@@ -13997,55 +13997,55 @@ const P = {
     centerCap: "#4361ee",
     shadow: "#ffffff"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let i = 0; i < 60; i++) {
-      const l = i * 6;
-      i % 5 === 0 ? e += `<circle cx="150" cy="30" r="3.5" fill="${o.hourTicks}" filter="url(#inset-shadow)" transform="rotate(${l} 150 150)"/>` : t.showTicks !== !1 && (e += `<circle cx="150" cy="30" r="1.5" fill="${o.minuteTicks}" transform="rotate(${l} 150 150)"/>`);
+    for (let l = 0; l < 60; l++) {
+      const i = l * 6;
+      l % 5 === 0 ? e += `<circle cx="150" cy="30" r="3.5" fill="${t.hourTicks}" filter="url(#inset-shadow)" transform="rotate(${i} 150 150)"/>` : r.showTicks !== !1 && (e += `<circle cx="150" cy="30" r="1.5" fill="${t.minuteTicks}" transform="rotate(${i} 150 150)"/>`);
     }
-    const r = t.label || "CHRONO";
+    const o = r.label || "CHRONO";
     return `
       
       <!-- Neumorphic Convex Face with Inner & Outer Shadows -->
-      <circle cx="150" cy="150" r="142" fill="${o.face}" filter="url(#neumorphic-shadow)"/>
-      <circle cx="150" cy="150" r="128" fill="${o.face}" stroke="${o.dialBorder}" stroke-width="1.5"/>
-      <circle cx="150" cy="150" r="95" fill="none" stroke="${o.dialBorder}" stroke-width="1" opacity="0.6"/>
+      <circle cx="150" cy="150" r="142" fill="${t.face}" filter="url(#neumorphic-shadow)"/>
+      <circle cx="150" cy="150" r="128" fill="${t.face}" stroke="${t.dialBorder}" stroke-width="1.5"/>
+      <circle cx="150" cy="150" r="95" fill="none" stroke="${t.dialBorder}" stroke-width="1" opacity="0.6"/>
 
       <!-- Ticks -->
       <g class="ticks">${e}</g>
       
       <!-- Embossed Brand Text -->
-      <text x="150" y="115" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9" font-weight="600" fill="${o.numbers}" letter-spacing="3">${r}</text>
+      <text x="150" y="115" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9" font-weight="600" fill="${t.numbers}" letter-spacing="3">${o}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
-        <rect x="146.5" y="70" width="7" height="95" rx="3.5" fill="${o.hourHand}" filter="url(#drop-shadow)"/>
+        <rect x="146.5" y="70" width="7" height="95" rx="3.5" fill="${t.hourHand}" filter="url(#drop-shadow)"/>
       </g>
       
       <!-- Minute Hand -->
       <g class="hand minute-hand" transform="rotate(${L.minuteAngle} 150 150)">
-        <rect x="147.5" y="38" width="5" height="125" rx="2.5" fill="${o.minuteHand}" filter="url(#drop-shadow)"/>
+        <rect x="147.5" y="38" width="5" height="125" rx="2.5" fill="${t.minuteHand}" filter="url(#drop-shadow)"/>
       </g>
       
       ${e ? `
       <!-- Second Hand -->
       <g class="hand second-hand" transform="rotate(${L.secondAngle} 150 150)">
-        <rect x="149" y="26" width="2" height="150" rx="1" fill="${o.secondHand}"/>
-        <circle cx="150" cy="170" r="4.5" fill="${o.secondHand}"/>
+        <rect x="149" y="26" width="2" height="150" rx="1" fill="${t.secondHand}"/>
+        <circle cx="150" cy="170" r="4.5" fill="${t.secondHand}"/>
       </g>
       ` : ""}
       
       <!-- Embossed Center Hub -->
-      <circle cx="150" cy="150" r="9" fill="${o.face}" filter="url(#drop-shadow)"/>
-      <circle cx="150" cy="150" r="4.5" fill="${o.centerCap}"/>
+      <circle cx="150" cy="150" r="9" fill="${t.face}" filter="url(#drop-shadow)"/>
+      <circle cx="150" cy="150" r="4.5" fill="${t.centerCap}"/>
     
     `;
   }
-}, M = {
+}, $ = {
   name: "classic",
   description: "Clean Bauhaus minimalist design with modern typography, crisp numerals, and elegant hands",
   defaultColors: {
@@ -14060,54 +14060,54 @@ const P = {
     accent: "#e11d48",
     centerCap: "#18181b"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let i = 0; i < 60; i++) {
-      const l = i * 6;
-      i % 5 === 0 ? e += `<line x1="150" y1="22" x2="150" y2="34" stroke="${o.hourTicks}" stroke-width="3" stroke-linecap="round" transform="rotate(${l} 150 150)"/>` : t.showTicks !== !1 && (e += `<line x1="150" y1="22" x2="150" y2="28" stroke="${o.minuteTicks}" stroke-width="1.2" stroke-linecap="round" transform="rotate(${l} 150 150)"/>`);
+    for (let l = 0; l < 60; l++) {
+      const i = l * 6;
+      l % 5 === 0 ? e += `<line x1="150" y1="22" x2="150" y2="34" stroke="${t.hourTicks}" stroke-width="3" stroke-linecap="round" transform="rotate(${i} 150 150)"/>` : r.showTicks !== !1 && (e += `<line x1="150" y1="22" x2="150" y2="28" stroke="${t.minuteTicks}" stroke-width="1.2" stroke-linecap="round" transform="rotate(${i} 150 150)"/>`);
     }
-    let r = "";
-    if (t.showNumbers !== !1) {
-      const l = ["12", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"];
+    let o = "";
+    if (r.showNumbers !== !1) {
+      const i = ["12", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"];
       for (let f = 0; f < 12; f++) {
-        const c = (f * 30 - 90) * (Math.PI / 180), a = 150 + 104 * Math.cos(c), s = 150 + 104 * Math.sin(c) + 6;
-        r += `<text x="${a.toFixed(1)}" y="${s.toFixed(1)}" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif" font-size="16" font-weight="600" fill="${o.numbers}">${l[f]}</text>`;
+        const a = (f * 30 - 90) * (Math.PI / 180), c = 150 + 104 * Math.cos(a), s = 150 + 104 * Math.sin(a) + 6;
+        o += `<text x="${c.toFixed(1)}" y="${s.toFixed(1)}" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif" font-size="16" font-weight="600" fill="${t.numbers}">${i[f]}</text>`;
       }
     }
     return `
       
       <!-- Dial Base -->
-      <circle cx="150" cy="150" r="145" fill="${o.face}" stroke="${o.dialBorder}" stroke-width="2.5"/>
+      <circle cx="150" cy="150" r="145" fill="${t.face}" stroke="${t.dialBorder}" stroke-width="2.5"/>
       <circle cx="150" cy="150" r="140" fill="none" stroke="#f4f4f5" stroke-width="1.5"/>
 
       <!-- Ticks & Numbers -->
       <g class="ticks">${e}</g>
-      <g class="numbers">${r}</g>
+      <g class="numbers">${o}</g>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Tapered) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
-        <polygon points="146.5,80 153.5,80 151.5,165 148.5,165" fill="${o.hourHand}" filter="url(#drop-shadow)"/>
+        <polygon points="146.5,80 153.5,80 151.5,165 148.5,165" fill="${t.hourHand}" filter="url(#drop-shadow)"/>
       </g>
       
       <!-- Minute Hand (Tapered) -->
       <g class="hand minute-hand" transform="rotate(${L.minuteAngle} 150 150)">
-        <polygon points="147.5,42 152.5,42 151,165 149,165" fill="${o.minuteHand}" filter="url(#drop-shadow)"/>
+        <polygon points="147.5,42 152.5,42 151,165 149,165" fill="${t.minuteHand}" filter="url(#drop-shadow)"/>
       </g>
       
       ${e ? `
       <!-- Second Hand -->
       <g class="hand second-hand" transform="rotate(${L.secondAngle} 150 150)">
-        <line x1="150" y1="28" x2="150" y2="175" stroke="${o.secondHand}" stroke-width="1.6"/>
-        <circle cx="150" cy="150" r="4.5" fill="${o.secondHand}"/>
+        <line x1="150" y1="28" x2="150" y2="175" stroke="${t.secondHand}" stroke-width="1.6"/>
+        <circle cx="150" cy="150" r="4.5" fill="${t.secondHand}"/>
       </g>
       ` : ""}
       
       <!-- Center Cap -->
-      <circle cx="150" cy="150" r="3" fill="${o.centerCap}"/>
+      <circle cx="150" cy="150" r="3" fill="${t.centerCap}"/>
     
     `;
   }
@@ -14127,61 +14127,61 @@ const P = {
     centerCap: "#d4af37",
     subdialBg: "#19202c"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let l = 0; l < 60; l++) {
-      const f = l * 6;
-      l % 5 === 0 ? e += `<line x1="150" y1="26" x2="150" y2="36" stroke="${o.hourTicks}" stroke-width="2.5" transform="rotate(${f} 150 150)"/>` : t.showTicks !== !1 && (e += `<line x1="150" y1="26" x2="150" y2="30" stroke="${o.minuteTicks}" stroke-width="1" opacity="0.6" transform="rotate(${f} 150 150)"/>`);
+    for (let i = 0; i < 60; i++) {
+      const f = i * 6;
+      i % 5 === 0 ? e += `<line x1="150" y1="26" x2="150" y2="36" stroke="${t.hourTicks}" stroke-width="2.5" transform="rotate(${f} 150 150)"/>` : r.showTicks !== !1 && (e += `<line x1="150" y1="26" x2="150" y2="30" stroke="${t.minuteTicks}" stroke-width="1" opacity="0.6" transform="rotate(${f} 150 150)"/>`);
     }
-    let r = "";
-    if (t.showNumbers !== !1) {
+    let o = "";
+    if (r.showNumbers !== !1) {
       const f = ["XII", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI"];
-      for (let c = 0; c < 12; c++) {
-        const a = (c * 30 - 90) * (Math.PI / 180), s = 150 + 100 * Math.cos(a), n = 150 + 100 * Math.sin(a) + 5;
-        r += `<text x="${s.toFixed(1)}" y="${n.toFixed(1)}" text-anchor="middle" font-family="'Times New Roman', Times, serif" font-size="14" font-weight="bold" fill="${o.numbers}" letter-spacing="1">${f[c]}</text>`;
+      for (let a = 0; a < 12; a++) {
+        const c = (a * 30 - 90) * (Math.PI / 180), s = 150 + 100 * Math.cos(c), n = 150 + 100 * Math.sin(c) + 5;
+        o += `<text x="${s.toFixed(1)}" y="${n.toFixed(1)}" text-anchor="middle" font-family="'Times New Roman', Times, serif" font-size="14" font-weight="bold" fill="${t.numbers}" letter-spacing="1">${f[a]}</text>`;
       }
     }
-    const i = t.label || "CHRONOMETER";
+    const l = r.label || "CHRONOMETER";
     return `
       
       <!-- Bezel with Gold Gradient -->
       <circle cx="150" cy="150" r="146" fill="#0d0f14" stroke="url(#gold-gradient)" stroke-width="5"/>
-      <circle cx="150" cy="150" r="139" fill="${o.face}"/>
-      <circle cx="150" cy="150" r="137" fill="none" stroke="${o.dialBorder}" stroke-width="0.8" opacity="0.5"/>
+      <circle cx="150" cy="150" r="139" fill="${t.face}"/>
+      <circle cx="150" cy="150" r="137" fill="none" stroke="${t.dialBorder}" stroke-width="0.8" opacity="0.5"/>
 
       <!-- Guilloché Dial Pattern / Concentric Textures -->
-      <circle cx="150" cy="150" r="75" fill="${o.subdialBg || "#19202c"}" stroke="${o.dialBorder}" stroke-width="0.75" opacity="0.3"/>
-      <circle cx="150" cy="150" r="50" fill="none" stroke="${o.dialBorder}" stroke-width="0.5" stroke-dasharray="2 4" opacity="0.4"/>
+      <circle cx="150" cy="150" r="75" fill="${t.subdialBg || "#19202c"}" stroke="${t.dialBorder}" stroke-width="0.75" opacity="0.3"/>
+      <circle cx="150" cy="150" r="50" fill="none" stroke="${t.dialBorder}" stroke-width="0.5" stroke-dasharray="2 4" opacity="0.4"/>
 
       <!-- Ticks & Roman Numerals -->
       <g class="ticks">${e}</g>
-      <g class="numbers">${r}</g>
+      <g class="numbers">${o}</g>
       
       <!-- Luxury Inscription -->
-      <text x="150" y="85" text-anchor="middle" font-family="'Times New Roman', serif" font-size="8.5" font-weight="bold" fill="${o.numbers}" letter-spacing="2.5">${i}</text>
-      <text x="150" y="215" text-anchor="middle" font-family="'Times New Roman', serif" font-size="7" fill="${o.minuteTicks}" letter-spacing="1.5">AUTOMATIC · 28800 VPH</text>
+      <text x="150" y="85" text-anchor="middle" font-family="'Times New Roman', serif" font-size="8.5" font-weight="bold" fill="${t.numbers}" letter-spacing="2.5">${l}</text>
+      <text x="150" y="215" text-anchor="middle" font-family="'Times New Roman', serif" font-size="7" fill="${t.minuteTicks}" letter-spacing="1.5">AUTOMATIC · 28800 VPH</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Alpha/Dauphine Hand with Center Ridge) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
-        <polygon points="150,75 145,115 147,165 153,165 155,115" fill="${o.hourHand}" filter="url(#drop-shadow)"/>
+        <polygon points="150,75 145,115 147,165 153,165 155,115" fill="${t.hourHand}" filter="url(#drop-shadow)"/>
         <line x1="150" y1="75" x2="150" y2="165" stroke="#fff4cc" stroke-width="0.8"/>
       </g>
       
       <!-- Minute Hand (Alpha/Dauphine Hand) -->
       <g class="hand minute-hand" transform="rotate(${L.minuteAngle} 150 150)">
-        <polygon points="150,38 146,95 148,165 152,165 154,95" fill="${o.minuteHand}" filter="url(#drop-shadow)"/>
+        <polygon points="150,38 146,95 148,165 152,165 154,95" fill="${t.minuteHand}" filter="url(#drop-shadow)"/>
         <line x1="150" y1="38" x2="150" y2="165" stroke="#fff4cc" stroke-width="0.8"/>
       </g>
       
       ${e ? `
       <!-- Second Hand with Counterweight -->
       <g class="hand second-hand" transform="rotate(${L.secondAngle} 150 150)">
-        <line x1="150" y1="24" x2="150" y2="180" stroke="${o.secondHand}" stroke-width="1.2"/>
-        <circle cx="150" cy="175" r="3.5" fill="${o.secondHand}"/>
+        <line x1="150" y1="24" x2="150" y2="180" stroke="${t.secondHand}" stroke-width="1.2"/>
+        <circle cx="150" cy="175" r="3.5" fill="${t.secondHand}"/>
       </g>
       ` : ""}
       
@@ -14207,62 +14207,62 @@ const P = {
     centerCap: "#38bdf8",
     subdialBg: "#0f172a"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let i = 0; i < 60; i++) {
-      const l = i * 6;
-      i % 5 === 0 ? e += `<line x1="150" y1="20" x2="150" y2="32" stroke="${o.hourTicks}" stroke-width="3" stroke-linecap="round" transform="rotate(${l} 150 150)"/>` : t.showTicks !== !1 && (e += `<line x1="150" y1="20" x2="150" y2="26" stroke="${o.minuteTicks}" stroke-width="1.2" transform="rotate(${l} 150 150)"/>`);
+    for (let l = 0; l < 60; l++) {
+      const i = l * 6;
+      l % 5 === 0 ? e += `<line x1="150" y1="20" x2="150" y2="32" stroke="${t.hourTicks}" stroke-width="3" stroke-linecap="round" transform="rotate(${i} 150 150)"/>` : r.showTicks !== !1 && (e += `<line x1="150" y1="20" x2="150" y2="26" stroke="${t.minuteTicks}" stroke-width="1.2" transform="rotate(${i} 150 150)"/>`);
     }
-    let r = "";
-    if (t.showNumbers !== !1) {
-      const i = [
+    let o = "";
+    if (r.showNumbers !== !1) {
+      const l = [
         { label: "12", x: 150, y: 52 },
         { label: "3", x: 250, y: 156 },
         { label: "6", x: 150, y: 260 },
         { label: "9", x: 50, y: 156 }
       ];
-      for (const l of i)
-        r += `<text x="${l.x}" y="${l.y}" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="700" fill="${o.numbers}">${l.label}</text>`;
+      for (const i of l)
+        o += `<text x="${i.x}" y="${i.y}" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="700" fill="${t.numbers}">${i.label}</text>`;
     }
     return `
       
       <!-- Outer Case & Dial -->
-      <circle cx="150" cy="150" r="145" fill="${o.face}" stroke="${o.dialBorder}" stroke-width="3"/>
+      <circle cx="150" cy="150" r="145" fill="${t.face}" stroke="${t.dialBorder}" stroke-width="3"/>
       <circle cx="150" cy="150" r="139" fill="none" stroke="#1e293b" stroke-width="1.5"/>
 
       <!-- Digital LCD Sub-Display Window (Top) -->
-      <rect x="105" y="70" width="90" height="24" rx="4" fill="${o.subdialBg || "#0f172a"}" stroke="#334155" stroke-width="1"/>
-      <text x="150" y="86" text-anchor="middle" font-family="'Courier New', monospace" font-size="11" font-weight="bold" fill="${o.accent}" letter-spacing="1">${L.dateString}</text>
+      <rect x="105" y="70" width="90" height="24" rx="4" fill="${t.subdialBg || "#0f172a"}" stroke="#334155" stroke-width="1"/>
+      <text x="150" y="86" text-anchor="middle" font-family="'Courier New', monospace" font-size="11" font-weight="bold" fill="${t.accent}" letter-spacing="1">${L.dateString}</text>
 
       <!-- Digital LCD Time Display Window (Bottom) -->
-      <rect x="100" y="195" width="100" height="26" rx="4" fill="${o.subdialBg || "#0f172a"}" stroke="#334155" stroke-width="1"/>
+      <rect x="100" y="195" width="100" height="26" rx="4" fill="${t.subdialBg || "#0f172a"}" stroke="#334155" stroke-width="1"/>
       <text x="150" y="213" text-anchor="middle" font-family="'Courier New', monospace" font-size="13" font-weight="bold" fill="#f8fafc" letter-spacing="1.5">${L.timeString24}</text>
 
       <!-- Ticks & Cardinal Numbers -->
       <g class="ticks">${e}</g>
-      <g class="numbers">${r}</g>
+      <g class="numbers">${o}</g>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
-        <rect x="145.5" y="75" width="9" height="85" rx="3" fill="${o.hourHand}" filter="url(#drop-shadow)"/>
+        <rect x="145.5" y="75" width="9" height="85" rx="3" fill="${t.hourHand}" filter="url(#drop-shadow)"/>
         <rect x="147.5" y="85" width="5" height="40" rx="2" fill="#ffffff"/>
       </g>
       
       <!-- Minute Hand -->
       <g class="hand minute-hand" transform="rotate(${L.minuteAngle} 150 150)">
-        <rect x="146.5" y="42" width="7" height="120" rx="3" fill="${o.minuteHand}" filter="url(#drop-shadow)"/>
-        <rect x="148" y="55" width="4" height="60" rx="1.5" fill="${o.accent}"/>
+        <rect x="146.5" y="42" width="7" height="120" rx="3" fill="${t.minuteHand}" filter="url(#drop-shadow)"/>
+        <rect x="148" y="55" width="4" height="60" rx="1.5" fill="${t.accent}"/>
       </g>
       
       ${e ? `
       <!-- Second Hand -->
       <g class="hand second-hand" transform="rotate(${L.secondAngle} 150 150)">
-        <line x1="150" y1="26" x2="150" y2="175" stroke="${o.secondHand}" stroke-width="1.8"/>
-        <circle cx="150" cy="150" r="5" fill="${o.secondHand}"/>
+        <line x1="150" y1="26" x2="150" y2="175" stroke="${t.secondHand}" stroke-width="1.8"/>
+        <circle cx="150" cy="150" r="5" fill="${t.secondHand}"/>
       </g>
       ` : ""}
       
@@ -14286,39 +14286,39 @@ const P = {
     accent: "#10b981",
     centerCap: "#10b981"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++) {
-      const i = r * 30, l = r % 3 === 0, f = l ? 3.5 : 2, c = l ? o.accent : o.hourTicks;
-      e += `<circle cx="150" cy="30" r="${f}" fill="${c}" transform="rotate(${i} 150 150)"/>`;
+    for (let o = 0; o < 12; o++) {
+      const l = o * 30, i = o % 3 === 0, f = i ? 3.5 : 2, a = i ? t.accent : t.hourTicks;
+      e += `<circle cx="150" cy="30" r="${f}" fill="${a}" transform="rotate(${l} 150 150)"/>`;
     }
     return `
       
-      <circle cx="150" cy="150" r="145" fill="${o.face}" stroke="${o.dialBorder}" stroke-width="1.5"/>
+      <circle cx="150" cy="150" r="145" fill="${t.face}" stroke="${t.dialBorder}" stroke-width="1.5"/>
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Needle) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
-        <line x1="150" y1="75" x2="150" y2="155" stroke="${o.hourHand}" stroke-width="4.5" stroke-linecap="round" filter="url(#drop-shadow)"/>
+        <line x1="150" y1="75" x2="150" y2="155" stroke="${t.hourHand}" stroke-width="4.5" stroke-linecap="round" filter="url(#drop-shadow)"/>
       </g>
       
       <!-- Minute Hand (Needle) -->
       <g class="hand minute-hand" transform="rotate(${L.minuteAngle} 150 150)">
-        <line x1="150" y1="40" x2="150" y2="155" stroke="${o.minuteHand}" stroke-width="2.8" stroke-linecap="round" filter="url(#drop-shadow)"/>
+        <line x1="150" y1="40" x2="150" y2="155" stroke="${t.minuteHand}" stroke-width="2.8" stroke-linecap="round" filter="url(#drop-shadow)"/>
       </g>
       
       ${e ? `
       <!-- Second Hand (Slender Needle) -->
       <g class="hand second-hand" transform="rotate(${L.secondAngle} 150 150)">
-        <line x1="150" y1="30" x2="150" y2="175" stroke="${o.secondHand}" stroke-width="1.4" stroke-linecap="round"/>
+        <line x1="150" y1="30" x2="150" y2="175" stroke="${t.secondHand}" stroke-width="1.4" stroke-linecap="round"/>
       </g>
       ` : ""}
       
-      <circle cx="150" cy="150" r="4" fill="${o.centerCap}"/>
+      <circle cx="150" cy="150" r="4" fill="${t.centerCap}"/>
     
     `;
   }
@@ -14339,18 +14339,18 @@ const P = {
     glow: "rgba(56, 189, 248, 0.6)",
     subdialBg: "#050b14"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let l = 0; l < 60; l++) {
-      const f = l * 6;
-      l % 5 === 0 ? e += `<line x1="150" y1="12" x2="150" y2="20" stroke="#cbd5e1" stroke-width="2.5" transform="rotate(${f} 150 150)"/>` : e += `<line x1="150" y1="14" x2="150" y2="18" stroke="#64748b" stroke-width="1.2" transform="rotate(${f} 150 150)"/>`;
+    for (let i = 0; i < 60; i++) {
+      const f = i * 6;
+      i % 5 === 0 ? e += `<line x1="150" y1="12" x2="150" y2="20" stroke="#cbd5e1" stroke-width="2.5" transform="rotate(${f} 150 150)"/>` : e += `<line x1="150" y1="14" x2="150" y2="18" stroke="#64748b" stroke-width="1.2" transform="rotate(${f} 150 150)"/>`;
     }
-    let r = "";
-    for (let l = 0; l < 12; l++) {
-      const f = l * 30;
-      l === 0 ? r += `<polygon points="143,40 157,40 150,56" fill="${o.hourTicks}" stroke="#ffffff" stroke-width="1.5" filter="url(#lume-glow)"/>` : l === 3 || l === 6 || l === 9 ? r += `<rect x="146.5" y="40" width="7" height="15" rx="1.5" fill="${o.hourTicks}" stroke="#ffffff" stroke-width="1.2" filter="url(#lume-glow)" transform="rotate(${f} 150 150)"/>` : r += `<circle cx="150" cy="46" r="5" fill="${o.hourTicks}" stroke="#ffffff" stroke-width="1.2" filter="url(#lume-glow)" transform="rotate(${f} 150 150)"/>`;
+    let o = "";
+    for (let i = 0; i < 12; i++) {
+      const f = i * 30;
+      i === 0 ? o += `<polygon points="143,40 157,40 150,56" fill="${t.hourTicks}" stroke="#ffffff" stroke-width="1.5" filter="url(#lume-glow)"/>` : i === 3 || i === 6 || i === 9 ? o += `<rect x="146.5" y="40" width="7" height="15" rx="1.5" fill="${t.hourTicks}" stroke="#ffffff" stroke-width="1.2" filter="url(#lume-glow)" transform="rotate(${f} 150 150)"/>` : o += `<circle cx="150" cy="46" r="5" fill="${t.hourTicks}" stroke="#ffffff" stroke-width="1.2" filter="url(#lume-glow)" transform="rotate(${f} 150 150)"/>`;
     }
-    const i = t.label || "300m / 1000ft";
+    const l = r.label || "300m / 1000ft";
     return `
       
       <!-- Deep Sea Ceramic Bezel -->
@@ -14365,22 +14365,22 @@ const P = {
       <circle cx="150" cy="150" r="124" fill="none" stroke="#1e293b" stroke-width="1"/>
 
       <!-- Lume Markers -->
-      <g class="hour-markers">${r}</g>
+      <g class="hour-markers">${o}</g>
 
       <!-- Depth Inscription -->
       <text x="150" y="105" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="8.5" font-weight="700" fill="#ffffff" letter-spacing="2">OCEAN DIVER</text>
-      <text x="150" y="200" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="7.5" font-weight="600" fill="${o.secondHand}" letter-spacing="1.5">${i}</text>
+      <text x="150" y="200" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="7.5" font-weight="600" fill="${t.secondHand}" letter-spacing="1.5">${l}</text>
       <text x="150" y="212" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="6" fill="#94a3b8" letter-spacing="1">AUTOMATIC SUPERLATIVE</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Mercedes / Broad Arrow) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
         <rect x="146.5" y="80" width="7" height="75" rx="1.5" fill="#ffffff" filter="url(#drop-shadow)"/>
         <circle cx="150" cy="90" r="8" fill="#ffffff" filter="url(#drop-shadow)"/>
-        <circle cx="150" cy="90" r="6" fill="${o.hourTicks}" filter="url(#lume-glow)"/>
+        <circle cx="150" cy="90" r="6" fill="${t.hourTicks}" filter="url(#lume-glow)"/>
         <line x1="150" y1="84" x2="150" y2="96" stroke="#ffffff" stroke-width="1"/>
         <line x1="144" y1="90" x2="156" y2="90" stroke="#ffffff" stroke-width="1"/>
       </g>
@@ -14388,16 +14388,16 @@ const P = {
       <!-- Minute Hand (Sword Hand) -->
       <g class="hand minute-hand" transform="rotate(${L.minuteAngle} 150 150)">
         <polygon points="146,45 154,45 153,155 147,155" fill="#ffffff" filter="url(#drop-shadow)"/>
-        <polygon points="147.5,49 152.5,49 151.5,140 148.5,140" fill="${o.hourTicks}" filter="url(#lume-glow)"/>
+        <polygon points="147.5,49 152.5,49 151.5,140 148.5,140" fill="${t.hourTicks}" filter="url(#lume-glow)"/>
       </g>
       
       ${e ? `
       <!-- Orange Diver Second Hand with Lume Dot -->
       <g class="hand second-hand" transform="rotate(${L.secondAngle} 150 150)">
-        <line x1="150" y1="28" x2="150" y2="180" stroke="${o.secondHand}" stroke-width="1.8"/>
+        <line x1="150" y1="28" x2="150" y2="180" stroke="${t.secondHand}" stroke-width="1.8"/>
         <circle cx="150" cy="65" r="5" fill="#ffffff"/>
-        <circle cx="150" cy="65" r="3.5" fill="${o.hourTicks}" filter="url(#lume-glow)"/>
-        <circle cx="150" cy="175" r="3.5" fill="${o.secondHand}"/>
+        <circle cx="150" cy="65" r="3.5" fill="${t.hourTicks}" filter="url(#lume-glow)"/>
+        <circle cx="150" cy="175" r="3.5" fill="${t.secondHand}"/>
       </g>
       ` : ""}
       
@@ -14423,17 +14423,17 @@ const P = {
     centerCap: "#ec4899",
     glow: "rgba(236, 72, 153, 0.5)"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let i = 0; i < 12; i++) {
-      const l = i * 30;
-      e += `<polygon points="148,22 152,22 150,34" fill="${o.hourTicks}" filter="url(#pink-glow)" transform="rotate(${l} 150 150)"/>`;
+    for (let l = 0; l < 12; l++) {
+      const i = l * 30;
+      e += `<polygon points="148,22 152,22 150,34" fill="${t.hourTicks}" filter="url(#pink-glow)" transform="rotate(${i} 150 150)"/>`;
     }
-    const r = t.label || "OUTRUN // 1984";
+    const o = r.label || "OUTRUN // 1984";
     return `
       
       <!-- Deep Purple Outer Ring -->
-      <circle cx="150" cy="150" r="145" fill="${o.face}" stroke="${o.dialBorder}" stroke-width="3" filter="url(#pink-glow)"/>
+      <circle cx="150" cy="150" r="145" fill="${t.face}" stroke="${t.dialBorder}" stroke-width="3" filter="url(#pink-glow)"/>
       <circle cx="150" cy="150" r="139" fill="url(#synth-bg)"/>
 
       <!-- Segmented Retrowave Sunset (Top Half) -->
@@ -14461,35 +14461,35 @@ const P = {
       <g class="ticks">${e}</g>
       
       <!-- Outrun Text -->
-      <text x="150" y="80" text-anchor="middle" font-family="'Impact', 'Arial Black', sans-serif" font-size="10" font-weight="bold" fill="#facc15" letter-spacing="2" filter="url(#pink-glow)">${r}</text>
+      <text x="150" y="80" text-anchor="middle" font-family="'Impact', 'Arial Black', sans-serif" font-size="10" font-weight="bold" fill="#facc15" letter-spacing="2" filter="url(#pink-glow)">${o}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Neon Pink) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
-        <polygon points="146,75 154,75 152,160 148,160" fill="${o.hourHand}" filter="url(#pink-glow)"/>
+        <polygon points="146,75 154,75 152,160 148,160" fill="${t.hourHand}" filter="url(#pink-glow)"/>
         <line x1="150" y1="80" x2="150" y2="150" stroke="#ffffff" stroke-width="1.5"/>
       </g>
       
       <!-- Minute Hand (Neon Cyan) -->
       <g class="hand minute-hand" transform="rotate(${L.minuteAngle} 150 150)">
-        <polygon points="147,42 153,42 152,160 148,160" fill="${o.minuteHand}" filter="url(#neon-glow)"/>
+        <polygon points="147,42 153,42 152,160 148,160" fill="${t.minuteHand}" filter="url(#neon-glow)"/>
         <line x1="150" y1="48" x2="150" y2="150" stroke="#ffffff" stroke-width="1.5"/>
       </g>
       
       ${e ? `
       <!-- Second Hand (Laser Yellow) -->
       <g class="hand second-hand" transform="rotate(${L.secondAngle} 150 150)">
-        <line x1="150" y1="25" x2="150" y2="180" stroke="${o.secondHand}" stroke-width="1.8"/>
-        <polygon points="150,22 146,34 154,34" fill="${o.secondHand}"/>
+        <line x1="150" y1="25" x2="150" y2="180" stroke="${t.secondHand}" stroke-width="1.8"/>
+        <polygon points="150,22 146,34 154,34" fill="${t.secondHand}"/>
       </g>
       ` : ""}
       
       <!-- Center Hub -->
       <circle cx="150" cy="150" r="7" fill="#ffffff" filter="url(#pink-glow)"/>
-      <circle cx="150" cy="150" r="3.5" fill="${o.face}"/>
+      <circle cx="150" cy="150" r="3.5" fill="${t.face}"/>
     
     `;
   }
@@ -14508,26 +14508,26 @@ const P = {
     accent: "#fbbf24",
     centerCap: "#121316"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let l = 0; l < 60; l++) {
-      const f = l * 6, c = l % 5 === 0;
-      c && l !== 0 ? e += `<line x1="150" y1="24" x2="150" y2="40" stroke="${o.hourTicks}" stroke-width="3" stroke-linecap="round" transform="rotate(${f} 150 150)"/>` : !c && t.showTicks !== !1 && (e += `<line x1="150" y1="24" x2="150" y2="32" stroke="${o.minuteTicks}" stroke-width="1.2" transform="rotate(${f} 150 150)"/>`);
+    for (let i = 0; i < 60; i++) {
+      const f = i * 6, a = i % 5 === 0;
+      a && i !== 0 ? e += `<line x1="150" y1="24" x2="150" y2="40" stroke="${t.hourTicks}" stroke-width="3" stroke-linecap="round" transform="rotate(${f} 150 150)"/>` : !a && r.showTicks !== !1 && (e += `<line x1="150" y1="24" x2="150" y2="32" stroke="${t.minuteTicks}" stroke-width="1.2" transform="rotate(${f} 150 150)"/>`);
     }
-    let r = "";
-    if (t.showNumbers !== !1) {
+    let o = "";
+    if (r.showNumbers !== !1) {
       const f = ["12", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"];
-      for (let c = 1; c < 12; c++) {
-        const a = (c * 30 - 90) * (Math.PI / 180), s = 150 + 98 * Math.cos(a), n = 150 + 98 * Math.sin(a) + 6;
-        r += `<text x="${s.toFixed(1)}" y="${n.toFixed(1)}" text-anchor="middle" font-family="'Arial', sans-serif" font-size="16" font-weight="bold" fill="${o.numbers}">${f[c]}</text>`;
+      for (let a = 1; a < 12; a++) {
+        const c = (a * 30 - 90) * (Math.PI / 180), s = 150 + 98 * Math.cos(c), n = 150 + 98 * Math.sin(c) + 6;
+        o += `<text x="${s.toFixed(1)}" y="${n.toFixed(1)}" text-anchor="middle" font-family="'Arial', sans-serif" font-size="16" font-weight="bold" fill="${t.numbers}">${f[a]}</text>`;
       }
     }
-    const i = t.label || "FLIEGER TYPE A";
+    const l = r.label || "FLIEGER TYPE A";
     return `
       
       <!-- Cockpit Instrument Outer Bezel with Rivets -->
       <circle cx="150" cy="150" r="146" fill="#1b1e24" stroke="#2d323b" stroke-width="3"/>
-      <circle cx="150" cy="150" r="139" fill="${o.face}"/>
+      <circle cx="150" cy="150" r="139" fill="${t.face}"/>
 
       <!-- 12 O'Clock Aviator Triangle & Two Dots -->
       <polygon points="142,42 158,42 150,26" fill="#ffffff"/>
@@ -14536,32 +14536,32 @@ const P = {
 
       <!-- Ticks & Numerals -->
       <g class="ticks">${e}</g>
-      <g class="numbers">${r}</g>
+      <g class="numbers">${o}</g>
 
       <!-- Aviator Inscription -->
-      <text x="150" y="195" text-anchor="middle" font-family="'Arial', sans-serif" font-size="8" font-weight="bold" fill="#64748b" letter-spacing="2">${i}</text>
+      <text x="150" y="195" text-anchor="middle" font-family="'Arial', sans-serif" font-size="8" font-weight="bold" fill="#64748b" letter-spacing="2">${l}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Aviation Sword Hand) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
-        <polygon points="144,70 156,70 152,160 148,160" fill="${o.hourHand}" filter="url(#drop-shadow)"/>
+        <polygon points="144,70 156,70 152,160 148,160" fill="${t.hourHand}" filter="url(#drop-shadow)"/>
         <line x1="150" y1="75" x2="150" y2="150" stroke="#121316" stroke-width="1.8"/>
       </g>
       
       <!-- Minute Hand (Aviation Sword Hand) -->
       <g class="hand minute-hand" transform="rotate(${L.minuteAngle} 150 150)">
-        <polygon points="145,35 155,35 152,160 148,160" fill="${o.minuteHand}" filter="url(#drop-shadow)"/>
+        <polygon points="145,35 155,35 152,160 148,160" fill="${t.minuteHand}" filter="url(#drop-shadow)"/>
         <line x1="150" y1="40" x2="150" y2="150" stroke="#121316" stroke-width="1.8"/>
       </g>
       
       ${e ? `
       <!-- Cockpit Yellow Needle Second Hand -->
       <g class="hand second-hand" transform="rotate(${L.secondAngle} 150 150)">
-        <line x1="150" y1="24" x2="150" y2="180" stroke="${o.secondHand}" stroke-width="1.6"/>
-        <circle cx="150" cy="175" r="4" fill="${o.secondHand}"/>
+        <line x1="150" y1="24" x2="150" y2="180" stroke="${t.secondHand}" stroke-width="1.6"/>
+        <circle cx="150" cy="175" r="4" fill="${t.secondHand}"/>
       </g>
       ` : ""}
       
@@ -14587,17 +14587,17 @@ const P = {
     centerCap: "#00ff66",
     glow: "rgba(0, 255, 102, 0.6)"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    const r = ["0xC", "0x1", "0x2", "0x3", "0x4", "0x5", "0x6", "0x7", "0x8", "0x9", "0xA", "0xB"];
-    for (let l = 0; l < 12; l++) {
-      const c = (l * 30 - 90) * (Math.PI / 180), a = 150 + 104 * Math.cos(c), s = 150 + 104 * Math.sin(c) + 4;
-      e += `<text x="${a.toFixed(1)}" y="${s.toFixed(1)}" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="${o.hourTicks}" filter="url(#matrix-glow)">${r[l]}</text>`;
+    const o = ["0xC", "0x1", "0x2", "0x3", "0x4", "0x5", "0x6", "0x7", "0x8", "0x9", "0xA", "0xB"];
+    for (let i = 0; i < 12; i++) {
+      const a = (i * 30 - 90) * (Math.PI / 180), c = 150 + 104 * Math.cos(a), s = 150 + 104 * Math.sin(a) + 4;
+      e += `<text x="${c.toFixed(1)}" y="${s.toFixed(1)}" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" font-weight="bold" fill="${t.hourTicks}" filter="url(#matrix-glow)">${o[i]}</text>`;
     }
-    const i = t.label || "ROOT@SYSTEM:~$";
+    const l = r.label || "ROOT@SYSTEM:~$";
     return `
       <!-- Terminal Frame -->
-      <circle cx="150" cy="150" r="145" fill="${o.face}" stroke="${o.dialBorder}" stroke-width="2.5" filter="url(#matrix-glow)"/>
+      <circle cx="150" cy="150" r="145" fill="${t.face}" stroke="${t.dialBorder}" stroke-width="2.5" filter="url(#matrix-glow)"/>
       <circle cx="150" cy="150" r="140" fill="none" stroke="#003b14" stroke-width="1.5"/>
 
       <!-- Matrix Scanline Rings -->
@@ -14608,34 +14608,34 @@ const P = {
       <g class="ticks">${e}</g>
 
       <!-- Terminal Text Readout -->
-      <text x="150" y="95" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" font-weight="bold" fill="#00ff66" filter="url(#matrix-glow)">${i}</text>
+      <text x="150" y="95" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" font-weight="bold" fill="#00ff66" filter="url(#matrix-glow)">${l}</text>
       <text x="150" y="205" text-anchor="middle" font-family="'Courier New', monospace" font-size="9.5" font-weight="bold" fill="#a3e635" filter="url(#matrix-glow)">[ TIME: ${L.timeString24} ]</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Pixelated Green Bar) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
-        <rect x="147" y="75" width="6" height="85" fill="${o.hourHand}" filter="url(#matrix-glow)"/>
+        <rect x="147" y="75" width="6" height="85" fill="${t.hourHand}" filter="url(#matrix-glow)"/>
         <circle cx="150" cy="80" r="2" fill="#ffffff"/>
       </g>
       
       <!-- Minute Hand -->
       <g class="hand minute-hand" transform="rotate(${L.minuteAngle} 150 150)">
-        <rect x="148" y="38" width="4" height="125" fill="${o.minuteHand}" filter="url(#matrix-glow)"/>
+        <rect x="148" y="38" width="4" height="125" fill="${t.minuteHand}" filter="url(#matrix-glow)"/>
       </g>
       
       ${e ? `
       <!-- Phosphor Needle -->
       <g class="hand second-hand" transform="rotate(${L.secondAngle} 150 150)">
-        <line x1="150" y1="24" x2="150" y2="180" stroke="${o.secondHand}" stroke-width="1.4" filter="url(#matrix-glow)"/>
+        <line x1="150" y1="24" x2="150" y2="180" stroke="${t.secondHand}" stroke-width="1.4" filter="url(#matrix-glow)"/>
         <rect x="148" y="30" width="4" height="4" fill="#ffffff"/>
       </g>
       ` : ""}
       
       <!-- Center Terminal Hub -->
-      <circle cx="150" cy="150" r="6" fill="${o.face}" stroke="${o.accent}" stroke-width="2" filter="url(#matrix-glow)"/>
+      <circle cx="150" cy="150" r="6" fill="${t.face}" stroke="${t.accent}" stroke-width="2" filter="url(#matrix-glow)"/>
       <circle cx="150" cy="150" r="2.5" fill="#ffffff"/>
     `;
   }
@@ -14655,22 +14655,22 @@ const P = {
     centerCap: "#fbbf24",
     glow: "rgba(192, 132, 252, 0.5)"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let i = 0; i < 12; i++) {
-      const f = (i * 30 - 90) * (Math.PI / 180), c = 150 + 110 * Math.cos(f), a = 150 + 110 * Math.sin(f);
-      i % 3 === 0 ? e += `
-          <g transform="translate(${c}, ${a})" filter="url(#gold-glow)">
-            <polygon points="0,-6 2,-2 6,0 2,2 0,6 -2,2 -6,0 -2,-2" fill="${o.accent}"/>
+    for (let l = 0; l < 12; l++) {
+      const f = (l * 30 - 90) * (Math.PI / 180), a = 150 + 110 * Math.cos(f), c = 150 + 110 * Math.sin(f);
+      l % 3 === 0 ? e += `
+          <g transform="translate(${a}, ${c})" filter="url(#gold-glow)">
+            <polygon points="0,-6 2,-2 6,0 2,2 0,6 -2,2 -6,0 -2,-2" fill="${t.accent}"/>
             <circle cx="0" cy="0" r="1.5" fill="#ffffff"/>
           </g>
-        ` : e += `<circle cx="${c}" cy="${a}" r="2" fill="${o.hourTicks}" filter="url(#neon-glow)"/>`;
+        ` : e += `<circle cx="${a}" cy="${c}" r="2" fill="${t.hourTicks}" filter="url(#neon-glow)"/>`;
     }
-    const r = t.label || "COSMOS // ORBIT";
+    const o = r.label || "COSMOS // ORBIT";
     return `
       
       <!-- Deep Cosmic Nebula Outer Dial -->
-      <circle cx="150" cy="150" r="145" fill="url(#galaxy-nebula)" stroke="${o.dialBorder}" stroke-width="2.5" filter="url(#neon-glow)"/>
+      <circle cx="150" cy="150" r="145" fill="url(#galaxy-nebula)" stroke="${t.dialBorder}" stroke-width="2.5" filter="url(#neon-glow)"/>
       
       <!-- Celestial Orbital Rings -->
       <ellipse cx="150" cy="150" rx="125" ry="60" fill="none" stroke="#7e22ce" stroke-width="0.8" opacity="0.6" transform="rotate(-25 150 150)"/>
@@ -14681,32 +14681,32 @@ const P = {
       <g class="constellations">${e}</g>
 
       <!-- Central Sun/Moon Inscription -->
-      <text x="150" y="105" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#e9d5ff" letter-spacing="2" filter="url(#neon-glow)">${r}</text>
+      <text x="150" y="105" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" font-weight="bold" fill="#e9d5ff" letter-spacing="2" filter="url(#neon-glow)">${o}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Nebula Purple Ray) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
-        <polygon points="146,75 154,75 152,160 148,160" fill="${o.hourHand}" filter="url(#neon-glow)"/>
+        <polygon points="146,75 154,75 152,160 148,160" fill="${t.hourHand}" filter="url(#neon-glow)"/>
         <line x1="150" y1="80" x2="150" y2="150" stroke="#ffffff" stroke-width="1"/>
       </g>
       
       <!-- Minute Hand (Starlight Pink Ray) -->
       <g class="hand minute-hand" transform="rotate(${L.minuteAngle} 150 150)">
-        <polygon points="147,40 153,40 152,160 148,160" fill="${o.minuteHand}" filter="url(#pink-glow)"/>
+        <polygon points="147,40 153,40 152,160 148,160" fill="${t.minuteHand}" filter="url(#pink-glow)"/>
         <line x1="150" y1="46" x2="150" y2="150" stroke="#ffffff" stroke-width="1"/>
       </g>
       
       ${e ? `
       <!-- Orbiting Planetary Moon Second Hand -->
       <g class="hand second-hand" transform="rotate(${L.secondAngle} 150 150)">
-        <line x1="150" y1="28" x2="150" y2="180" stroke="${o.secondHand}" stroke-width="1.4"/>
+        <line x1="150" y1="28" x2="150" y2="180" stroke="${t.secondHand}" stroke-width="1.4"/>
         <!-- Orbiting Planet/Moon with Ring -->
         <circle cx="150" cy="50" r="5.5" fill="#facc15" filter="url(#gold-glow)"/>
         <ellipse cx="150" cy="50" rx="9" ry="2.5" fill="none" stroke="#fef08a" stroke-width="1" transform="rotate(20 150 50)"/>
-        <circle cx="150" cy="175" r="3" fill="${o.secondHand}"/>
+        <circle cx="150" cy="175" r="3" fill="${t.secondHand}"/>
       </g>
       ` : ""}
       
@@ -14732,63 +14732,63 @@ const P = {
     centerCap: "#ef4444",
     subdialBg: "#181b22"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let l = 0; l < 60; l++) {
-      const f = l * 6, c = f >= 240 && f <= 360, a = c ? "#ef4444" : o.hourTicks;
-      l % 5 === 0 ? e += `<line x1="150" y1="22" x2="150" y2="36" stroke="${a}" stroke-width="${c ? "3.5" : "3"}" transform="rotate(${f} 150 150)"/>` : t.showTicks !== !1 && (e += `<line x1="150" y1="24" x2="150" y2="30" stroke="${c ? "#ef4444" : o.minuteTicks}" stroke-width="1.2" opacity="${c ? "0.9" : "0.6"}" transform="rotate(${f} 150 150)"/>`);
+    for (let i = 0; i < 60; i++) {
+      const f = i * 6, a = f >= 240 && f <= 360, c = a ? "#ef4444" : t.hourTicks;
+      i % 5 === 0 ? e += `<line x1="150" y1="22" x2="150" y2="36" stroke="${c}" stroke-width="${a ? "3.5" : "3"}" transform="rotate(${f} 150 150)"/>` : r.showTicks !== !1 && (e += `<line x1="150" y1="24" x2="150" y2="30" stroke="${a ? "#ef4444" : t.minuteTicks}" stroke-width="1.2" opacity="${a ? "0.9" : "0.6"}" transform="rotate(${f} 150 150)"/>`);
     }
-    let r = "";
-    if (t.showNumbers !== !1) {
-      const l = ["12", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"];
+    let o = "";
+    if (r.showNumbers !== !1) {
+      const i = ["12", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"];
       for (let f = 0; f < 12; f++) {
-        const c = (f * 30 - 90) * (Math.PI / 180), a = 150 + 98 * Math.cos(c), s = 150 + 98 * Math.sin(c) + 5, y = f >= 8 ? "#ef4444" : "#ffffff";
-        r += `<text x="${a.toFixed(1)}" y="${s.toFixed(1)}" text-anchor="middle" font-family="'Arial Black', sans-serif" font-size="13" font-weight="bold" fill="${y}">${l[f]}</text>`;
+        const a = (f * 30 - 90) * (Math.PI / 180), c = 150 + 98 * Math.cos(a), s = 150 + 98 * Math.sin(a) + 5, d = f >= 8 ? "#ef4444" : "#ffffff";
+        o += `<text x="${c.toFixed(1)}" y="${s.toFixed(1)}" text-anchor="middle" font-family="'Arial Black', sans-serif" font-size="13" font-weight="bold" fill="${d}">${i[f]}</text>`;
       }
     }
-    const i = t.label || "RPM x 1000";
+    const l = r.label || "RPM x 1000";
     return `
       
       <!-- Bezel & Carbon Dial Base -->
       <circle cx="150" cy="150" r="146" fill="#0b0d10" stroke="#334155" stroke-width="3"/>
-      <circle cx="150" cy="150" r="139" fill="${o.face}"/>
+      <circle cx="150" cy="150" r="139" fill="${t.face}"/>
       
       <!-- Redline Warning Arc (8 to 12 o'clock) -->
       <path d="M 46,150 A 104,104 0 0,1 150,46" fill="none" stroke="#ef4444" stroke-width="5" stroke-linecap="round" transform="rotate(-60 150 150)" opacity="0.85"/>
 
       <!-- Racing Sub-Dials / Chequered Pattern Ring -->
-      <circle cx="150" cy="150" r="70" fill="${o.subdialBg || "#181b22"}" stroke="#334155" stroke-width="1"/>
+      <circle cx="150" cy="150" r="70" fill="${t.subdialBg || "#181b22"}" stroke="#334155" stroke-width="1"/>
       <circle cx="150" cy="150" r="50" fill="none" stroke="#ef4444" stroke-width="0.8" opacity="0.4" stroke-dasharray="4 4"/>
 
       <!-- Ticks & RPM Numbers -->
       <g class="ticks">${e}</g>
-      <g class="rpm-numbers">${r}</g>
+      <g class="rpm-numbers">${o}</g>
 
       <!-- Gauge Label -->
       <text x="150" y="110" text-anchor="middle" font-family="'Arial Black', sans-serif" font-size="7.5" font-weight="bold" fill="#ef4444" letter-spacing="1.5">TURBO · GT</text>
-      <text x="150" y="195" text-anchor="middle" font-family="'Arial', sans-serif" font-size="7" font-weight="bold" fill="#94a3b8" letter-spacing="1">${i}</text>
+      <text x="150" y="195" text-anchor="middle" font-family="'Arial', sans-serif" font-size="7" font-weight="bold" fill="#94a3b8" letter-spacing="1">${l}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Speedometer Needle) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
-        <polygon points="146.5,75 153.5,75 151.5,160 148.5,160" fill="${o.hourHand}" filter="url(#drop-shadow)"/>
+        <polygon points="146.5,75 153.5,75 151.5,160 148.5,160" fill="${t.hourHand}" filter="url(#drop-shadow)"/>
         <line x1="150" y1="80" x2="150" y2="150" stroke="#ef4444" stroke-width="1.2"/>
       </g>
       
       <!-- Minute Hand (Speedometer Needle) -->
       <g class="hand minute-hand" transform="rotate(${L.minuteAngle} 150 150)">
-        <polygon points="147,40 153,40 151.5,160 148.5,160" fill="${o.minuteHand}" filter="url(#drop-shadow)"/>
+        <polygon points="147,40 153,40 151.5,160 148.5,160" fill="${t.minuteHand}" filter="url(#drop-shadow)"/>
         <line x1="150" y1="45" x2="150" y2="150" stroke="#ef4444" stroke-width="1.2"/>
       </g>
       
       ${e ? `
       <!-- Racing Red Needle with Center Disc -->
       <g class="hand second-hand" transform="rotate(${L.secondAngle} 150 150)">
-        <line x1="150" y1="20" x2="150" y2="180" stroke="${o.secondHand}" stroke-width="2"/>
-        <polygon points="150,18 147,30 153,30" fill="${o.secondHand}"/>
+        <line x1="150" y1="20" x2="150" y2="180" stroke="${t.secondHand}" stroke-width="2"/>
+        <polygon points="150,18 147,30 153,30" fill="${t.secondHand}"/>
       </g>
       ` : ""}
       
@@ -14813,26 +14813,26 @@ const P = {
     accent: "#b71c1c",
     centerCap: "#b8860b"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let l = 0; l < 60; l++) {
-      const f = l * 6;
-      l % 5 === 0 ? e += `<line x1="150" y1="24" x2="150" y2="34" stroke="${o.hourTicks}" stroke-width="2.5" transform="rotate(${f} 150 150)"/>` : t.showTicks !== !1 && (e += `<circle cx="150" cy="28" r="1" fill="${o.minuteTicks}" transform="rotate(${f} 150 150)"/>`);
+    for (let i = 0; i < 60; i++) {
+      const f = i * 6;
+      i % 5 === 0 ? e += `<line x1="150" y1="24" x2="150" y2="34" stroke="${t.hourTicks}" stroke-width="2.5" transform="rotate(${f} 150 150)"/>` : r.showTicks !== !1 && (e += `<circle cx="150" cy="28" r="1" fill="${t.minuteTicks}" transform="rotate(${f} 150 150)"/>`);
     }
-    let r = "";
-    if (t.showNumbers !== !1) {
+    let o = "";
+    if (r.showNumbers !== !1) {
       const f = ["XII", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI"];
-      for (let c = 0; c < 12; c++) {
-        const a = (c * 30 - 90) * (Math.PI / 180), s = 150 + 100 * Math.cos(a), n = 150 + 100 * Math.sin(a) + 5;
-        r += `<text x="${s.toFixed(1)}" y="${n.toFixed(1)}" text-anchor="middle" font-family="'Georgia', serif" font-size="14" font-style="italic" font-weight="bold" fill="${o.numbers}">${f[c]}</text>`;
+      for (let a = 0; a < 12; a++) {
+        const c = (a * 30 - 90) * (Math.PI / 180), s = 150 + 100 * Math.cos(c), n = 150 + 100 * Math.sin(c) + 5;
+        o += `<text x="${s.toFixed(1)}" y="${n.toFixed(1)}" text-anchor="middle" font-family="'Georgia', serif" font-size="14" font-style="italic" font-weight="bold" fill="${t.numbers}">${f[a]}</text>`;
       }
     }
-    const i = t.label || "EST. 1892";
+    const l = r.label || "EST. 1892";
     return `
       
       <!-- Antique Brass Bezel -->
       <circle cx="150" cy="150" r="147" fill="#4a2e12" stroke="url(#gold-gradient)" stroke-width="4"/>
-      <circle cx="150" cy="150" r="141" fill="${o.face}"/>
+      <circle cx="150" cy="150" r="141" fill="${t.face}"/>
       
       <!-- Vintage Parchment Inner Ring -->
       <circle cx="150" cy="150" r="137" fill="none" stroke="#d7ccc8" stroke-width="1.5"/>
@@ -14840,35 +14840,35 @@ const P = {
 
       <!-- Ticks & Numerals -->
       <g class="ticks">${e}</g>
-      <g class="numbers">${r}</g>
+      <g class="numbers">${o}</g>
 
       <!-- Vintage Inscription -->
       <text x="150" y="90" text-anchor="middle" font-family="'Georgia', serif" font-size="8" font-style="italic" fill="#5d4037" letter-spacing="2">POCKET WATCH</text>
-      <text x="150" y="215" text-anchor="middle" font-family="'Georgia', serif" font-size="7" font-weight="bold" fill="#8d6e63" letter-spacing="1.5">${i}</text>
+      <text x="150" y="215" text-anchor="middle" font-family="'Georgia', serif" font-size="7" font-weight="bold" fill="#8d6e63" letter-spacing="1.5">${l}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Breguet Moon Hand) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
-        <line x1="150" y1="85" x2="150" y2="160" stroke="${o.hourHand}" stroke-width="3"/>
-        <circle cx="150" cy="90" r="7" fill="none" stroke="${o.hourHand}" stroke-width="2.5"/>
-        <polygon points="150,70 146,85 154,85" fill="${o.hourHand}"/>
+        <line x1="150" y1="85" x2="150" y2="160" stroke="${t.hourHand}" stroke-width="3"/>
+        <circle cx="150" cy="90" r="7" fill="none" stroke="${t.hourHand}" stroke-width="2.5"/>
+        <polygon points="150,70 146,85 154,85" fill="${t.hourHand}"/>
       </g>
       
       <!-- Minute Hand (Breguet Moon Hand) -->
       <g class="hand minute-hand" transform="rotate(${L.minuteAngle} 150 150)">
-        <line x1="150" y1="50" x2="150" y2="160" stroke="${o.minuteHand}" stroke-width="2.5"/>
-        <circle cx="150" cy="55" r="6" fill="none" stroke="${o.minuteHand}" stroke-width="2.2"/>
-        <polygon points="150,35 147,50 153,50" fill="${o.minuteHand}"/>
+        <line x1="150" y1="50" x2="150" y2="160" stroke="${t.minuteHand}" stroke-width="2.5"/>
+        <circle cx="150" cy="55" r="6" fill="none" stroke="${t.minuteHand}" stroke-width="2.2"/>
+        <polygon points="150,35 147,50 153,50" fill="${t.minuteHand}"/>
       </g>
       
       ${e ? `
       <!-- Antique Red Second Hand with Tear Drop Counterweight -->
       <g class="hand second-hand" transform="rotate(${L.secondAngle} 150 150)">
-        <line x1="150" y1="26" x2="150" y2="175" stroke="${o.secondHand}" stroke-width="1.2"/>
-        <circle cx="150" cy="170" r="3.5" fill="${o.secondHand}"/>
+        <line x1="150" y1="26" x2="150" y2="175" stroke="${t.secondHand}" stroke-width="1.2"/>
+        <circle cx="150" cy="170" r="3.5" fill="${t.secondHand}"/>
       </g>
       ` : ""}
       
@@ -14894,17 +14894,17 @@ const P = {
     centerCap: "#38bdf8",
     glow: "rgba(56, 189, 248, 0.4)"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let i = 0; i < 12; i++) {
-      const l = i * 30;
-      i % 3 === 0 ? e += `<rect x="148" y="24" width="4" height="14" rx="2" fill="#ffffff" filter="url(#drop-shadow)" transform="rotate(${l} 150 150)"/>` : t.showTicks !== !1 && (e += `<circle cx="150" cy="30" r="2" fill="rgba(255, 255, 255, 0.6)" transform="rotate(${l} 150 150)"/>`);
+    for (let l = 0; l < 12; l++) {
+      const i = l * 30;
+      l % 3 === 0 ? e += `<rect x="148" y="24" width="4" height="14" rx="2" fill="#ffffff" filter="url(#drop-shadow)" transform="rotate(${i} 150 150)"/>` : r.showTicks !== !1 && (e += `<circle cx="150" cy="30" r="2" fill="rgba(255, 255, 255, 0.6)" transform="rotate(${i} 150 150)"/>`);
     }
-    const r = t.label || "GLASS UI";
+    const o = r.label || "GLASS UI";
     return `
       
       <!-- Frosted Glass Layer & Iridescent Rim -->
-      <circle cx="150" cy="150" r="145" fill="${o.face}" stroke="url(#glass-border)" stroke-width="2.5" filter="url(#drop-shadow)"/>
+      <circle cx="150" cy="150" r="145" fill="${t.face}" stroke="url(#glass-border)" stroke-width="2.5" filter="url(#drop-shadow)"/>
       <circle cx="150" cy="150" r="139" fill="none" stroke="rgba(255, 255, 255, 0.15)" stroke-width="1"/>
       <circle cx="150" cy="150" r="95" fill="none" stroke="rgba(255, 255, 255, 0.08)" stroke-width="1"/>
 
@@ -14912,11 +14912,11 @@ const P = {
       <g class="ticks">${e}</g>
 
       <!-- Glass Inscription -->
-      <text x="150" y="110" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="9" font-weight="600" fill="rgba(255, 255, 255, 0.85)" letter-spacing="3">${r}</text>
+      <text x="150" y="110" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="9" font-weight="600" fill="rgba(255, 255, 255, 0.85)" letter-spacing="3">${o}</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Soft White Pill) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
@@ -14925,20 +14925,20 @@ const P = {
       
       <!-- Minute Hand (Cyan Pill) -->
       <g class="hand minute-hand" transform="rotate(${L.minuteAngle} 150 150)">
-        <rect x="147" y="38" width="6" height="125" rx="3" fill="${o.minuteHand}" filter="url(#drop-shadow)"/>
+        <rect x="147" y="38" width="6" height="125" rx="3" fill="${t.minuteHand}" filter="url(#drop-shadow)"/>
       </g>
       
       ${e ? `
       <!-- Second Hand (Coral Red) -->
       <g class="hand second-hand" transform="rotate(${L.secondAngle} 150 150)">
-        <line x1="150" y1="26" x2="150" y2="175" stroke="${o.secondHand}" stroke-width="1.8" stroke-linecap="round"/>
-        <circle cx="150" cy="150" r="4.5" fill="${o.secondHand}"/>
+        <line x1="150" y1="26" x2="150" y2="175" stroke="${t.secondHand}" stroke-width="1.8" stroke-linecap="round"/>
+        <circle cx="150" cy="150" r="4.5" fill="${t.secondHand}"/>
       </g>
       ` : ""}
       
       <!-- Center Glass Cap -->
       <circle cx="150" cy="150" r="7" fill="rgba(255, 255, 255, 0.9)" filter="url(#drop-shadow)"/>
-      <circle cx="150" cy="150" r="3" fill="${o.secondHand}"/>
+      <circle cx="150" cy="150" r="3" fill="${t.secondHand}"/>
     
     `;
   }
@@ -14957,11 +14957,11 @@ const P = {
     accent: "#ff4d6d",
     centerCap: "#ff4d6d"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++) {
-      const i = r * 30;
-      r % 3 === 0 ? e += `<circle cx="150" cy="52" r="3.5" fill="${o.hourTicks}" transform="rotate(${i} 150 150)"/>` : e += `<circle cx="150" cy="52" r="2" fill="${o.minuteTicks}" transform="rotate(${i} 150 150)"/>`;
+    for (let o = 0; o < 12; o++) {
+      const l = o * 30;
+      o % 3 === 0 ? e += `<circle cx="150" cy="52" r="3.5" fill="${t.hourTicks}" transform="rotate(${l} 150 150)"/>` : e += `<circle cx="150" cy="52" r="2" fill="${t.minuteTicks}" transform="rotate(${l} 150 150)"/>`;
     }
     return `
       
@@ -14995,7 +14995,7 @@ const P = {
       <circle cx="150" cy="150" r="102" fill="#cbebf7" stroke="#7ec8e3" stroke-width="3.5"/>
 
       <!-- White Inner Dial Face -->
-      <circle cx="150" cy="150" r="92" fill="${o.face}"/>
+      <circle cx="150" cy="150" r="92" fill="${t.face}"/>
 
       <!-- Cute Blushing Cheeks -->
       <ellipse cx="98" cy="165" rx="14" ry="10" fill="#ffccd5" opacity="0.85"/>
@@ -15026,25 +15026,25 @@ const P = {
       <path d="M 258,195 Q 263,195 263,190 Q 263,195 268,195 Q 263,195 263,200 Q 263,195 258,195" fill="#fbd38d"/>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Rounded Coral Pastel) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
-        <rect x="147" y="90" width="6" height="68" rx="3" fill="${o.hourHand}"/>
+        <rect x="147" y="90" width="6" height="68" rx="3" fill="${t.hourHand}"/>
         <circle cx="150" cy="94" r="2" fill="#ffffff"/>
       </g>
       
       <!-- Minute Hand (Longer Coral Pastel) -->
       <g class="hand minute-hand" transform="rotate(${L.minuteAngle} 150 150)">
-        <rect x="147.5" y="65" width="5" height="95" rx="2.5" fill="${o.minuteHand}"/>
+        <rect x="147.5" y="65" width="5" height="95" rx="2.5" fill="${t.minuteHand}"/>
       </g>
       
       ${e ? `
       <!-- Second Hand with Heart Accent -->
       <g class="hand second-hand" transform="rotate(${L.secondAngle} 150 150)">
-        <line x1="150" y1="58" x2="150" y2="165" stroke="${o.secondHand}" stroke-width="1.8" stroke-linecap="round"/>
-        <circle cx="150" cy="58" r="3.5" fill="${o.secondHand}"/>
+        <line x1="150" y1="58" x2="150" y2="165" stroke="${t.secondHand}" stroke-width="1.8" stroke-linecap="round"/>
+        <circle cx="150" cy="58" r="3.5" fill="${t.secondHand}"/>
       </g>
       ` : ""}
       
@@ -15054,7 +15054,7 @@ const P = {
     
     `;
   }
-}, C2 = {
+}, $2 = {
   name: "pixel-farm",
   description: "Stardew Valley inspired cozy 8-bit pixel art farmhouse clock with wooden frame and golden farm star",
   defaultColors: {
@@ -15069,11 +15069,11 @@ const P = {
     accent: "#f59e0b",
     centerCap: "#f59e0b"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++) {
-      const i = r * 30;
-      r % 3 === 0 ? e += `<rect x="146" y="44" width="8" height="8" fill="${o.hourTicks}" transform="rotate(${i} 150 150)"/>` : e += `<rect x="148" y="46" width="4" height="4" fill="${o.minuteTicks}" transform="rotate(${i} 150 150)"/>`;
+    for (let o = 0; o < 12; o++) {
+      const l = o * 30;
+      o % 3 === 0 ? e += `<rect x="146" y="44" width="8" height="8" fill="${t.hourTicks}" transform="rotate(${l} 150 150)"/>` : e += `<rect x="148" y="46" width="4" height="4" fill="${t.minuteTicks}" transform="rotate(${l} 150 150)"/>`;
     }
     return `
       
@@ -15086,7 +15086,7 @@ const P = {
       <polygon points="55,22 245,22 284,61 284,235 245,274 55,274 16,235 16,61" fill="#b45309"/>
       
       <!-- Inner Pixel Dial Face -->
-      <polygon points="70,40 230,40 260,70 260,230 230,260 70,260 40,230 40,70" fill="${o.face}" stroke="#78350f" stroke-width="4"/>
+      <polygon points="70,40 230,40 260,70 260,230 230,260 70,260 40,230 40,70" fill="${t.face}" stroke="#78350f" stroke-width="4"/>
 
       <!-- Stardew Golden Stardrop Star at 12 O'Clock -->
       <g transform="translate(150, 28)">
@@ -15107,31 +15107,31 @@ const P = {
       <text x="150" y="105" text-anchor="middle" font-family="'Courier New', monospace" font-size="8.5" font-weight="900" fill="#92400e" letter-spacing="1.5">STARDEW</text>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Pixel Block Arrow) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
-        <rect x="146" y="85" width="8" height="70" fill="${o.hourHand}" stroke="#1f2937" stroke-width="1"/>
-        <polygon points="150,75 142,85 158,85" fill="${o.hourHand}"/>
+        <rect x="146" y="85" width="8" height="70" fill="${t.hourHand}" stroke="#1f2937" stroke-width="1"/>
+        <polygon points="150,75 142,85 158,85" fill="${t.hourHand}"/>
       </g>
       
       <!-- Minute Hand (Long Pixel Arrow) -->
       <g class="hand minute-hand" transform="rotate(${L.minuteAngle} 150 150)">
-        <rect x="147" y="55" width="6" height="100" fill="${o.minuteHand}" stroke="#1f2937" stroke-width="1"/>
-        <polygon points="150,45 143,55 157,55" fill="${o.minuteHand}"/>
+        <rect x="147" y="55" width="6" height="100" fill="${t.minuteHand}" stroke="#1f2937" stroke-width="1"/>
+        <polygon points="150,45 143,55 157,55" fill="${t.minuteHand}"/>
       </g>
       
       ${e ? `
       <!-- Pixel Second Hand with Block Tip -->
       <g class="hand second-hand" transform="rotate(${L.secondAngle} 150 150)">
-        <line x1="150" y1="40" x2="150" y2="165" stroke="${o.secondHand}" stroke-width="2"/>
-        <rect x="147" y="40" width="6" height="6" fill="${o.secondHand}"/>
+        <line x1="150" y1="40" x2="150" y2="165" stroke="${t.secondHand}" stroke-width="2"/>
+        <rect x="147" y="40" width="6" height="6" fill="${t.secondHand}"/>
       </g>
       ` : ""}
       
       <!-- Center Pixel Hub Block -->
-      <rect x="145" y="145" width="10" height="10" fill="${o.centerCap}" stroke="#451a03" stroke-width="2"/>
+      <rect x="145" y="145" width="10" height="10" fill="${t.centerCap}" stroke="#451a03" stroke-width="2"/>
     
     `;
   }
@@ -15150,12 +15150,12 @@ const P = {
     accent: "#f59e0b",
     centerCap: "#f59e0b"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++) {
-      const i = r * 30;
-      r % 3 === 0 ? e += `
-          <g transform="rotate(${i} 150 150) translate(150, 24)">
+    for (let o = 0; o < 12; o++) {
+      const l = o * 30;
+      o % 3 === 0 ? e += `
+          <g transform="rotate(${l} 150 150) translate(150, 24)">
             <circle cx="-3" cy="0" r="2.6" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.5"/>
             <circle cx="3" cy="0" r="2.6" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.5"/>
             <circle cx="0" cy="-3" r="2.6" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.5"/>
@@ -15163,7 +15163,7 @@ const P = {
             <circle cx="0" cy="0" r="2.2" fill="#f59e0b"/>
           </g>
         ` : e += `
-          <g transform="rotate(${i} 150 150) translate(150, 24)">
+          <g transform="rotate(${l} 150 150) translate(150, 24)">
             <circle cx="0" cy="0" r="2.2" fill="#b45309" stroke="#fef08a" stroke-width="0.6"/>
           </g>
         `;
@@ -15311,7 +15311,7 @@ const P = {
       <g class="ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
+  renderHands(r, t, L) {
     return `
       <defs>
         <filter id="cottage_hand_shadow" x="-30%" y="-30%" width="160%" height="160%">
@@ -15335,7 +15335,7 @@ const P = {
         </g>
 
         <!-- Second Hand: Slender Rose Thorn Second Needle with Daisy Hub -->
-        ${t.showSeconds !== !1 ? `
+        ${r.showSeconds !== !1 ? `
         <g transform="rotate(${L.secondAngle} 150 150)">
           <line x1="150" y1="172" x2="150" y2="20" stroke="#dc2626" stroke-width="1.6"/>
           <circle cx="150" cy="20" r="3.5" fill="#dc2626" stroke="#ffffff" stroke-width="0.8"/>
@@ -15350,7 +15350,7 @@ const P = {
       </g>
     `;
   }
-}, $2 = {
+}, C2 = {
   name: "neko",
   description: "Kawaii cat clock with feline ears, whiskers, and paw print hour markers",
   defaultColors: {
@@ -15365,18 +15365,18 @@ const P = {
     accent: "#f97316",
     centerCap: "#f97316"
   },
-  renderDial(t, o, L) {
+  renderDial(r, t, L) {
     let e = "";
-    for (let r = 0; r < 12; r++) {
-      const i = r * 30;
-      r % 3 === 0 ? e += `
-          <g transform="rotate(${i} 150 150) translate(150, 48)">
-            <ellipse cx="0" cy="2" rx="3.5" ry="2.8" fill="${o.hourTicks}"/>
-            <circle cx="-3" cy="-2.5" r="1.3" fill="${o.hourTicks}"/>
-            <circle cx="0" cy="-3.5" r="1.3" fill="${o.hourTicks}"/>
-            <circle cx="3" cy="-2.5" r="1.3" fill="${o.hourTicks}"/>
+    for (let o = 0; o < 12; o++) {
+      const l = o * 30;
+      o % 3 === 0 ? e += `
+          <g transform="rotate(${l} 150 150) translate(150, 48)">
+            <ellipse cx="0" cy="2" rx="3.5" ry="2.8" fill="${t.hourTicks}"/>
+            <circle cx="-3" cy="-2.5" r="1.3" fill="${t.hourTicks}"/>
+            <circle cx="0" cy="-3.5" r="1.3" fill="${t.hourTicks}"/>
+            <circle cx="3" cy="-2.5" r="1.3" fill="${t.hourTicks}"/>
           </g>
-        ` : e += `<circle cx="150" cy="48" r="2" fill="${o.minuteTicks}" transform="rotate(${i} 150 150)"/>`;
+        ` : e += `<circle cx="150" cy="48" r="2" fill="${t.minuteTicks}" transform="rotate(${l} 150 150)"/>`;
     }
     return `
       
@@ -15388,7 +15388,7 @@ const P = {
 
       <!-- Main Cat Head Outer Bezel -->
       <circle cx="150" cy="150" r="120" fill="#ffedd5" stroke="#ea580c" stroke-width="4"/>
-      <circle cx="150" cy="150" r="108" fill="${o.face}" stroke="#fed7aa" stroke-width="2"/>
+      <circle cx="150" cy="150" r="108" fill="${t.face}" stroke="#fed7aa" stroke-width="2"/>
 
       <!-- Cute Cat Nose & Whiskers -->
       <polygon points="146,155 154,155 150,160" fill="#f97316"/>
@@ -15404,43 +15404,1082 @@ const P = {
       <g class="paw-ticks">${e}</g>
     `;
   },
-  renderHands(t, o, L) {
-    const e = t.showSeconds !== !1;
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
     return `
       <!-- Hour Hand (Rounded Cat Paw Hand) -->
       <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
-        <rect x="146" y="85" width="8" height="70" rx="4" fill="${o.hourHand}"/>
+        <rect x="146" y="85" width="8" height="70" rx="4" fill="${t.hourHand}"/>
         <circle cx="150" cy="90" r="2" fill="#fed7aa"/>
       </g>
       
       <!-- Minute Hand (Rounded Cat Hand) -->
       <g class="hand minute-hand" transform="rotate(${L.minuteAngle} 150 150)">
-        <rect x="147" y="60" width="6" height="98" rx="3" fill="${o.minuteHand}"/>
+        <rect x="147" y="60" width="6" height="98" rx="3" fill="${t.minuteHand}"/>
       </g>
       
       ${e ? `
       <!-- Second Hand with Fish / Cat Tail Tip -->
       <g class="hand second-hand" transform="rotate(${L.secondAngle} 150 150)">
-        <line x1="150" y1="48" x2="150" y2="170" stroke="${o.secondHand}" stroke-width="1.8" stroke-linecap="round"/>
+        <line x1="150" y1="48" x2="150" y2="170" stroke="${t.secondHand}" stroke-width="1.8" stroke-linecap="round"/>
         <!-- Fish Cracker Icon on Tip -->
-        <ellipse cx="150" cy="50" rx="5" ry="3" fill="${o.secondHand}"/>
-        <polygon points="155,50 159,47 159,53" fill="${o.secondHand}"/>
+        <ellipse cx="150" cy="50" rx="5" ry="3" fill="${t.secondHand}"/>
+        <polygon points="155,50 159,47 159,53" fill="${t.secondHand}"/>
       </g>
       ` : ""}
       
       <!-- Center Hub -->
-      <circle cx="150" cy="150" r="5.5" fill="${o.accent}"/>
+      <circle cx="150" cy="150" r="5.5" fill="${t.accent}"/>
       <circle cx="150" cy="150" r="2.5" fill="#ffffff"/>
     
     `;
   }
-}, x = {
+}, _2 = {
+  name: "Rolex Submariner",
+  description: "Iconic dive watch with a black dial, mercedes hands, and a diver bezel",
+  defaultColors: {
+    face: "#121212",
+    dialBorder: "#c0c0c0",
+    hourTicks: "#ffffff",
+    minuteTicks: "#888888",
+    numbers: "#ffffff",
+    hourHand: "#ffffff",
+    minuteHand: "#ffffff",
+    secondHand: "#ffffff",
+    accent: "#00ff00",
+    // Lume color for night
+    centerCap: "#c0c0c0"
+  },
+  renderDial(r, t, L) {
+    let e = "";
+    for (let i = 0; i < 60; i++) {
+      const f = i * 6;
+      if (i % 5 === 0) {
+        if (i !== 0) {
+          let a = i;
+          if (i % 10 === 0) {
+            const c = (f - 90) * (Math.PI / 180), s = 150 + 133 * Math.cos(c), n = 150 + 133 * Math.sin(c) + 4;
+            e += `<text x="${s}" y="${n}" text-anchor="middle" font-family="Arial, sans-serif" font-weight="bold" font-size="12" fill="#c0c0c0" transform="rotate(${f} ${s} ${n - 4})">${a}</text>`;
+          } else
+            e += `<line x1="150" y1="12" x2="150" y2="24" stroke="#c0c0c0" stroke-width="2" transform="rotate(${f} 150 150)"/>`;
+        }
+      } else i < 15 && (e += `<line x1="150" y1="12" x2="150" y2="18" stroke="#c0c0c0" stroke-width="1" transform="rotate(${f} 150 150)"/>`);
+    }
+    let o = "";
+    for (let i = 0; i < 12; i++) {
+      const f = i * 30;
+      i === 0 ? o += `<polygon points="150,35 142,50 158,50" fill="${t.hourTicks}" stroke="#c0c0c0" stroke-width="1"/>` : i === 3 || i === 6 || i === 9 ? o += `<rect x="146" y="38" width="8" height="18" fill="${t.hourTicks}" stroke="#c0c0c0" stroke-width="1" transform="rotate(${f} 150 150)"/>` : o += `<circle cx="150" cy="45" r="7" fill="${t.hourTicks}" stroke="#c0c0c0" stroke-width="1" transform="rotate(${f} 150 150)"/>`;
+    }
+    let l = "";
+    for (let i = 0; i < 60; i++) {
+      const f = i * 6;
+      l += `<line x1="150" y1="28" x2="150" y2="33" stroke="${t.minuteTicks}" stroke-width="1" transform="rotate(${f} 150 150)"/>`;
+    }
+    return `
+      <!-- Bezel -->
+      <circle cx="150" cy="150" r="146" fill="#050505" stroke="${t.dialBorder}" stroke-width="6"/>
+      <circle cx="150" cy="150" r="146" fill="none" stroke="#222" stroke-width="1"/>
+      <!-- Bezel zero marker (pearl) -->
+      <polygon points="150,7 140,22 160,22" fill="#c0c0c0"/>
+      <circle cx="150" cy="15" r="3" fill="#ffffff" stroke="#c0c0c0" stroke-width="1"/>
+      
+      ${e}
+
+      <!-- Dial -->
+      <circle cx="150" cy="150" r="122" fill="${t.face}"/>
+      
+      <!-- Minute Ticks -->
+      <g class="minute-ticks">${l}</g>
+      
+      <!-- Hour Markers -->
+      <g class="hour-markers">${o}</g>
+      
+      <!-- Logo and Text -->
+      <text x="150" y="80" text-anchor="middle" font-family="'Times New Roman', serif" font-size="12" font-weight="bold" fill="#ffffff">ROLEX</text>
+      <text x="150" y="92" text-anchor="middle" font-family="Arial, sans-serif" font-size="6" fill="#ffffff">OYSTER PERPETUAL DATE</text>
+      <text x="150" y="195" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" font-weight="bold" fill="#ffffff">SUBMARINER</text>
+      <text x="150" y="207" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" fill="#ffffff">1000ft = 300m</text>
+      <text x="150" y="217" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" fill="#ffffff">SUPERLATIVE CHRONOMETER</text>
+      <text x="150" y="227" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" fill="#ffffff">OFFICIALLY CERTIFIED</text>
+      <text x="150" y="260" text-anchor="middle" font-family="Arial, sans-serif" font-size="5" fill="#888888">SWISS MADE</text>
+    `;
+  },
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
+    return `
+      <!-- Hour Hand (Mercedes) -->
+      <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
+        <line x1="150" y1="150" x2="150" y2="85" stroke="#c0c0c0" stroke-width="4"/>
+        <circle cx="150" cy="95" r="9" fill="${t.hourHand}" stroke="#c0c0c0" stroke-width="1.5"/>
+        <line x1="150" y1="95" x2="150" y2="86" stroke="#c0c0c0" stroke-width="1.5"/>
+        <line x1="150" y1="95" x2="142" y2="100" stroke="#c0c0c0" stroke-width="1.5"/>
+        <line x1="150" y1="95" x2="158" y2="100" stroke="#c0c0c0" stroke-width="1.5"/>
+        <polygon points="150,70 148,86 152,86" fill="${t.hourHand}" stroke="#c0c0c0" stroke-width="1"/>
+      </g>
+      
+      <!-- Minute Hand (Sword) -->
+      <g class="hand minute-hand" transform="rotate(${L.minuteAngle} 150 150)">
+        <line x1="150" y1="150" x2="150" y2="35" stroke="#c0c0c0" stroke-width="3"/>
+        <polygon points="150,30 147,45 150,150 153,45" fill="${t.minuteHand}" stroke="#c0c0c0" stroke-width="1"/>
+      </g>
+      
+      ${e ? `
+      <!-- Second Hand (Lollipop) -->
+      <g class="hand second-hand" transform="rotate(${L.secondAngle} 150 150)">
+        <line x1="150" y1="170" x2="150" y2="30" stroke="#c0c0c0" stroke-width="1"/>
+        <circle cx="150" cy="50" r="4" fill="${t.secondHand}" stroke="#c0c0c0" stroke-width="1"/>
+      </g>
+      ` : ""}
+      
+      <!-- Center Cap -->
+      <circle cx="150" cy="150" r="4" fill="${t.centerCap}" />
+    `;
+  }
+}, H2 = {
+  name: "Rolex Daytona",
+  description: "Legendary chronograph with a tachymetric scale bezel and three sub-dials",
+  defaultColors: {
+    face: "#ffffff",
+    dialBorder: "#c0c0c0",
+    hourTicks: "#ffffff",
+    minuteTicks: "#333333",
+    numbers: "#000000",
+    hourHand: "#ffffff",
+    minuteHand: "#ffffff",
+    secondHand: "#000000",
+    accent: "#ff0000",
+    // Daytona red text
+    centerCap: "#c0c0c0",
+    subdialBg: "#f0f0f0"
+  },
+  renderDial(r, t, L) {
+    let e = "";
+    const o = [
+      { unit: 400, pos: 9 },
+      { unit: 300, pos: 12 },
+      { unit: 240, pos: 15 },
+      { unit: 200, pos: 18 },
+      { unit: 160, pos: 22.5 },
+      { unit: 140, pos: 25.7 },
+      { unit: 120, pos: 30 },
+      { unit: 110, pos: 32.7 },
+      { unit: 100, pos: 36 },
+      { unit: 90, pos: 40 },
+      { unit: 80, pos: 45 },
+      { unit: 75, pos: 48 },
+      { unit: 70, pos: 51.4 },
+      { unit: 65, pos: 55.3 },
+      { unit: 60, pos: 60 }
+    ];
+    for (let a of o) {
+      const c = a.pos * 6, s = (c - 90) * (Math.PI / 180), n = 150 + 138 * Math.cos(s), d = 150 + 138 * Math.sin(s) + 3;
+      e += `<text x="${n}" y="${d}" text-anchor="middle" font-family="Arial, sans-serif" font-weight="bold" font-size="8" fill="#c0c0c0" transform="rotate(${c} ${n} ${d - 3})">${a.unit}</text>`;
+      const h = 150 + 130 * Math.cos(s), y = 150 + 130 * Math.sin(s), g = 150 + 146 * Math.cos(s), k = 150 + 146 * Math.sin(s);
+      e += `<line x1="${h}" y1="${y}" x2="${g}" y2="${k}" stroke="#c0c0c0" stroke-width="1" />`;
+    }
+    let l = "";
+    for (let a = 0; a < 12; a++) {
+      const c = a * 30;
+      a === 0 ? l += '<polygon points="150,30 144,45 156,45" fill="#c0c0c0" stroke="#000" stroke-width="0.5"/>' : l += `<rect x="146" y="32" width="8" height="15" fill="${t.hourTicks}" stroke="#000000" stroke-width="1" transform="rotate(${c} 150 150)"/>`;
+    }
+    let i = "";
+    for (let a = 0; a < 300; a++) {
+      const c = a * 1.2, s = a % 5 === 0;
+      i += `<line x1="150" y1="26" x2="150" y2="${26 + (s ? 6 : 3)}" stroke="${t.minuteTicks}" stroke-width="${s ? 1.5 : 0.5}" transform="rotate(${c} 150 150)"/>`;
+    }
+    const f = (a, c, s) => {
+      let n = `<circle cx="${a}" cy="${c}" r="22" fill="${t.subdialBg}" stroke="#000" stroke-width="1"/>`;
+      n += `<circle cx="${a}" cy="${c}" r="20" fill="none" stroke="#ccc" stroke-width="2"/>`;
+      for (let d = 0; d < 12; d++) {
+        const h = d * 30;
+        n += `<line x1="${a}" y1="${c - 20}" x2="${a}" y2="${c - 16}" stroke="#000" stroke-width="1" transform="rotate(${h} ${a} ${c})"/>`;
+      }
+      return n;
+    };
+    return `
+      <!-- Bezel -->
+      <circle cx="150" cy="150" r="146" fill="#000000" stroke="${t.dialBorder}" stroke-width="6"/>
+      <text x="150" y="15" text-anchor="middle" font-family="Arial, sans-serif" font-weight="bold" font-size="7" fill="#c0c0c0">UNITS PER HOUR</text>
+      ${e}
+
+      <!-- Dial -->
+      <circle cx="150" cy="150" r="126" fill="${t.face}"/>
+      
+      <!-- Subdials -->
+      ${f(100, 150)} <!-- Hour counter -->
+      ${f(200, 150)} <!-- Minute counter -->
+      ${f(150, 205)} <!-- Small seconds -->
+
+      <!-- Minute Ticks -->
+      <g class="minute-ticks">${i}</g>
+      
+      <!-- Hour Markers -->
+      <g class="hour-markers">${l}</g>
+      
+      <!-- Logo and Text -->
+      <text x="150" y="70" text-anchor="middle" font-family="'Times New Roman', serif" font-size="12" font-weight="bold" fill="#000000">ROLEX</text>
+      <text x="150" y="80" text-anchor="middle" font-family="Arial, sans-serif" font-size="6" fill="#000000">OYSTER PERPETUAL</text>
+      <text x="150" y="88" text-anchor="middle" font-family="Arial, sans-serif" font-size="6" fill="#000000">SUPERLATIVE CHRONOMETER</text>
+      <text x="150" y="96" text-anchor="middle" font-family="Arial, sans-serif" font-size="6" fill="#000000">OFFICIALLY CERTIFIED</text>
+      <text x="150" y="106" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" font-weight="bold" fill="${t.accent}">DAYTONA</text>
+      <text x="150" y="245" text-anchor="middle" font-family="Arial, sans-serif" font-size="5" fill="#000000">SWISS MADE</text>
+    `;
+  },
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
+    return `
+      <!-- Subdial Hands -->
+      <g transform="rotate(${L.hourAngle * 2} 100 150)"><line x1="100" y1="150" x2="100" y2="135" stroke="#000" stroke-width="1.5"/></g>
+      <g transform="rotate(${L.minuteAngle} 200 150)"><line x1="200" y1="150" x2="200" y2="135" stroke="#000" stroke-width="1.5"/></g>
+      <g transform="rotate(${L.secondAngle} 150 205)"><line x1="150" y1="205" x2="150" y2="190" stroke="#000" stroke-width="1.5"/></g>
+
+      <!-- Hour Hand (Baton) -->
+      <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
+        <rect x="147" y="80" width="6" height="70" fill="${t.hourHand}" stroke="#000" stroke-width="1" rx="2" ry="2"/>
+        <line x1="150" y1="85" x2="150" y2="145" stroke="#000" stroke-width="1"/>
+      </g>
+      
+      <!-- Minute Hand (Baton) -->
+      <g class="hand minute-hand" transform="rotate(${L.minuteAngle} 150 150)">
+        <rect x="148" y="35" width="4" height="115" fill="${t.minuteHand}" stroke="#000" stroke-width="1" rx="1" ry="1"/>
+        <line x1="150" y1="40" x2="150" y2="145" stroke="#000" stroke-width="1"/>
+      </g>
+      
+      ${e ? `
+      <!-- Chronograph Second Hand -->
+      <g class="hand second-hand" transform="rotate(${L.secondAngle} 150 150)">
+        <line x1="150" y1="170" x2="150" y2="30" stroke="${t.secondHand}" stroke-width="1.5"/>
+        <polygon points="150,25 147,35 153,35" fill="${t.secondHand}"/>
+      </g>
+      ` : ""}
+      
+      <!-- Center Cap -->
+      <circle cx="150" cy="150" r="4" fill="#000000" />
+      <circle cx="150" cy="150" r="2" fill="#c0c0c0" />
+    `;
+  }
+}, T2 = {
+  name: "Patek Philippe Nautilus",
+  description: "Luxury sports watch with an iconic porthole-inspired octagonal bezel and horizontal embossed dial",
+  defaultColors: {
+    face: "#1d2a3a",
+    // Navy blue
+    dialBorder: "#c0c0c0",
+    hourTicks: "#ffffff",
+    minuteTicks: "#888888",
+    numbers: "#ffffff",
+    hourHand: "#ffffff",
+    minuteHand: "#ffffff",
+    secondHand: "#e0e0e0",
+    accent: "#ffffff",
+    centerCap: "#c0c0c0"
+  },
+  renderDial(r, t, L) {
+    let e = "";
+    for (let i = 30; i < 270; i += 12)
+      e += `<line x1="20" y1="${i}" x2="280" y2="${i}" stroke="#131e2b" stroke-width="6" opacity="0.8"/>`;
+    let o = "";
+    for (let i = 0; i < 12; i++) {
+      const f = i * 30;
+      i === 0 ? (o += `<rect x="146" y="32" width="8" height="24" fill="${t.hourTicks}" stroke="#c0c0c0" stroke-width="1" rx="2"/>`, o += `<rect x="140" y="32" width="4" height="24" fill="${t.hourTicks}" stroke="#c0c0c0" stroke-width="1" rx="1"/>`, o += `<rect x="156" y="32" width="4" height="24" fill="${t.hourTicks}" stroke="#c0c0c0" stroke-width="1" rx="1"/>`) : o += `<rect x="146" y="36" width="8" height="18" fill="${t.hourTicks}" stroke="#c0c0c0" stroke-width="1" rx="2" transform="rotate(${f} 150 150)"/>`;
+    }
+    let l = "";
+    for (let i = 0; i < 60; i++) {
+      const f = i * 6;
+      l += `<circle cx="150" cy="28" r="1.5" fill="${t.minuteTicks}" transform="rotate(${f} 150 150)"/>`;
+    }
+    return `
+      <!-- Bezel (Porthole shape) -->
+      <path d="M70,30 L230,30 C270,30 280,70 280,150 C280,230 270,270 230,270 L70,270 C30,270 20,230 20,150 C20,70 30,30 70,30 Z" fill="#e0e0e0" stroke="#a0a0a0" stroke-width="2"/>
+      <path d="M75,38 L225,38 C255,38 262,70 262,150 C262,230 255,262 225,262 L75,262 C45,262 38,230 38,150 C38,70 45,38 75,38 Z" fill="#b0b0b0"/>
+      
+      <!-- Dial -->
+      <clipPath id="nautilus-dial">
+        <circle cx="150" cy="150" r="115"/>
+      </clipPath>
+      <circle cx="150" cy="150" r="115" fill="${t.face}"/>
+      
+      <!-- Embossed pattern -->
+      <g clip-path="url(#nautilus-dial)">
+        ${e}
+      </g>
+      
+      <!-- Minute Ticks -->
+      <g class="minute-ticks">${l}</g>
+      
+      <!-- Hour Markers -->
+      <g class="hour-markers">${o}</g>
+      
+      <!-- Date Window at 3 o'clock -->
+      <rect x="230" y="140" width="22" height="20" fill="#ffffff" stroke="#c0c0c0" stroke-width="1"/>
+      <text x="241" y="154" text-anchor="middle" font-family="Arial, sans-serif" font-weight="bold" font-size="12" fill="#000000">18</text>
+      
+      <!-- Logo and Text -->
+      <text x="150" y="90" text-anchor="middle" font-family="'Times New Roman', serif" font-size="11" font-weight="bold" fill="#ffffff">PATEK PHILIPPE</text>
+      <text x="150" y="105" text-anchor="middle" font-family="'Times New Roman', serif" font-size="8" fill="#ffffff">GENEVE</text>
+      <text x="150" y="225" text-anchor="middle" font-family="Arial, sans-serif" font-size="5" fill="#888888">SWISS</text>
+    `;
+  },
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
+    return `
+      <!-- Hour Hand (Baton with rounded tip) -->
+      <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
+        <rect x="146" y="85" width="8" height="65" fill="${t.hourHand}" stroke="#c0c0c0" stroke-width="1" rx="4"/>
+      </g>
+      
+      <!-- Minute Hand (Baton with rounded tip) -->
+      <g class="hand minute-hand" transform="rotate(${L.minuteAngle} 150 150)">
+        <rect x="146" y="40" width="8" height="110" fill="${t.minuteHand}" stroke="#c0c0c0" stroke-width="1" rx="4"/>
+      </g>
+      
+      ${e ? `
+      <!-- Second Hand -->
+      <g class="hand second-hand" transform="rotate(${L.secondAngle} 150 150)">
+        <line x1="150" y1="180" x2="150" y2="35" stroke="${t.secondHand}" stroke-width="1.5"/>
+        <circle cx="150" cy="150" r="3" fill="${t.secondHand}"/>
+      </g>
+      ` : ""}
+    `;
+  }
+}, A2 = {
+  name: "Audemars Piguet Royal Oak",
+  description: "Iconic octagonal bezel with hexagonal screws and tapisserie dial",
+  defaultColors: {
+    face: "#1a1f24",
+    // Dark blue/grey
+    dialBorder: "#c0c0c0",
+    hourTicks: "#ffffff",
+    minuteTicks: "#888888",
+    numbers: "#ffffff",
+    hourHand: "#ffffff",
+    minuteHand: "#ffffff",
+    secondHand: "#ffffff",
+    accent: "#ffffff",
+    centerCap: "#c0c0c0"
+  },
+  renderDial(r, t, L) {
+    let e = "";
+    for (let f = 30; f < 270; f += 8)
+      for (let a = 30; a < 270; a += 8)
+        e += `<rect x="${a}" y="${f}" width="6" height="6" fill="#13171b" opacity="0.8"/>`;
+    let o = "";
+    for (let f = 0; f < 12; f++) {
+      const a = f * 30;
+      f === 0 ? (o += `<rect x="147" y="42" width="6" height="20" fill="${t.hourTicks}" stroke="#c0c0c0" stroke-width="1" rx="1"/>`, o += `<rect x="140" y="42" width="5" height="20" fill="${t.hourTicks}" stroke="#c0c0c0" stroke-width="1" rx="1"/>`, o += `<rect x="155" y="42" width="5" height="20" fill="${t.hourTicks}" stroke="#c0c0c0" stroke-width="1" rx="1"/>`) : o += `<rect x="147" y="45" width="6" height="15" fill="${t.hourTicks}" stroke="#c0c0c0" stroke-width="1" rx="1" transform="rotate(${a} 150 150)"/>`;
+    }
+    let l = "";
+    for (let f = 0; f < 60; f++) {
+      const a = f * 6;
+      l += `<line x1="150" y1="38" x2="150" y2="42" stroke="${t.minuteTicks}" stroke-width="1" transform="rotate(${a} 150 150)"/>`;
+    }
+    let i = "";
+    for (let f = 0; f < 8; f++) {
+      const a = 22.5 + f * 45, c = (a - 90) * (Math.PI / 180), s = 150 + 130 * Math.cos(c), n = 150 + 130 * Math.sin(c);
+      i += `
+        <polygon points="${s},${n - 4} ${s + 3.5},${n - 2} ${s + 3.5},${n + 2} ${s},${n + 4} ${s - 3.5},${n + 2} ${s - 3.5},${n - 2}" fill="#e0e0e0" stroke="#888" stroke-width="1" transform="rotate(${a} ${s} ${n})"/>
+        <circle cx="${s}" cy="${n}" r="2" fill="#fff"/>
+        <line x1="${s - 2}" y1="${n}" x2="${s + 2}" y2="${n}" stroke="#888" stroke-width="1" transform="rotate(${a} ${s} ${n})"/>
+      `;
+    }
+    return `
+      <!-- Bezel (Octagon) -->
+      <polygon points="90,10 210,10 290,90 290,210 210,290 90,290 10,210 10,90" fill="#d0d0d0" stroke="#909090" stroke-width="2"/>
+      <polygon points="95,15 205,15 285,95 285,205 205,285 95,285 15,205 15,95" fill="#e8e8e8"/>
+      
+      <!-- Screws -->
+      ${i}
+      
+      <!-- Inner Bezel -->
+      <circle cx="150" cy="150" r="115" fill="#999999"/>
+      
+      <!-- Dial -->
+      <clipPath id="ro-dial">
+        <circle cx="150" cy="150" r="113"/>
+      </clipPath>
+      <circle cx="150" cy="150" r="113" fill="${t.face}"/>
+      
+      <!-- Tapisserie pattern -->
+      <g clip-path="url(#ro-dial)">
+        ${e}
+      </g>
+      
+      <!-- Minute Ticks -->
+      <g class="minute-ticks">${l}</g>
+      
+      <!-- Hour Markers -->
+      <g class="hour-markers">${o}</g>
+      
+      <!-- Date Window at 3 o'clock -->
+      <rect x="235" y="140" width="18" height="20" fill="${t.face}" stroke="#c0c0c0" stroke-width="1"/>
+      <text x="244" y="154" text-anchor="middle" font-family="Arial, sans-serif" font-weight="bold" font-size="10" fill="#ffffff">8</text>
+      
+      <!-- Logo and Text -->
+      <text x="150" y="85" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#ffffff" letter-spacing="1">AP</text>
+      <text x="150" y="98" text-anchor="middle" font-family="'Times New Roman', serif" font-size="7" fill="#ffffff" letter-spacing="0.5">AUDEMARS PIGUET</text>
+      <text x="150" y="108" text-anchor="middle" font-family="Arial, sans-serif" font-size="6" fill="#ffffff">AUTOMATIC</text>
+      <text x="150" y="215" text-anchor="middle" font-family="Arial, sans-serif" font-size="5" fill="#888888">SWISS MADE</text>
+    `;
+  },
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
+    return `
+      <!-- Hour Hand (Royal Oak Baton) -->
+      <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
+        <rect x="147" y="85" width="6" height="65" fill="${t.hourHand}" stroke="#c0c0c0" stroke-width="1" rx="3"/>
+        <line x1="150" y1="85" x2="150" y2="150" stroke="#888" stroke-width="0.5"/>
+      </g>
+      
+      <!-- Minute Hand (Royal Oak Baton) -->
+      <g class="hand minute-hand" transform="rotate(${L.minuteAngle} 150 150)">
+        <rect x="147" y="45" width="6" height="105" fill="${t.minuteHand}" stroke="#c0c0c0" stroke-width="1" rx="3"/>
+        <line x1="150" y1="45" x2="150" y2="150" stroke="#888" stroke-width="0.5"/>
+      </g>
+      
+      ${e ? `
+      <!-- Second Hand -->
+      <g class="hand second-hand" transform="rotate(${L.secondAngle} 150 150)">
+        <line x1="150" y1="180" x2="150" y2="40" stroke="#c0c0c0" stroke-width="1"/>
+        <circle cx="150" cy="120" r="3" fill="#c0c0c0"/>
+      </g>
+      ` : ""}
+      
+      <!-- Center Cap -->
+      <circle cx="150" cy="150" r="4" fill="#c0c0c0" />
+    `;
+  }
+}, B2 = {
+  name: "Omega Speedmaster",
+  description: "The Moonwatch, iconic chronograph with a black dial and tachymeter bezel",
+  defaultColors: {
+    face: "#111111",
+    // Matte black
+    dialBorder: "#c0c0c0",
+    hourTicks: "#ffffff",
+    // Lume
+    minuteTicks: "#ffffff",
+    numbers: "#ffffff",
+    hourHand: "#ffffff",
+    minuteHand: "#ffffff",
+    secondHand: "#ffffff",
+    accent: "#ffffff",
+    centerCap: "#c0c0c0",
+    subdialBg: "#181818"
+    // Slightly different black
+  },
+  renderDial(r, t, L) {
+    let e = "";
+    const o = [
+      { unit: 500, pos: 7.2 },
+      { unit: 400, pos: 9 },
+      { unit: 300, pos: 12 },
+      { unit: 250, pos: 14.4 },
+      { unit: 200, pos: 18 },
+      { unit: 180, pos: 20 },
+      { unit: 160, pos: 22.5 },
+      { unit: 140, pos: 25.7 },
+      { unit: 120, pos: 30 },
+      { unit: 110, pos: 32.7 },
+      { unit: 100, pos: 36 },
+      { unit: 90, pos: 40 },
+      { unit: 80, pos: 45 },
+      { unit: 75, pos: 48 },
+      { unit: 70, pos: 51.4 },
+      { unit: 65, pos: 55.3 },
+      { unit: 60, pos: 60 }
+    ];
+    for (let a of o) {
+      const c = a.pos * 6, s = (c - 90) * (Math.PI / 180), n = 150 + 138 * Math.cos(s), d = 150 + 138 * Math.sin(s) + 3;
+      e += `<text x="${n}" y="${d}" text-anchor="middle" font-family="Arial, sans-serif" font-weight="bold" font-size="7" fill="#ffffff" transform="rotate(${c} ${n} ${d - 3})">${a.unit}</text>`;
+      const h = 150 + 130 * Math.cos(s), y = 150 + 130 * Math.sin(s), g = 150 + 146 * Math.cos(s), k = 150 + 146 * Math.sin(s);
+      e += `<line x1="${h}" y1="${y}" x2="${g}" y2="${k}" stroke="#ffffff" stroke-width="1" />`;
+    }
+    let l = "";
+    for (let a = 0; a < 12; a++) {
+      const c = a * 30;
+      a === 0 ? (l += `<circle cx="150" cy="38" r="2" fill="${t.hourTicks}"/>`, l += `<rect x="146" y="42" width="3" height="15" fill="${t.hourTicks}"/>`, l += `<rect x="151" y="42" width="3" height="15" fill="${t.hourTicks}"/>`) : l += `<rect x="148" y="40" width="4" height="15" fill="${t.hourTicks}" transform="rotate(${c} 150 150)"/>`;
+    }
+    let i = "";
+    for (let a = 0; a < 300; a++) {
+      const c = a * 1.2, s = a % 5 === 0;
+      i += `<line x1="150" y1="30" x2="150" y2="${30 + (s ? 6 : 3)}" stroke="${t.minuteTicks}" stroke-width="${s ? 1.5 : 0.5}" transform="rotate(${c} 150 150)"/>`;
+    }
+    const f = (a, c, s, n) => {
+      let d = `<circle cx="${a}" cy="${c}" r="26" fill="${t.subdialBg}" stroke="#333" stroke-width="1"/>`;
+      d += `<circle cx="${a}" cy="${c}" r="22" fill="none" stroke="#222" stroke-width="0.5"/>`, d += `<circle cx="${a}" cy="${c}" r="18" fill="none" stroke="#222" stroke-width="0.5"/>`;
+      for (let h = 0; h < 12; h++) {
+        const y = h * 30, g = h % 3 === 0 ? 6 : 3;
+        d += `<line x1="${a}" y1="${c - 24}" x2="${a}" y2="${c - 24 + g}" stroke="#fff" stroke-width="1" transform="rotate(${y} ${a} ${c})"/>`;
+      }
+      return d;
+    };
+    return `
+      <!-- Bezel -->
+      <circle cx="150" cy="150" r="146" fill="#000000" stroke="${t.dialBorder}" stroke-width="6"/>
+      <text x="150" y="16" text-anchor="middle" font-family="Arial, sans-serif" font-weight="bold" font-size="6" fill="#ffffff">TACHYMÈTRE</text>
+      ${e}
+
+      <!-- Dial -->
+      <circle cx="150" cy="150" r="126" fill="${t.face}"/>
+      
+      <!-- Subdials (Recessed) -->
+      ${f(95, 150)} <!-- Small seconds at 9 -->
+      ${f(205, 150)} <!-- 30 Min counter at 3 -->
+      ${f(150, 205)} <!-- 12 Hour counter at 6 -->
+
+      <!-- Minute Ticks -->
+      <g class="minute-ticks">${i}</g>
+      
+      <!-- Hour Markers -->
+      <g class="hour-markers">${l}</g>
+      
+      <!-- Logo and Text -->
+      <!-- Omega symbol approximation -->
+      <path d="M 144 80 A 6 6 0 1 1 156 80 L 158 80 L 158 82 L 156 82 A 4 4 0 0 0 144 82 L 142 82 L 142 80 Z" fill="#ffffff" />
+      <text x="150" y="94" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#ffffff" letter-spacing="1">OMEGA</text>
+      <text x="150" y="103" text-anchor="middle" font-family="Arial, sans-serif" font-size="6" font-weight="bold" fill="#ffffff">Speedmaster</text>
+      <text x="150" y="110" text-anchor="middle" font-family="Arial, sans-serif" font-size="5" fill="#ffffff">PROFESSIONAL</text>
+      <text x="150" y="245" text-anchor="middle" font-family="Arial, sans-serif" font-size="5" fill="#ffffff">SWISS MADE</text>
+    `;
+  },
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
+    return `
+      <!-- Subdial Hands -->
+      <g transform="rotate(${L.secondAngle} 95 150)">
+        <polygon points="95,153 93,130 97,130" fill="#ffffff"/>
+      </g>
+      <g transform="rotate(${L.minuteAngle} 205 150)">
+        <polygon points="205,153 203,130 207,130" fill="#ffffff"/>
+      </g>
+      <g transform="rotate(${L.hourAngle * 2} 150 205)">
+        <polygon points="150,208 148,185 152,185" fill="#ffffff"/>
+      </g>
+
+      <!-- Hour Hand (Baton with luminous insert) -->
+      <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
+        <polygon points="150,85 146,95 146,155 154,155 154,95" fill="#ffffff"/>
+        <rect x="148" y="97" width="4" height="40" fill="#111111"/>
+      </g>
+      
+      <!-- Minute Hand (Baton with luminous insert) -->
+      <g class="hand minute-hand" transform="rotate(${L.minuteAngle} 150 150)">
+        <polygon points="150,45 146,55 146,155 154,155 154,55" fill="#ffffff"/>
+        <rect x="148" y="57" width="4" height="80" fill="#111111"/>
+      </g>
+      
+      ${e ? `
+      <!-- Chronograph Second Hand (Spear with luminous dot) -->
+      <g class="hand second-hand" transform="rotate(${L.secondAngle} 150 150)">
+        <line x1="150" y1="180" x2="150" y2="35" stroke="#ffffff" stroke-width="1.5"/>
+        <polygon points="150,30 148,45 152,45" fill="#ffffff"/>
+      </g>
+      ` : ""}
+      
+      <!-- Center Cap -->
+      <circle cx="150" cy="150" r="4" fill="#000000" />
+      <circle cx="150" cy="150" r="2" fill="#c0c0c0" />
+    `;
+  }
+}, D2 = {
+  name: "TAG Heuer Monaco",
+  description: "Iconic square-cased chronograph with a blue dial, made famous by Steve McQueen",
+  defaultColors: {
+    face: "#1d3557",
+    // Matte blue
+    dialBorder: "#e0e0e0",
+    hourTicks: "#ffffff",
+    minuteTicks: "#ffffff",
+    numbers: "#ffffff",
+    hourHand: "#ffffff",
+    minuteHand: "#ffffff",
+    secondHand: "#e63946",
+    // Red
+    accent: "#e63946",
+    centerCap: "#c0c0c0",
+    subdialBg: "#f1faee"
+    // Silver/white
+  },
+  renderDial(r, t, L) {
+    let e = "";
+    for (let i = 0; i < 12; i++) {
+      const f = i * 30;
+      i !== 0 && i !== 3 && i !== 6 && i !== 9 && (e += `<rect x="148" y="45" width="4" height="15" fill="${t.hourTicks}" stroke="#a0a0a0" stroke-width="0.5" transform="rotate(${f} 150 150)"/>`);
+    }
+    let o = "";
+    for (let i = 0; i < 60; i++) {
+      const f = i * 6;
+      o += `<line x1="150" y1="35" x2="150" y2="38" stroke="${t.minuteTicks}" stroke-width="1" transform="rotate(${f} 150 150)"/>`;
+    }
+    const l = (i, f) => {
+      let a = `<rect x="${i - 26}" y="${f - 26}" width="52" height="52" fill="${t.subdialBg}" rx="4"/>`;
+      for (let c = 0; c < 12; c++) {
+        const s = c * 30, n = c % 3 === 0 ? 6 : 3;
+        a += `<line x1="${i}" y1="${f - 22}" x2="${i}" y2="${f - 22 + n}" stroke="#000" stroke-width="1.5" transform="rotate(${s} ${i} ${f})"/>`;
+      }
+      return a;
+    };
+    return `
+      <!-- Bezel (Square case with rounded corners) -->
+      <rect x="25" y="25" width="250" height="250" fill="#d0d0d0" stroke="#909090" stroke-width="3" rx="10"/>
+      <rect x="35" y="35" width="230" height="230" fill="${t.face}" rx="8"/>
+      
+      <!-- Inner circular dial outline (stylized) -->
+      <circle cx="150" cy="150" r="115" fill="none" stroke="#4a6991" stroke-width="1"/>
+      
+      <!-- Subdials (Square) -->
+      ${l(90, 150)} <!-- Running seconds at 9 -->
+      ${l(210, 150)} <!-- Chrono minutes at 3 -->
+
+      <!-- Minute Ticks -->
+      <g class="minute-ticks">${o}</g>
+      
+      <!-- Hour Markers -->
+      <g class="hour-markers">${e}</g>
+      
+      <!-- Date Window at 6 o'clock -->
+      <rect x="140" y="240" width="20" height="15" fill="#ffffff" stroke="#c0c0c0" stroke-width="1"/>
+      <text x="150" y="252" text-anchor="middle" font-family="Arial, sans-serif" font-weight="bold" font-size="10" fill="#000000">11</text>
+      
+      <!-- Logo and Text -->
+      <!-- TAG Heuer Shield -->
+      <path d="M 140 70 L 160 70 L 158 90 C 158 95 150 100 150 100 C 150 100 142 95 142 90 Z" fill="#ffffff" stroke="#4a6991" stroke-width="0.5"/>
+      <text x="150" y="78" text-anchor="middle" font-family="Arial, sans-serif" font-size="5" font-weight="bold" fill="#000000">TAG</text>
+      <text x="150" y="85" text-anchor="middle" font-family="Arial, sans-serif" font-size="6" font-weight="bold" fill="#000000">HEUER</text>
+      
+      <text x="150" y="110" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#ffffff" letter-spacing="1">MONACO</text>
+      <text x="150" y="120" text-anchor="middle" font-family="Arial, sans-serif" font-size="6" fill="#ffffff">AUTOMATIC</text>
+      <text x="150" y="128" text-anchor="middle" font-family="Arial, sans-serif" font-size="6" fill="#ffffff">CHRONOGRAPH</text>
+      
+      <text x="150" y="270" text-anchor="middle" font-family="Arial, sans-serif" font-size="5" fill="#ffffff">SWISS MADE</text>
+    `;
+  },
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
+    return `
+      <!-- Subdial Hands -->
+      <g transform="rotate(${L.secondAngle} 90 150)">
+        <polygon points="90,152 88,135 92,135" fill="#000000"/>
+      </g>
+      <g transform="rotate(${L.minuteAngle} 210 150)">
+        <polygon points="210,152 208,135 212,135" fill="#000000"/>
+      </g>
+
+      <!-- Hour Hand (Baton) -->
+      <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
+        <rect x="146" y="80" width="8" height="75" fill="#ffffff" stroke="#c0c0c0" stroke-width="1"/>
+        <!-- Red stripe -->
+        <rect x="149" y="85" width="2" height="40" fill="${t.accent}"/>
+      </g>
+      
+      <!-- Minute Hand (Baton) -->
+      <g class="hand minute-hand" transform="rotate(${L.minuteAngle} 150 150)">
+        <rect x="146" y="45" width="8" height="110" fill="#ffffff" stroke="#c0c0c0" stroke-width="1"/>
+        <!-- Red stripe -->
+        <rect x="149" y="50" width="2" height="70" fill="${t.accent}"/>
+      </g>
+      
+      ${e ? `
+      <!-- Chronograph Second Hand (Red) -->
+      <g class="hand second-hand" transform="rotate(${L.secondAngle} 150 150)">
+        <line x1="150" y1="180" x2="150" y2="40" stroke="${t.secondHand}" stroke-width="2"/>
+        <rect x="149" y="40" width="2" height="15" fill="${t.secondHand}"/>
+      </g>
+      ` : ""}
+      
+      <!-- Center Cap -->
+      <circle cx="150" cy="150" r="5" fill="#ffffff" stroke="#c0c0c0" stroke-width="1"/>
+    `;
+  }
+}, G2 = {
+  name: "Breitling Navitimer",
+  description: "Legendary aviation chronograph with a complex slide rule bezel and three sub-dials",
+  defaultColors: {
+    face: "#1a1a1a",
+    // Black dial
+    dialBorder: "#c0c0c0",
+    hourTicks: "#ffffff",
+    minuteTicks: "#ffffff",
+    numbers: "#ffffff",
+    hourHand: "#ffffff",
+    minuteHand: "#ffffff",
+    secondHand: "#ff0000",
+    // Red chrono seconds
+    accent: "#ff0000",
+    centerCap: "#ffffff",
+    subdialBg: "#ffffff"
+    // White subdials (reverse panda)
+  },
+  renderDial(r, t, L) {
+    let e = "";
+    for (let f = 0; f < 180; f++) {
+      const a = f * 2, c = f % 5 === 0, s = c ? 5 : 3, n = c ? 1 : 0.5;
+      e += `<line x1="150" y1="12" x2="150" y2="${12 + s}" stroke="#ffffff" stroke-width="${n}" transform="rotate(${a} 150 150)"/>`, e += `<line x1="150" y1="24" x2="150" y2="${24 - s}" stroke="#000000" stroke-width="${n}" transform="rotate(${a} 150 150)"/>`;
+    }
+    let o = "";
+    for (let f = 1; f <= 12; f++) {
+      const c = (f * 30 - 90) * (Math.PI / 180);
+      if (f !== 3 && f !== 6 && f !== 9) {
+        const y = 150 + 90 * Math.cos(c), g = 150 + 90 * Math.sin(c) + 4;
+        o += `<text x="${y}" y="${g}" text-anchor="middle" font-family="Arial, sans-serif" font-weight="bold" font-size="12" fill="${t.numbers}">${f}</text>`;
+      }
+      const s = 150 + 105 * Math.cos(c), n = 150 + 105 * Math.sin(c), d = 150 + 115 * Math.cos(c), h = 150 + 115 * Math.sin(c);
+      o += `<line x1="${s}" y1="${n}" x2="${d}" y2="${h}" stroke="${t.hourTicks}" stroke-width="2"/>`;
+    }
+    let l = "";
+    for (let f = 0; f < 300; f++) {
+      const a = f * 1.2;
+      l += `<line x1="150" y1="28" x2="150" y2="${f % 5 === 0 ? 32 : 30}" stroke="${t.minuteTicks}" stroke-width="${f % 5 === 0 ? 1 : 0.5}" transform="rotate(${a} 150 150)"/>`;
+    }
+    const i = (f, a) => {
+      let c = `<circle cx="${f}" cy="${a}" r="22" fill="${t.subdialBg}" stroke="#c0c0c0" stroke-width="0.5"/>`;
+      for (let s = 0; s < 12; s++) {
+        const n = s * 30;
+        c += `<line x1="${f}" y1="${a - 20}" x2="${f}" y2="${a - 16}" stroke="#000" stroke-width="1" transform="rotate(${n} ${f} ${a})"/>`;
+      }
+      return c;
+    };
+    return `
+      <!-- Bezel with fluted edge -->
+      <circle cx="150" cy="150" r="148" fill="#d0d0d0" stroke="#a0a0a0" stroke-width="2"/>
+      <circle cx="150" cy="150" r="146" fill="#1a1a1a"/>
+      
+      <!-- Inner slide rule background (white) -->
+      <circle cx="150" cy="150" r="132" fill="#ffffff"/>
+      <circle cx="150" cy="150" r="120" fill="${t.face}"/>
+
+      <!-- Slide Rule & Ticks -->
+      <g class="slide-rule">${e}</g>
+      <g class="minute-ticks">${l}</g>
+      
+      <!-- Subdials -->
+      ${i(95, 150)} <!-- 9 o'clock -->
+      ${i(205, 150)} <!-- 3 o'clock -->
+      ${i(150, 205)} <!-- 6 o'clock -->
+      
+      <!-- Hour Markers & Numbers -->
+      <g class="hour-markers">${o}</g>
+      
+      <!-- Logo and Text -->
+      <!-- Breitling Wings -->
+      <path d="M 140 75 Q 145 65 150 70 Q 155 65 160 75 Q 155 80 150 85 Q 145 80 140 75 Z" fill="#d4af37"/>
+      <text x="150" y="98" text-anchor="middle" font-family="'Times New Roman', serif" font-size="10" font-weight="bold" fill="#ffffff" letter-spacing="1">BREITLING</text>
+      <text x="150" y="108" text-anchor="middle" font-family="'Times New Roman', serif" font-size="6" fill="#ffffff">1884</text>
+      <text x="150" y="118" text-anchor="middle" font-family="Arial, sans-serif" font-size="6" font-style="italic" fill="#ffffff">NAVITIMER</text>
+      
+      <text x="150" y="245" text-anchor="middle" font-family="Arial, sans-serif" font-size="4" fill="#ffffff">SWISS MADE</text>
+    `;
+  },
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
+    return `
+      <!-- Subdial Hands -->
+      <g transform="rotate(${L.secondAngle} 95 150)"><line x1="95" y1="150" x2="95" y2="135" stroke="#000" stroke-width="1.5"/></g>
+      <g transform="rotate(${L.minuteAngle} 205 150)"><line x1="205" y1="150" x2="205" y2="135" stroke="#000" stroke-width="1.5"/></g>
+      <g transform="rotate(${L.hourAngle * 2} 150 205)"><line x1="150" y1="205" x2="150" y2="190" stroke="#000" stroke-width="1.5"/></g>
+
+      <!-- Hour Hand (Sword) -->
+      <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
+        <polygon points="150,75 146,85 146,155 154,155 154,85" fill="#ffffff" stroke="#c0c0c0" stroke-width="1"/>
+      </g>
+      
+      <!-- Minute Hand (Sword) -->
+      <g class="hand minute-hand" transform="rotate(${L.minuteAngle} 150 150)">
+        <polygon points="150,35 146,45 146,155 154,155 154,45" fill="#ffffff" stroke="#c0c0c0" stroke-width="1"/>
+      </g>
+      
+      ${e ? `
+      <!-- Chrono Second Hand with B Logo Counterweight -->
+      <g class="hand second-hand" transform="rotate(${L.secondAngle} 150 150)">
+        <line x1="150" y1="185" x2="150" y2="35" stroke="${t.secondHand}" stroke-width="1.5"/>
+        <polygon points="150,30 148,40 152,40" fill="${t.secondHand}"/>
+        <!-- B anchor counterweight -->
+        <text x="150" y="178" text-anchor="middle" font-family="'Times New Roman', serif" font-weight="bold" font-size="10" fill="${t.secondHand}" transform="rotate(180 150 175)">B</text>
+      </g>
+      ` : ""}
+      
+      <!-- Center Cap -->
+      <circle cx="150" cy="150" r="3" fill="#000000" />
+    `;
+  }
+}, R2 = {
+  name: "Cartier Santos",
+  description: "Classic square watch with rounded corners, 8 screws, and roman numerals",
+  defaultColors: {
+    face: "#f8f8f8",
+    // Silver/white dial
+    dialBorder: "#c0c0c0",
+    hourTicks: "#000000",
+    minuteTicks: "#000000",
+    numbers: "#000000",
+    hourHand: "#2a52be",
+    // Blued steel
+    minuteHand: "#2a52be",
+    secondHand: "#2a52be",
+    accent: "#000000",
+    centerCap: "#2a52be"
+  },
+  renderDial(r, t, L) {
+    let e = "";
+    const o = ["XII", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI"];
+    for (let a = 0; a < 12; a++) {
+      const c = a * 30, s = (c - 90) * (Math.PI / 180);
+      let n = 80;
+      a % 3 === 0 && (n = 85);
+      const d = 150 + n * Math.cos(s), h = 150 + n * Math.sin(s) + 6, y = c;
+      e += `<text x="${d}" y="${h}" text-anchor="middle" font-family="'Times New Roman', Times, serif" font-size="18" font-weight="bold" fill="${t.numbers}" transform="rotate(${y} ${d} ${h - 6})">${o[a]}</text>`;
+    }
+    let l = "";
+    l += '<rect x="95" y="95" width="110" height="110" fill="none" stroke="#000000" stroke-width="1.5" rx="5"/>', l += '<rect x="100" y="100" width="100" height="100" fill="none" stroke="#000000" stroke-width="1" rx="4"/>';
+    for (let a = 0; a < 60; a++) {
+      const s = (a * 6 - 90) * (Math.PI / 180);
+      let n = 150 + 52 * Math.cos(s), d = 150 + 52 * Math.sin(s);
+      const h = 50 / Math.max(Math.abs(Math.cos(s)), Math.abs(Math.sin(s))), y = 50 * 0.4 + h * 0.6;
+      n = 150 + y * Math.cos(s), d = 150 + y * Math.sin(s);
+      const g = 150 + (y + 5) * Math.cos(s), k = 150 + (y + 5) * Math.sin(s);
+      l += `<line x1="${n}" y1="${d}" x2="${g}" y2="${k}" stroke="#000" stroke-width="${a % 5 === 0 ? 1.5 : 0.5}"/>`;
+    }
+    let i = "";
+    const f = [
+      [80, 45],
+      [150, 40],
+      [220, 45],
+      [45, 150],
+      [255, 150],
+      [80, 255],
+      [150, 260],
+      [220, 255]
+    ];
+    for (let a of f) {
+      const c = a[0], s = a[1];
+      i += `
+        <circle cx="${c}" cy="${s}" r="3.5" fill="#e0e0e0" stroke="#888" stroke-width="0.5"/>
+        <line x1="${c - 2.5}" y1="${s - 2.5}" x2="${c + 2.5}" y2="${s + 2.5}" stroke="#888" stroke-width="1.5"/>
+      `;
+    }
+    return `
+      <!-- Case (Square with rounded corners) -->
+      <rect x="25" y="25" width="250" height="250" fill="#dcdcdc" stroke="#999999" stroke-width="3" rx="30"/>
+      <!-- Bezel with screws -->
+      <rect x="35" y="35" width="230" height="230" fill="#e8e8e8" stroke="#a0a0a0" stroke-width="1" rx="25"/>
+      ${i}
+      
+      <!-- Dial -->
+      <rect x="45" y="45" width="210" height="210" fill="${t.face}" rx="20"/>
+      
+      <!-- Railway Track -->
+      <g class="railway">${l}</g>
+      
+      <!-- Roman Numerals -->
+      <g class="numbers">${e}</g>
+      
+      <!-- Logo and Text -->
+      <text x="150" y="80" text-anchor="middle" font-family="'Times New Roman', serif" font-size="12" font-weight="bold" fill="#000000" letter-spacing="1">CARTIER</text>
+      <text x="150" y="235" text-anchor="middle" font-family="'Times New Roman', serif" font-size="5" fill="#000000">SWISS MADE</text>
+      
+      <!-- Hidden "CARTIER" signature in the VII or X numeral -->
+      <!-- Let's put a tiny "CARTIER" in the VII -->
+      <text x="110" y="215" text-anchor="middle" font-family="Arial, sans-serif" font-size="2" fill="#000000" transform="rotate(-30 110 215)">CARTIER</text>
+    `;
+  },
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
+    return `
+      <!-- Hour Hand (Sword shaped, blued steel) -->
+      <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
+        <polygon points="150,85 146,140 150,150 154,140" fill="${t.hourHand}"/>
+        <!-- Spine highlight -->
+        <line x1="150" y1="85" x2="150" y2="150" stroke="#5a82e6" stroke-width="0.5"/>
+      </g>
+      
+      <!-- Minute Hand (Sword shaped, blued steel) -->
+      <g class="hand minute-hand" transform="rotate(${L.minuteAngle} 150 150)">
+        <polygon points="150,45 146,140 150,150 154,140" fill="${t.minuteHand}"/>
+        <line x1="150" y1="45" x2="150" y2="150" stroke="#5a82e6" stroke-width="0.5"/>
+      </g>
+      
+      ${e ? `
+      <!-- Second Hand -->
+      <g class="hand second-hand" transform="rotate(${L.secondAngle} 150 150)">
+        <line x1="150" y1="170" x2="150" y2="45" stroke="${t.secondHand}" stroke-width="0.5"/>
+      </g>
+      ` : ""}
+      
+      <!-- Center Cap -->
+      <circle cx="150" cy="150" r="3" fill="${t.centerCap}" />
+    `;
+  }
+}, P2 = {
+  name: "IWC Portugieser",
+  description: "Elegant chronometer with a clean silver dial, applied Arabic numerals and feuille (leaf) hands",
+  defaultColors: {
+    face: "#fcfcfc",
+    // Silver-plated dial
+    dialBorder: "#d0d0d0",
+    // Very thin polished bezel
+    hourTicks: "#2a52be",
+    // Blue applied numerals
+    minuteTicks: "#888888",
+    numbers: "#2a52be",
+    hourHand: "#2a52be",
+    // Blued steel leaf hands
+    minuteHand: "#2a52be",
+    secondHand: "#2a52be",
+    accent: "#2a52be",
+    centerCap: "#2a52be",
+    subdialBg: "#f8f8f8"
+  },
+  renderDial(r, t, L) {
+    let e = "";
+    for (let i = 1; i <= 12; i++) {
+      const a = (i * 30 - 90) * (Math.PI / 180);
+      if (i !== 12 && i !== 6) {
+        const c = 150 + 112 * Math.cos(a), s = 150 + 112 * Math.sin(a) + 7;
+        e += `<text x="${c}" y="${s}" text-anchor="middle" font-family="'Times New Roman', serif" font-size="20" font-weight="bold" fill="${t.numbers}">${i}</text>`;
+      }
+    }
+    let o = "";
+    for (let i = 0; i < 300; i++) {
+      const f = i * 1.2;
+      if (i % 5 === 0) {
+        const c = (f - 90) * (Math.PI / 180), s = 150 + 132 * Math.cos(c), n = 150 + 132 * Math.sin(c);
+        o += `<circle cx="${s}" cy="${n}" r="1.5" fill="${t.numbers}"/>`;
+      } else
+        o += `<line x1="150" y1="18" x2="150" y2="20" stroke="${t.minuteTicks}" stroke-width="0.5" transform="rotate(${f} 150 150)"/>`;
+    }
+    const l = (i, f, a, c) => {
+      let s = `<circle cx="${i}" cy="${f}" r="28" fill="${t.subdialBg}" stroke="#e0e0e0" stroke-width="0.5"/>`;
+      s += `<circle cx="${i}" cy="${f}" r="24" fill="none" stroke="#f0f0f0" stroke-width="0.5"/>`, s += `<circle cx="${i}" cy="${f}" r="20" fill="none" stroke="#f0f0f0" stroke-width="0.5"/>`, s += `<circle cx="${i}" cy="${f}" r="16" fill="none" stroke="#f0f0f0" stroke-width="0.5"/>`;
+      for (let n = 0; n < a; n++) {
+        const d = n * (360 / a), h = n % (a / 4) === 0, y = h ? 5 : 2;
+        s += `<line x1="${i}" y1="${f - 28}" x2="${i}" y2="${f - 28 + y}" stroke="#000" stroke-width="${h ? 1 : 0.5}" transform="rotate(${d} ${i} ${f})"/>`;
+      }
+      return s;
+    };
+    return `
+      <!-- Bezel (Very thin) -->
+      <circle cx="150" cy="150" r="148" fill="#e0e0e0" stroke="#b0b0b0" stroke-width="2"/>
+      
+      <!-- Dial -->
+      <circle cx="150" cy="150" r="146" fill="${t.face}"/>
+      
+      <!-- Subdials (12 and 6 o'clock layout) -->
+      ${l(150, 95, 30)} <!-- Chrono minutes at 12 -->
+      ${l(150, 205, 60)} <!-- Small seconds at 6 -->
+
+      <!-- Minute Ticks & Dots -->
+      <g class="minute-ticks">${o}</g>
+      
+      <!-- Arabic Numerals -->
+      <g class="hour-markers">${e}</g>
+      
+      <!-- Logo and Text (Placed at 3 o'clock in chrono) -->
+      <text x="210" y="145" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" font-weight="bold" fill="#000000" letter-spacing="1">IWC</text>
+      <text x="210" y="153" text-anchor="middle" font-family="'Times New Roman', serif" font-size="6" fill="#000000">SCHAFFHAUSEN</text>
+      
+      <text x="90" y="148" text-anchor="middle" font-family="Arial, sans-serif" font-size="6" fill="#000000">CHRONOGRAPH</text>
+      <text x="90" y="156" text-anchor="middle" font-family="Arial, sans-serif" font-size="5" fill="#000000">AUTOMATIC</text>
+      
+      <text x="150" y="242" text-anchor="middle" font-family="Arial, sans-serif" font-size="5" fill="#888888">SWISS MADE</text>
+    `;
+  },
+  renderHands(r, t, L) {
+    const e = r.showSeconds !== !1;
+    return `
+      <!-- Subdial Hands -->
+      <g transform="rotate(${L.minuteAngle} 150 95)"><line x1="150" y1="95" x2="150" y2="70" stroke="${t.hourHand}" stroke-width="1"/></g>
+      <g transform="rotate(${L.secondAngle} 150 205)"><line x1="150" y1="205" x2="150" y2="180" stroke="${t.hourHand}" stroke-width="1"/></g>
+
+      <!-- Hour Hand (Feuille / Leaf shape) -->
+      <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
+        <path d="M 150 155 Q 146 140 148 100 Q 150 75 150 70 Q 150 75 152 100 Q 154 140 150 155 Z" fill="${t.hourHand}"/>
+      </g>
+      
+      <!-- Minute Hand (Feuille / Leaf shape) -->
+      <g class="hand minute-hand" transform="rotate(${L.minuteAngle} 150 150)">
+        <path d="M 150 155 Q 146 120 148 60 Q 150 25 150 20 Q 150 25 152 60 Q 154 120 150 155 Z" fill="${t.minuteHand}"/>
+      </g>
+      
+      ${e ? `
+      <!-- Central Chrono Second Hand (Very thin) -->
+      <g class="hand second-hand" transform="rotate(${L.secondAngle} 150 150)">
+        <line x1="150" y1="170" x2="150" y2="20" stroke="${t.secondHand}" stroke-width="0.75"/>
+      </g>
+      ` : ""}
+      
+      <!-- Center Cap -->
+      <circle cx="150" cy="150" r="3" fill="${t.centerCap}" />
+    `;
+  }
+}, v2 = {
+  name: "Titan Edge",
+  description: "Ultra-slim, minimalist quartz watch with a sleek black dial and two hands",
+  defaultColors: {
+    face: "#1a1a1a",
+    // Black dial
+    dialBorder: "#c0c0c0",
+    // Silver/steel case
+    hourTicks: "#ffffff",
+    minuteTicks: "#444444",
+    numbers: "#ffffff",
+    hourHand: "#ffffff",
+    minuteHand: "#ffffff",
+    secondHand: "none",
+    // Often Titan Edge watches are 2-hand to remain ultra slim
+    accent: "#ffffff",
+    centerCap: "#c0c0c0"
+  },
+  renderDial(r, t, L) {
+    let e = "";
+    for (let o = 0; o < 12; o++) {
+      const l = o * 30;
+      o % 3 === 0 ? e += `<rect x="149" y="25" width="2" height="15" fill="${t.hourTicks}" transform="rotate(${l} 150 150)"/>` : e += `<rect x="149.5" y="30" width="1" height="10" fill="${t.hourTicks}" opacity="0.7" transform="rotate(${l} 150 150)"/>`;
+    }
+    return `
+      <!-- Ultra-thin Bezel -->
+      <circle cx="150" cy="150" r="148" fill="#e0e0e0" stroke="#a0a0a0" stroke-width="1.5"/>
+      <circle cx="150" cy="150" r="144" fill="${t.face}"/>
+
+      <!-- Geometric dial pattern (optional, Edge sometimes has subtle texture) -->
+      <circle cx="150" cy="150" r="100" fill="none" stroke="#222222" stroke-width="1"/>
+      
+      <!-- Hour Markers -->
+      <g class="hour-markers">${e}</g>
+      
+      <!-- Logo and Text -->
+      <text x="150" y="85" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="10" font-weight="bold" fill="#ffffff" letter-spacing="3">TITAN</text>
+      <text x="150" y="100" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="8" fill="#ffffff" letter-spacing="4">EDGE</text>
+      
+      <text x="150" y="220" text-anchor="middle" font-family="Arial, sans-serif" font-size="5" fill="#888888">SAPPHIRE CRYSTAL</text>
+      <text x="150" y="240" text-anchor="middle" font-family="Arial, sans-serif" font-size="5" fill="#555555">INDIA</text>
+    `;
+  },
+  renderHands(r, t, L) {
+    return `
+      <!-- Hour Hand (Ultra slim baton) -->
+      <g class="hand hour-hand" transform="rotate(${L.hourAngle} 150 150)">
+        <rect x="148.5" y="70" width="3" height="80" fill="${t.hourHand}"/>
+      </g>
+      
+      <!-- Minute Hand (Ultra slim baton) -->
+      <g class="hand minute-hand" transform="rotate(${L.minuteAngle} 150 150)">
+        <rect x="149" y="30" width="2" height="120" fill="${t.minuteHand}"/>
+      </g>
+      
+      <!-- No Second Hand for typical Titan Edge minimalist look -->
+      
+      <!-- Center Cap -->
+      <circle cx="150" cy="150" r="2.5" fill="${t.centerCap}" />
+      <circle cx="150" cy="150" r="1" fill="${t.face}" />
+    `;
+  }
+}, m = {
   // Sports
   cricket_stadium: P,
   american_football: v,
-  badminton_shuttle: F,
-  cycling_velodrome: I,
-  archery_target: E,
+  badminton_shuttle: I,
+  cycling_velodrome: E,
+  archery_target: F,
   scuba_diving: Q,
   basketball: O,
   football_soccer: N,
@@ -15449,8 +16488,8 @@ const P = {
   golf_links: V,
   boxing_ring: U,
   snowboarding_winter: J,
-  skateboarding_street: j,
-  baseball_diamond: Y,
+  skateboarding_street: Y,
+  baseball_diamond: j,
   surfing_pipeline: q,
   // Nature & Atmospheric
   cherry_blossom: K,
@@ -15464,8 +16503,8 @@ const P = {
   autumn_forest: l1,
   thunderstorm_cloud: f1,
   // Places & Architecture
-  fuji: c1,
-  santorini: a1,
+  fuji: a1,
+  santorini: c1,
   aurora_tromso: s1,
   pyramids: n1,
   taj_mahal: d1,
@@ -15482,23 +16521,23 @@ const P = {
   neptune_planet: M1,
   moon_lunar: b1,
   sun_fusion: Z1,
-  venus_planet: C1,
+  venus_planet: $1,
   uranus_planet: S1,
-  mercury_planet: $1,
+  mercury_planet: C1,
   // Botanical & Natural Elements
   terrarium: _1,
   coral_reef: H1,
   dandelion: T1,
   mountain_sunrise: A1,
-  bamboo_zen: G1,
+  bamboo_zen: B1,
   aurora: D1,
-  geode: B1,
+  geode: G1,
   waterfall: R1,
   bonsai: P1,
   volcano: v1,
-  tree_rings: F1,
-  sunflower: I1,
-  lotus: E1,
+  tree_rings: I1,
+  sunflower: E1,
+  lotus: F1,
   forest: Q1,
   mushroom: O1,
   cactus: N1,
@@ -15508,8 +16547,8 @@ const P = {
   autumn: U1,
   // Sci-Fi & Cyber
   radar: J1,
-  alien: j1,
-  warp: Y1,
+  alien: Y1,
+  warp: j1,
   holo: q1,
   mecha: K1,
   timemachine: X1,
@@ -15523,8 +16562,8 @@ const P = {
   // Horology & Professional Watches
   gshock: l0,
   chronograph: f0,
-  regatta: c0,
-  alpinist: a0,
+  regatta: a0,
+  alpinist: c0,
   triathlon: s0,
   // World / National Themes
   india: n0,
@@ -15541,23 +16580,23 @@ const P = {
   "south-korea": M0,
   switzerland: b0,
   mexico: Z0,
-  argentina: C0,
+  argentina: $0,
   egypt: S0,
-  sweden: $0,
+  sweden: C0,
   "south-africa": _0,
   uae: H0,
   russia: T0,
   israel: A0,
-  singapore: G0,
+  singapore: B0,
   netherlands: D0,
-  greece: B0,
+  greece: G0,
   "new-zealand": R0,
   vietnam: P0,
   thailand: v0,
-  norway: F0,
-  indonesia: I0,
+  norway: I0,
+  indonesia: E0,
   // Video Games
-  minecraft: E0,
+  minecraft: F0,
   zelda: Q0,
   pokemon: O0,
   gta: N0,
@@ -15566,8 +16605,8 @@ const P = {
   halo: V0,
   "god-of-war": U0,
   valorant: J0,
-  "elden-ring": j0,
-  fortnite: Y0,
+  "elden-ring": Y0,
+  fortnite: j0,
   pacman: q0,
   sonic: K0,
   tetris: X0,
@@ -15579,14 +16618,14 @@ const P = {
   "hollow-knight": i2,
   fallout: l2,
   "dark-souls": f2,
-  "red-dead": c2,
-  "counter-strike": a2,
+  "red-dead": a2,
+  "counter-strike": c2,
   "world-of-warcraft": s2,
   // Core & Iconic Styles
-  swiss: b,
+  swiss: S,
   cyberpunk: n2,
   neumorphic: d2,
-  classic: M,
+  classic: $,
   luxury: h2,
   hybrid: y2,
   minimal: p2,
@@ -15599,11 +16638,22 @@ const P = {
   vintage: M2,
   glassmorphism: b2,
   kawaii: Z2,
-  "pixel-farm": C2,
+  "pixel-farm": $2,
   cottagecore: S2,
-  neko: $2,
+  neko: C2,
+  // Iconic Real Watches
+  "rolex-submariner": _2,
+  "rolex-daytona": H2,
+  "patek-philippe-nautilus": T2,
+  "audemars-piguet-royal-oak": A2,
+  "omega-speedmaster": B2,
+  "tag-heuer-monaco": D2,
+  "breitling-navitimer": G2,
+  "cartier-santos": R2,
+  "iwc-portugieser": P2,
+  "titan-edge": v2,
   dark: {
-    ...M,
+    ...$,
     name: "dark",
     description: "High-contrast pure OLED black dark mode classic clock",
     defaultColors: {
@@ -15619,23 +16669,23 @@ const P = {
       centerCap: "#38bdf8"
     }
   }
-}, g = {};
-function _2(t) {
-  const o = (t || "swiss").toLowerCase().trim();
-  return g[o] ? g[o] : x[o] ? x[o] : b;
+}, w = {};
+function I2(r) {
+  const t = (r || "swiss").toLowerCase().trim();
+  return w[t] ? w[t] : m[t] ? m[t] : S;
 }
-function D2(t) {
-  g[t.name.toLowerCase().trim()] = t;
+function N2(r) {
+  w[r.name.toLowerCase().trim()] = r;
 }
-function B2() {
-  return [...Object.keys(x), ...Object.keys(g)];
+function z2() {
+  return [...Object.keys(m), ...Object.keys(w)];
 }
-function H2(t, o) {
-  const L = { ...t };
-  return o.faceColor && (L.face = o.faceColor), o.accentColor && (L.accent = o.accentColor, L.secondHand = o.accentColor, L.centerCap = o.accentColor), o.handColor && (L.hourHand = o.handColor, L.minuteHand = o.handColor), L;
+function E2(r, t) {
+  const L = { ...r };
+  return t.faceColor && (L.face = t.faceColor), t.accentColor && (L.accent = t.accentColor, L.secondHand = t.accentColor, L.centerCap = t.accentColor), t.handColor && (L.hourHand = t.handColor, L.minuteHand = t.handColor), L;
 }
-function T2(t, o) {
-  const L = _2(t.theme), e = H2(L.defaultColors, t), r = L.renderDial(t, e, o), i = L.renderHands(t, e, o), l = L.renderOverlay ? L.renderOverlay(t, e, o) : "";
+function F2(r, t) {
+  const L = I2(r.theme), e = E2(L.defaultColors, r), o = L.renderDial(r, e, t), l = L.renderHands(r, e, t), i = L.renderOverlay ? L.renderOverlay(r, e, t) : "";
   return `
     <svg 
       class="clock-svg" 
@@ -15644,7 +16694,7 @@ function T2(t, o) {
       height="100%" 
       xmlns="http://www.w3.org/2000/svg"
       role="img"
-      aria-label="Analog Clock showing ${o.timeString12} (${o.timezoneName})"
+      aria-label="Analog Clock showing ${t.timeString12} (${t.timezoneName})"
     >
       <defs>
         <filter id="drop-shadow" x="-20%" y="-20%" width="140%" height="140%">
@@ -15657,29 +16707,29 @@ function T2(t, o) {
 
       <!-- Dial Base Layer -->
       <g class="dial-layer">
-        ${r}
+        ${o}
       </g>
 
       <!-- Hands Layer -->
       <g class="hands-layer">
-        ${i}
+        ${l}
       </g>
 
       <!-- Overlay Layer -->
-      ${l ? `<g class="overlay-layer">${l}</g>` : ""}
+      ${i ? `<g class="overlay-layer">${i}</g>` : ""}
     </svg>
   `;
 }
-class A2 extends HTMLElement {
+class Q2 extends HTMLElement {
   constructor() {
     super();
-    h(this, "shadow");
-    h(this, "container");
-    h(this, "animFrameId", null);
-    h(this, "timerId", null);
-    h(this, "lastRenderedMinute", -1);
-    h(this, "observer", null);
-    h(this, "isVisible", !0);
+    x(this, "shadow");
+    x(this, "container");
+    x(this, "animFrameId", null);
+    x(this, "timerId", null);
+    x(this, "lastRenderedMinute", -1);
+    x(this, "observer", null);
+    x(this, "isVisible", !0);
     this.shadow = this.attachShadow({ mode: "open" }), this.container = document.createElement("div"), this.container.className = "analog-clock-container", this.shadow.appendChild(this.container);
   }
   static get observedAttributes() {
@@ -15707,18 +16757,18 @@ class A2 extends HTMLElement {
       return;
     }
     typeof IntersectionObserver < "u" && (this.observer = new IntersectionObserver((L) => {
-      const e = L[0], r = e ? e.isIntersecting : !0;
-      r !== this.isVisible && (this.isVisible = r, this.isVisible ? this.startClock() : this.stopClock());
+      const e = L[0], o = e ? e.isIntersecting : !0;
+      o !== this.isVisible && (this.isVisible = o, this.isVisible ? this.startClock() : this.stopClock());
     }, { rootMargin: "100px" }), this.observer.observe(this));
   }
   cleanupIntersectionObserver() {
     this.observer && (this.observer.disconnect(), this.observer = null);
   }
-  attributeChangedCallback(L, e, r) {
-    e !== r && (this.updateStyles(), this.startClock(), this.render());
+  attributeChangedCallback(L, e, o) {
+    e !== o && (this.updateStyles(), this.startClock(), this.render());
   }
   getOptions() {
-    const L = this.hasAttribute("smooth") ? this.getAttribute("smooth") !== "false" : !0, e = this.hasAttribute("show-seconds") ? this.getAttribute("show-seconds") !== "false" : !0, r = this.hasAttribute("show-ticks") ? this.getAttribute("show-ticks") !== "false" : !0;
+    const L = this.hasAttribute("smooth") ? this.getAttribute("smooth") !== "false" : !0, e = this.hasAttribute("show-seconds") ? this.getAttribute("show-seconds") !== "false" : !0, o = this.hasAttribute("show-ticks") ? this.getAttribute("show-ticks") !== "false" : !0;
     return {
       theme: this.getAttribute("theme") || "diver",
       timezone: this.getAttribute("timezone") || void 0,
@@ -15728,7 +16778,7 @@ class A2 extends HTMLElement {
       faceColor: this.getAttribute("face-color") || void 0,
       handColor: this.getAttribute("hand-color") || void 0,
       showSeconds: e,
-      showTicks: r
+      showTicks: o
     };
   }
   updateStyles() {
@@ -15781,56 +16831,56 @@ class A2 extends HTMLElement {
   }
   render() {
     const L = this.getOptions(), e = R(L.timezone, L.smooth);
-    this.container.innerHTML = T2(L, e), this.lastRenderedMinute !== e.minutes && (this.lastRenderedMinute = e.minutes, this.setAttribute("aria-label", `Analog clock displaying ${e.timeString12} (${e.timezoneName})`));
+    this.container.innerHTML = F2(L, e), this.lastRenderedMinute !== e.minutes && (this.lastRenderedMinute = e.minutes, this.setAttribute("aria-label", `Analog clock displaying ${e.timeString12} (${e.timezoneName})`));
   }
 }
-typeof window < "u" && typeof customElements < "u" && (customElements.get("analog-clock") || customElements.define("analog-clock", A2));
-function R2(t, o = {}) {
-  const L = typeof t == "string" ? document.querySelector(t) : t;
+typeof window < "u" && typeof customElements < "u" && (customElements.get("analog-clock") || customElements.define("analog-clock", Q2));
+function W2(r, t = {}) {
+  const L = typeof r == "string" ? document.querySelector(r) : r;
   if (!L)
-    throw new Error(`[clock-factory] Target container "${t}" not found.`);
+    throw new Error(`[clock-factory] Target container "${r}" not found.`);
   const e = document.createElement("analog-clock");
-  return o.theme && e.setAttribute("theme", o.theme), o.timezone && e.setAttribute("timezone", o.timezone), o.smooth !== void 0 && e.setAttribute("smooth", String(o.smooth)), o.size && e.setAttribute("size", o.size), o.accentColor && e.setAttribute("accent-color", o.accentColor), o.faceColor && e.setAttribute("face-color", o.faceColor), o.handColor && e.setAttribute("hand-color", o.handColor), o.showSeconds !== void 0 && e.setAttribute("show-seconds", String(o.showSeconds)), o.showNumbers !== void 0 && e.setAttribute("show-numbers", String(o.showNumbers)), o.showTicks !== void 0 && e.setAttribute("show-ticks", String(o.showTicks)), o.label && e.setAttribute("label", o.label), L.appendChild(e), e;
+  return t.theme && e.setAttribute("theme", t.theme), t.timezone && e.setAttribute("timezone", t.timezone), t.smooth !== void 0 && e.setAttribute("smooth", String(t.smooth)), t.size && e.setAttribute("size", t.size), t.accentColor && e.setAttribute("accent-color", t.accentColor), t.faceColor && e.setAttribute("face-color", t.faceColor), t.handColor && e.setAttribute("hand-color", t.handColor), t.showSeconds !== void 0 && e.setAttribute("show-seconds", String(t.showSeconds)), t.showNumbers !== void 0 && e.setAttribute("show-numbers", String(t.showNumbers)), t.showTicks !== void 0 && e.setAttribute("show-ticks", String(t.showTicks)), t.label && e.setAttribute("label", t.label), L.appendChild(e), e;
 }
 export {
-  A2 as AnalogClock,
-  a0 as alpinistTheme,
-  C0 as argentinaTheme,
+  Q2 as AnalogClock,
+  c0 as alpinistTheme,
+  $0 as argentinaTheme,
   L2 as assassinsCreedTheme,
   u0 as australiaTheme,
   p0 as brazilTheme,
-  x as builtInThemes,
+  m as builtInThemes,
   w0 as canadaTheme,
   f0 as chronographTheme,
-  M as classicTheme,
+  $ as classicTheme,
   S2 as cottagecoreTheme,
-  a2 as counterStrikeTheme,
-  R2 as createClock,
+  c2 as counterStrikeTheme,
+  W2 as createClock,
   W0 as cyberpunk2077Theme,
   n2 as cyberpunkTheme,
   f2 as darkSoulsTheme,
-  A2 as default,
+  Q2 as default,
   g2 as diverTheme,
   S0 as egyptTheme,
-  j0 as eldenRingTheme,
+  Y0 as eldenRingTheme,
   l2 as falloutTheme,
-  Y0 as fortniteTheme,
+  j0 as fortniteTheme,
   x0 as franceTheme,
   w2 as galaxyTheme,
   g0 as germanyTheme,
-  B2 as getAvailableThemes,
-  _2 as getTheme,
+  z2 as getAvailableThemes,
+  I2 as getTheme,
   R as getTimeData,
   b2 as glassmorphismTheme,
   U0 as godOfWarTheme,
-  B0 as greeceTheme,
+  G0 as greeceTheme,
   l0 as gshockTheme,
   N0 as gtaTheme,
   V0 as haloTheme,
   i2 as hollowKnightTheme,
   y2 as hybridTheme,
   n0 as indiaTheme,
-  I0 as indonesiaTheme,
+  E0 as indonesiaTheme,
   A0 as israelTheme,
   k0 as italyTheme,
   d0 as japanTheme,
@@ -15840,33 +16890,33 @@ export {
   z0 as marioTheme,
   u2 as matrixTheme,
   Z0 as mexicoTheme,
-  E0 as minecraftTheme,
+  F0 as minecraftTheme,
   p2 as minimalTheme,
-  $2 as nekoTheme,
+  C2 as nekoTheme,
   D0 as netherlandsTheme,
   d2 as neumorphicTheme,
   R0 as newZealandTheme,
-  F0 as norwayTheme,
+  I0 as norwayTheme,
   t2 as overwatchTheme,
   q0 as pacmanTheme,
   k2 as pilotTheme,
-  C2 as pixelFarmTheme,
+  $2 as pixelFarmTheme,
   O0 as pokemonTheme,
   m2 as racingTheme,
-  c2 as redDeadTheme,
-  c0 as regattaTheme,
-  D2 as registerTheme,
-  T2 as renderClockSVG,
+  a2 as redDeadTheme,
+  a0 as regattaTheme,
+  N2 as registerTheme,
+  F2 as renderClockSVG,
   o2 as robloxTheme,
   T0 as russiaTheme,
-  G0 as singaporeTheme,
+  B0 as singaporeTheme,
   r2 as skyrimTheme,
   K0 as sonicTheme,
   _0 as southAfricaTheme,
   M0 as southKoreaTheme,
   m0 as spainTheme,
-  $0 as swedenTheme,
-  b as swissTheme,
+  C0 as swedenTheme,
+  S as swissTheme,
   b0 as switzerlandTheme,
   x2 as synthwaveTheme,
   X0 as tetrisTheme,
