@@ -178,6 +178,18 @@ import { pixelFarmTheme } from './pixelFarm';
 import { cottagecoreTheme } from './cottagecore';
 import { nekoTheme } from './neko';
 
+// Iconic Real Watches
+import { rolex_submarinerTheme } from './rolex_submariner';
+import { rolex_daytonaTheme } from './rolex_daytona';
+import { patek_philippe_nautilusTheme } from './patek_philippe_nautilus';
+import { audemars_piguet_royal_oakTheme } from './audemars_piguet_royal_oak';
+import { omega_speedmasterTheme } from './omega_speedmaster';
+import { tag_heuer_monacoTheme } from './tag_heuer_monaco';
+import { breitling_navitimerTheme } from './breitling_navitimer';
+import { cartier_santosTheme } from './cartier_santos';
+import { iwc_portugieserTheme } from './iwc_portugieser';
+import { titan_edgeTheme } from './titan_edge';
+
 export const builtInThemes: Record<string, ClockThemeRenderer> = {
   // Sports
   'cricket_stadium': cricket_stadiumTheme,
@@ -356,6 +368,19 @@ export const builtInThemes: Record<string, ClockThemeRenderer> = {
   'pixel-farm': pixelFarmTheme,
   'cottagecore': cottagecoreTheme,
   'neko': nekoTheme,
+  
+  // Iconic Real Watches
+  'rolex-submariner': rolex_submarinerTheme,
+  'rolex-daytona': rolex_daytonaTheme,
+  'patek-philippe-nautilus': patek_philippe_nautilusTheme,
+  'audemars-piguet-royal-oak': audemars_piguet_royal_oakTheme,
+  'omega-speedmaster': omega_speedmasterTheme,
+  'tag-heuer-monaco': tag_heuer_monacoTheme,
+  'breitling-navitimer': breitling_navitimerTheme,
+  'cartier-santos': cartier_santosTheme,
+  'iwc-portugieser': iwc_portugieserTheme,
+  'titan-edge': titan_edgeTheme,
+
   'dark': {
     ...classicTheme,
     name: 'dark',
@@ -562,6 +587,17 @@ export {
   kawaiiTheme,
   pixelFarmTheme,
   cottagecoreTheme,
-  nekoTheme
+  nekoTheme,
+  
+  rolex_submarinerTheme,
+  rolex_daytonaTheme,
+  patek_philippe_nautilusTheme,
+  audemars_piguet_royal_oakTheme,
+  omega_speedmasterTheme,
+  tag_heuer_monacoTheme,
+  breitling_navitimerTheme,
+  cartier_santosTheme,
+  iwc_portugieserTheme,
+  titan_edgeTheme
 };
 
