@@ -31,15 +31,15 @@ Bring your dashboards, world clocks, landing pages, and apps to life with **132 
 
 ---
 
-## ⚡ See It in Action
+## See It in Action
 
 Play with all 132 dials, test world timezones live, tweak hand colors, and copy ready-to-use code directly from the interactive showcase:
 
-👉 **[codemasterabhishek.github.io/clock-factory](https://codemasterabhishek.github.io/clock-factory/)**
+**[codemasterabhishek.github.io/clock-factory](https://codemasterabhishek.github.io/clock-factory/)**
 
 ---
 
-## ✨ Why Clock Factory?
+## Why Clock Factory?
 
 - **Works Anywhere**: Native `<analog-clock>` web component. Drop it into plain HTML or your favorite framework (React, Next.js, Vue, Nuxt, Svelte, Astro) with zero wrappers or setup headaches.
 - **132 Handcrafted Designs**: Crisp, pure SVG dials that scale razor-sharp from compact dashboard widgets to giant 4K displays — featuring luxury chronometers, national flags, celestial planets, natural landscapes, sci-fi HUDs, and real watch tributes.
