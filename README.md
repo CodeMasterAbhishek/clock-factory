@@ -8,9 +8,9 @@
   </a>
 </p>
 
-**A lightweight, zero-dependency Analog Clock Web Component (`<analog-clock>`) for modern web applications.**
+### Beautiful, buttery-smooth analog clocks for any web app.
 
-Features 132 handcrafted vector themes, full IANA timezone support, continuous 60 FPS smooth sweeping, custom theme rendering, and native compatibility across vanilla HTML/JS, React, Vue, Svelte, and modern frontend frameworks.
+Bring your dashboards, world clocks, landing pages, and apps to life with **132 handcrafted vector watch dials**. Just drop in a single `<analog-clock>` tag — no build tools required, no bulky dependencies, and it works seamlessly everywhere from plain HTML to React, Vue, and Svelte.
 
 <p align="center">
   <a href="https://www.npmjs.com/package/clock-factory"><img src="https://img.shields.io/npm/v/clock-factory.svg?style=flat-square&color=3b82f6" alt="npm version"></a>
@@ -20,32 +20,33 @@ Features 132 handcrafted vector themes, full IANA timezone support, continuous 6
 </p>
 
 <p align="center">
-  <a href="https://codemasterabhishek.github.io/clock-factory/"><strong>Explore Live Showcase</strong></a> &bull;
+  <a href="https://codemasterabhishek.github.io/clock-factory/"><strong>Try the Interactive Demo</strong></a> &bull;
   <a href="#quick-start"><strong>Quick Start</strong></a> &bull;
+  <a href="#available-themes"><strong>Browse 132 Themes</strong></a> &bull;
   <a href="#api-reference"><strong>API Reference</strong></a> &bull;
-  <a href="#available-themes"><strong>Theme Catalog</strong></a> &bull;
-  <a href="#custom-theme-authoring"><strong>Custom Themes</strong></a>
+  <a href="#custom-theme-authoring"><strong>Build Custom Dials</strong></a>
 </p>
 
 </div>
 
 ---
 
-## Live Showcase
+## ⚡ See It in Action
 
-An interactive showcase with real-time theme customization, timezone selection, and instant code export is available at:
-**[codemasterabhishek.github.io/clock-factory](https://codemasterabhishek.github.io/clock-factory/)**
+Play with all 132 dials, test world timezones live, tweak hand colors, and copy ready-to-use code directly from the interactive showcase:
+
+👉 **[codemasterabhishek.github.io/clock-factory](https://codemasterabhishek.github.io/clock-factory/)**
 
 ---
 
-## Key Features
+## ✨ Why Clock Factory?
 
-- **Framework Agnostic**: Standard `<analog-clock>` custom element with Shadow DOM encapsulation.
-- **120+ Handcrafted Vector Themes**: Crisp, resolution-independent SVG designs across Sports, Nature, Places, Planets, Botanical, Sci-Fi, Cute, Horology, Countries, and Gaming.
-- **Timezone Engine**: Native support for any IANA timezone string (e.g., `Asia/Kolkata`, `America/New_York`, `Europe/London`, `Asia/Tokyo`).
-- **Smooth Animation**: Continuous 60 FPS mechanical sweep or standard 1-second quartz stepping.
-- **Zero Dependencies**: Self-contained rendering engine with no external CSS or JavaScript dependencies.
-- **Customizable**: Color overrides for dials and hands, configurable second hand, and custom theme registration API.
+- **Works Anywhere**: Native `<analog-clock>` web component. Drop it into plain HTML or your favorite framework (React, Next.js, Vue, Nuxt, Svelte, Astro) with zero wrappers or setup headaches.
+- **132 Handcrafted Designs**: Crisp, pure SVG dials that scale razor-sharp from compact dashboard widgets to giant 4K displays — featuring luxury chronometers, national flags, celestial planets, natural landscapes, sci-fi HUDs, and real watch tributes.
+- **Effortless World Timezones**: Pass any IANA timezone (like `timezone="Asia/Tokyo"` or `America/New_York`) and the clock handles the conversions natively.
+- **Buttery 60 FPS Sweep**: Toggle between a continuous, luxury mechanical sweep or a satisfying 1-second quartz stepping tick.
+- **Zero Dependencies**: Completely self-contained with built-in styles and SVGs. No external CSS files to import, no font downloads, and no framework dependencies.
+- **Fully Customizable**: Tweak face colors, hand accents, dial markers, or register your own completely bespoke SVG themes using simple JavaScript.
 
 ---
 
