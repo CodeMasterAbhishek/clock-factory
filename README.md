@@ -2,6 +2,12 @@
 
 # clock-factory
 
+<p align="center">
+  <a href="https://codemasterabhishek.github.io/clock-factory/">
+    <img src="https://raw.githubusercontent.com/CodeMasterAbhishek/clock-factory/main/assets/showcase.png" alt="Clock Factory Live Showcase" width="100%" />
+  </a>
+</p>
+
 **A lightweight, zero-dependency Analog Clock Web Component (`<analog-clock>`) for modern web applications.**
 
 Features 120+ handcrafted vector themes, full IANA timezone support, continuous 60 FPS smooth sweeping, custom theme rendering, and native compatibility across vanilla HTML/JS, React, Vue, Svelte, and modern frontend frameworks.
@@ -19,12 +25,6 @@ Features 120+ handcrafted vector themes, full IANA timezone support, continuous 
   <a href="#api-reference"><strong>API Reference</strong></a> &bull;
   <a href="#available-themes"><strong>Theme Catalog</strong></a> &bull;
   <a href="#custom-theme-authoring"><strong>Custom Themes</strong></a>
-</p>
-
-<p align="center">
-  <a href="https://codemasterabhishek.github.io/clock-factory/">
-    <img src="https://raw.githubusercontent.com/CodeMasterAbhishek/clock-factory/main/assets/showcase.png" alt="Clock Factory Live Showcase" width="100%" />
-  </a>
 </p>
 
 </div>
