@@ -1,403 +1,335 @@
 import { ClockThemeRenderer } from '../types';
 
-// Sports
-import { cricket_stadiumTheme } from './cricket_stadium';
-import { american_footballTheme } from './american_football';
-import { badminton_shuttleTheme } from './badminton_shuttle';
-import { cycling_velodromeTheme } from './cycling_velodrome';
-import { archery_targetTheme } from './archery_target';
-import { scuba_divingTheme } from './scuba_diving';
-import { basketballTheme } from './basketball';
-import { football_soccerTheme } from './football_soccer';
-import { tennis_slamTheme } from './tennis_slam';
-import { formula1_racingTheme } from './formula1_racing';
-import { golf_linksTheme } from './golf_links';
-import { boxing_ringTheme } from './boxing_ring';
-import { snowboarding_winterTheme } from './snowboarding_winter';
-import { skateboarding_streetTheme } from './skateboarding_street';
-import { baseball_diamondTheme } from './baseball_diamond';
-import { surfing_pipelineTheme } from './surfing_pipeline';
-
-// Nature & Atmospheric
-import { cherry_blossomTheme } from './cherry_blossom';
-import { firefly_meadowTheme } from './firefly_meadow';
-import { glacier_fjordTheme } from './glacier_fjord';
-import { rainforest_canopyTheme } from './rainforest_canopy';
-import { desert_dunesTheme } from './desert_dunes';
-import { crystal_caveTheme } from './crystal_cave';
-import { monarch_migrationTheme } from './monarch_migration';
-import { ocean_bioluminescenceTheme } from './ocean_bioluminescence';
-import { autumn_forestTheme } from './autumn_forest';
-import { thunderstorm_cloudTheme } from './thunderstorm_cloud';
-
-// Places & Architecture
-import { fujiTheme } from './fuji';
-import { santoriniTheme } from './santorini';
-import { aurora_tromsoTheme } from './aurora_tromso';
-import { pyramidsTheme } from './pyramids';
-import { taj_mahalTheme } from './taj_mahal';
-import { eiffel_towerTheme } from './eiffel_tower';
-import { machu_picchuTheme } from './machu_picchu';
-import { grand_canyonTheme } from './grand_canyon';
-import { veniceTheme } from './venice';
-import { maldivesTheme } from './maldives';
-
-// Planets & Astronomy
-import { earth_planetTheme } from './earth_planet';
-import { mars_planetTheme } from './mars_planet';
-import { jupiter_planetTheme } from './jupiter_planet';
-import { saturn_planetTheme } from './saturn_planet';
-import { neptune_planetTheme } from './neptune_planet';
-import { moon_lunarTheme } from './moon_lunar';
-import { sun_fusionTheme } from './sun_fusion';
-import { venus_planetTheme } from './venus_planet';
-import { uranus_planetTheme } from './uranus_planet';
-import { mercury_planetTheme } from './mercury_planet';
-
-// Botanical & Natural Elements
-import { terrariumTheme } from './terrarium';
-import { coral_reefTheme } from './coral_reef';
-import { dandelionTheme } from './dandelion';
-import { mountain_sunriseTheme } from './mountain_sunrise';
-import { bamboo_zenTheme } from './bamboo_zen';
-import { auroraTheme } from './aurora';
-import { geodeTheme } from './geode';
-import { waterfallTheme } from './waterfall';
-import { bonsaiTheme } from './bonsai';
-import { volcanoTheme } from './volcano';
-import { tree_ringsTheme } from './tree_rings';
-import { sunflowerTheme } from './sunflower';
-import { lotusTheme } from './lotus';
-import { forestTheme } from './forest';
-import { mushroomTheme } from './mushroom';
-import { cactusTheme } from './cactus';
-import { oceanTheme } from './ocean';
-import { monsteraTheme } from './monstera';
-import { hiveTheme } from './hive';
-import { autumnTheme } from './autumn';
-
-// Sci-Fi & Cyber
-import { radarTheme } from './radar';
 import { alienTheme } from './alien';
-import { warpTheme } from './warp';
-import { holoTheme } from './holo';
-import { mechaTheme } from './mecha';
-import { timemachineTheme } from './timemachine';
-import { starshipTheme } from './starship';
-import { cyberdeckTheme } from './cyberdeck';
-import { quantumTheme } from './quantum';
-
-// Kawaii & Character Clocks
-import { owlTheme } from './owl';
-import { penguinTheme } from './penguin';
-import { sunTheme } from './sun';
-
-// Horology & Professional Watches
-import { gshockTheme } from './gshock';
-import { chronographTheme } from './chronograph';
-import { regattaTheme } from './regatta';
-import { alpinistTheme } from './alpinist';
-import { triathlonTheme } from './triathlon';
-
-// World / National Themes
-import { indiaTheme } from './india';
-import { japanTheme } from './japan';
-import { usaTheme } from './usa';
-import { ukTheme } from './uk';
-import { brazilTheme } from './brazil';
-import { germanyTheme } from './germany';
-import { franceTheme } from './france';
-import { italyTheme } from './italy';
-import { australiaTheme } from './australia';
-import { canadaTheme } from './canada';
-import { spainTheme } from './spain';
-import { southKoreaTheme } from './southKorea';
-import { switzerlandTheme } from './switzerland';
-import { mexicoTheme } from './mexico';
 import { argentinaTheme } from './argentina';
-import { egyptTheme } from './egypt';
-import { swedenTheme } from './sweden';
-import { southAfricaTheme } from './southAfrica';
-import { uaeTheme } from './uae';
-import { russiaTheme } from './russia';
-import { israelTheme } from './israel';
-import { singaporeTheme } from './singapore';
-import { netherlandsTheme } from './netherlands';
-import { greeceTheme } from './greece';
-import { newZealandTheme } from './newZealand';
-import { vietnamTheme } from './vietnam';
-import { thailandTheme } from './thailand';
-import { norwayTheme } from './norway';
-import { indonesiaTheme } from './indonesia';
-
-// Video Games
-import { minecraftTheme } from './minecraft';
-import { zeldaTheme } from './zelda';
-import { pokemonTheme } from './pokemon';
-import { gtaTheme } from './gta';
-import { marioTheme } from './mario';
-import { cyberpunk2077Theme } from './cyberpunk2077';
-import { haloTheme } from './halo';
-import { godOfWarTheme } from './godOfWar';
-import { valorantTheme } from './valorant';
-import { eldenRingTheme } from './eldenRing';
-import { fortniteTheme } from './fortnite';
-import { pacmanTheme } from './pacman';
-import { sonicTheme } from './sonic';
-import { tetrisTheme } from './tetris';
-import { assassinsCreedTheme } from './assassinsCreed';
-import { leagueOfLegendsTheme } from './leagueOfLegends';
-import { overwatchTheme } from './overwatch';
-import { skyrimTheme } from './skyrim';
-import { robloxTheme } from './roblox';
-import { hollowKnightTheme } from './hollowKnight';
-import { falloutTheme } from './fallout';
-import { darkSoulsTheme } from './darkSouls';
-import { redDeadTheme } from './redDead';
-import { counterStrikeTheme } from './counterStrike';
-import { worldOfWarcraftTheme } from './worldOfWarcraft';
-
-// Core & Iconic Styles
-import { swissTheme } from './swiss';
-import { cyberpunkTheme } from './cyberpunk';
-import { neumorphicTheme } from './neumorphic';
-import { classicTheme } from './classic';
-import { luxuryTheme } from './luxury';
-import { hybridTheme } from './hybrid';
-import { minimalTheme } from './minimal';
-import { diverTheme } from './diver';
-import { synthwaveTheme } from './synthwave';
-import { pilotTheme } from './pilot';
-import { matrixTheme } from './matrix';
-import { galaxyTheme } from './galaxy';
-import { racingTheme } from './racing';
-import { vintageTheme } from './vintage';
-import { glassmorphismTheme } from './glassmorphism';
-import { kawaiiTheme } from './kawaii';
-import { pixelFarmTheme } from './pixelFarm';
-import { cottagecoreTheme } from './cottagecore';
-import { nekoTheme } from './neko';
-
-// Iconic Real Watches
-import { rolex_submarinerTheme } from './rolex_submariner';
-import { rolex_daytonaTheme } from './rolex_daytona';
-import { patek_philippe_nautilusTheme } from './patek_philippe_nautilus';
 import { audemars_piguet_royal_oakTheme } from './audemars_piguet_royal_oak';
-import { omega_speedmasterTheme } from './omega_speedmaster';
-import { tag_heuer_monacoTheme } from './tag_heuer_monaco';
+import { auroraTheme } from './aurora';
+import { aurora_tromsoTheme } from './aurora_tromso';
+import { australiaTheme } from './australia';
+import { autumnTheme } from './autumn';
+import { autumn_forestTheme } from './autumn_forest';
+import { bamboo_zenTheme } from './bamboo_zen';
+import { baseball_diamondTheme } from './baseball_diamond';
+import { basketballTheme } from './basketball';
+import { bonsaiTheme } from './bonsai';
+import { boxing_ringTheme } from './boxing_ring';
+import { brazilTheme } from './brazil';
 import { breitling_navitimerTheme } from './breitling_navitimer';
+import { cactusTheme } from './cactus';
+import { canadaTheme } from './canada';
 import { cartier_santosTheme } from './cartier_santos';
+import { cherry_blossomTheme } from './cherry_blossom';
+import { chronographTheme } from './chronograph';
+import { coral_reefTheme } from './coral_reef';
+import { cottagecoreTheme } from './cottagecore';
+import { cricket_stadiumTheme } from './cricket_stadium';
+import { crystal_caveTheme } from './crystal_cave';
+import { cyberdeckTheme } from './cyberdeck';
+import { cyberpunkTheme } from './cyberpunk';
+import { cyberpunk2077Theme } from './cyberpunk2077';
+import { cycling_velodromeTheme } from './cycling_velodrome';
+import { dandelionTheme } from './dandelion';
+import { desert_dunesTheme } from './desert_dunes';
+import { diverTheme } from './diver';
+import { earth_planetTheme } from './earth_planet';
+import { egyptTheme } from './egypt';
+import { eiffel_towerTheme } from './eiffel_tower';
+import { firefly_meadowTheme } from './firefly_meadow';
+import { football_soccerTheme } from './football_soccer';
+import { forestTheme } from './forest';
+import { formula1_racingTheme } from './formula1_racing';
+import { franceTheme } from './france';
+import { fujiTheme } from './fuji';
+import { galaxyTheme } from './galaxy';
+import { geodeTheme } from './geode';
+import { germanyTheme } from './germany';
+import { glacier_fjordTheme } from './glacier_fjord';
+import { golf_linksTheme } from './golf_links';
+import { grand_canyonTheme } from './grand_canyon';
+import { greeceTheme } from './greece';
+import { gshockTheme } from './gshock';
+import { hiveTheme } from './hive';
+import { holoTheme } from './holo';
+import { indiaTheme } from './india';
+import { indonesiaTheme } from './indonesia';
+import { israelTheme } from './israel';
+import { italyTheme } from './italy';
 import { iwc_portugieserTheme } from './iwc_portugieser';
+import { japanTheme } from './japan';
+import { jupiter_planetTheme } from './jupiter_planet';
+import { kawaiiTheme } from './kawaii';
+import { lotusTheme } from './lotus';
+import { luxuryTheme } from './luxury';
+import { machu_picchuTheme } from './machu_picchu';
+import { maldivesTheme } from './maldives';
+import { marioTheme } from './mario';
+import { mars_planetTheme } from './mars_planet';
+import { matrixTheme } from './matrix';
+import { mechaTheme } from './mecha';
+import { mercury_planetTheme } from './mercury_planet';
+import { mexicoTheme } from './mexico';
+import { monarch_migrationTheme } from './monarch_migration';
+import { monsteraTheme } from './monstera';
+import { moon_lunarTheme } from './moon_lunar';
+import { mountain_sunriseTheme } from './mountain_sunrise';
+import { mushroomTheme } from './mushroom';
+import { neptune_planetTheme } from './neptune_planet';
+import { netherlandsTheme } from './netherlands';
+import { newZealandTheme } from './newZealand';
+import { norwayTheme } from './norway';
+import { oceanTheme } from './ocean';
+import { ocean_bioluminescenceTheme } from './ocean_bioluminescence';
+import { omega_speedmasterTheme } from './omega_speedmaster';
+import { owlTheme } from './owl';
+import { patek_philippe_nautilusTheme } from './patek_philippe_nautilus';
+import { penguinTheme } from './penguin';
+import { pilotTheme } from './pilot';
+import { pokemonTheme } from './pokemon';
+import { pyramidsTheme } from './pyramids';
+import { quantumTheme } from './quantum';
+import { racingTheme } from './racing';
+import { radarTheme } from './radar';
+import { rainforest_canopyTheme } from './rainforest_canopy';
+import { rolex_daytonaTheme } from './rolex_daytona';
+import { rolex_submarinerTheme } from './rolex_submariner';
+import { russiaTheme } from './russia';
+import { santoriniTheme } from './santorini';
+import { saturn_planetTheme } from './saturn_planet';
+import { scuba_divingTheme } from './scuba_diving';
+import { singaporeTheme } from './singapore';
+import { skateboarding_streetTheme } from './skateboarding_street';
+import { snowboarding_winterTheme } from './snowboarding_winter';
+import { southAfricaTheme } from './southAfrica';
+import { southKoreaTheme } from './southKorea';
+import { spainTheme } from './spain';
+import { starshipTheme } from './starship';
+import { sunTheme } from './sun';
+import { sun_fusionTheme } from './sun_fusion';
+import { sunflowerTheme } from './sunflower';
+import { surfing_pipelineTheme } from './surfing_pipeline';
+import { swedenTheme } from './sweden';
+import { swissTheme } from './swiss';
+import { switzerlandTheme } from './switzerland';
+import { synthwaveTheme } from './synthwave';
+import { tag_heuer_monacoTheme } from './tag_heuer_monaco';
+import { taj_mahalTheme } from './taj_mahal';
+import { tennis_slamTheme } from './tennis_slam';
+import { terrariumTheme } from './terrarium';
+import { thailandTheme } from './thailand';
+import { thunderstorm_cloudTheme } from './thunderstorm_cloud';
+import { timemachineTheme } from './timemachine';
 import { titan_edgeTheme } from './titan_edge';
+import { tree_ringsTheme } from './tree_rings';
+import { triathlonTheme } from './triathlon';
+import { uaeTheme } from './uae';
+import { ukTheme } from './uk';
+import { uranus_planetTheme } from './uranus_planet';
+import { usaTheme } from './usa';
+import { veniceTheme } from './venice';
+import { venus_planetTheme } from './venus_planet';
+import { vietnamTheme } from './vietnam';
+import { vintageTheme } from './vintage';
+import { volcanoTheme } from './volcano';
+import { warpTheme } from './warp';
+import { waterfallTheme } from './waterfall';
 
 export const builtInThemes: Record<string, ClockThemeRenderer> = {
-  // Sports
-  'cricket_stadium': cricket_stadiumTheme,
-  'american_football': american_footballTheme,
-  'badminton_shuttle': badminton_shuttleTheme,
-  'cycling_velodrome': cycling_velodromeTheme,
-  'archery_target': archery_targetTheme,
-  'scuba_diving': scuba_divingTheme,
-  'basketball': basketballTheme,
-  'football_soccer': football_soccerTheme,
-  'tennis_slam': tennis_slamTheme,
-  'formula1_racing': formula1_racingTheme,
-  'golf_links': golf_linksTheme,
-  'boxing_ring': boxing_ringTheme,
-  'snowboarding_winter': snowboarding_winterTheme,
-  'skateboarding_street': skateboarding_streetTheme,
-  'baseball_diamond': baseball_diamondTheme,
-  'surfing_pipeline': surfing_pipelineTheme,
-
-  // Nature & Atmospheric
-  'cherry_blossom': cherry_blossomTheme,
-  'firefly_meadow': firefly_meadowTheme,
-  'glacier_fjord': glacier_fjordTheme,
-  'rainforest_canopy': rainforest_canopyTheme,
-  'desert_dunes': desert_dunesTheme,
-  'crystal_cave': crystal_caveTheme,
-  'monarch_migration': monarch_migrationTheme,
-  'ocean_bioluminescence': ocean_bioluminescenceTheme,
-  'autumn_forest': autumn_forestTheme,
-  'thunderstorm_cloud': thunderstorm_cloudTheme,
-
-  // Places & Architecture
-  'fuji': fujiTheme,
-  'santorini': santoriniTheme,
-  'aurora_tromso': aurora_tromsoTheme,
-  'pyramids': pyramidsTheme,
-  'taj_mahal': taj_mahalTheme,
-  'eiffel_tower': eiffel_towerTheme,
-  'machu_picchu': machu_picchuTheme,
-  'grand_canyon': grand_canyonTheme,
-  'venice': veniceTheme,
-  'maldives': maldivesTheme,
-
-  // Planets & Astronomy
-  'earth_planet': earth_planetTheme,
-  'mars_planet': mars_planetTheme,
-  'jupiter_planet': jupiter_planetTheme,
-  'saturn_planet': saturn_planetTheme,
-  'neptune_planet': neptune_planetTheme,
-  'moon_lunar': moon_lunarTheme,
-  'sun_fusion': sun_fusionTheme,
-  'venus_planet': venus_planetTheme,
-  'uranus_planet': uranus_planetTheme,
-  'mercury_planet': mercury_planetTheme,
-
-  // Botanical & Natural Elements
-  'terrarium': terrariumTheme,
-  'coral_reef': coral_reefTheme,
-  'dandelion': dandelionTheme,
-  'mountain_sunrise': mountain_sunriseTheme,
-  'bamboo_zen': bamboo_zenTheme,
-  'aurora': auroraTheme,
-  'geode': geodeTheme,
-  'waterfall': waterfallTheme,
-  'bonsai': bonsaiTheme,
-  'volcano': volcanoTheme,
-  'tree_rings': tree_ringsTheme,
-  'sunflower': sunflowerTheme,
-  'lotus': lotusTheme,
-  'forest': forestTheme,
-  'mushroom': mushroomTheme,
-  'cactus': cactusTheme,
-  'ocean': oceanTheme,
-  'monstera': monsteraTheme,
-  'hive': hiveTheme,
-  'autumn': autumnTheme,
-
-  // Sci-Fi & Cyber
-  'radar': radarTheme,
   'alien': alienTheme,
-  'warp': warpTheme,
-  'holo': holoTheme,
-  'mecha': mechaTheme,
-  'timemachine': timemachineTheme,
-  'starship': starshipTheme,
-  'cyberdeck': cyberdeckTheme,
-  'quantum': quantumTheme,
-
-  // Kawaii & Character Clocks
-  'owl': owlTheme,
-  'penguin': penguinTheme,
-  'sun': sunTheme,
-
-  // Horology & Professional Watches
-  'gshock': gshockTheme,
-  'chronograph': chronographTheme,
-  'regatta': regattaTheme,
-  'alpinist': alpinistTheme,
-  'triathlon': triathlonTheme,
-
-  // World / National Themes
-  'india': indiaTheme,
-  'japan': japanTheme,
-  'usa': usaTheme,
-  'uk': ukTheme,
-  'brazil': brazilTheme,
-  'germany': germanyTheme,
-  'france': franceTheme,
-  'italy': italyTheme,
-  'australia': australiaTheme,
-  'canada': canadaTheme,
-  'spain': spainTheme,
-  'south-korea': southKoreaTheme,
-  'switzerland': switzerlandTheme,
-  'mexico': mexicoTheme,
   'argentina': argentinaTheme,
-  'egypt': egyptTheme,
-  'sweden': swedenTheme,
-  'south-africa': southAfricaTheme,
-  'uae': uaeTheme,
-  'russia': russiaTheme,
-  'israel': israelTheme,
-  'singapore': singaporeTheme,
-  'netherlands': netherlandsTheme,
-  'greece': greeceTheme,
-  'new-zealand': newZealandTheme,
-  'vietnam': vietnamTheme,
-  'thailand': thailandTheme,
-  'norway': norwayTheme,
-  'indonesia': indonesiaTheme,
-
-  // Video Games
-  'minecraft': minecraftTheme,
-  'zelda': zeldaTheme,
-  'pokemon': pokemonTheme,
-  'gta': gtaTheme,
-  'mario': marioTheme,
-  'cyberpunk2077': cyberpunk2077Theme,
-  'halo': haloTheme,
-  'god-of-war': godOfWarTheme,
-  'valorant': valorantTheme,
-  'elden-ring': eldenRingTheme,
-  'fortnite': fortniteTheme,
-  'pacman': pacmanTheme,
-  'sonic': sonicTheme,
-  'tetris': tetrisTheme,
-  'assassins-creed': assassinsCreedTheme,
-  'league-of-legends': leagueOfLegendsTheme,
-  'overwatch': overwatchTheme,
-  'skyrim': skyrimTheme,
-  'roblox': robloxTheme,
-  'hollow-knight': hollowKnightTheme,
-  'fallout': falloutTheme,
-  'dark-souls': darkSoulsTheme,
-  'red-dead': redDeadTheme,
-  'counter-strike': counterStrikeTheme,
-  'world-of-warcraft': worldOfWarcraftTheme,
-
-  // Core & Iconic Styles
-  'swiss': swissTheme,
-  'cyberpunk': cyberpunkTheme,
-  'neumorphic': neumorphicTheme,
-  'classic': classicTheme,
-  'luxury': luxuryTheme,
-  'hybrid': hybridTheme,
-  'minimal': minimalTheme,
-  'diver': diverTheme,
-  'synthwave': synthwaveTheme,
-  'pilot': pilotTheme,
-  'matrix': matrixTheme,
-  'galaxy': galaxyTheme,
-  'racing': racingTheme,
-  'vintage': vintageTheme,
-  'glassmorphism': glassmorphismTheme,
-  'kawaii': kawaiiTheme,
-  'pixel-farm': pixelFarmTheme,
-  'cottagecore': cottagecoreTheme,
-  'neko': nekoTheme,
-  
-  // Iconic Real Watches
-  'rolex-submariner': rolex_submarinerTheme,
-  'rolex-daytona': rolex_daytonaTheme,
-  'patek-philippe-nautilus': patek_philippe_nautilusTheme,
+  'audemars_piguet_royal_oak': audemars_piguet_royal_oakTheme,
   'audemars-piguet-royal-oak': audemars_piguet_royal_oakTheme,
-  'omega-speedmaster': omega_speedmasterTheme,
-  'tag-heuer-monaco': tag_heuer_monacoTheme,
+  'audemars piguet royal oak': audemars_piguet_royal_oakTheme,
+  'aurora': auroraTheme,
+  'aurora_tromso': aurora_tromsoTheme,
+  'aurora-tromso': aurora_tromsoTheme,
+  'australia': australiaTheme,
+  'autumn': autumnTheme,
+  'autumn_forest': autumn_forestTheme,
+  'autumn-forest': autumn_forestTheme,
+  'bamboo_zen': bamboo_zenTheme,
+  'bamboo-zen': bamboo_zenTheme,
+  'baseball_diamond': baseball_diamondTheme,
+  'baseball-diamond': baseball_diamondTheme,
+  'basketball': basketballTheme,
+  'bonsai': bonsaiTheme,
+  'boxing_ring': boxing_ringTheme,
+  'boxing-ring': boxing_ringTheme,
+  'brazil': brazilTheme,
+  'breitling_navitimer': breitling_navitimerTheme,
   'breitling-navitimer': breitling_navitimerTheme,
+  'breitling navitimer': breitling_navitimerTheme,
+  'cactus': cactusTheme,
+  'canada': canadaTheme,
+  'cartier_santos': cartier_santosTheme,
   'cartier-santos': cartier_santosTheme,
+  'cartier santos': cartier_santosTheme,
+  'cherry_blossom': cherry_blossomTheme,
+  'cherry-blossom': cherry_blossomTheme,
+  'chronograph': chronographTheme,
+  'coral_reef': coral_reefTheme,
+  'coral-reef': coral_reefTheme,
+  'cottagecore': cottagecoreTheme,
+  'cricket_stadium': cricket_stadiumTheme,
+  'cricket-stadium': cricket_stadiumTheme,
+  'crystal_cave': crystal_caveTheme,
+  'crystal-cave': crystal_caveTheme,
+  'cyberdeck': cyberdeckTheme,
+  'cyberpunk': cyberpunkTheme,
+  'cyberpunk2077': cyberpunk2077Theme,
+  'cycling_velodrome': cycling_velodromeTheme,
+  'cycling-velodrome': cycling_velodromeTheme,
+  'dandelion': dandelionTheme,
+  'desert_dunes': desert_dunesTheme,
+  'desert-dunes': desert_dunesTheme,
+  'diver': diverTheme,
+  'earth_planet': earth_planetTheme,
+  'earth-planet': earth_planetTheme,
+  'egypt': egyptTheme,
+  'eiffel_tower': eiffel_towerTheme,
+  'eiffel-tower': eiffel_towerTheme,
+  'firefly_meadow': firefly_meadowTheme,
+  'firefly-meadow': firefly_meadowTheme,
+  'football_soccer': football_soccerTheme,
+  'football-soccer': football_soccerTheme,
+  'forest': forestTheme,
+  'formula1_racing': formula1_racingTheme,
+  'formula1-racing': formula1_racingTheme,
+  'france': franceTheme,
+  'fuji': fujiTheme,
+  'galaxy': galaxyTheme,
+  'geode': geodeTheme,
+  'germany': germanyTheme,
+  'glacier_fjord': glacier_fjordTheme,
+  'glacier-fjord': glacier_fjordTheme,
+  'golf_links': golf_linksTheme,
+  'golf-links': golf_linksTheme,
+  'grand_canyon': grand_canyonTheme,
+  'grand-canyon': grand_canyonTheme,
+  'greece': greeceTheme,
+  'gshock': gshockTheme,
+  'hive': hiveTheme,
+  'holo': holoTheme,
+  'india': indiaTheme,
+  'indonesia': indonesiaTheme,
+  'israel': israelTheme,
+  'italy': italyTheme,
+  'iwc_portugieser': iwc_portugieserTheme,
   'iwc-portugieser': iwc_portugieserTheme,
+  'iwc portugieser': iwc_portugieserTheme,
+  'japan': japanTheme,
+  'jupiter_planet': jupiter_planetTheme,
+  'jupiter-planet': jupiter_planetTheme,
+  'kawaii': kawaiiTheme,
+  'lotus': lotusTheme,
+  'luxury': luxuryTheme,
+  'machu_picchu': machu_picchuTheme,
+  'machu-picchu': machu_picchuTheme,
+  'maldives': maldivesTheme,
+  'mario': marioTheme,
+  'mars_planet': mars_planetTheme,
+  'mars-planet': mars_planetTheme,
+  'matrix': matrixTheme,
+  'mecha': mechaTheme,
+  'mercury_planet': mercury_planetTheme,
+  'mercury-planet': mercury_planetTheme,
+  'mexico': mexicoTheme,
+  'monarch_migration': monarch_migrationTheme,
+  'monarch-migration': monarch_migrationTheme,
+  'monstera': monsteraTheme,
+  'moon_lunar': moon_lunarTheme,
+  'moon-lunar': moon_lunarTheme,
+  'mountain_sunrise': mountain_sunriseTheme,
+  'mountain-sunrise': mountain_sunriseTheme,
+  'mushroom': mushroomTheme,
+  'neptune_planet': neptune_planetTheme,
+  'neptune-planet': neptune_planetTheme,
+  'netherlands': netherlandsTheme,
+  'newZealand': newZealandTheme,
+  'new-zealand': newZealandTheme,
+  'norway': norwayTheme,
+  'ocean': oceanTheme,
+  'ocean_bioluminescence': ocean_bioluminescenceTheme,
+  'ocean-bioluminescence': ocean_bioluminescenceTheme,
+  'omega_speedmaster': omega_speedmasterTheme,
+  'omega-speedmaster': omega_speedmasterTheme,
+  'omega speedmaster': omega_speedmasterTheme,
+  'owl': owlTheme,
+  'patek_philippe_nautilus': patek_philippe_nautilusTheme,
+  'patek-philippe-nautilus': patek_philippe_nautilusTheme,
+  'patek philippe nautilus': patek_philippe_nautilusTheme,
+  'penguin': penguinTheme,
+  'pilot': pilotTheme,
+  'pokemon': pokemonTheme,
+  'pyramids': pyramidsTheme,
+  'quantum': quantumTheme,
+  'racing': racingTheme,
+  'radar': radarTheme,
+  'rainforest_canopy': rainforest_canopyTheme,
+  'rainforest-canopy': rainforest_canopyTheme,
+  'rolex_daytona': rolex_daytonaTheme,
+  'rolex-daytona': rolex_daytonaTheme,
+  'rolex daytona': rolex_daytonaTheme,
+  'rolex_submariner': rolex_submarinerTheme,
+  'rolex-submariner': rolex_submarinerTheme,
+  'rolex submariner': rolex_submarinerTheme,
+  'russia': russiaTheme,
+  'santorini': santoriniTheme,
+  'saturn_planet': saturn_planetTheme,
+  'saturn-planet': saturn_planetTheme,
+  'scuba_diving': scuba_divingTheme,
+  'scuba-diving': scuba_divingTheme,
+  'singapore': singaporeTheme,
+  'skateboarding_street': skateboarding_streetTheme,
+  'skateboarding-street': skateboarding_streetTheme,
+  'snowboarding_winter': snowboarding_winterTheme,
+  'snowboarding-winter': snowboarding_winterTheme,
+  'southAfrica': southAfricaTheme,
+  'south-africa': southAfricaTheme,
+  'southKorea': southKoreaTheme,
+  'south-korea': southKoreaTheme,
+  'spain': spainTheme,
+  'starship': starshipTheme,
+  'sun': sunTheme,
+  'sun_fusion': sun_fusionTheme,
+  'sun-fusion': sun_fusionTheme,
+  'sunflower': sunflowerTheme,
+  'surfing_pipeline': surfing_pipelineTheme,
+  'surfing-pipeline': surfing_pipelineTheme,
+  'sweden': swedenTheme,
+  'swiss': swissTheme,
+  'switzerland': switzerlandTheme,
+  'synthwave': synthwaveTheme,
+  'tag_heuer_monaco': tag_heuer_monacoTheme,
+  'tag-heuer-monaco': tag_heuer_monacoTheme,
+  'tag heuer monaco': tag_heuer_monacoTheme,
+  'taj_mahal': taj_mahalTheme,
+  'taj-mahal': taj_mahalTheme,
+  'tennis_slam': tennis_slamTheme,
+  'tennis-slam': tennis_slamTheme,
+  'terrarium': terrariumTheme,
+  'thailand': thailandTheme,
+  'thunderstorm_cloud': thunderstorm_cloudTheme,
+  'thunderstorm-cloud': thunderstorm_cloudTheme,
+  'timemachine': timemachineTheme,
+  'titan_edge': titan_edgeTheme,
   'titan-edge': titan_edgeTheme,
-
-  'dark': {
-    ...classicTheme,
-    name: 'dark',
-    description: 'High-contrast pure OLED black dark mode classic clock',
-    defaultColors: {
-      face: '#000000',
-      dialBorder: '#18181b',
-      hourTicks: '#ffffff',
-      minuteTicks: '#71717a',
-      numbers: '#ffffff',
-      hourHand: '#ffffff',
-      minuteHand: '#e4e4e7',
-      secondHand: '#38bdf8',
-      accent: '#38bdf8',
-      centerCap: '#38bdf8'
-    }
-  }
+  'titan edge': titan_edgeTheme,
+  'tree_rings': tree_ringsTheme,
+  'tree-rings': tree_ringsTheme,
+  'triathlon': triathlonTheme,
+  'uae': uaeTheme,
+  'uk': ukTheme,
+  'uranus_planet': uranus_planetTheme,
+  'uranus-planet': uranus_planetTheme,
+  'usa': usaTheme,
+  'venice': veniceTheme,
+  'venus_planet': venus_planetTheme,
+  'venus-planet': venus_planetTheme,
+  'vietnam': vietnamTheme,
+  'vintage': vintageTheme,
+  'volcano': volcanoTheme,
+  'warp': warpTheme,
+  'waterfall': waterfallTheme,
 };
 
 const customThemes: Record<string, ClockThemeRenderer> = {};
@@ -410,6 +342,12 @@ export function getTheme(themeName?: string): ClockThemeRenderer {
   if (builtInThemes[name]) {
     return builtInThemes[name];
   }
+  // Try replacing hyphen/underscore
+  const alt1 = name.replace(/-/g, '_');
+  if (builtInThemes[alt1]) return builtInThemes[alt1];
+  const alt2 = name.replace(/_/g, '-');
+  if (builtInThemes[alt2]) return builtInThemes[alt2];
+
   return swissTheme;
 }
 
@@ -422,182 +360,136 @@ export function getAvailableThemes(): string[] {
 }
 
 export {
-  cricket_stadiumTheme,
-  american_footballTheme,
-  badminton_shuttleTheme,
-  cycling_velodromeTheme,
-  archery_targetTheme,
-  scuba_divingTheme,
-  basketballTheme,
-  football_soccerTheme,
-  tennis_slamTheme,
-  formula1_racingTheme,
-  golf_linksTheme,
-  boxing_ringTheme,
-  snowboarding_winterTheme,
-  skateboarding_streetTheme,
-  baseball_diamondTheme,
-  surfing_pipelineTheme,
-
-  cherry_blossomTheme,
-  firefly_meadowTheme,
-  glacier_fjordTheme,
-  rainforest_canopyTheme,
-  desert_dunesTheme,
-  crystal_caveTheme,
-  monarch_migrationTheme,
-  ocean_bioluminescenceTheme,
-  autumn_forestTheme,
-  thunderstorm_cloudTheme,
-
-  fujiTheme,
-  santoriniTheme,
-  aurora_tromsoTheme,
-  pyramidsTheme,
-  taj_mahalTheme,
-  eiffel_towerTheme,
-  machu_picchuTheme,
-  grand_canyonTheme,
-  veniceTheme,
-  maldivesTheme,
-
-  earth_planetTheme,
-  mars_planetTheme,
-  jupiter_planetTheme,
-  saturn_planetTheme,
-  neptune_planetTheme,
-  moon_lunarTheme,
-  sun_fusionTheme,
-  venus_planetTheme,
-  uranus_planetTheme,
-  mercury_planetTheme,
-
-  terrariumTheme,
-  coral_reefTheme,
-  dandelionTheme,
-  mountain_sunriseTheme,
-  bamboo_zenTheme,
-  auroraTheme,
-  geodeTheme,
-  waterfallTheme,
-  bonsaiTheme,
-  volcanoTheme,
-  tree_ringsTheme,
-  sunflowerTheme,
-  lotusTheme,
-  forestTheme,
-  mushroomTheme,
-  cactusTheme,
-  oceanTheme,
-  monsteraTheme,
-  hiveTheme,
-  autumnTheme,
-
-  radarTheme,
   alienTheme,
-  warpTheme,
-  holoTheme,
-  mechaTheme,
-  timemachineTheme,
-  starshipTheme,
-  cyberdeckTheme,
-  quantumTheme,
-
-  owlTheme,
-  penguinTheme,
-  sunTheme,
-
-  gshockTheme,
-  chronographTheme,
-  regattaTheme,
-  alpinistTheme,
-  triathlonTheme,
-
-  indiaTheme,
-  japanTheme,
-  usaTheme,
-  ukTheme,
-  brazilTheme,
-  germanyTheme,
-  franceTheme,
-  italyTheme,
-  australiaTheme,
-  canadaTheme,
-  spainTheme,
-  southKoreaTheme,
-  switzerlandTheme,
-  mexicoTheme,
   argentinaTheme,
-  egyptTheme,
-  swedenTheme,
-  southAfricaTheme,
-  uaeTheme,
-  russiaTheme,
-  israelTheme,
-  singaporeTheme,
-  netherlandsTheme,
-  greeceTheme,
-  newZealandTheme,
-  vietnamTheme,
-  thailandTheme,
-  norwayTheme,
-  indonesiaTheme,
-
-  minecraftTheme,
-  zeldaTheme,
-  pokemonTheme,
-  gtaTheme,
-  marioTheme,
-  cyberpunk2077Theme,
-  haloTheme,
-  godOfWarTheme,
-  valorantTheme,
-  eldenRingTheme,
-  fortniteTheme,
-  pacmanTheme,
-  sonicTheme,
-  tetrisTheme,
-  assassinsCreedTheme,
-  leagueOfLegendsTheme,
-  overwatchTheme,
-  skyrimTheme,
-  robloxTheme,
-  hollowKnightTheme,
-  falloutTheme,
-  darkSoulsTheme,
-  redDeadTheme,
-  counterStrikeTheme,
-  worldOfWarcraftTheme,
-
-  swissTheme,
-  cyberpunkTheme,
-  neumorphicTheme,
-  classicTheme,
-  luxuryTheme,
-  hybridTheme,
-  minimalTheme,
-  diverTheme,
-  synthwaveTheme,
-  pilotTheme,
-  matrixTheme,
-  galaxyTheme,
-  racingTheme,
-  vintageTheme,
-  glassmorphismTheme,
-  kawaiiTheme,
-  pixelFarmTheme,
-  cottagecoreTheme,
-  nekoTheme,
-  
-  rolex_submarinerTheme,
-  rolex_daytonaTheme,
-  patek_philippe_nautilusTheme,
   audemars_piguet_royal_oakTheme,
-  omega_speedmasterTheme,
-  tag_heuer_monacoTheme,
+  auroraTheme,
+  aurora_tromsoTheme,
+  australiaTheme,
+  autumnTheme,
+  autumn_forestTheme,
+  bamboo_zenTheme,
+  baseball_diamondTheme,
+  basketballTheme,
+  bonsaiTheme,
+  boxing_ringTheme,
+  brazilTheme,
   breitling_navitimerTheme,
+  cactusTheme,
+  canadaTheme,
   cartier_santosTheme,
+  cherry_blossomTheme,
+  chronographTheme,
+  coral_reefTheme,
+  cottagecoreTheme,
+  cricket_stadiumTheme,
+  crystal_caveTheme,
+  cyberdeckTheme,
+  cyberpunkTheme,
+  cyberpunk2077Theme,
+  cycling_velodromeTheme,
+  dandelionTheme,
+  desert_dunesTheme,
+  diverTheme,
+  earth_planetTheme,
+  egyptTheme,
+  eiffel_towerTheme,
+  firefly_meadowTheme,
+  football_soccerTheme,
+  forestTheme,
+  formula1_racingTheme,
+  franceTheme,
+  fujiTheme,
+  galaxyTheme,
+  geodeTheme,
+  germanyTheme,
+  glacier_fjordTheme,
+  golf_linksTheme,
+  grand_canyonTheme,
+  greeceTheme,
+  gshockTheme,
+  hiveTheme,
+  holoTheme,
+  indiaTheme,
+  indonesiaTheme,
+  israelTheme,
+  italyTheme,
   iwc_portugieserTheme,
-  titan_edgeTheme
+  japanTheme,
+  jupiter_planetTheme,
+  kawaiiTheme,
+  lotusTheme,
+  luxuryTheme,
+  machu_picchuTheme,
+  maldivesTheme,
+  marioTheme,
+  mars_planetTheme,
+  matrixTheme,
+  mechaTheme,
+  mercury_planetTheme,
+  mexicoTheme,
+  monarch_migrationTheme,
+  monsteraTheme,
+  moon_lunarTheme,
+  mountain_sunriseTheme,
+  mushroomTheme,
+  neptune_planetTheme,
+  netherlandsTheme,
+  newZealandTheme,
+  norwayTheme,
+  oceanTheme,
+  ocean_bioluminescenceTheme,
+  omega_speedmasterTheme,
+  owlTheme,
+  patek_philippe_nautilusTheme,
+  penguinTheme,
+  pilotTheme,
+  pokemonTheme,
+  pyramidsTheme,
+  quantumTheme,
+  racingTheme,
+  radarTheme,
+  rainforest_canopyTheme,
+  rolex_daytonaTheme,
+  rolex_submarinerTheme,
+  russiaTheme,
+  santoriniTheme,
+  saturn_planetTheme,
+  scuba_divingTheme,
+  singaporeTheme,
+  skateboarding_streetTheme,
+  snowboarding_winterTheme,
+  southAfricaTheme,
+  southKoreaTheme,
+  spainTheme,
+  starshipTheme,
+  sunTheme,
+  sun_fusionTheme,
+  sunflowerTheme,
+  surfing_pipelineTheme,
+  swedenTheme,
+  swissTheme,
+  switzerlandTheme,
+  synthwaveTheme,
+  tag_heuer_monacoTheme,
+  taj_mahalTheme,
+  tennis_slamTheme,
+  terrariumTheme,
+  thailandTheme,
+  thunderstorm_cloudTheme,
+  timemachineTheme,
+  titan_edgeTheme,
+  tree_ringsTheme,
+  triathlonTheme,
+  uaeTheme,
+  ukTheme,
+  uranus_planetTheme,
+  usaTheme,
+  veniceTheme,
+  venus_planetTheme,
+  vietnamTheme,
+  vintageTheme,
+  volcanoTheme,
+  warpTheme,
+  waterfallTheme,
 };
-
