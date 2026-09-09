@@ -1,0 +1,109 @@
+name: Publish to NPM
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: npm-publish
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    name: Build & Publish Package
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Verify NPM authentication token
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          if [ -z "$NODE_AUTH_TOKEN" ]; then
+            echo "::error title=NPM_TOKEN Missing::The secret 'NPM_TOKEN' is not configured in GitHub Secrets!"
+            echo ""
+            echo "👉 To fix this:"
+            echo "   1. Generate a token at https://www.npmjs.com (Access Tokens -> Generate New Token)"
+            echo "   2. Go to GitHub: Settings -> Secrets and variables -> Actions"
+            echo "   3. Add a secret named 'NPM_TOKEN' with your token value"
+            exit 1
+          fi
+
+          echo "Checking NPM authentication status with registry..."
+          if ! npm whoami; then
+            echo "::error title=NPM_TOKEN Expired or Invalid::The provided NPM_TOKEN is unauthorized, invalid, or has expired!"
+            echo ""
+            echo "👉 If your 90-day Granular Access Token expired, renew it seamlessly:"
+            echo "   1. Go to https://www.npmjs.com -> Access Tokens -> Generate New Token"
+            echo "   2. Go to your repo: Settings -> Secrets and variables -> Actions -> NPM_TOKEN"
+            echo "   3. Click the pencil icon to edit and paste your new token"
+            echo "   (Tip: You can also generate a Classic 'Automation' token on npm which never expires)"
+            exit 1
+          fi
+          echo "✅ NPM authentication verified successfully!"
+
+      - name: Check version and auto-bump if needed
+        id: version_check
+        run: |
+          PKG_NAME=$(node -p "require('./package.json').name")
+          LOCAL_VERSION=$(node -p "require('./package.json').version")
+          echo "Package: $PKG_NAME"
+          echo "Local version in package.json: $LOCAL_VERSION"
+
+          # Check if this exact version is already published on npm
+          EXISTS=$(npm view "${PKG_NAME}@${LOCAL_VERSION}" version 2>/dev/null || echo "")
+
+          if [ -n "$EXISTS" ]; then
+            echo "Version $LOCAL_VERSION is already published on NPM."
+            echo "Auto-bumping patch version so recent changes/documentation are published..."
+            LATEST_NPM=$(npm view "${PKG_NAME}" version 2>/dev/null || echo "$LOCAL_VERSION")
+            npm version "$LATEST_NPM" --no-git-tag-version --allow-same-version
+            npm version patch --no-git-tag-version
+            FINAL_VERSION=$(node -p "require('./package.json').version")
+            echo "Bumped to new version: $FINAL_VERSION"
+            echo "bumped=true" >> "$GITHUB_OUTPUT"
+            echo "version=$FINAL_VERSION" >> "$GITHUB_OUTPUT"
+          else
+            echo "Local version $LOCAL_VERSION has not been published to NPM yet."
+            echo "Using version: $LOCAL_VERSION"
+            echo "bumped=false" >> "$GITHUB_OUTPUT"
+            echo "version=$LOCAL_VERSION" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Build production bundles
+        run: npm run build
+
+      - name: Publish to NPM
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm publish --access public
+
+      - name: Commit and push bumped version to GitHub
+        if: steps.version_check.outputs.bumped == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add package.json package-lock.json
+          git commit -m "chore(release): v${{ steps.version_check.outputs.version }} [skip ci]"
+          git tag "v${{ steps.version_check.outputs.version }}"
+          git pull --rebase origin main
+          git push origin main --tags
